@@ -2,53 +2,44 @@ name: Warframe Market Scraper V3 Daily Run
 
 on:
   schedule:
-    # Déclenchement automatique tous les jours à 02:00 UTC
     - cron: '0 2 * * *'
-  
-  # Permet de lancer le script manuellement depuis l'interface GitHub
   workflow_dispatch:
 
 permissions:
-  contents: write  # Autorise GitHub Actions à push les fichiers JSON mis à jour
+  contents: write
 
 jobs:
   scrape_and_commit:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Extraction du code du dépôt
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # 2. Installation de Python
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
-    # 3. Installation de la seule dépendance nécessaire
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install requests
 
-    # 4. Exécution du scraper Python
     - name: Run Scraper V3
       run: |
         python scripts/wfm_scraper_v3.py
 
-    # 5. Détection des changements et commit automatique
     - name: Commit and Push changes
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         
-        # S'assure que le dossier data existe dans l'arbre git avant de l'ajouter
+        # On cible le dossier data à la racine avec l'argument -f (force)
         if [ -d "data" ]; then
-          git add data/*.json
+          git add -f data/*.json
         fi
         
-        # Vérifie s'il y a des modifications avant de commit pour éviter de faire planter le build
         if git diff --staged --quiet; then
           echo "💤 Aucun changement détecté dans les prix ou les versions. Fin du job."
         else
