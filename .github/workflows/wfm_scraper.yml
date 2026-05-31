@@ -35,7 +35,7 @@ jobs:
     # 4. Exécution du scraper Python
     - name: Run Scraper V3
       run: |
-        scripts/python wfm_scraper_v3.py
+        python scripts/wfm_scraper_v3.py
 
     # 5. Détection des changements et commit automatique
     - name: Commit and Push changes
