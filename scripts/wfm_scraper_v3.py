@@ -14,7 +14,8 @@ DELAY = 0.4
 HEADERS_EN = {"Accept": "application/json", "Language": "en", "User-Agent": "WF-PriceCheck-V3-Scraper"}
 HEADERS_FR = {"Accept": "application/json", "Language": "fr", "User-Agent": "WF-PriceCheck-V3-Scraper"}
 
-BASE_DIR = Path(__file__).resolve().parent
+# Configuration des chemins relative à la RACINE du projet (Working Directory)
+BASE_DIR = Path(".") # Cible la racine là où GitHub Actions se positionne
 DATA_DIR = BASE_DIR / "data"
 BLACKLIST_PATH = DATA_DIR / "ignored_slugs.json"
 VERSION_PATH = DATA_DIR / "api_version.json"
