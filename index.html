@@ -11,7 +11,7 @@
         body {
             background-image: linear-gradient(rgba(3, 7, 18, 0.90), rgba(3, 7, 18, 0.90)), url('PCL_background.jpg');
             background-size: cover;
-            background-position: center top;
+            background-position: center bottom; /* Aligné par le bas pour voir la rue et les personnages */
             background-attachment: fixed;
         }
 
@@ -75,7 +75,7 @@
                     <span><i class="fa-solid fa-circle-notch fa-spin mr-2 text-cyan-400"></i>api_version.json</span>
                     <span class="text-xs">En attente</span>
                 </div>
-                </div>
+            </div>
             
             <div id="loading-status-text" class="text-center text-xs text-gray-400 italic">
                 Connexion aux serveurs...
@@ -177,8 +177,8 @@
             searchQuery: "",
             sortColumn: "n_fr",
             sortDirection: "asc",
-            tables: {},       // Contiendra les tableaux légers d'indicateurs économiques
-            details: {},      // Contiendra les dictionnaires de descriptions lourdes chargés à la volée
+            tables: {},       // Index d'indicateurs économiques légers
+            details: {},      // Dictionnaires de descriptions lourdes (cache)
             versionInfo: null
         };
 
@@ -199,7 +199,7 @@
             document.getElementById("about-btn").addEventListener("click", openAboutModal);
         });
 
-        // CONSTRUIRE GRAPHMENT LA CHECKLIST DU CHARGEMENT
+        // CONSTRUIRE LA CHECKLIST GRAPHIQUE DU CHARGEMENT
         function buildProgressChecklist() {
             const container = document.getElementById("progress-checklist");
             CATEGORIES.forEach(cat => {
@@ -212,7 +212,7 @@
             });
         }
 
-        // SEQUENCE DE TELECHARGEMENT PILOTÉE AVEC INDICATION DE LA PROGRESSION
+        // SEQUENCE DE TELECHARGEMENT PILOTÉE AVEC EFFET CINÉMATIQUE LISEBLE
         async function initializeLoadingSequence() {
             const progressBar = document.getElementById("progress-bar");
             const statusText = document.getElementById("loading-status-text");
@@ -236,6 +236,9 @@
                 }
             };
 
+            // Fonction utilitaire pour créer une petite pause artificielle (lisibilité)
+            const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
             // Étape 1 : Récupérer api_version.json
             try {
                 statusText.innerText = "Lecture des métadonnées de version...";
@@ -253,7 +256,9 @@
                 updateProgress("version", "api_version.json", false);
             }
 
-            // Étapes suivantes : Les fichiers de table légers pour chaque catégorie
+            await sleep(200); // Petite temporisation rythmique
+
+            // Étapes suivantes : Les fichiers de table pour chaque catégorie
             for (const cat of CATEGORIES) {
                 statusText.innerText = `Téléchargement de l'index : ${cat.label}...`;
                 try {
@@ -262,20 +267,20 @@
                     appState.tables[cat.id] = await res.json();
                     updateProgress(cat.id, `${cat.id}_table.json`, true);
                 } catch (e) {
-                    appState.tables[cat.id] = []; // Fallback tableau vide en cas de fichier absent
+                    appState.tables[cat.id] = []; 
                     updateProgress(cat.id, `${cat.id}_table.json`, false);
                 }
+                await sleep(120); // Offre un effet visuel fluide de remplissage progressif
             }
 
-            // Clôture du chargement
             statusText.innerText = "Finalisation de l'interface...";
-            setTimeout(() => {
-                const loader = document.getElementById("loading-screen");
-                loader.classList.add("opacity-0", "pointer-events-none", "transition-all", "duration-500");
-            }, 400);
+            await sleep(800); // Laisse le temps de voir que tous les voyants sont au vert
+
+            const loader = document.getElementById("loading-screen");
+            loader.classList.add("opacity-0", "pointer-events-none", "transition-all", "duration-500");
         }
 
-        // CONSTRUIRE LA BARRE D'ONGLETS
+        // CONSTRUIRE LA BARRE D'ONGLETS (DESKTOP & MOBILE)
         function buildNavigationTabs() {
             const desktopNav = document.getElementById("nav-tabs");
             const mobileNav = document.getElementById("nav-tabs-mobile");
@@ -305,7 +310,7 @@
             renderTable();
         }
 
-        // ENTRER EN SURBRILLANCE SUR L'ONGLET SÉLECTIONNÉ
+        // METTRE À JOUR LE STYLE GRAPHIQUE DES ONGLETS SÉLECTIONNÉS
         function updateTabStyle() {
             CATEGORIES.forEach(cat => {
                 const dTab = document.getElementById(`tab-${cat.id}`);
@@ -321,13 +326,13 @@
             });
         }
 
-        // INJECTER ET FILTRER LES DONNÉES DU TABLEAU DYNAMIQUE
+        // RENDU ULTRA-RAPIDE DU TABLEAU DYNAMIQUE (ZÉRO FREEZE)
         function renderTable() {
             const tbody = document.getElementById("table-body");
             const noResults = document.getElementById("no-results");
             let data = appState.tables[appState.currentCategory] || [];
 
-            // 1. Filtrage par barre de recherche (Recherche sur Nom FR et Nom EN)
+            // 1. Filtrage par barre de recherche (FR / EN)
             if (appState.searchQuery) {
                 data = data.filter(item => 
                     (item.n_fr && item.n_fr.toLowerCase().includes(appState.searchQuery)) ||
@@ -335,7 +340,7 @@
                 );
             }
 
-            // 2. Tri dynamique des colonnes
+            // 2. Tri des colonnes
             const col = appState.sortColumn;
             const dir = appState.sortDirection === "asc" ? 1 : -1;
             
@@ -349,19 +354,20 @@
                 return (valA - valB) * dir;
             });
 
-            // Mettre à jour les indicateurs graphiques de tri (flèches)
             updateSortIcons();
 
-            // 3. Rendu HTML de chaque ligne
-            tbody.innerHTML = "";
             if (data.length === 0) {
+                tbody.innerHTML = "";
                 noResults.classList.remove("hidden");
                 return;
             }
             noResults.classList.add("hidden");
 
+            // OPTIMISATION CRITIQUE : Accumulation dans un flux texte hors-DOM
+            let tableHTML = "";
+            
             data.forEach(item => {
-                tbody.innerHTML += `
+                tableHTML += `
                     <tr class="table-row-hover border-b border-gray-800/30 cursor-pointer text-gray-300 font-medium" onclick="openItemDetails('${item.id}')">
                         <td class="p-4">
                             <div class="text-white">${item.n_fr || item.id}</div>
@@ -378,26 +384,29 @@
                     </tr>
                 `;
             });
+
+            // Une seule et unique injection pour liquider instantanément le freeze
+            tbody.innerHTML = tableHTML;
         }
 
-        // COULEUR DE TENDANCE DES ANCIENS PRIX PAR RAPPORT AU PRIX ACTUEL
+        // DETERMINER LA COULEUR DES TENDANCES DE PRIX
         function getPriceColorClass(current, old) {
             if (!current || !old || current === old) return "text-gray-400";
             return current > old ? "text-emerald-500/90" : "text-rose-500/90";
         }
 
-        // GESTIONNAIRE DU SENS DE TRI AU CLIC SUR LES ENTÊTES
+        // INVERSER LA DIRECTION DU TRI DES COLONNES
         function handleSort(columnName) {
             if (appState.sortColumn === columnName) {
                 appState.sortDirection = appState.sortDirection === "asc" ? "desc" : "asc";
             } else {
                 appState.sortColumn = columnName;
-                appState.sortDirection = columnName === "n_fr" ? "asc" : "desc"; // Par défaut décroissant pour les prix
+                appState.sortDirection = columnName === "n_fr" ? "asc" : "desc";
             }
             renderTable();
         }
 
-        // METTRE À JOUR LES ICÔNES DE FLÈCHES DE TRI (▲/▼)
+        // RE-DESSINER LES FLÈCHES DE TRI (▲/▼)
         function updateSortIcons() {
             const columns = ["n_fr", "p", "p30", "p90", "v", "vr", "f"];
             columns.forEach(col => {
@@ -412,13 +421,13 @@
             });
         }
 
-        // CHARGEMENT À LA DEMANDE ET OUVERTURE DE LA FICHE DÉTAILLÉE DE L'ITEM
+        // CHARGEMENT À LA VOLÉE DE LA FICHE D'ENCYCLOPÉDIE DE L'ITEM
         async function openItemDetails(itemId) {
             const cat = appState.currentCategory;
             const modalContainer = document.getElementById("modal-container");
             const modalContent = document.getElementById("modal-content");
             
-            // Ouvrir la modale directement en mode "chargement" pour le confort visuel
+            // État visuel "Patientez" pré-chargement
             modalContent.innerHTML = `
                 <div class="p-12 flex flex-col items-center justify-center gap-3">
                     <i class="fa-solid fa-circle-notch fa-spin text-2xl text-cyan-400"></i>
@@ -429,7 +438,7 @@
             setTimeout(() => modalContainer.classList.add("modal-show"), 10);
             setTimeout(() => modalContent.classList.add("modal-scale"), 10);
 
-            // Charger le fichier _details.json correspondant si pas encore en mémoire cache locale
+            // Fetch asynchrone ciblé si absent de la mémoire cache
             if (!appState.details[cat]) {
                 try {
                     const res = await fetch(`data/${cat}_details.json`);
@@ -439,12 +448,11 @@
                 }
             }
 
-            // Extraction des données de l'item sélectionné
             const summary = appState.tables[cat].find(i => i.id === itemId) || {};
             const info = appState.details[cat][itemId] || {};
             const iconUrl = info.icon ? `https://warframe.market/static/assets/${info.icon}` : '';
 
-            // Injection des données réelles dans la fiche de détails
+            // Remplissage dynamique des données réelles
             modalContent.innerHTML = `
                 <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-start justify-between gap-4">
                     <div class="flex items-center gap-4">
@@ -495,7 +503,7 @@
             `;
         }
 
-        // OUVERTURE DE LA FEUILLE DE BIOGRAPHIE "À PROPOS"
+        // OUVERTURE DE LA MODALE "À PROPOS"
         function openAboutModal() {
             const modalContainer = document.getElementById("modal-container");
             const modalContent = document.getElementById("modal-content");
@@ -530,7 +538,7 @@
             setTimeout(() => modalContent.classList.add("modal-scale"), 10);
         }
 
-        // FERMETURE DES MODALES AVEC ANIMATION DE DÉGONFLEMENT FLUIDE
+        // FERMETURE DES MODALES (ANIMATION DE DÉGONFLEMENT FLUIDE)
         function closeModal() {
             const modalContainer = document.getElementById("modal-container");
             const modalContent = document.getElementById("modal-content");
