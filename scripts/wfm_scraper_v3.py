@@ -151,10 +151,23 @@ def calculate_economic_indicators(stats_data):
     p = sum(d["median"] for d in last_7) / len(last_7) if last_7 else 0
     p30 = filled_data[-30]["median"] if len(filled_data) >= 30 else 0
     p90 = filled_data[0]["median"] if len(filled_data) >= 90 else 0
-    v = filled_data[-1]["volume"]
-    
-    avg_vol_90 = sum(d["volume"] for d in filled_data) / len(filled_data) if filled_data else 0
-    vr = round(v / avg_vol_90, 2) if avg_vol_90 > 0 else 0
+
+    # Build active-day list from raw API entries to avoid dilution by empty days.
+    active_entries = [entry for date, entry in sorted(raw_data.items()) if entry.get("volume", 0) > 0]
+    if active_entries:
+        last_three_active = active_entries[-3:]
+        # On garde la somme cumulée pour l'affichage de l'indicateur "v"
+        v = sum(entry.get("volume", 0) for entry in last_three_active)
+        
+        # Calcul des moyennes quotidiennes pour le ratio (vr)
+        avg_vol_recent = v / len(last_three_active)  # Moyenne par jour sur la période récente
+        avg_vol_90 = sum(entry.get("volume", 0) for entry in active_entries) / len(active_entries)
+        
+        # Le ratio compare maintenant deux moyennes quotidiennes
+        vr = round(avg_vol_recent / avg_vol_90, 2) if avg_vol_90 > 0 else 0.0
+    else:
+        v = 0
+        vr = 0
 
     f = 3
     if missing_days_count > 45: f -= 1 
