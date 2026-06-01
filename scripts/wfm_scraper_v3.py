@@ -14,8 +14,7 @@ DELAY = 0.4
 HEADERS_EN = {"Accept": "application/json", "Language": "en", "User-Agent": "WF-PriceCheck-V3-Scraper"}
 HEADERS_FR = {"Accept": "application/json", "Language": "fr", "User-Agent": "WF-PriceCheck-V3-Scraper"}
 
-# Configuration des chemins relative à la RACINE du projet (Working Directory)
-BASE_DIR = Path(".") # Cible la racine là où GitHub Actions se positionne
+BASE_DIR = Path(".") # Racine du projet
 DATA_DIR = BASE_DIR / "data"
 BLACKLIST_PATH = DATA_DIR / "ignored_slugs.json"
 VERSION_PATH = DATA_DIR / "api_version.json"
@@ -26,9 +25,9 @@ CATEGORIES = ["warframes", "armes", "equipements", "reliques", "mods", "arcanes"
 # FONCTIONS UTILITAIRES & MATHÉMATIQUES
 # ==============================================================================
 
-def categorize_item(tags, slug):
+def categorize_item(tags, url_name):
     """Filtre l'objet dans l'une des 7 catégories. Ne garde que les Sets si applicable."""
-    is_set = slug.endswith("_set")
+    is_set = url_name.endswith("_set")
     if "warframe" in tags: return "warframes" if is_set else "ignore"
     if "weapon" in tags: return "armes" if is_set else "ignore"
     if any(t in tags for t in ["sentinel", "archwing", "kubrow"]): return "equipements" if is_set else "ignore"
@@ -82,40 +81,62 @@ def calculate_economic_indicators(stats_data):
 
     return {"p": round(p, 1), "p30": round(p30, 1), "p90": round(p90, 1), "v": v, "vr": vr, "f": max(0, f)}
 
-# ==============================================================================
-# LOGIQUE DE CACHE ET D'ARCHITECTURE
-# ==============================================================================
-
 def load_cache():
     """Charge les données existantes pour le run différentiel."""
     cache = {cat: {"table": {}, "details": {}} for cat in CATEGORIES}
+    has_valid_cache = True
+    
     for cat in CATEGORIES:
         table_path = DATA_DIR / f"{cat}_table.json"
         details_path = DATA_DIR / f"{cat}_details.json"
         
-        if table_path.exists():
-            try:
-                with open(table_path, 'r', encoding='utf-8') as f:
-                    for item in json.load(f):
-                        cache[cat]["table"][item["id"]] = item
-            except: pass
+        if not table_path.exists() or not details_path.exists():
+            has_valid_cache = False
+            continue
             
-        if details_path.exists():
-            try:
-                with open(details_path, 'r', encoding='utf-8') as f:
-                    cache[cat]["details"] = json.load(f)
-            except: pass
-    return cache
+        try:
+            with open(table_path, 'r', encoding='utf-8') as f:
+                content = json.load(f)
+                if not content:
+                    has_valid_cache = False
+                for item in content:
+                    cache[cat]["table"][item["id"]] = item
+        except: 
+            has_valid_cache = False
+            
+        try:
+            with open(details_path, 'r', encoding='utf-8') as f:
+                cache[cat]["details"] = json.load(f)
+                if not cache[cat]["details"]:
+                    has_valid_cache = False
+        except: 
+            has_valid_cache = False
+            
+    return cache, has_valid_cache
+
+# ==============================================================================
+# BOUCLE PRINCIPALE
+# ==============================================================================
 
 def main():
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    today = datetime.utcnow()
     
-    # 1. Évaluation de l'état (RESET, UPDATE ou PARTIAL)
+    # 1. Tentative de récupération de la version de l'API
     current_version = None
     try:
         res = requests.get(f"{BASE_URL}/versions", headers=HEADERS_EN, timeout=10)
-        current_version = res.json().get("data", {}).get("version")
-    except: pass
+        if res.status_code == 200:
+            api_data = res.json().get("data", {})
+            if isinstance(api_data, dict):
+                current_version = api_data.get("version")
+            elif isinstance(api_data, list) and len(api_data) > 0:
+                current_version = api_data[0].get("version")
+    except: 
+        pass
+
+    if not current_version:
+        current_version = f"fallback_{today.strftime('%Y_%m')}"
 
     saved_version = None
     last_reset = None
@@ -125,120 +146,120 @@ def main():
                 v_data = json.load(f)
                 saved_version = v_data.get("version")
                 last_reset = datetime.fromisoformat(v_data.get("last_full_reset", "2000-01-01"))
-        except: pass
+        except: 
+            pass
 
-    # Détermination du mode de run
+    # 2. Chargement du Cache
+    cache, has_valid_cache = load_cache()
+
+    # 3. Détermination du mode de run
     run_type = "PARTIAL"
-    today = datetime.utcnow()
-    
-    if not last_reset or (today - last_reset).days >= 90:
+    if not last_reset or (today - last_reset).days >= 90 or not has_valid_cache:
         run_type = "RESET"
     elif current_version != saved_version:
         run_type = "UPDATE"
 
-    print(f"🚀 Démarrage du Scraper V3 | Mode : {run_type}")
+    print(f"🚀 Démarrage du Scraper V3 | Mode : {run_type} (Cache valide : {has_valid_cache})")
 
-    # 2. Gestion de la Blacklist
+    # 4. Gestion de la Blacklist
     blacklist = set()
+    # Si on force un RESET, on vide la blacklist pour tout réévaluer proprement
     if run_type != "RESET" and BLACKLIST_PATH.exists():
-        with open(BLACKLIST_PATH, 'r') as f:
-            blacklist = set(json.load(f))
+        try:
+            with open(BLACKLIST_PATH, 'r') as f:
+                blacklist = set(json.load(f))
+        except:
+            pass
 
-    # 3. Chargement du Cache
-    cache = load_cache() if run_type != "RESET" else {cat: {"table": {}, "details": {}} for cat in CATEGORIES}
-    
-    # Préparation des nouveaux dictionnaires
+    # Préparation des conteneurs de sauvegarde
     new_data = {cat: {"table": [], "details": {}} for cat in CATEGORIES}
     if run_type == "PARTIAL":
-        # On transfère directement les vieux détails, on ne les touchera pas
         for cat in CATEGORIES:
             new_data[cat]["details"] = cache[cat]["details"]
 
-    # 4. Aspiration du Manifeste (Global)
+    # 5. Aspiration du Manifeste
     res_manifest = requests.get(f"{BASE_URL}/items", headers=HEADERS_EN)
     all_items = res_manifest.json().get("data", [])
     
     items_to_process = []
     for item in all_items:
-        slug = item.get("slug", "")
-        if slug in blacklist:
+        # CORRECTION ICI : l'API v2 utilise 'url_name' au lieu de 'slug'
+        url_name = item.get("url_name", "")
+        if not url_name:
             continue
             
-        category = categorize_item(item.get("tags", []), slug)
+        if url_name in blacklist:
+            continue
+            
+        category = categorize_item(item.get("tags", []), url_name)
         if category == "ignore":
-            blacklist.add(slug)
+            blacklist.add(url_name)
         else:
-            items_to_process.append({"slug": slug, "cat": category})
+            items_to_process.append({"url_name": url_name, "cat": category})
 
     total = len(items_to_process)
-    print(f"🎯 {total} objets valides. Début de la boucle des prix...")
+    print(f"🎯 {total} objets valides à traiter. Début de la boucle...")
 
-    # 5. Boucle Principale
+    # 6. Boucle Principale
     for index, obj in enumerate(items_to_process):
-        slug = obj["slug"]
+        url_name = obj["url_name"]
         cat = obj["cat"]
         
-        # A. Récupération des Statistiques (OBLIGATOIRE TOUS LES JOURS)
         try:
-            res_stats = requests.get(f"{BASE_URL}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
+            res_stats = requests.get(f"{BASE_URL}/items/{url_name}/statistics", headers=HEADERS_EN, timeout=10)
             if res_stats.status_code == 200:
                 indicators = calculate_economic_indicators(res_stats.json().get("data", {}))
                 
-                # B. Gestion des Métadonnées (Descriptions, Noms FR/EN)
                 needs_full_fetch = False
-                n_fr, n_en = slug, slug
+                n_fr, n_en = url_name, url_name
                 
                 if run_type == "RESET":
                     needs_full_fetch = True
-                elif run_type == "UPDATE" and slug not in cache[cat]["details"]:
+                elif run_type == "UPDATE" and url_name not in cache[cat]["details"]:
                     needs_full_fetch = True
                 else:
-                    # PARTIAL ou UPDATE sur un vieil objet : On recycle les textes locaux
-                    old_table_entry = cache[cat]["table"].get(slug, {})
-                    n_fr = old_table_entry.get("n_fr", slug)
-                    n_en = old_table_entry.get("n_en", slug)
+                    old_table_entry = cache[cat]["table"].get(url_name, {})
+                    n_fr = old_table_entry.get("n_fr", url_name)
+                    n_en = old_table_entry.get("n_en", url_name)
+                    if n_fr == url_name and run_type == "PARTIAL" and not has_valid_cache:
+                        needs_full_fetch = True
 
-                # Si l'objet est nouveau ou qu'on est en RESET, on fait la grosse requête de détails
                 if needs_full_fetch:
-                    time.sleep(DELAY) # Pause avant la 2ème requête
-                    res_en = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS_EN)
-                    res_fr = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS_FR)
+                    time.sleep(DELAY)
+                    res_en = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_EN)
+                    res_fr = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_FR)
                     
                     if res_en.status_code == 200 and res_fr.status_code == 200:
                         data_en = res_en.json().get("data", {}).get("item", {}).get("items_in_set", [])
                         data_fr = res_fr.json().get("data", {}).get("item", {}).get("items_in_set", [])
                         
-                        # Trouver le bon objet dans le set
-                        item_en = next((i for i in data_en if i.get("url_name") == slug), {})
-                        item_fr = next((i for i in data_fr if i.get("url_name") == slug), {})
+                        item_en = next((i for i in data_en if i.get("url_name") == url_name), {})
+                        item_fr = next((i for i in data_fr if i.get("url_name") == url_name), {})
                         
-                        n_fr = item_fr.get(f"fr", {}).get("item_name", slug)
-                        n_en = item_en.get(f"en", {}).get("item_name", slug)
+                        n_fr = item_fr.get("fr", {}).get("item_name", url_name)
+                        n_en = item_en.get("en", {}).get("item_name", url_name)
                         
-                        new_data[cat]["details"][slug] = {
+                        new_data[cat]["details"][url_name] = {
                             "desc_fr": item_fr.get("fr", {}).get("description", ""),
                             "desc_en": item_en.get("en", {}).get("description", ""),
                             "wiki_fr": item_fr.get("fr", {}).get("wiki_link", ""),
                             "icon": item_en.get("icon", "")
                         }
 
-                # Ajout de l'entrée dans le fichier léger
-                new_data[cat]["table"].append({"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators})
+                new_data[cat]["table"].append({"id": url_name, "n_fr": n_fr, "n_en": n_en, **indicators})
 
         except Exception as e:
-            print(f"⚠️ Erreur sur {slug} : {e}")
+            print(f"⚠️ Erreur sur {url_name} : {e}")
             
         time.sleep(DELAY)
         if (index + 1) % 100 == 0:
             print(f"🕒 {index + 1}/{total} traités...")
 
-    # 6. Sauvegarde Optimisée
+    # 7. Sauvegarde
     for cat in CATEGORIES:
-        # On sauvegarde toujours les tables
         with open(DATA_DIR / f"{cat}_table.json", 'w', encoding='utf-8') as f:
             json.dump(new_data[cat]["table"], f, ensure_ascii=False, separators=(',', ':'))
             
-        # On ne sauvegarde les détails que si on les a modifiés (UPDATE ou RESET)
         if run_type in ["UPDATE", "RESET"]:
             with open(DATA_DIR / f"{cat}_details.json", 'w', encoding='utf-8') as f:
                 json.dump(new_data[cat]["details"], f, ensure_ascii=False)
@@ -246,7 +267,6 @@ def main():
     with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
         json.dump(list(blacklist), f)
         
-    # Mise à jour du fichier de version
     reset_date = today.isoformat() if run_type == "RESET" else (last_reset.isoformat() if last_reset else today.isoformat())
     with open(VERSION_PATH, 'w') as f:
         json.dump({
@@ -255,7 +275,7 @@ def main():
             "last_full_reset": reset_date
         }, f)
 
-    print(f"🎉 Scraping {run_type} terminé ! Fichiers mis à jour avec succès.")
+    print(f"🎉 Scraping {run_type} terminé avec succès ! Les fichiers JSON sont complets.")
 
 if __name__ == "__main__":
     main()
