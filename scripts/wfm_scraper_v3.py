@@ -5,10 +5,52 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 # ==============================================================================
+# API ARCHITECTURE NOTE - HYBRID V1/V2 (As of June 2026)
+# ==============================================================================
+# 
+# CONTEXT:
+# The Warframe Market API is currently in transition from V1 to V2. This script
+# uses a hybrid approach to work around incomplete V2 migration:
+#
+# CURRENT STATE (June 2026):
+#   - V2 IMPLEMENTED: /v2/items (manifest), /v2/items/{slug} (details), /v2/orders
+#   - V1 ONLY: /v1/items/{slug}/statistics (90-day price history) - NO V2 equivalent yet
+#
+# SCRIPT SECTIONS AFFECTED:
+#   1. Line ~193: Manifest fetch → V2 /items (CONFIRMED STABLE)
+#   2. Line ~207-240: Item details fetch → V2 /items/{slug} with i18n (CONFIRMED STABLE)
+#   3. Line ~258-262: Statistics fetch → V1 /items/{slug}/statistics (TEMPORARY - WILL CHANGE)
+#   4. Line ~46-115: calculate_economic_indicators() parses V1 response format
+#
+# FUTURE MIGRATION PLAN:
+# When WFM API completes V2 migration and releases /v2/items/{slug}/statistics:
+#
+#   STEP 1: Update BASE_URL references
+#     - Remove: BASE_URL_V1 variable
+#     - Update statistics endpoint: BASE_URL_V1/items/{slug}/statistics → BASE_URL_V2/items/{slug}/statistics
+#
+#   STEP 2: Update response parsing in calculate_economic_indicators()
+#     - Current: Expects {payload: {statistics_live: {90days: [...]}}} (V1 format)
+#     - Future: Will likely return {data: {statistics: {90days: [...]}}} (V2 format)
+#     - Action: Extract 90days from response structure matching new V2 response format
+#
+#   STEP 3: Update datetime parsing if needed
+#     - Current: Parses "2026-03-04T00:00:00.000+00:00" → "2026-03-04"
+#     - Verify: V2 format may differ; adjust string slicing if needed
+#
+# TESTING CHECKLIST FOR MIGRATION:
+#   □ Fetch one item with /v2/items/{slug}/statistics
+#   □ Print raw response structure (keys, nesting)
+#   □ Compare with current V1 format and adjust parsing
+#   □ Test on 3-5 items to confirm consistency
+#   □ Run full RESET mode and verify output files are populated
+#
+# ==============================================================================
 # CONFIGURATION
 # ==============================================================================
 
-BASE_URL = "https://api.warframe.market/v2"
+BASE_URL_V2 = "https://api.warframe.market/v2"
+BASE_URL_V1 = "https://api.warframe.market/v1"
 DELAY = 0.4 
 
 HEADERS_EN = {"Accept": "application/json", "Language": "en", "User-Agent": "WF-PriceCheck-V3-Scraper"}
@@ -47,12 +89,45 @@ def categorize_item(tags, url_name):
     return "ignore"
 
 def calculate_economic_indicators(stats_data):
-    """Calcule les indicateurs allégés avec Forward Fill."""
-    days_90 = stats_data.get("90_days", [])
+    """
+    Calcule les indicateurs allégés avec Forward Fill.
+    
+    MIGRATION NOTE (June 2026):
+    Currently parses V1 /statistics response format: {payload: {statistics_live/closed: {90days: [...]}}}
+    
+    When V2 /statistics endpoint becomes available, this function will need updating:
+      - Check new response structure (likely: {data: {statistics: {90days: [...]}}} or similar)
+      - Adjust the extraction logic below to match V2 nesting
+      - Keep the rest of the algorithm unchanged (Forward Fill, indicator calculation)
+      
+    Current extraction handles both V1 structures:
+    """
+    # Support V1 payload structure: extract 90days from V1 response
+    days_90 = []
+    if isinstance(stats_data, dict):
+        # V1 structure: {"statistics_live": {"90days": [...]}, "statistics_closed": {...}}
+        if "statistics_live" in stats_data:
+            days_90 = stats_data["statistics_live"].get("90days", [])
+        elif "statistics_closed" in stats_data and not days_90:
+            days_90 = stats_data["statistics_closed"].get("90days", [])
+        # V2 structure fallback
+        elif "90_days" in stats_data:
+            days_90 = stats_data.get("90_days", [])
+    else:
+        # Direct list (shouldn't happen but safety)
+        days_90 = stats_data if isinstance(stats_data, list) else []
+    
     if not days_90:
         return {"p": 0, "p30": 0, "p90": 0, "v": 0, "vr": 0, "f": 0}
 
-    raw_data = {entry["datetime"][:10]: entry for entry in days_90}
+    # Parse V1 datetime format: "2026-03-04T00:00:00.000+00:00" -> "2026-03-04"
+    raw_data = {}
+    for entry in days_90:
+        dt_str = entry.get("datetime", "")
+        if dt_str:
+            date_key = dt_str[:10]  # Extract YYYY-MM-DD
+            raw_data[date_key] = entry
+    
     today = datetime.utcnow().date()
     filled_data = []
     
@@ -139,7 +214,7 @@ def main():
     
     current_version = None
     try:
-        res = requests.get(f"{BASE_URL}/versions", headers=HEADERS_EN, timeout=10)
+        res = requests.get(f"{BASE_URL_V2}/versions", headers=HEADERS_EN, timeout=10)
         if res.status_code == 200:
             api_data = res.json().get("data", {})
             if isinstance(api_data, dict):
@@ -190,7 +265,7 @@ def main():
         for cat in CATEGORIES:
             new_data[cat]["details"] = cache[cat]["details"]
 
-    res_manifest = requests.get(f"{BASE_URL}/items", headers=HEADERS_EN, timeout=10)
+    res_manifest = requests.get(f"{BASE_URL_V2}/items", headers=HEADERS_EN, timeout=10)
     if res_manifest.status_code != 200:
         print(f"❌ Échec du manifeste global ({res_manifest.status_code}) : {res_manifest.text[:200]}")
         return
@@ -219,12 +294,12 @@ def main():
             # SCÉNARIO A : L'objet est totalement inconnu ou mode RESET
             if not found_category or run_type == "RESET":
                 time.sleep(DELAY)
-                res_en = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS_EN, timeout=10)
-                res_fr = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS_FR, timeout=10)
+                res_en = requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_EN, timeout=10)
+                res_fr = requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_FR, timeout=10)
                 
                 if res_en.status_code == 200 and res_fr.status_code == 200:
-                    json_en = res_en.json().get("data", {}).get("item", {})
-                    json_fr = res_fr.json().get("data", {}).get("item", {})
+                    json_en = res_en.json().get("data", {})
+                    json_fr = res_fr.json().get("data", {})
                     
                     tags = json_en.get("tags", [])
                     cat = categorize_item(tags, slug)
@@ -233,20 +308,19 @@ def main():
                         blacklist.add(slug)
                         continue
                     
-                    data_en = json_en.get("items_in_set", [])
-                    data_fr = json_fr.get("items_in_set", [])
+                    # Extract i18n translations (V2 structure)
+                    i18n_en = json_en.get("i18n", {}).get("en", {})
+                    i18n_fr = json_fr.get("i18n", {}).get("fr", {})
                     
-                    item_en = next((i for i in data_en if (i.get("slug") or i.get("url_name")) == slug), json_en)
-                    item_fr = next((i for i in data_fr if (i.get("slug") or i.get("url_name")) == slug), json_fr)
-                    
-                    n_fr = item_fr.get("fr", {}).get("item_name", slug)
-                    n_en = item_en.get("en", {}).get("item_name", slug)
+                    # Try to get names: use 'name' key or fallback to slug
+                    n_en = i18n_en.get("name") or json_en.get("name") or slug
+                    n_fr = i18n_fr.get("name") or json_fr.get("name") or slug
                     
                     new_data[cat]["details"][slug] = {
-                        "desc_fr": item_fr.get("fr", {}).get("description", ""),
-                        "desc_en": item_en.get("en", {}).get("description", ""),
-                        "wiki_fr": item_fr.get("fr", {}).get("wiki_link", ""),
-                        "icon": item_en.get("icon", "")
+                        "desc_fr": i18n_fr.get("description", ""),
+                        "desc_en": i18n_en.get("description", ""),
+                        "wiki_fr": i18n_fr.get("wikiLink", ""),
+                        "icon": i18n_en.get("icon", "")
                     }
                     found_category = cat
                 else:
@@ -261,11 +335,18 @@ def main():
                 if run_type == "UPDATE" and slug not in new_data[found_category]["details"]:
                     new_data[found_category]["details"][slug] = cache[found_category]["details"].get(slug, {})
 
-            # Récupération des prix
+            # 🔄 MIGRATION POINT: Statistics endpoint - Currently V1 ONLY
+            # TODO: When /v2/items/{slug}/statistics becomes available, replace:
+            #   OLD: f"{BASE_URL_V1}/items/{slug}/statistics"
+            #   NEW: f"{BASE_URL_V2}/items/{slug}/statistics"
+            # And update calculate_economic_indicators() to parse V2 response format
             time.sleep(DELAY)
-            res_stats = requests.get(f"{BASE_URL}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
+            res_stats = requests.get(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
             if res_stats.status_code == 200:
-                indicators = calculate_economic_indicators(res_stats.json().get("data", {}))
+                # V1 returns {"payload": {"statistics_live": {"90days": [...]}, "statistics_closed": {...}}}
+                # V2 will likely return {"data": {"statistics": {"90days": [...]}}} - parser will need update
+                stats_payload = res_stats.json().get("payload", {})
+                indicators = calculate_economic_indicators(stats_payload)
                 new_data[found_category]["table"].append({"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators})
 
         except Exception as e:
