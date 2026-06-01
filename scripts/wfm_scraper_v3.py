@@ -190,21 +190,28 @@ def main():
         for cat in CATEGORIES:
             new_data[cat]["details"] = cache[cat]["details"]
 
-    res_manifest = requests.get(f"{BASE_URL}/items", headers=HEADERS_EN)
+    res_manifest = requests.get(f"{BASE_URL}/items", headers=HEADERS_EN, timeout=10)
+    if res_manifest.status_code != 200:
+        print(f"❌ Échec du manifeste global ({res_manifest.status_code}) : {res_manifest.text[:200]}")
+        return
+
     all_items = res_manifest.json().get("data", [])
-    
+    if not isinstance(all_items, list):
+        print(f"❌ Le manifeste global n'est pas une liste valide : {type(all_items).__name__}")
+        return
+
     print(f"📋 {len(all_items)} objets trouvés dans le manifeste global. Filtrage...")
 
     # Boucle Principale
     for index, item in enumerate(all_items):
-        url_name = item.get("url_name", "")
-        if not url_name or url_name in blacklist:
+        slug = item.get("slug") or item.get("url_name") or ""
+        if not slug or slug in blacklist:
             continue
 
         found_category = None
         if run_type != "RESET":
             for cat in CATEGORIES:
-                if url_name in cache[cat]["table"] or url_name in cache[cat]["details"]:
+                if slug in cache[cat]["table"] or slug in cache[cat]["details"]:
                     found_category = cat
                     break
 
@@ -212,30 +219,30 @@ def main():
             # SCÉNARIO A : L'objet est totalement inconnu ou mode RESET
             if not found_category or run_type == "RESET":
                 time.sleep(DELAY)
-                res_en = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_EN)
-                res_fr = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_FR)
+                res_en = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS_EN, timeout=10)
+                res_fr = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS_FR, timeout=10)
                 
                 if res_en.status_code == 200 and res_fr.status_code == 200:
                     json_en = res_en.json().get("data", {}).get("item", {})
                     json_fr = res_fr.json().get("data", {}).get("item", {})
                     
                     tags = json_en.get("tags", [])
-                    cat = categorize_item(tags, url_name)
+                    cat = categorize_item(tags, slug)
                     
                     if cat == "ignore":
-                        blacklist.add(url_name)
+                        blacklist.add(slug)
                         continue
                     
                     data_en = json_en.get("items_in_set", [])
                     data_fr = json_fr.get("items_in_set", [])
                     
-                    item_en = next((i for i in data_en if i.get("url_name") == url_name), json_en)
-                    item_fr = next((i for i in data_fr if i.get("url_name") == url_name), json_fr)
+                    item_en = next((i for i in data_en if (i.get("slug") or i.get("url_name")) == slug), json_en)
+                    item_fr = next((i for i in data_fr if (i.get("slug") or i.get("url_name")) == slug), json_fr)
                     
-                    n_fr = item_fr.get("fr", {}).get("item_name", url_name)
-                    n_en = item_en.get("en", {}).get("item_name", url_name)
+                    n_fr = item_fr.get("fr", {}).get("item_name", slug)
+                    n_en = item_en.get("en", {}).get("item_name", slug)
                     
-                    new_data[cat]["details"][url_name] = {
+                    new_data[cat]["details"][slug] = {
                         "desc_fr": item_fr.get("fr", {}).get("description", ""),
                         "desc_en": item_en.get("en", {}).get("description", ""),
                         "wiki_fr": item_fr.get("fr", {}).get("wiki_link", ""),
@@ -247,22 +254,22 @@ def main():
 
             # SCÉNARIO B : L'objet est connu
             else:
-                old_entry = cache[found_category]["table"].get(url_name, {})
-                n_fr = old_entry.get("n_fr", url_name)
-                n_en = old_entry.get("n_en", url_name)
+                old_entry = cache[found_category]["table"].get(slug, {})
+                n_fr = old_entry.get("n_fr", slug)
+                n_en = old_entry.get("n_en", slug)
                 
-                if run_type == "UPDATE" and url_name not in new_data[found_category]["details"]:
-                    new_data[found_category]["details"][url_name] = cache[found_category]["details"].get(url_name, {})
+                if run_type == "UPDATE" and slug not in new_data[found_category]["details"]:
+                    new_data[found_category]["details"][slug] = cache[found_category]["details"].get(slug, {})
 
             # Récupération des prix
             time.sleep(DELAY)
-            res_stats = requests.get(f"{BASE_URL}/items/{url_name}/statistics", headers=HEADERS_EN, timeout=10)
+            res_stats = requests.get(f"{BASE_URL}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
             if res_stats.status_code == 200:
                 indicators = calculate_economic_indicators(res_stats.json().get("data", {}))
-                new_data[found_category]["table"].append({"id": url_name, "n_fr": n_fr, "n_en": n_en, **indicators})
+                new_data[found_category]["table"].append({"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators})
 
         except Exception as e:
-            print(f"⚠️ Erreur sur {url_name} : {e}")
+            print(f"⚠️ Erreur sur {slug} : {e}")
             
         if (index + 1) % 100 == 0:
             print(f"🕒 {index + 1}/{len(all_items)} objets analysés...")
