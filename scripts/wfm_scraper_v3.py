@@ -26,15 +26,27 @@ CATEGORIES = ["warframes", "armes", "equipements", "reliques", "mods", "arcanes"
 # ==============================================================================
 
 def categorize_item(tags, url_name):
-    """Filtre l'objet dans l'une des 7 catégories. Ne garde que les Sets si applicable."""
+    """
+    Filtre l'objet selon ses VRAIS tags de l'API.
+    Ne garde que les Sets pour les entités complexes.
+    """
     is_set = url_name.endswith("_set")
-    if "warframe" in tags: return "warframes" if is_set else "ignore"
-    if "weapon" in tags: return "armes" if is_set else "ignore"
-    if any(t in tags for t in ["sentinel", "archwing", "kubrow"]): return "equipements" if is_set else "ignore"
-    if "relic" in tags: return "reliques"
-    if "mod" in tags: return "mods"
-    if "arcane_enhancement" in tags: return "arcanes"
-    if any(t in tags for t in ["necramech", "focus_lens", "ayatan", "resource"]): return "ignore" if is_set else "ressources"
+    
+    if "warframe" in tags: 
+        return "warframes" if is_set else "ignore"
+    if "weapon" in tags: 
+        return "armes" if is_set else "ignore"
+    if any(t in tags for t in ["sentinel", "archwing", "kubrow", "kavat"]): 
+        return "equipements" if is_set else "ignore"
+    if "relic" in tags: 
+        return "reliques"
+    if "mod" in tags: 
+        return "mods"
+    if "arcane_enhancement" in tags: 
+        return "arcanes"
+    if any(t in tags for t in ["necramech", "focus_lens", "ayatan", "resource"]): 
+        return "ignore" if is_set else "ressources"
+        
     return "ignore"
 
 def calculate_economic_indicators(stats_data):
@@ -82,7 +94,7 @@ def calculate_economic_indicators(stats_data):
     return {"p": round(p, 1), "p30": round(p30, 1), "p90": round(p90, 1), "v": v, "vr": vr, "f": max(0, f)}
 
 def load_cache():
-    """Charge les données existantes pour le run différentiel."""
+    """Charge le cache local pour éviter les requêtes de détails."""
     cache = {cat: {"table": {}, "details": {}} for cat in CATEGORIES}
     has_valid_cache = True
     
@@ -97,8 +109,6 @@ def load_cache():
         try:
             with open(table_path, 'r', encoding='utf-8') as f:
                 content = json.load(f)
-                if not content:
-                    has_valid_cache = False
                 for item in content:
                     cache[cat]["table"][item["id"]] = item
         except: 
@@ -107,8 +117,6 @@ def load_cache():
         try:
             with open(details_path, 'r', encoding='utf-8') as f:
                 cache[cat]["details"] = json.load(f)
-                if not cache[cat]["details"]:
-                    has_valid_cache = False
         except: 
             has_valid_cache = False
             
@@ -122,7 +130,7 @@ def main():
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     today = datetime.utcnow()
     
-    # 1. Tentative de récupération de la version de l'API
+    # 1. Récupération de la version de l'API
     current_version = None
     try:
         res = requests.get(f"{BASE_URL}/versions", headers=HEADERS_EN, timeout=10)
@@ -149,124 +157,133 @@ def main():
         except: 
             pass
 
-    # 2. Chargement du Cache
+    # 2. Chargement du Cache et de la Blacklist
     cache, has_valid_cache = load_cache()
-
-    # 3. Détermination du mode de run
-    run_type = "PARTIAL"
-    if not last_reset or (today - last_reset).days >= 90 or not has_valid_cache:
-        run_type = "RESET"
-    elif current_version != saved_version:
-        run_type = "UPDATE"
-
-    print(f"🚀 Démarrage du Scraper V3 | Mode : {run_type} (Cache valide : {has_valid_cache})")
-
-    # 4. Gestion de la Blacklist
+    
     blacklist = set()
-    # Si on force un RESET, on vide la blacklist pour tout réévaluer proprement
-    if run_type != "RESET" and BLACKLIST_PATH.exists():
+    if VERSION_PATH.exists() and BLACKLIST_PATH.exists():
         try:
             with open(BLACKLIST_PATH, 'r') as f:
                 blacklist = set(json.load(f))
         except:
             pass
 
-    # Préparation des conteneurs de sauvegarde
+    # 3. Détermination du mode de run
+    # Si c'est le reset des 90 jours, on vide la blacklist pour tout réanalyser
+    run_type = "PARTIAL"
+    if not last_reset or (today - last_reset).days >= 90:
+        run_type = "RESET"
+        blacklist = set() 
+    elif current_version != saved_version or not has_valid_cache:
+        run_type = "UPDATE"
+
+    print(f"🚀 Démarrage du Scraper V3 | Mode : {run_type} (Taille Blacklist : {len(blacklist)})")
+
+    # Structure temporaire pour collecter les résultats
     new_data = {cat: {"table": [], "details": {}} for cat in CATEGORIES}
+    
+    # Si on est en run PARTIEL (journée normale), on réimporte l'intégralité du texte de la veille
     if run_type == "PARTIAL":
         for cat in CATEGORIES:
             new_data[cat]["details"] = cache[cat]["details"]
 
-    # 5. Aspiration du Manifeste
+    # 4. Récupération du manifeste global
     res_manifest = requests.get(f"{BASE_URL}/items", headers=HEADERS_EN)
     all_items = res_manifest.json().get("data", [])
     
-    items_to_process = []
-    for item in all_items:
-        # CORRECTION ICI : l'API v2 utilise 'url_name' au lieu de 'slug'
+    print(f"📋 {len(all_items)} objets trouvés dans le manifeste global. Filtrage...")
+
+    # 5. Boucle Principale
+    for index, item in enumerate(all_items):
         url_name = item.get("url_name", "")
-        if not url_name:
+        if not url_name or url_name in blacklist:
             continue
-            
-        if url_name in blacklist:
-            continue
-            
-        category = categorize_item(item.get("tags", []), url_name)
-        if category == "ignore":
-            blacklist.add(url_name)
-        else:
-            items_to_process.append({"url_name": url_name, "cat": category})
 
-    total = len(items_to_process)
-    print(f"🎯 {total} objets valides à traiter. Début de la boucle...")
+        # Est-ce que cet objet est déjà connu dans l'une de nos catégories locales ?
+        found_category = None
+        if run_type != "RESET":
+            for cat in CATEGORIES:
+                if url_name in cache[cat]["table"] or url_name in cache[cat]["details"]:
+                    found_category = cat
+                    break
 
-    # 6. Boucle Principale
-    for index, obj in enumerate(items_to_process):
-        url_name = obj["url_name"]
-        cat = obj["cat"]
-        
         try:
+            # SCÉNARIO A : L'objet est totalement inconnu ou on est en mode RESET complet
+            if not found_category or run_type == "RESET":
+                time.sleep(DELAY)
+                res_en = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_EN)
+                res_fr = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_FR)
+                
+                if res_en.status_code == 200 and res_fr.status_code == 200:
+                    json_en = res_en.json().get("data", {}).get("item", {})
+                    json_fr = res_fr.json().get("data", {}).get("item", {})
+                    
+                    # On extrait les tags officiels pour valider la catégorie
+                    tags = json_en.get("tags", [])
+                    cat = categorize_item(tags, url_name)
+                    
+                    if cat == "ignore":
+                        blacklist.add(url_name)
+                        continue
+                    
+                    # L'objet est valide ! On extrait ses infos textuelles depuis le Set s'il existe
+                    data_en = json_en.get("items_in_set", [])
+                    data_fr = json_fr.get("items_in_set", [])
+                    
+                    item_en = next((i for i in data_en if i.get("url_name") == url_name), json_en)
+                    item_fr = next((i for i in data_fr if i.get("url_name") == url_name), json_fr)
+                    
+                    n_fr = item_fr.get("fr", {}).get("item_name", url_name)
+                    n_en = item_en.get("en", {}).get("item_name", url_name)
+                    
+                    new_data[cat]["details"][url_name] = {
+                        "desc_fr": item_fr.get("fr", {}).get("description", ""),
+                        "desc_en": item_en.get("en", {}).get("description", ""),
+                        "wiki_fr": item_fr.get("fr", {}).get("wiki_link", ""),
+                        "icon": item_en.get("icon", "")
+                    }
+                    found_category = cat
+                else:
+                    continue
+
+            # SCÉNARIO B : L'objet est connu (on réutilise les noms existants)
+            else:
+                old_entry = cache[found_category]["table"].get(url_name, {})
+                n_fr = old_entry.get("n_fr", url_name)
+                n_en = old_entry.get("n_en", url_name)
+                
+                # Si on est en mode UPDATE et que le texte manquait, on le sécurise
+                if run_type == "UPDATE" and url_name not in new_data[found_category]["details"]:
+                    new_data[found_category]["details"][url_name] = cache[found_category]["details"].get(url_name, {})
+
+            # DANS TOUS LES CAS : On va chercher les statistiques de prix (obligatoire)
+            time.sleep(DELAY)
             res_stats = requests.get(f"{BASE_URL}/items/{url_name}/statistics", headers=HEADERS_EN, timeout=10)
             if res_stats.status_code == 200:
                 indicators = calculate_economic_indicators(res_stats.json().get("data", {}))
-                
-                needs_full_fetch = False
-                n_fr, n_en = url_name, url_name
-                
-                if run_type == "RESET":
-                    needs_full_fetch = True
-                elif run_type == "UPDATE" and url_name not in cache[cat]["details"]:
-                    needs_full_fetch = True
-                else:
-                    old_table_entry = cache[cat]["table"].get(url_name, {})
-                    n_fr = old_table_entry.get("n_fr", url_name)
-                    n_en = old_table_entry.get("n_en", url_name)
-                    if n_fr == url_name and run_type == "PARTIAL" and not has_valid_cache:
-                        needs_full_fetch = True
-
-                if needs_full_fetch:
-                    time.sleep(DELAY)
-                    res_en = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_EN)
-                    res_fr = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS_FR)
-                    
-                    if res_en.status_code == 200 and res_fr.status_code == 200:
-                        data_en = res_en.json().get("data", {}).get("item", {}).get("items_in_set", [])
-                        data_fr = res_fr.json().get("data", {}).get("item", {}).get("items_in_set", [])
-                        
-                        item_en = next((i for i in data_en if i.get("url_name") == url_name), {})
-                        item_fr = next((i for i in data_fr if i.get("url_name") == url_name), {})
-                        
-                        n_fr = item_fr.get("fr", {}).get("item_name", url_name)
-                        n_en = item_en.get("en", {}).get("item_name", url_name)
-                        
-                        new_data[cat]["details"][url_name] = {
-                            "desc_fr": item_fr.get("fr", {}).get("description", ""),
-                            "desc_en": item_en.get("en", {}).get("description", ""),
-                            "wiki_fr": item_fr.get("fr", {}).get("wiki_link", ""),
-                            "icon": item_en.get("icon", "")
-                        }
-
-                new_data[cat]["table"].append({"id": url_name, "n_fr": n_fr, "n_en": n_en, **indicators})
+                new_data[found_category]["table"].append({"id": url_name, "n_fr": n_fr, "n_en": n_en, **indicators})
 
         except Exception as e:
             print(f"⚠️ Erreur sur {url_name} : {e}")
             
-        time.sleep(DELAY)
         if (index + 1) % 100 == 0:
-            print(f"🕒 {index + 1}/{total} traités...")
+            print(f"🕒 {index + 1}/{len(all_items)} objets analysés...")
 
-    # 7. Sauvegarde
+    # 6. Sauvegarde des fichiers
     for cat in CATEGORIES:
         with open(DATA_DIR / f"{cat}_table.json", 'w', encoding='utf-8') as f:
             json.dump(new_data[cat]["table"], f, ensure_ascii=False, separators=(',', ':'))
             
+        # On ne réécrit les gros fichiers détails que s'il y a eu du changement (RESET ou UPDATE)
         if run_type in ["UPDATE", "RESET"]:
             with open(DATA_DIR / f"{cat}_details.json", 'w', encoding='utf-8') as f:
                 json.dump(new_data[cat]["details"], f, ensure_ascii=False)
 
+    # Sauvegarde de la blacklist apprenante
     with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
         json.dump(list(blacklist), f)
         
+    # Sauvegarde des métadonnées de version
     reset_date = today.isoformat() if run_type == "RESET" else (last_reset.isoformat() if last_reset else today.isoformat())
     with open(VERSION_PATH, 'w') as f:
         json.dump({
@@ -275,7 +292,7 @@ def main():
             "last_full_reset": reset_date
         }, f)
 
-    print(f"🎉 Scraping {run_type} terminé avec succès ! Les fichiers JSON sont complets.")
+    print(f"🎉 Scraping {run_type} terminé avec succès ! Blacklist mise à jour ({len(blacklist)} objets ignorés).")
 
 if __name__ == "__main__":
     main()
