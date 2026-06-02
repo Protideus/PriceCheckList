@@ -33,7 +33,19 @@ L'application permet de filtrer et trier des milliers d'objets (Warframes, Armes
 
 ## 🛠️ Pour les Développeurs (Architecture Technique)
 
-PCL v3 est un exemple d'application de données "statique-dynamique". Il n'utilise aucune base de données traditionnelle (SQL/NoSQL), ce qui permet un hébergement gratuit et une maintenance zéro.
+PCL est un exemple d'application de données "statique-dynamique". Il n'utilise aucune base de données traditionnelle (SQL/NoSQL), ce qui permet un hébergement gratuit et une maintenance zéro.
+
+### 0.📂 Architecture du Projet GitHub
+L'organisation des fichiers au sein du dépôt est structurée pour séparer l'interface, les données et la logique d'automatisation :
+Racine du projet :
+*   index.html : Le cœur de l'interface utilisateur et de la logique de visualisation
+*   readme.md : Le fichier de présentation et de documentation technique.
+*   guide.md : Le guide détaillé expliquant la méthodologie des indicateurs économiques
+*   PCL_background.jpg : L'image de fond et de prévisualisation de l'interface PCL
+
+**/data** : Regroupe les 16 fichiers JSON générés par le script et maintenus à jour automatiquement (comprenant les fichiers de tables et de détails pour chaque catégorie)
+**/scripts** : wfm_scraper.py : Le script Python chargé du scraping de l'API et du calcul des indicateurs
+**/.github/workflows** : wfm_scraper.yml : Le fichier de configuration au format YAML pilotant l'automatisation via GitHub Actions
 
 ### 1. Automatisation via GitHub Actions
 Le rafraîchissement des données est piloté par un workflow **YAML** dans GitHub Actions. Ce script Python s'exécute périodiquement pour :
@@ -43,9 +55,9 @@ Le rafraîchissement des données est piloté par un workflow **YAML** dans GitH
 
 ### 2. Optimisation Backend : Aspiration Courtoise 
 Pour éviter le bannissement IP par le pare-feu de WFM, le script intègre des règles strictes de politesse réseau :
-* **User-Agent Dédié :** Un en-tête explicite est envoyé (`User-Agent: WF-PriceCheck-V2-Scraper`).
-* **Délai de Courtoisie :** Une pause obligatoire de `0.4s` est observée entre chaque requête (limitation à ~2,5 requêtes/seconde).
-* **Cache Différentiel & Blacklist :** Les objets n'appartenant pas aux catégories cibles sont définitivement placés dans un fichier `ignored_slugs.json`. Le script ne scanne quotidiennement que les nouveautés si l'endpoint `/v2/versions` indique qu'une mise à jour a eu lieu. Un rafraîchissement global est planifié de manière trimestrielle.
+*    **User-Agent Dédié :** Un en-tête explicite est envoyé (`User-Agent: WF-PriceCheck-V2-Scraper`).
+*    **Délai de Courtoisie :** Une pause obligatoire de `0.4s` est observée entre chaque requête (limitation à ~2,5 requêtes/seconde).
+*    **Cache Différentiel & Blacklist :** Les objets n'appartenant pas aux catégories cibles sont définitivement placés dans un fichier `ignored_slugs.json`. Le script ne scanne quotidiennement que les nouveautés si l'endpoint `/v2/versions` indique qu'une mise à jour a eu lieu. Un rafraîchissement global est planifié de manière trimestrielle.
 
 ### 3. Traitement des Trous de Données (Missing Values)
 Warframe Market n'enregistre aucune ligne les jours où aucune transaction n'a eu lieu sur un objet. Pour empêcher le script de planter ou de fausser les moyennes mobiles, le pipeline applique un algorithme de **Forward Fill (Dernier Prix Connu)** :
