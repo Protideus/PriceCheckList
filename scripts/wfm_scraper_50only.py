@@ -82,7 +82,7 @@ def calculate_economic_indicators(stats_data):
                     "max_price": entry.get("max_price", entry.get("median", 0))
                 }
 
-    today_dt = datetime.utcnow().date()
+    today_dt = datetime.now()
     start_date = today_dt - timedelta(days=89)
     filled_90j = []
     last_valid = None
