@@ -2,6 +2,7 @@ name: Warframe Market Scraper Daily Run
 
 on:
   schedule:
+    # Se lance une fois par jour à 02:00 UTC
     - cron: '0 2 * * *'
   workflow_dispatch:
 
@@ -26,7 +27,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests
 
-    - name: Run Scraper V3
+    - name: Run Scraper (Global + Initial WFM50)
       run: |
         python scripts/wfm_scraper.py
 
@@ -35,14 +36,13 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         
-        # On cible le dossier data à la racine avec l'argument -f (force)
         if [ -d "data" ]; then
           git add -f data/*.json
         fi
         
         if git diff --staged --quiet; then
-          echo "💤 Aucun changement détecté dans les prix ou les versions. Fin du job."
+          echo "💤 Aucun changement détecté dans les données globales. Fin du job."
         else
-          git commit -m "📈 Mises à jour quotidiennes de l'index des prix (Automatique)"
+          git commit -m "📈 Mise à jour quotidienne globale de l'index des prix"
           git push
         fi
