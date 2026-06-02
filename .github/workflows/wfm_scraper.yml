@@ -1,4 +1,4 @@
-name: Warframe Market Scraper V3 Daily Run
+name: Warframe Market Scraper Daily Run
 
 on:
   schedule:
@@ -28,7 +28,7 @@ jobs:
 
     - name: Run Scraper V3
       run: |
-        python scripts/wfm_scraper_v3.py
+        python scripts/wfm_scraper.py
 
     - name: Commit and Push changes
       run: |
