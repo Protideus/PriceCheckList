@@ -35,52 +35,52 @@ Pour purifier l'interface et coller à l'économie moderne du jeu, PCL applique 
 
 Chaque tableau comparatif présente 6 indices clés, calculés pour vous aider à prendre des décisions d'investissement en quelques secondes.
 
-### 1. `p` : Prix d'Équilibre*
-**Qu'est-ce que c'est ?** Le prix de référence de l'objet basé sur le `wa_price` (Moyenne pondérée par les volumes) des dernières 48 heures.*
-**Pourquoi c'est fiable ?** Contrairement à une moyenne simple, le prix pondéré accorde plus d'importance aux volumes réels. Si 100 joueurs achètent un item à 40 pl et qu'un seul l'achète par erreur à 300 pl, `p` restera ancré à 40 pl.
-**Comment calculer ?** p (Prix d'Équilibre) = wa_price des dernières 48h.
+### 1. `p` : Prix d'Équilibre
+* **Qu'est-ce que c'est ?** Le prix de référence de l'objet basé sur le `wa_price` (Moyenne pondérée par les volumes) des dernières 48 heures.
+* **Pourquoi c'est fiable ?** Contrairement à une moyenne simple, le prix pondéré accorde plus d'importance aux volumes réels. Si 100 joueurs achètent un item à 40 pl et qu'un seul l'achète par erreur à 300 pl, `p` restera ancré à 40 pl.
+* **Comment calculer ?** p (Prix d'Équilibre) = wa_price des dernières 48h.
 
 
 
-### 2. `𝚫90` : Variation 90j*
-**Qu'est-ce que c'est ?** La tendance macro-économique à long terme. Il s'agit du pourcentage de variation entre le prix actuel et la moyenne mobile d'il y a 90 jours.*
-**Comment l'utiliser ?** Idéal pour repérer les objets *Vaulted* qui prennent de la valeur de mois en mois ou, à l'inverse, les items en dévaluation chronique.
-**Comment calculer ?** Δ90 (Variation 90j) = (p_actuel - p_90j) / p_90j [Utiliser la moving_avg de la journée d'il y a 90 jours pour p_90j].
+### 2. `𝚫90` : Variation 90j
+* **Qu'est-ce que c'est ?** La tendance macro-économique à long terme. Il s'agit du pourcentage de variation entre le prix actuel et la moyenne mobile d'il y a 90 jours.
+* **Comment l'utiliser ?** Idéal pour repérer les objets *Vaulted* qui prennent de la valeur de mois en mois ou, à l'inverse, les items en dévaluation chronique.
+* **Comment calculer ?** Δ90 (Variation 90j) = (p_actuel - p_90j) / p_90j [Utiliser la moving_avg de la journée d'il y a 90 jours pour p_90j].
 
 
 
-### 3. `VR` : Hype Ratio (Volume Ratio)*
-**Qu'est-ce que c'est ?** Le détecteur de mouvements de foule. Il divise le volume des dernières 48 heures par la moyenne quotidienne des 90 derniers jours. *
-**`VR = 1.0`** : Marché parfaitement stable. *
-**`VR > 1.5`** : Activité anormale. *
-**`VR > 2.0` (Feu/Rouge)** : Explosion de la demande ou spéculation massive (souvent liée à un buff meta, un rework ou une annonce de Vault).
-**Comment calculer ?** VR (Hype Ratio) = Volume_48h_ramené_sur_24h / Volume_moyen_journalier_90j
+### 3. `VR` : Hype Ratio (Volume Ratio)
+* **Qu'est-ce que c'est ?** Le détecteur de mouvements de foule. Il divise le volume des dernières 48 heures par la moyenne quotidienne des 90 derniers jours. 
+* **`VR = 1.0`** : Marché parfaitement stable. 
+* **`VR > 1.5`** : Activité anormale. 
+* **`VR > 2.0` (Feu/Rouge)** : Explosion de la demande ou spéculation massive (souvent liée à un buff meta, un rework ou une annonce de Vault).
+* **Comment calculer ?** VR (Hype Ratio) = Volume_48h_ramené_sur_24h / Volume_moyen_journalier_90j
 
 
 
-### 4. `DS` : Donchian Score (Position Cycle)*
-**Qu'est-ce que c'est ?** La position du prix actuel au sein de son canal de Donchian (le plus haut et le plus bas historiques des 90 derniers jours), exprimée de 0% à 100%. *
-**Proche de 100%** : L'item touche son sommet historique. **Signal de vente** pour vider vos stocks. *
-**Proche de 0%** : L'item est au plus bas historique. **Signal d'achat / investissement** à long terme.
-**Comment calculer ?**DS (Donchian Score) = ((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100
+### 4. `DS` : Donchian Score (Position Cycle)
+* **Qu'est-ce que c'est ?** La position du prix actuel au sein de son canal de Donchian (le plus haut et le plus bas historiques des 90 derniers jours), exprimée de 0% à 100%.
+* **Proche de 100%** : L'item touche son sommet historique. **Signal de vente** pour vider vos stocks.
+* **Proche de 0%** : L'item est au plus bas historique. **Signal d'achat / investissement** à long terme.
+* **Comment calculer ?**DS (Donchian Score) = ((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100
 
 
 
-### 5. `VL` : Volumétrie / Liquidité*
-**Qu'est-ce que c'est ?** Le volume de transactions réelles sur les dernières 48 heures.*
-**Le conseil du trader :** Un `DS` très élevé (sommet) associé à un `VL` ridicule est un **faux signal** (marché illiquide). Un vrai mouvement de marché sain demande un `VL` robuste.
-**Comment calculer ?** VL (Liquidité) = Volume des dernières 48h.
+### 5. `VL` : Volumétrie / Liquidité
+* **Qu'est-ce que c'est ?** Le volume de transactions réelles sur les dernières 48 heures.
+* **Le conseil du trader :** Un `DS` très élevé (sommet) associé à un `VL` ridicule est un **faux signal** (marché illiquide). Un vrai mouvement de marché sain demande un `VL` robuste.
+* **Comment calculer ?** VL (Liquidité) = Volume des dernières 48h.
 
 
 
 ### 6. `F` : Indice de Fiabilité (Score sur 3 ❤️)*
-**Qu'est-ce que c'est ?** Notre bouclier algorithmique contre les manipulations de marché. Le marché de WFM étant auto-déclaratif, certains acteurs tentent de fausser les statistiques (*Market Cornering* ou *Price Dumping*).*
-**Comment le score baisse :**
-* Écart anormal entre le prix médian et la moyenne (suspicion de fausses ventes à prix exorbitant).
-* Transactions déclarées à un prix inférieur aux offres d'achat instantanées en cours (ventes impossibles).
-* Volume long terme trop faible pour garantir la pertinence du prix.*
-**Verdict :** `3/3` = Marché sain et régulier. `1/3` ou moins = Suspicion de manipulation ou forte instabilité, soyez prudents.
-**Comment calculer ?** F (Indice de Fiabilité sur 3) = Déduire 1 point si (avg_price/median) > 1.2 ; Déduire 1 point si closed_price < max_price des offres "buy" en cours ; Déduire 1 point si le volume 90j est critique.
+* **Qu'est-ce que c'est ?** Notre bouclier algorithmique contre les manipulations de marché. Le marché de WFM étant auto-déclaratif, certains acteurs tentent de fausser les statistiques (*Market Cornering* ou *Price Dumping*).
+* **Comment le score baisse :**
+ * Écart anormal entre le prix médian et la moyenne (suspicion de fausses ventes à prix exorbitant).
+ * Transactions déclarées à un prix inférieur aux offres d'achat instantanées en cours (ventes impossibles).
+ * Volume long terme trop faible pour garantir la pertinence du prix.
+* **Verdict :** `3/3` = Marché sain et régulier. `1/3` ou moins = Suspicion de manipulation ou forte instabilité, soyez prudents.
+* **Comment calculer ?** F (Indice de Fiabilité sur 3) = Déduire 1 point si (avg_price/median) > 1.2 ; Déduire 1 point si closed_price < max_price des offres "buy" en cours ; Déduire 1 point si le volume 90j est critique.
 
 
 
