@@ -14,7 +14,7 @@ VERSION_PATH = DATA_DIR / "version.json"
 
 BASE_URL_V1 = "https://api.warframe.market/v1"
 HEADERS = {
-    "User-Agent": "PriceCheckList-FastScraper/1.0 (Contact: github.com/Protideus/PriceCheckList)",
+    "User-Agent": "PriceCheckList-bot-50onlyhourly",
     "Language": "fr"
 }
 DELAY = 0.4  # Respect de l'API de Warframe Market
