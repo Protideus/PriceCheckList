@@ -62,7 +62,7 @@ Chaque tableau comparatif présente 6 indices clés, calculés pour vous aider �
 * **Qu'est-ce que c'est ?** La position du prix actuel au sein de son canal de Donchian (le plus haut et le plus bas historiques des 90 derniers jours), exprimée de 0% à 100%.
 * **Proche de 100%** : L'item touche son sommet historique. **Signal de vente** pour vider vos stocks.
 * **Proche de 0%** : L'item est au plus bas historique. **Signal d'achat / investissement** à long terme.
-* **Comment calculer ?**DS (Donchian Score) = ((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100
+* **Comment calculer ?** DS (Donchian Score) = ((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100
 
 
 
