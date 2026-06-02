@@ -90,93 +90,174 @@ def categorize_item(tags, url_name):
 
 def calculate_economic_indicators(stats_data):
     """
-    Calcule les indicateurs allégés avec Forward Fill.
-    
-    MIGRATION NOTE (June 2026):
-    Currently parses V1 /statistics response format: {payload: {statistics_live/closed: {90days: [...]}}}
-    
-    When V2 /statistics endpoint becomes available, this function will need updating:
-      - Check new response structure (likely: {data: {statistics: {90days: [...]}}} or similar)
-      - Adjust the extraction logic below to match V2 nesting
-      - Keep the rest of the algorithm unchanged (Forward Fill, indicator calculation)
-      
-    Current extraction handles both V1 structures:
+    Calcule les nouveaux indicateurs économiques avancés de PriceCheckList.
+    Combine les données à court terme (48hours) et macro (90days, closed).
     """
-    # Support V1 payload structure: extract 90days from V1 response
-    days_90 = []
-    if isinstance(stats_data, dict):
-        # V1 structure: {"statistics_live": {"90days": [...]}, "statistics_closed": {...}}
-        if "statistics_live" in stats_data:
-            days_90 = stats_data["statistics_live"].get("90days", [])
-        elif "statistics_closed" in stats_data and not days_90:
-            days_90 = stats_data["statistics_closed"].get("90days", [])
-        # V2 structure fallback
-        elif "90_days" in stats_data:
-            days_90 = stats_data.get("90_days", [])
-    else:
-        # Direct list (shouldn't happen but safety)
-        days_90 = stats_data if isinstance(stats_data, list) else []
-    
-    if not days_90:
-        return {"p": 0, "p30": 0, "p90": 0, "v": 0, "vr": 0, "f": 0}
+    # Initialisation des valeurs par défaut en cas d'absence de données
+    default_indicators = {"p": 0, "p90": 0, "v": 0, "vr": 0, "ds": 0, "f": 3}
 
-    # Parse V1 datetime format: "2026-03-04T00:00:00.000+00:00" -> "2026-03-04"
-    raw_data = {}
+    if not isinstance(stats_data, dict):
+        return default_indicators
+
+    # ==========================================
+    # 1. PARSING DES DONNÉES ULTRA-RÉCENTES (48h)
+    # ==========================================
+    # L'API fournit l'historique heure par heure sur 48h (généralement dans statistics_closed)
+    hours_48 = []
+    if "statistics_closed" in stats_data:
+        hours_48 = stats_data["statistics_closed"].get("48hours", [])
+    elif "statistics_live" in stats_data:
+        hours_48 = stats_data["statistics_live"].get("48hours", [])
+
+    total_volume_48h = 0
+    weighted_price_sum = 0.0
+
+    for entry in hours_48:
+        vol = entry.get("volume", 0)
+        wa_price = entry.get("wa_price", entry.get("median", 0)) # Fallback sur median au cas où
+        
+        total_volume_48h += vol
+        weighted_price_sum += (wa_price * vol)
+
+    # 1.1 `p` : Prix d'Équilibre (Moyenne pondérée des 48h)
+    p_actuel = 0.0
+    if total_volume_48h > 0:
+        p_actuel = round(weighted_price_sum / total_volume_48h, 1)
+    elif hours_48:
+        # Si aucun volume déclaré mais des entrées existent (rare), moyenne simple des medians
+        medians_48h = [e.get("median", 0) for e in hours_48 if e.get("median", 0) > 0]
+        p_actuel = round(sum(medians_48h) / len(medians_48h), 1) if medians_48h else 0.0
+
+    # 1.2 `VL` : Volumétrie / Liquidité (Volume total sur 48h)
+    vl = total_volume_48h
+
+    # ==========================================
+    # 2. PARSING DES DONNÉES MACRO-ÉCONOMIQUES (90j)
+    # ==========================================
+    days_90 = []
+    if "statistics_closed" in stats_data:
+        days_90 = stats_data["statistics_closed"].get("90days", [])
+    
+    if not days_90 and "statistics_live" in stats_data:
+        days_90 = stats_data["statistics_live"].get("90days", [])
+
+    if not days_90:
+        # Si pas d'historique macro, on renvoie ce qu'on a calculé sur 48h
+        return {"p": p_actuel, "p90": 0, "v": vl, "vr": 0, "ds": 0, "f": 1}
+
+    # Consolidation chronologique des 90 jours (Gestion des doublons éventuels)
+    raw_data_90j = {}
     for entry in days_90:
         dt_str = entry.get("datetime", "")
         if dt_str:
-            date_key = dt_str[:10]  # Extract YYYY-MM-DD
-            raw_data[date_key] = entry
-    
+            date_key = dt_str[:10]
+            if date_key in raw_data_90j:
+                raw_data_90j[date_key]["volume"] += entry.get("volume", 0)
+            else:
+                raw_data_90j[date_key] = {
+                    "volume": entry.get("volume", 0),
+                    "moving_avg": entry.get("moving_avg", entry.get("median", 0)),
+                    "median": entry.get("median", 0),
+                    "avg_price": entry.get("avg_price", entry.get("median", 0)),
+                    "min_price": entry.get("min_price", entry.get("median", 0)),
+                    "max_price": entry.get("max_price", entry.get("median", 0))
+                }
+
+    # Reconstitution d'un calendrier propre sur 90j pour le calcul Donchian / Moving Avg / VR
     today = datetime.utcnow().date()
-    filled_data = []
+    start_date = today - timedelta(days=89)
+    filled_90j = []
+    last_valid = None
+
+    for i in range(90):
+        current_date = (start_date + timedelta(days=i)).strftime("%Y-%m-%d")
+        has_data = current_date in raw_data_90j
+        
+        if has_data:
+            last_valid = raw_data_90j[current_date]
+
+        if last_valid:
+            filled_90j.append({
+                "date": current_date,
+                "volume": raw_data_90j[current_date]["volume"] if has_data else 0,
+                "moving_avg": last_valid["moving_avg"],
+                "median": last_valid["median"],
+                "avg_price": last_valid["avg_price"],
+                "min_price": last_valid["min_price"],
+                "max_price": last_valid["max_price"],
+                "has_real_data": has_data
+            })
+
+    # Si le p_actuel n'a pu être calculé via les 48h (pas de ventes récentes), 
+    # on prend la dernière valeur connue de l'historique 90j
+    if p_actuel == 0.0 and filled_90j:
+        p_actuel = filled_90j[-1]["moving_avg"]
+
+    # 2.1 `𝚫90` : Variation 90j
+    # On compare p_actuel à la moving_avg de la journée la plus ancienne (il y a 90j, premier élément)
+    p_90j = filled_90j[0]["moving_avg"] if filled_90j else 0.0
+    p90_delta = 0.0
+    if p_90j > 0:
+        p90_delta = round(((p_actuel - p_90j) / p_90j) * 100, 1)
+
+    # 2.2 `VR` : Hype Ratio (Volume Ratio)
+    # Volume 48h ramené sur 24h = vl / 2
+    vol_24h_recent = vl / 2.0
+    active_volumes = [d["volume"] for d in filled_90j if d["volume"] > 0]
+    avg_vol_journalier_90j = sum(active_volumes) / len(active_volumes) if active_volumes else 0.0
     
-    last_price, last_min, last_max = 0, 0, 0
-    missing_days_count = 0
+    vr = 0.0
+    if avg_vol_journalier_90j > 0:
+        vr = round(vol_24h_recent / avg_vol_journalier_90j, 2)
 
-    for i in range(89, -1, -1):
-        target_date = (today - timedelta(days=i)).isoformat()
-        if target_date in raw_data:
-            entry = raw_data[target_date]
-            last_price = entry.get("median", last_price)
-            last_min = entry.get("min_price", last_min)
-            last_max = entry.get("max_price", last_max)
-            vol = entry.get("volume", 0)
-        else:
-            missing_days_count += 1
-            vol = 0 
-        filled_data.append({"median": last_price, "min": last_min, "max": last_max, "volume": vol})
+    # 2.3 `DS` : Donchian Score (Position Cycle)
+    # On cherche les bornes min/max absolues de l'historique réel
+    real_medians = [d["median"] for d in filled_90j if d["has_real_data"] and d["median"] > 0]
+    donch_bot = min(real_medians) if real_medians else 0.0
+    donch_top = max(real_medians) if real_medians else 0.0
 
-    last_7 = filled_data[-7:]
-    p = sum(d["median"] for d in last_7) / len(last_7) if last_7 else 0
-    p30 = filled_data[-30]["median"] if len(filled_data) >= 30 else 0
-    p90 = filled_data[0]["median"] if len(filled_data) >= 90 else 0
+    ds = 50.0 # Position neutre par défaut si pas de canal exploitable
+    if donch_top > donch_bot:
+        ds = round(((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100, 1)
+        # Sécurité pour rester entre 0% et 100%
+        ds = max(0.0, min(100.0, ds))
 
-    # Build active-day list from raw API entries to avoid dilution by empty days.
-    active_entries = [entry for date, entry in sorted(raw_data.items()) if entry.get("volume", 0) > 0]
-    if active_entries:
-        last_three_active = active_entries[-3:]
-        # On garde la somme cumulée pour l'affichage de l'indicateur "v"
-        v = sum(entry.get("volume", 0) for entry in last_three_active)
-        
-        # Calcul des moyennes quotidiennes pour le ratio (vr)
-        avg_vol_recent = v / len(last_three_active)  # Moyenne par jour sur la période récente
-        avg_vol_90 = sum(entry.get("volume", 0) for entry in active_entries) / len(active_entries)
-        
-        # Le ratio compare maintenant deux moyennes quotidiennes
-        vr = round(avg_vol_recent / avg_vol_90, 2) if avg_vol_90 > 0 else 0.0
-    else:
-        v = 0
-        vr = 0
-
+    # 2.4 `F` : Indice de Fiabilité (Score de 0 à 3 ❤️)
     f = 3
-    if missing_days_count > 45: f -= 1 
-    latest = filled_data[-1]
-    if latest["median"] > 0:
-        if ((latest["max"] - latest["min"]) / latest["median"]) > 1.5: f -= 1 
-    if vr > 3 and latest["median"] > (p30 * 1.5): f -= 1 
+    
+    # Règle 1 : Écart anormal entre prix moyen et prix médian récent (Suspicion d'outliers / manipulation)
+    recent_real_days = [d for d in reversed(filled_90j) if d["has_real_data"]][:7]
+    if recent_real_days:
+        avg_ratio = sum(d["avg_price"] / d["median"] for d in recent_real_days if d["median"] > 0) / len(recent_real_days)
+        if avg_ratio > 1.2:
+            f -= 1
 
-    return {"p": round(p, 1), "p30": round(p30, 1), "p90": round(p90, 1), "v": v, "vr": vr, "f": max(0, f)}
+    # Règle 2 : Volume long terme critique (Marché trop étroit / facilement manipulable)
+    total_volume_90j = sum(d["volume"] for d in filled_90j)
+    if total_volume_90j < 30: # Moins de 30 ventes en 3 mois = Alerte liquidité
+        f -= 1
+
+    # Règle 3 : Suspicion de "Price Dumping" (Closed price anormalement bas par rapport à la demande)
+    # (Note : La comparaison stricte avec les ordres "buy" en direct de l'API requiert l'analyse du payload /orders. 
+    # Pour rester performant et autonome dans le scraper de statistiques, on vérifie si le prix min récent s'est effondré de manière décorrélée)
+    if recent_real_days:
+        avg_min_ratio = sum(d["min_price"] / d["median"] for d in recent_real_days if d["median"] > 0) / len(recent_real_days)
+        if avg_min_ratio < 0.6: # Si les prix min descendent sous 60% de la médiane en continu
+            f -= 1
+
+    # Sécurité pour ne pas descendre sous 0
+    f = max(0, f)
+
+    # Harmonisation des clés pour correspondre aux fichiers *_table.json légers
+    # p: Prix équilibre, p90: Delta 90j, v: Volume 48h, vr: Hype Ratio, ds: Donchian Score, f: Fiabilité
+    return {
+        "p": p_actuel,
+        "p90": p90_delta,
+        "v": vl,
+        "vr": vr,
+        "ds": ds,
+        "f": f
+    }
 
 def load_cache():
     """Charge le cache local et valide s'il contient de vraies données."""
