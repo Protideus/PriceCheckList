@@ -211,17 +211,17 @@ def calculate_economic_indicators(stats_data):
     if avg_vol_journalier_90j > 0:
         vr = round(vol_24h_recent / avg_vol_journalier_90j, 2)
 
-    # 2.3 `DS` : Donchian Score (Position Cycle)
-    # On cherche les bornes min/max absolues de l'historique réel
+    # 2.3 `DS` : Donchian Score (Position Cycle) - SÉCURISÉ CONTRE LES LISTES VIDES
     real_medians = [d["median"] for d in filled_90j if d["has_real_data"] and d["median"] > 0]
-    donch_bot = min(real_medians) if real_medians else 0.0
-    donch_top = max(real_medians) if real_medians else 0.0
-
-    ds = 50.0 # Position neutre par défaut si pas de canal exploitable
-    if donch_top > donch_bot:
-        ds = round(((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100, 1)
-        # Sécurité pour rester entre 0% et 100%
-        ds = max(0.0, min(100.0, ds))
+    
+    ds = 50.0 # Position neutre par défaut si pas de canal exploitable ou pas de ventes
+    if real_medians:
+        donch_bot = min(real_medians)
+        donch_top = max(real_medians)
+        
+        if donch_top > donch_bot:
+            ds = round(((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100, 1)
+            ds = max(0.0, min(100.0, ds))
 
     # 2.4 `F` : Indice de Fiabilité (Score de 0 à 3 ❤️)
     f = 3
