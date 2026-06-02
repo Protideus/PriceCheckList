@@ -37,6 +37,7 @@ PCL est un exemple d'application de données "statique-dynamique". Il n'utilise 
 
 ### 0.📂 Architecture du Projet GitHub
 L'organisation des fichiers au sein du dépôt est structurée pour séparer l'interface, les données et la logique d'automatisation :
+
 Racine du projet :
 *   index.html : Le cœur de l'interface utilisateur et de la logique de visualisation
 *   readme.md : Le fichier de présentation et de documentation technique.
