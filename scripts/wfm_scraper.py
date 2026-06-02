@@ -53,8 +53,8 @@ BASE_URL_V2 = "https://api.warframe.market/v2"
 BASE_URL_V1 = "https://api.warframe.market/v1"
 DELAY = 0.4 
 
-HEADERS_EN = {"Accept": "application/json", "Language": "en", "User-Agent": "WF-PriceCheck-V3-Scraper"}
-HEADERS_FR = {"Accept": "application/json", "Language": "fr", "User-Agent": "WF-PriceCheck-V3-Scraper"}
+HEADERS_EN = {"Accept": "application/json", "Language": "en", "User-Agent": "WF-PriceCheck-Scraper"}
+HEADERS_FR = {"Accept": "application/json", "Language": "fr", "User-Agent": "WF-PriceCheck-Scraper"}
 
 BASE_DIR = Path(".") # Racine du projet
 DATA_DIR = BASE_DIR / "data"
