@@ -94,7 +94,6 @@ PCL extrait ses informations depuis l'API de *Warframe.market*. Pour respecter l
 Les **50 items générant le plus gros volume d'échange** du jeu font l'objet d'un suivi ultra-prioritaire. Leurs indices (`p`, `VR`, `F`) sont rafraîchis **toutes les heures** en tâche de fond. C'est votre salle des marchés en direct pour le *day-trading*.
 
 ### ⏳ Le Reste du Catalogue (Mise à jour Quotidienne)
-Les indicateurs lourds (`𝚫90`, `DS`) ainsi que les items à faible vélocité commerciale sont recalculés **une fois par jour** lors d'un cycle nocturne complet (Reset Macro). 
 
 ---
 
