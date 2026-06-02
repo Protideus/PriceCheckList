@@ -45,8 +45,11 @@ Racine du projet :
 *   PCL_background.jpg : L'image de fond et de prévisualisation de l'interface PCL
 
 **/data** : Regroupe les 16 fichiers JSON générés par le script et maintenus à jour automatiquement (comprenant les fichiers de tables et de détails pour chaque catégorie)
+
 **/scripts** : wfm_scraper.py : Le script Python chargé du scraping de l'API et du calcul des indicateurs
+
 **/.github/workflows** : wfm_scraper.yml : Le fichier de configuration au format YAML pilotant l'automatisation via GitHub Actions
+
 
 ### 1. Automatisation via GitHub Actions
 Le rafraîchissement des données est piloté par un workflow **YAML** dans GitHub Actions. Ce script Python s'exécute périodiquement pour :
