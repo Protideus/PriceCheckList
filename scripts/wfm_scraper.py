@@ -164,8 +164,9 @@ def calculate_economic_indicators(stats_data):
                 }
 
     # Reconstitution d'un calendrier propre sur 90j pour le calcul Donchian / Moving Avg / VR
-    today = datetime.utcnow().date()
-    start_date = today - timedelta(days=89)
+    # On utilise datetime.now() pour obtenir l'objet datetime de base
+    today_dt = datetime.now()
+    start_date = today_dt - timedelta(days=89)
     filled_90j = []
     last_valid = None
 
