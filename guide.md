@@ -1,6 +1,6 @@
 # 📊 Guide de l'Utilisateur : Comprendre les Indicateurs Économiques
 
-Bienvenue sur **PriceCheckList v3 (PCL)**. Ce guide vous explique en détail la nature des données affichées, la méthodologie de calcul de nos indicateurs et comment les exploiter pour optimiser vos transactions dans *Warframe*.
+Bienvenue sur **PriceCheckList (PCL)**. Ce guide vous explique en détail la nature des données affichées, la méthodologie de calcul de nos indicateurs et comment les exploiter pour optimiser vos transactions dans *Warframe*.
 
 ---
 
@@ -42,7 +42,7 @@ Puisque Warframe Market ne peut pas vérifier la réalité des échanges en jeu,
 
 ---
 
-## 4. 💡 Conseils pratiques : Comment utiliser PCL v3 pour commercer ?
+## 4. 💡 Conseils pratiques : Comment utiliser PCL pour commercer ?
 
 * **Repérez les anomalies de prix :** Comparez le **Prix Actuel (`p`)** avec le **Prix 30j (`p30`)**. Si le prix actuel est très inférieur au prix historique mais que le **Volume (`v`)** reste élevé, l'objet est temporairement bradé. C'est le moment idéal pour acheter en vue d'une revente à moyen terme.
 * **Anticipez les flambées (Le Volume Ratio) :** Un **Volume Ratio (`vr`)** qui explose (ex: `2.50`) signifie que les joueurs s'arrachent cet objet en ce moment même. Si son prix n'a pas encore augmenté, achetez-le immédiatement avant que la loi de l'offre et la demande ne fasse grimper sa valeur.
