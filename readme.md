@@ -21,11 +21,11 @@ L'application permet de filtrer et trier des milliers d'objets (Warframes, Armes
 
 🗂️ **Structure et Harmonisation des 7 Catégories** : 
 1. **Warframes :** Uniquement les Sets complets des Warframes Primes.
-2. **Armes :** Uniquement les Sets complets (Primes, Syndicats, Vandale, Wraith, Invasion).
+2. **Armes :** Uniquement les Sets complets (Prime, Syndicat, Vandal, Wraith...).
 3. **Compagnons & Équipements Primes :** Uniquement les Sets complets (Sentinelles, Archwings, Colliers).
 4. **Reliques :** Toutes les reliques (Lith, Meso, Neo, Axi, Requiem).
-5. **Mods :** Tous les mods du jeu (avec injection manuelle algorithmique des mods *Umbra* absents de l'API).
-6. **Arcanes :** Toutes les arcanes de rechargement/amélioration.
+5. **Mods :** Tous les mods du jeu.
+6. **Arcanes :** Toutes les arcanes.
 7. **Composants & Ressources :** Uniquement les marchandises unitaires incontournables du commerce de fin de jeu et privées de structure en "Set" (ex: Parties construites de *Necramech*, Lentilles de Focus, Étoiles/Sculptures Ayatan).
 👉 Afin de purifier l'interface graphique et de s'aligner sur l'économie moderne du jeu (exclusion des Poissons et Gemmes obsolètes), une règle d'or est appliquée : **Si un équipement s'échange sous forme de "Set", seuls les Sets complets sont conservés.** Les composants isolés (schémas, canons, culasses) sont purgés pour éviter les doublons.
 
