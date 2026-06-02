@@ -62,6 +62,7 @@ Pour éviter le bannissement IP par le pare-feu de WFM, le script intègre des r
 *    **User-Agent Dédié :** Un en-tête explicite est envoyé (`User-Agent: WF-PriceCheck-V2-Scraper`).
 *    **Délai de Courtoisie :** Une pause obligatoire de `0.4s` est observée entre chaque requête (limitation à ~2,5 requêtes/seconde).
 *    **Cache Différentiel & Blacklist :** Les objets n'appartenant pas aux catégories cibles sont définitivement placés dans un fichier `ignored_slugs.json`. Le script ne scanne quotidiennement que les nouveautés si l'endpoint `/v2/versions` indique qu'une mise à jour a eu lieu. Un rafraîchissement global est planifié de manière trimestrielle.
+*    **Refresh trimestriel :** Tous les 90 jours, le script met à jour les données en ignorant les données existantes et sa blacklist afin d'éviter une corruption rémanente des données.
 
 ### 3. Traitement des Trous de Données (Missing Values)
 Warframe Market n'enregistre aucune ligne les jours où aucune transaction n'a eu lieu sur un objet. Pour empêcher le script de planter ou de fausser les moyennes mobiles, le pipeline applique un algorithme de **Forward Fill (Dernier Prix Connu)** :
