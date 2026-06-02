@@ -1,6 +1,10 @@
 # 📊 Guide de l'Utilisateur : Comprendre les Indicateurs Économiques
 
-Bienvenue sur **PriceCheckList (PCL)**. Ce guide vous explique en détail la nature des données affichées, la méthodologie de calcul de nos indicateurs et comment les exploiter pour optimiser vos transactions dans *Warframe*.
+Bienvenue sur **PriceCheckList (PCL)**, l'outil de screening macro-économique pour les traders, boursicoteurs et vétérans de Warframe. 
+
+Contrairement aux plateformes d'exécution comme *Warframe.market (WFM)* qui n'offrent qu'une vision atomique (item par item), PCL agrège, filtre et nettoie les données pour vous offrir une **vue d'ensemble sectorielle et dynamique** du marché. 
+
+Ce guide vous explique le fonctionnement de l'outil, la logique de nos indicateurs et la réalité technique qui régit nos flux de données.
 
 ---
 
@@ -13,19 +17,97 @@ Toutes les données affichées sur cette application proviennent de l'API de **W
 
 ---
 
-## 2. 📈 Explication des Indicateurs & Calculs
+## 🧭 Philosophie du Marché PCL (La Règle d'Or)
 
-L'application synthétise l'état économique de chaque élément à l'aide de 6 indicateurs clés :
+Le catalogue est sectorisé en 7 listes stratégiques :
+1. **Warframes** (Sets complets Prime)
+2. **Armes** (Sets complets Prime, Syndicat, Vandal, Wraith...)
+3. **Compagnons & Équipements** (Sentinelles, Archwings, Colliers...)
+4. **Reliques** (Lith, Meso, Neo, Axi, Requiem)
+5. **Mods** (Tous les mods du jeu)
+6. **Arcanes** (Toutes les arcanes)
+7. **Composants & Ressources** (Marchandises unitaires majeures : Necramech, Lentilles, Ayatans...)
+Pour purifier l'interface et coller à l'économie moderne du jeu, PCL applique un filtrage strict : **Seuls les Sets complets sont conservés** pour les Warframes, Armes et Compagnons. Les composants isolés (schémas, canons, systèmes) sont purgés pour éliminer le bruit visuel et statistique.
 
-| Indicateur | Nom complet | Utilité (À quoi ça sert ?) | Méthode de calcul |
-| :---: | :--- | :--- | :--- |
-| **`p`** | **Prix Actuel** | Connaître la valeur moyenne de l'objet sur le marché à l'instant T. | C'est la moyenne lissée du prix médian des **3 derniers jours d'activité enregistrés** sur l'API. Cela évite qu'une transaction isolée ou absurde ne fausse le prix du jour. |
-| **`p30`** | **Prix 30j** | Évaluer la valeur de l'objet sur le moyen terme ou détecter un début de baisse. | C'est le prix médian exact auquel s'échangeait cet objet **il y a 30 jours**. |
-| **`p90`** | **Prix 90j** | Analyser la tendance lourde (macro-économie). Idéal pour suivre les objets *Vaulted* (retirés du jeu). | C'est le prix médian exact auquel s'échangeait l'objet au tout début de l'historique, **il y a 90 jours**. |
-| **`v`** | **Volume** | Mesurer la "liquidité" de l'objet (savoir s'il se vend rapidement ou s'il est très rare). | C'est la **somme totale des unités déclarées vendues** au cours des 3 derniers jours d'activité de l'objet. |
-| **`vr`** | **Volume Ratio** | **L'indicateur le plus puissant.** Repérer instantanément une explosion de la demande ou une hype soudaine. | On divise la moyenne des ventes récentes (3 jours) par la moyenne quotidienne des 90 derniers jours.<br>• **`vr` = 1.0 :** Le marché est parfaitement stable.<br>• **`vr` > 1.5 (Orange) :** L'objet subit un pic d'achat anormal (hype, buff d'une arme, etc.). |
-| **`f`** | **Fiabilité** | Savoir si vous pouvez faire confiance aux prix affichés (noté de 0 à 3 ❤️). | Le score baisse si l'objet manque de données historiques (objet trop rare) ou si l'écart entre le prix minimum et maximum d'une même journée est chaotique. Un score de **3/3** signifie un marché régulier et sain. |
+---
 
+## 📊 Comprendre les Indicateurs (Les 6 Colonnes)
+
+Chaque tableau comparatif présente 6 indices clés, calculés pour vous aider à prendre des décisions d'investissement en quelques secondes.
+
+### 1. `p` : Prix d'Équilibre*
+**Qu'est-ce que c'est ?** Le prix de référence de l'objet basé sur le `wa_price` (Moyenne pondérée par les volumes) des dernières 48 heures.*
+**Pourquoi c'est fiable ?** Contrairement à une moyenne simple, le prix pondéré accorde plus d'importance aux volumes réels. Si 100 joueurs achètent un item à 40 pl et qu'un seul l'achète par erreur à 300 pl, `p` restera ancré à 40 pl.
+**Comment calculer ?** p (Prix d'Équilibre) = wa_price des dernières 48h.
+
+
+
+### 2. `𝚫90` : Variation 90j*
+**Qu'est-ce que c'est ?** La tendance macro-économique à long terme. Il s'agit du pourcentage de variation entre le prix actuel et la moyenne mobile d'il y a 90 jours.*
+**Comment l'utiliser ?** Idéal pour repérer les objets *Vaulted* qui prennent de la valeur de mois en mois ou, à l'inverse, les items en dévaluation chronique.
+**Comment calculer ?** Δ90 (Variation 90j) = (p_actuel - p_90j) / p_90j [Utiliser la moving_avg de la journée d'il y a 90 jours pour p_90j].
+
+
+
+### 3. `VR` : Hype Ratio (Volume Ratio)*
+**Qu'est-ce que c'est ?** Le détecteur de mouvements de foule. Il divise le volume des dernières 48 heures par la moyenne quotidienne des 90 derniers jours. *
+**`VR = 1.0`** : Marché parfaitement stable. *
+**`VR > 1.5`** : Activité anormale. *
+**`VR > 2.0` (Feu/Rouge)** : Explosion de la demande ou spéculation massive (souvent liée à un buff meta, un rework ou une annonce de Vault).
+**Comment calculer ?** VR (Hype Ratio) = Volume_48h_ramené_sur_24h / Volume_moyen_journalier_90j
+
+
+
+### 4. `DS` : Donchian Score (Position Cycle)*
+**Qu'est-ce que c'est ?** La position du prix actuel au sein de son canal de Donchian (le plus haut et le plus bas historiques des 90 derniers jours), exprimée de 0% à 100%. *
+**Proche de 100%** : L'item touche son sommet historique. **Signal de vente** pour vider vos stocks. *
+**Proche de 0%** : L'item est au plus bas historique. **Signal d'achat / investissement** à long terme.
+**Comment calculer ?**DS (Donchian Score) = ((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100
+
+
+
+### 5. `VL` : Volumétrie / Liquidité*
+**Qu'est-ce que c'est ?** Le volume de transactions réelles sur les dernières 48 heures.*
+**Le conseil du trader :** Un `DS` très élevé (sommet) associé à un `VL` ridicule est un **faux signal** (marché illiquide). Un vrai mouvement de marché sain demande un `VL` robuste.
+**Comment calculer ?** VL (Liquidité) = Volume des dernières 48h.
+
+
+
+### 6. `F` : Indice de Fiabilité (Score sur 3 ❤️)*
+**Qu'est-ce que c'est ?** Notre bouclier algorithmique contre les manipulations de marché. Le marché de WFM étant auto-déclaratif, certains acteurs tentent de fausser les statistiques (*Market Cornering* ou *Price Dumping*).*
+**Comment le score baisse :**
+* Écart anormal entre le prix médian et la moyenne (suspicion de fausses ventes à prix exorbitant).
+* Transactions déclarées à un prix inférieur aux offres d'achat instantanées en cours (ventes impossibles).
+* Volume long terme trop faible pour garantir la pertinence du prix.*
+**Verdict :** `3/3` = Marché sain et régulier. `1/3` ou moins = Suspicion de manipulation ou forte instabilité, soyez prudents.
+**Comment calculer ?** F (Indice de Fiabilité sur 3) = Déduire 1 point si (avg_price/median) > 1.2 ; Déduire 1 point si closed_price < max_price des offres "buy" en cours ; Déduire 1 point si le volume 90j est critique.
+
+
+
+---
+
+## ⚙️ Contraintes Techniques et Fraîcheur des Données
+
+PCL extrait ses informations depuis l'API de *Warframe.market*. Pour respecter la charge des serveurs hôtes et garantir la pérennité de notre application (éviter le bannissement de nos robots), les données tournent à deux vitesses :
+
+### 📡 Le "WFM 50" (Mise à jour Horaire)
+Les **50 items générant le plus gros volume d'échange** du jeu font l'objet d'un suivi ultra-prioritaire. Leurs indices (`p`, `VR`, `F`) sont rafraîchis **toutes les heures** en tâche de fond. C'est votre salle des marchés en direct pour le *day-trading*.
+
+### ⏳ Le Reste du Catalogue (Mise à jour Quotidienne)
+Les indicateurs lourds (`𝚫90`, `DS`) ainsi que les items à faible vélocité commerciale sont recalculés **une fois par jour** lors d'un cycle nocturne complet (Reset Macro). 
+
+---
+
+## 🚀 Stratégies de Screening Recommandées
+
+En combinant et en triant nos colonnes, vous pouvez appliquer des stratégies de traders professionnels :
+
+* **La stratégie "Value Investor" (Achat bas) :** 
+  Filtrez par `DS` croissant (< 15%) + `F` égal à 3 + `VL` stable. Vous trouverez les objets délaissés, au plus bas de leur prix, mais sur des marchés sains. Achetez et stockez.
+* **La stratégie "Momentum Trader" (Achat-Revente rapide) :** 
+  Filtrez par `VR` décroissant (> 2.0) + `VL` élevé. Vous plongez directement là où se trouve l'argent et la volatilité immédiate, idéal pour écouler rapidement vos stocks au prix fort.
+* **Protégez-vous des arnaques :** Si un objet affiche un prix très alléchant mais que sa **Fiabilité (`f`)** est de `1/3` ou `0/3`, le marché est instable ou manipulé. Ne vous fiez pas aveuglément à cette valeur. De même, une hausse de prix fulgurante accompagnée d'un volume minuscule est un signal d'alarme majeur.
+  
 ---
 
 ## 3. ⚠️ Alerte : Le risque de manipulation du marché
@@ -41,9 +123,3 @@ Puisque Warframe Market ne peut pas vérifier la réalité des échanges en jeu,
 > Un spéculateur déclare de fausses ventes à des prix ridiculement bas. Les algorithmes ou les joueurs honnêtes, pensant que l'objet a perdu sa valeur, s'alignent et bradent leurs biens. L'arnaqueur n'a plus qu'à racheter tous les *vrais* objets à bas prix avant de supprimer ses fausses annonces pour revendre le tout au prix fort quelques jours plus tard.
 
 ---
-
-## 4. 💡 Conseils pratiques : Comment utiliser PCL pour commercer ?
-
-* **Repérez les anomalies de prix :** Comparez le **Prix Actuel (`p`)** avec le **Prix 30j (`p30`)**. Si le prix actuel est très inférieur au prix historique mais que le **Volume (`v`)** reste élevé, l'objet est temporairement bradé. C'est le moment idéal pour acheter en vue d'une revente à moyen terme.
-* **Anticipez les flambées (Le Volume Ratio) :** Un **Volume Ratio (`vr`)** qui explose (ex: `2.50`) signifie que les joueurs s'arrachent cet objet en ce moment même. Si son prix n'a pas encore augmenté, achetez-le immédiatement avant que la loi de l'offre et la demande ne fasse grimper sa valeur.
-* **Protégez-vous des arnaques :** Si un objet affiche un prix très alléchant mais que sa **Fiabilité (`f`)** est de `1/3` ou `0/3`, le marché est instable ou manipulé. Ne vous fiez pas aveuglément à cette valeur. De même, une hausse de prix fulgurante accompagnée d'un volume minuscule est un signal d'alarme majeur.
