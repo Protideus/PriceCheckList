@@ -1,43 +1,25 @@
-# Warframe Market Price Scraper - V2
+--------------------------------------------------------------------------------
+# PriceCheckList (PCL) — Warframe Market Analytics
 
-Ce projet est un outil de scraping, de traitement de données et d'analyse prédictive pour le site **Warframe Market (WFM)**. Conçu comme le successeur spirituel des anciens scripts (notamment PCL de Steffronté), il exploite exclusivement la nouvelle **API V2** (GoLang) de la plateforme pour générer une base de données de prix ultra-légère, fiable et hautement optimisée pour une interface web moderne.
+**PriceCheckList** est un tableau de bord analytique conçu pour optimiser le trading sur *Warframe*. En exploitant les données de l'API **Warframe Market (WFM)**, cet outil transforme des statistiques brutes en indicateurs de marché actionnables (liquidité, tendances, "hype") et séparéees en liste prédéfinies.
 
----
-
-## 🛑 Contexte & Constat d'Échec de la V1
-
-L'ancien outil (PCL) a cessé de fonctionner à la suite de la fermeture définitive des endpoints de l'API V1 par Warframe Market en décembre 2025. Bien qu'un correctif d'urgence appliqué en mai 2026 ait permis de sauver la liste des objets en basculant sur la V2, l'historique des prix repose toujours sur un endpoint V1 déprécié (`/v1/items/<slug>/statistics`). 
-
-Cette dépendance condamne l'ancien script à une rupture définitive à court terme. La **V2** réécrit l'intégralité de la logique pour s'adapter aux strictes contraintes d'architecture de KycKyc (WFM).
+Le projet est entièrement **Open Source**, hébergé sur **GitHub Pages**, et maintenu de manière autonome par une infrastructure **Serverless** gràce **Github Actions**.
 
 ---
 
-## 🛠️ Modèle Conceptuel & Stratégie d'Optimisation
+## 🌐 Pour les Utilisateurs
 
-Le principal défi technique réside dans le volume des données : compiler l'historique brut de milliers d'objets génère un fichier JSON monolithique de plus de 15 Mo, inutilisable pour un navigateur web. Ce projet résout ce problème via trois piliers fondamentaux.
+L'application permet de filtrer et trier des milliers d'objets (Warframes, Armes, Mods, Arcanes, etc.) selon 6 indicateurs mathématiques clés :
 
-### 1. La Contrainte des "Doubles Appels"
-L'API V2 interdit la récupération simultanée des métadonnées et des prix (suppression du paramètre V1 `?include=item`). Le pipeline Python procède donc en deux temps :
-* **Appel Global (Manifeste) :** Récupération de l'annuaire complet des items via `/v2/items`.
-* **Appels Individuels (Boucle synchrone) :** Requête spécifique par objet sur l'endpoint `/v2/items/{slug}/statistics` pour extraire l'historique macro des 90 jours (`90_days`).
+*   **Prix Actuel** : Moyenne lissée des 3 derniers jours d'activité [1].
+*   **Prix à 90 et 90 jours** : Comparaison du prix à 30 et 90 jours pour détecter les tendances lourdes [1].
+*   **Volume** : Quantité d'unités vendues récemment (mesure de la liquidité) [1].
+*   **Volume Ratio** : **L'indicateur de "hype"**. Un ratio > 1.5 signale une explosion soudaine de la demande [1].
+*   **Fiabilité** : Un score de 0 à 3 ❤️ évaluant la stabilité des données sur l'objet [1].
 
-### 2. Aspiration Courtoise (Rate Limiting & Cache)
-Pour éviter le bannissement IP par le pare-feu de WFM, le script intègre des règles strictes de politesse réseau :
-* **User-Agent Dédié :** Un en-tête explicite est envoyé (`User-Agent: WF-PriceCheck-V2-Scraper`).
-* **Délai de Courtoisie :** Une pause obligatoire de `0.4s` est observée entre chaque requête (limitation à ~2,5 requêtes/seconde).
-* **Cache Différentiel & Blacklist :** Les objets n'appartenant pas aux catégories cibles sont définitivement placés dans un fichier `ignored_slugs.json`. Le script ne scanne quotidiennement que les nouveautés si l'endpoint `/v2/versions` indique qu'une mise à jour a eu lieu. Un rafraîchissement global est planifié de manière trimestrielle.
+👉 *Pour une explication approfondie de la méthodologie et des conseils de trading, consultez le guide.md.*
 
-### 3. Architecture "Light vs Heavy" (Lazy Loading)
-À l'écriture, le script segmente les données en deux fichiers :
-* **Les fichiers Tables (`*_table.json`) :** Fichiers critiques compressés (< 150 Ko) contenant uniquement les indicateurs de tri mathématiques sous forme de clés d'une seule lettre.
-* **Les fichiers Détails (`*_details.json`) :** Dictionnaires riches (descriptions, liens wiki, images), téléchargés de manière asynchrone par le JavaScript pour alimenter les infobulles uniquement au survol de la souris.
-
----
-
-## 🗂️ Structure et Harmonisation des 7 Catégories
-
-Afin de purifier l'interface graphique et de s'aligner sur l'économie moderne du jeu (exclusion des Poissons et Gemmes obsolètes), une règle d'or est appliquée : **Si un équipement s'échange sous forme de "Set", seuls les Sets complets sont conservés.** Les composants isolés (schémas, canons, culasses) sont purgés pour éviter les doublons.
-
+🗂️ **Structure et Harmonisation des 7 Catégories** : 
 1. **Warframes :** Uniquement les Sets complets des Warframes Primes.
 2. **Armes :** Uniquement les Sets complets (Primes, Syndicats, Vandale, Wraith, Invasion).
 3. **Compagnons & Équipements Primes :** Uniquement les Sets complets (Sentinelles, Archwings, Colliers).
@@ -45,61 +27,49 @@ Afin de purifier l'interface graphique et de s'aligner sur l'économie moderne d
 5. **Mods :** Tous les mods du jeu (avec injection manuelle algorithmique des mods *Umbra* absents de l'API).
 6. **Arcanes :** Toutes les arcanes de rechargement/amélioration.
 7. **Composants & Ressources :** Uniquement les marchandises unitaires incontournables du commerce de fin de jeu et privées de structure en "Set" (ex: Parties construites de *Necramech*, Lentilles de Focus, Étoiles/Sculptures Ayatan).
+👉 Afin de purifier l'interface graphique et de s'aligner sur l'économie moderne du jeu (exclusion des Poissons et Gemmes obsolètes), une règle d'or est appliquée : **Si un équipement s'échange sous forme de "Set", seuls les Sets complets sont conservés.** Les composants isolés (schémas, canons, culasses) sont purgés pour éviter les doublons.
 
 ---
 
-## 📊 Algorithmes d'Analyse Économique (Le Dictionnaire Light)
+## 🛠️ Pour les Développeurs (Architecture Technique)
 
-Pour éliminer le bruit des variations quotidiennes et protéger l'utilisateur contre les manipulations de prix, le script Python n'enregistre pas l'historique brut. Il calcule en amont des indicateurs de tendance macroéconomiques.
+PCL v3 est un exemple d'application de données "statique-dynamique". Il n'utilise aucune base de données traditionnelle (SQL/NoSQL), ce qui permet un hébergement gratuit et une maintenance zéro.
 
-Chaque ligne du fichier léger (`*_table.json`) est compressée sous cette forme :
-```json
-{
-  "id": "chroma_prime_set",
-  "p": 65,
-  "p30": 80,
-  "p90": 140,
-  "v": 42,
-  "vr": 2.4,
-  "f": 3
-}
+### 1. Automatisation via GitHub Actions
+Le rafraîchissement des données est piloté par un workflow **YAML** dans GitHub Actions. Ce script Python s'exécute périodiquement pour :
+*   Scanner l'API Warframe Market.
+*   Calculer les indicateurs économiques (moyennes mobiles, lissage "Forward Fill" pour combler les jours sans ventes) [2].
+*   Générer des fichiers JSON statiques dans le répertoire `/data`.
 
-```
+### 2. Optimisation Backend : Aspiration Courtoise 
+Pour éviter le bannissement IP par le pare-feu de WFM, le script intègre des règles strictes de politesse réseau :
+* **User-Agent Dédié :** Un en-tête explicite est envoyé (`User-Agent: WF-PriceCheck-V2-Scraper`).
+* **Délai de Courtoisie :** Une pause obligatoire de `0.4s` est observée entre chaque requête (limitation à ~2,5 requêtes/seconde).
+* **Cache Différentiel & Blacklist :** Les objets n'appartenant pas aux catégories cibles sont définitivement placés dans un fichier `ignored_slugs.json`. Le script ne scanne quotidiennement que les nouveautés si l'endpoint `/v2/versions` indique qu'une mise à jour a eu lieu. Un rafraîchissement global est planifié de manière trimestrielle.
 
-### Spécifications des Clés :
-
-* `id` : **Slug unique** d'identification de l'objet sur Warframe Market.
-* `p`  : **Prix Actuel**. Moyenne mobile calculée sur les 7 derniers jours pour lisser les anomalies du week-end.
-* `p30` : **Prix Moyen à J-30** (Historique du mois précédent).
-* `p90` : **Prix Moyen à J-90** (Historique à trois mois).
-* `v`  : **Volume**. Nombre de transactions déclarées lors des dernières 24 heures.
-* `vr` : **Volume Ratio (Momentum)**. Ratio mesurant l'attractivité soudaine de l'item ($\text{Volume}_{24\text{h}} / \text{Volume moyen}_{90\text{j}}$). Un score $> 2$ déclenche un badge *« 🔥 Très recherché »* sur l'interface, un score $< 0.3$ indique un *« 💤 Marché calme »*.
-* `f`  : **Indice de Fiabilité**. Score de confiance noté de 0 à 3 calculé par des barrières de contrôle statistiques :
-* *Alerte Donchian Channel :* Perte d'un point si l'écart de prix journalier ($\text{Max} - \text{Min}$) est disproportionné par rapport à la médiane (détection des faux comptes acheteurs/vendeurs).
-* *Alerte Pump & Dump :* Perte d'un point si le volume et le prix subissent une explosion simultanée et déconnectée de la courbe de tendance sur 7 jours.
-* *Alerte Volume Mort :* Perte d'un point si l'item souffre de trous de données trop importants (moins de 45 jours de ventes enregistrées sur les 90 jours analysés).
-
-
-
----
-
-## 📉 Traitement des Trous de Données (Missing Values)
-
+### 3. Traitement des Trous de Données (Missing Values)
 Warframe Market n'enregistre aucune ligne les jours où aucune transaction n'a eu lieu sur un objet. Pour empêcher le script de planter ou de fausser les moyennes mobiles, le pipeline applique un algorithme de **Forward Fill (Dernier Prix Connu)** :
-
 1. Génération d'un calendrier mathématique continu de 90 jours.
 2. Si une date est manquante dans l'API, elle hérite automatiquement des valeurs économiques du jour valide précédent.
 3. Si aucune donnée historique n'est disponible à J-30 ou J-90, la valeur bascule à `0` (indiquant un marché historiquement inactif).
 
+### 4. Stratégie API Hybride (Transition Juin 2026)
+Le script Python utilise une architecture de requêtes hybride pour gérer la migration en cours de l'API WFM [3, 4] :
+*   **V2 (Stable)** : Utilisée pour le manifeste global des objets et la gestion multilingue (i18n) [4].
+*   **V1 (Legacy)** : Utilisée spécifiquement pour l'historique de prix sur 90 jours (`/statistics`), le point de terminaison V2 n'étant pas encore finalisé [4, 5].
+*   **Optimisation** : Un délai de sécurité (`DELAY = 0.4`) est appliqué entre chaque requête pour respecter les limites de l'API tout en assurant un scan complet [6].
+
+### 5. Optimisation Frontend & Fluidité
+L'interface a été conçue pour rester instantanée, même avec des milliers d'entrées :
+*   **Partitionnement des données (Data Chunking)** : Au lieu de charger un fichier JSON massif, le backend découpe les données par catégories (`warframes.json`, `mods.json`, etc.) [7]. Le frontend ne charge que le "chunk" nécessaire à la demande, évitant ainsi la saturation de la mémoire du navigateur.
+*   **Architecture "Light vs Heavy (Lazy Loading)** : À l'écriture, le script segmente les données en deux fichiers :
+    * **Les fichiers Tables (`*_table.json`) :** Fichiers critiques compressés (< 150 Ko) contenant uniquement les indicateurs de tri mathématiques sous forme de clés d'une seule lettre.
+    * * **Les fichiers Détails (`*_details.json`) :** Dictionnaires riches (descriptions, liens wiki, images), téléchargés de manière asynchrone par le JavaScript pour alimenter les infobulles uniquement au survol de la souris.
+*   **Tailwind CSS** : Utilisation de Tailwind pour un rendu visuel moderne et ultra-léger (poids CSS minimal).
+*   **Recherche i18n** : Le moteur de recherche JavaScript permet de filtrer les objets simultanément en français et en anglais grâce aux métadonnées récupérées via les headers `Language: fr/en` [6].
+
+## 🚀 Déploiement
+Le projet est configuré pour être déployé en un clic via **GitHub Pages**. Toute modification poussée sur la branche principale déclenche automatiquement la mise à jour du site et des données.
+
 ---
-
-## 🚀 Roadmap
-
-* [x] Analyse technique des limitations de l'API V2 et des comportements de marché.
-* [x] Formalisation du modèle conceptuel et de la structure du dictionnaire optimisé.
-* [ ] Branchement de la logique de récupération des prix (`/statistics`) sur la base de code Python existante.
-* [ ] Codage des filtres de catégorisation et de l'algorithme d'extrapolation des trous de données.
-* [ ] Écriture des fonctions d'exportation séparées (`_table.json` et `_details.json`).
-* [ ] Déploiement de l'automatisation via GitHub Actions (Scraping et compression Brotli/Gzip nocturne).
-* [ ] Développement du frontend web asynchrone.
-
+*Avertissement : PCL est un projet communautaire indépendant et n'est pas affilié à Digital Extremes ou Warframe Market.*
