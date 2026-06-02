@@ -449,7 +449,32 @@ def main():
         if (index + 1) % 100 == 0:
             print(f"🕒 {index + 1}/{len(all_items)} objets analysés...")
 
-    # Sauvegarde des fichiers
+    # ==============================================================================
+    # GÉNÉRATION DE LA CATÉGORIE VIRTUELLE : WFM50 (Top 50 par Volume 48h)
+    # ==============================================================================
+    print("\n📊 Génération de la liste WFM50 (Top 50 des items les plus liquides)...")
+    
+    # 1. On rassemble TOUS les items générés à travers les 7 catégories de base
+    all_extracted_table_items = []
+    details_registry = {} # Pour retrouver facilement les détails lourds via le slug
+    
+    for cat in CATEGORIES:
+        all_extracted_table_items.extend(new_data[cat]["table"])
+        for det in new_data[cat]["details"]:
+            details_registry[det["id"]] = det
+
+    # 2. On trie par volume 'v' (le volume 48h calculé par ta nouvelle fonction) décroissant
+    # et on extrait les 50 premiers
+    wfm50_table = sorted(all_extracted_table_items, key=lambda x: x.get("v", 0), reverse=True)[:50]
+
+    # 3. On extrait les détails correspondants à ces 50 items
+    wfm50_details = []
+    for item in wfm50_table:
+        slug = item["id"]
+        if slug in details_registry:
+            wfm50_details.append(details_registry[slug])
+
+    # Enregistrement des 7 catégories classiques
     for cat in CATEGORIES:
         with open(DATA_DIR / f"{cat}_table.json", 'w', encoding='utf-8') as f:
             json.dump(new_data[cat]["table"], f, ensure_ascii=False, separators=(',', ':'))
@@ -457,6 +482,16 @@ def main():
         if run_type in ["UPDATE", "RESET"]:
             with open(DATA_DIR / f"{cat}_details.json", 'w', encoding='utf-8') as f:
                 json.dump(new_data[cat]["details"], f, ensure_ascii=False)
+
+    # 4. Écriture des fichiers pour la 8ème liste : WFM50
+    with open(DATA_DIR / "wfm50_table.json", 'w', encoding='utf-8') as f:
+        json.dump(wfm50_table, f, ensure_ascii=False, separators=(',', ':'))
+        
+    if run_type in ["UPDATE", "RESET"]:
+        with open(DATA_DIR / "wfm50_details.json", 'w', encoding='utf-8') as f:
+            json.dump(wfm50_details, f, ensure_ascii=False)
+
+    print(f"✅ Fichiers wfm50_table.json et wfm50_details.json créés avec succès ({len(wfm50_table)} items).")
 
     with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
         json.dump(list(blacklist), f)
