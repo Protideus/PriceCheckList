@@ -14,19 +14,20 @@ VERSION_PATH = DATA_DIR / "version.json"
 
 BASE_URL_V1 = "https://api.warframe.market/v1"
 HEADERS = {
-    "User-Agent": "PriceCheckList-bot-50onlyhourly",
+    "User-Agent": "PriceCheckList-FastScraper/1.0 (Contact: github.com/Protideus/PriceCheckList)",
     "Language": "fr"
 }
 DELAY = 0.4  # Respect de l'API de Warframe Market
 
 # ==============================================================================
-# FONCTION ÉCONOMIQUE RE-SYNCHRONISÉE
+# FONCTION ÉCONOMIQUE SÉCURISÉE
 # ==============================================================================
 def calculate_economic_indicators(stats_data):
     """
     Calcule les indicateurs avancés à partir du bucket statistics_closed.
+    Sécurisé contre les historiques vides (Donchian Score).
     """
-    default_indicators = {"p": 0, "p90": 0, "v": 0, "vr": 0, "ds": 0, "f": 3}
+    default_indicators = {"p": 0.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 50.0, "f": 3}
     if not isinstance(stats_data, dict):
         return default_indicators
 
@@ -63,7 +64,7 @@ def calculate_economic_indicators(stats_data):
         days_90 = stats_data["statistics_live"].get("90days", [])
 
     if not days_90:
-        return {"p": p_actuel, "p90": 0, "v": vl, "vr": 0, "ds": 0, "f": 1}
+        return {"p": p_actuel, "p90": 0.0, "v": vl, "vr": 0.0, "ds": 50.0, "f": 1}
 
     raw_data_90j = {}
     for entry in days_90:
@@ -82,6 +83,7 @@ def calculate_economic_indicators(stats_data):
                     "max_price": entry.get("max_price", entry.get("median", 0))
                 }
 
+    # CORRECTIF DATETIME APPLIQUÉ ICI AUSSI
     today_dt = datetime.now()
     start_date = today_dt - timedelta(days=89)
     filled_90j = []
@@ -121,18 +123,16 @@ def calculate_economic_indicators(stats_data):
     if avg_vol_journalier_90j > 0:
         vr = round(vol_24h_recent / avg_vol_journalier_90j, 2)
 
-    # 2.3 `DS` : Donchian Score (Position Cycle) - SÉCURISÉ CONTRE LES LISTES VIDES
+    # CORRECTIF SÉCURITÉ MIN/MAX APPLIQUÉ ICI AUSSI
     real_medians = [d["median"] for d in filled_90j if d["has_real_data"] and d["median"] > 0]
-    
-    ds = 50.0 # Position neutre par défaut si pas de canal exploitable ou pas de ventes
+    ds = 50.0
     if real_medians:
         donch_bot = min(real_medians)
         donch_top = max(real_medians)
-        
         if donch_top > donch_bot:
             ds = round(((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100, 1)
             ds = max(0.0, min(100.0, ds))
-    
+
     f = 3
     recent_real_days = [d for d in reversed(filled_90j) if d["has_real_data"]][:7]
     if recent_real_days:
@@ -153,9 +153,8 @@ def calculate_economic_indicators(stats_data):
 def main():
     print("⚡ Démarrage du rafraîchissement rapide WFM50...")
 
-    # Vérifier l'existence du fichier WFM50 d'origine
     if not WFM50_TABLE_PATH.exists():
-        print(f"❌ Erreur : Le fichier {WFM50_TABLE_PATH} n'existe pas. Lancez d'abord le scraper global.")
+        print(f"❌ Erreur : Le fichier {WFM50_TABLE_PATH} n'existe pas.")
         return
 
     with open(WFM50_TABLE_PATH, 'r', encoding='utf-8') as f:
@@ -165,54 +164,45 @@ def main():
         print("⚠️ La liste WFM50 est vide.")
         return
 
-    print(f"🔄 Mise à jour des statistiques pour {len(wfm50_items)} objets du Top Liquide...")
+    print(f"🔄 Mise à jour des statistiques pour {len(wfm50_items)} objets...")
     
     updated_items = []
     
-    # Parcourir uniquement les 50 objets stockés
     for index, item in enumerate(wfm50_items):
         slug = item.get("id")
         n_fr = item.get("n_fr")
         n_en = item.get("n_en")
         
-        print(f"  [{index+1}/{len(wfm50_items)}] Mise à jour : {n_fr} ({slug})...")
+        print(f"  [{index+1}/{len(wfm50_items)}] Mise à jour : {n_fr}...")
+        
+        # Structure d'indicateurs par défaut harmonisée en cas de panne réseau complète
+        indicators = {"p": item.get("p", 0.0), "p90": item.get("p90", 0.0), "v": item.get("v", 0), "vr": item.get("vr", 0.0), "ds": item.get("ds", 50.0), "f": item.get("f", 0)}
         
         try:
-            # Récupération flash des statistiques V1 sur le slug
             url = f"{BASE_URL_V1}/items/{slug}/statistics"
             response = requests.get(url, headers=HEADERS, timeout=10)
             
             if response.status_code == 200:
                 stats_payload = response.json().get("payload", {})
-                # Calcul des nouveaux indicateurs
                 indicators = calculate_economic_indicators(stats_payload)
-                
-                # Injection des indicateurs frais en conservant les métadonnées (id, noms)
-                updated_item = {"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators}
-                updated_items.append(updated_item)
             else:
-                print(f"  ⚠️ Statut API anormal pour {slug} : {response.status_code}")
-                updated_items.append(item) # Fallback : On garde l'ancienne version s'il y a un souci temporaire
+                print(f"  ⚠️ Statut API anormal pour {slug} : {response.status_code}. Conservation des anciennes valeurs.")
                 
         except Exception as e:
-            print(f"  ⚠️ Erreur lors du fetch de {slug} : {e}")
-            updated_items.append(item)
+            print(f"  ⚠️ Erreur réseau pour {slug} : {e}. Valeurs par défaut appliquées.")
             
-        time.sleep(DELAY) # Pause courtoise
+        updated_item = {"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators}
+        updated_items.append(updated_item)
+        time.sleep(DELAY)
 
-    # Sauvegarde du fichier léger mis à jour
     with open(WFM50_TABLE_PATH, 'w', encoding='utf-8') as f:
         json.dump(updated_items, f, ensure_ascii=False, separators=(',', ':'))
 
-    # Mise à jour de la date d'exécution dans version.json (sans altérer le reste)
     if VERSION_PATH.exists():
         try:
             with open(VERSION_PATH, 'r', encoding='utf-8') as f:
                 v_data = json.load(f)
-            
-            # On met à jour uniquement la date du dernier run
-            v_data["last_run"] = datetime.utcnow().date().isoformat()
-            
+            v_data["last_run"] = datetime.now().strftime("%Y-%m-%d")
             with open(VERSION_PATH, 'w', encoding='utf-8') as f:
                 json.dump(v_data, f)
         except Exception as e:
