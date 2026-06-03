@@ -437,13 +437,25 @@ def main():
             # And update calculate_economic_indicators() to parse V2 response format
             time.sleep(DELAY)
             res_stats = requests.get(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
+            
+            # Valeurs de secours si les statistiques sont manquantes ou en erreur
+            indicators = {"p": 0.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 50.0, "f": 0}
+            
             if res_stats.status_code == 200:
                 # V1 returns {"payload": {"statistics_live": {"90days": [...]}, "statistics_closed": {...}}}
                 # V2 will likely return {"data": {"statistics": {"90days": [...]}}} - parser will need update
                 stats_payload = res_stats.json().get("payload", {})
                 indicators = calculate_economic_indicators(stats_payload)
-                new_data[found_category]["table"].append({"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators})
+            else:
+                print(f"  ⚠️ Statut anormal ({res_stats.status_code}) pour {slug}, indicateurs mis à zéro.")
 
+            new_data[found_category]["table"].append({
+                "id": slug, 
+                "n_fr": n_fr, 
+                "n_en": n_en, 
+                **indicators
+            })
+         
         except Exception as e:
             print(f"⚠️ Erreur sur {slug} : {e}")
             
@@ -466,7 +478,7 @@ def main():
 
     # 2. On trie par volume 'v' (le volume 48h calculé par ta nouvelle fonction) décroissant
     # et on extrait les 50 premiers
-    wfm50_table = sorted(all_extracted_table_items, key=lambda x: x.get("v", 0), reverse=True)[:50]
+    wfm50_table = sorted(all_extracted_table_items, key=lambda x: x.get("v", 0) if isinstance(x, dict) else 0, reverse=True)[:50]
 
     # 3. On extrait les détails correspondants à ces 50 items
     wfm50_details = []
