@@ -22,26 +22,12 @@ DELAY = 0.4  # Respect de l'API de Warframe Market
 # ==============================================================================
 # FONCTION ÉCONOMIQUE SÉCURISÉE
 # ==============================================================================
-def calculate_economic_indicators(stats_data):
-    """
-    Calcule les indicateurs avancés à partir du bucket statistics_closed.
-    Sécurisé contre les historiques vides (Donchian Score).
-    """
-    default_indicators = {"p": 0.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 50.0, "f": 3}
-    if not isinstance(stats_data, dict):
-        return default_indicators
-
-    # 1. Parsing des données ultra-récentes (48h heure par heure)
-    hours_48 = []
-    if "statistics_closed" in stats_data:
-        hours_48 = stats_data["statistics_closed"].get("48hours", [])
-    elif "statistics_live" in stats_data:
-        hours_48 = stats_data["statistics_live"].get("48hours", [])
-
+def calculate_metrics_for_slice(h48_filtered, d90_filtered):
+    """Calcule le bloc standard de 6 indicateurs pour un lot de données filtré par rang."""
     total_volume_48h = 0
     weighted_price_sum = 0.0
 
-    for entry in hours_48:
+    for entry in h48_filtered:
         vol = entry.get("volume", 0)
         wa_price = entry.get("wa_price", entry.get("median", 0))
         total_volume_48h += vol
@@ -50,24 +36,17 @@ def calculate_economic_indicators(stats_data):
     p_actuel = 0.0
     if total_volume_48h > 0:
         p_actuel = round(weighted_price_sum / total_volume_48h, 1)
-    elif hours_48:
-        medians_48h = [e.get("median", 0) for e in hours_48 if e.get("median", 0) > 0]
+    elif h48_filtered:
+        medians_48h = [e.get("median", 0) for e in h48_filtered if e.get("median", 0) > 0]
         p_actuel = round(sum(medians_48h) / len(medians_48h), 1) if medians_48h else 0.0
 
     vl = total_volume_48h
 
-    # 2. Parsing des données macro (90j jour par jour)
-    days_90 = []
-    if "statistics_closed" in stats_data:
-        days_90 = stats_data["statistics_closed"].get("90days", [])
-    if not days_90 and "statistics_live" in stats_data:
-        days_90 = stats_data["statistics_live"].get("90days", [])
-
-    if not days_90:
+    if not d90_filtered:
         return {"p": p_actuel, "p90": 0.0, "v": vl, "vr": 0.0, "ds": 50.0, "f": 1}
 
     raw_data_90j = {}
-    for entry in days_90:
+    for entry in d90_filtered:
         dt_str = entry.get("datetime", "")
         if dt_str:
             date_key = dt_str[:10]
@@ -83,7 +62,6 @@ def calculate_economic_indicators(stats_data):
                     "max_price": entry.get("max_price", entry.get("median", 0))
                 }
 
-    # CORRECTIF DATETIME APPLIQUÉ ICI AUSSI
     today_dt = datetime.now()
     start_date = today_dt - timedelta(days=89)
     filled_90j = []
@@ -123,7 +101,6 @@ def calculate_economic_indicators(stats_data):
     if avg_vol_journalier_90j > 0:
         vr = round(vol_24h_recent / avg_vol_journalier_90j, 2)
 
-    # CORRECTIF SÉCURITÉ MIN/MAX APPLIQUÉ ICI AUSSI
     real_medians = [d["median"] for d in filled_90j if d["has_real_data"] and d["median"] > 0]
     ds = 50.0
     if real_medians:
@@ -146,6 +123,43 @@ def calculate_economic_indicators(stats_data):
     f = max(0, f)
 
     return {"p": p_actuel, "p90": p90_delta, "v": vl, "vr": vr, "ds": ds, "f": f}
+
+
+def calculate_economic_indicators(stats_data, calculate_max=False):
+    """
+    Sépare les données pour envoyer le bon slice à la fonction de calcul.
+    Retourne les indicateurs de base, et optionnellement les indicateurs max.
+    """
+    default_indicators = {"p": 0.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 50.0, "f": 3}
+    if not isinstance(stats_data, dict):
+        return default_indicators
+
+    hours_48 = []
+    if "statistics_closed" in stats_data:
+        hours_48 = stats_data["statistics_closed"].get("48hours", [])
+    elif "statistics_live" in stats_data:
+        hours_48 = stats_data["statistics_live"].get("48hours", [])
+
+    days_90 = []
+    if "statistics_closed" in stats_data:
+        days_90 = stats_data["statistics_closed"].get("90days", [])
+    if not days_90 and "statistics_live" in stats_data:
+        days_90 = stats_data["statistics_live"].get("90days", [])
+
+    # Extraction Rang 0
+    h48_r0 = [e for e in hours_48 if e.get("rank", e.get("mod_rank", 0)) == 0]
+    d90_r0 = [e for e in days_90 if e.get("rank", e.get("mod_rank", 0)) == 0]
+    output = calculate_metrics_for_slice(h48_r0, d90_r0)
+
+    # Extraction Rang Max (si demandé)
+    if calculate_max:
+        h48_rmax = [e for e in hours_48 if e.get("rank", e.get("mod_rank", 0)) > 0]
+        d90_rmax = [e for e in days_90 if e.get("rank", e.get("mod_rank", 0)) > 0]
+        metrics_max = calculate_metrics_for_slice(h48_rmax, d90_rmax)
+        
+        output.update({f"{k}_max": v for k, v in metrics_max.items()})
+
+    return output
 
 # ==============================================================================
 # SCRIPT PRINCIPAL
@@ -175,8 +189,19 @@ def main():
         
         print(f"  [{index+1}/{len(wfm50_items)}] Mise à jour : {n_fr}...")
         
-        # Structure d'indicateurs par défaut harmonisée en cas de panne réseau complète
-        indicators = {"p": item.get("p", 0.0), "p90": item.get("p90", 0.0), "v": item.get("v", 0), "vr": item.get("vr", 0.0), "ds": item.get("ds", 50.0), "f": item.get("f", 0)}
+        # Savoir si l'item avait déjà des indicateurs max enregistrés
+        had_max_indicators = "p_max" in item
+
+        # Structure d'indicateurs par défaut (sécurisée avec conservation des valeurs de l'item actuel)
+        indicators = {
+            "p": item.get("p", 0.0), "p90": item.get("p90", 0.0), "v": item.get("v", 0),
+            "vr": item.get("vr", 0.0), "ds": item.get("ds", 50.0), "f": item.get("f", 0)
+        }
+        if had_max_indicators:
+            indicators.update({
+                "p_max": item.get("p_max", 0.0), "p90_max": item.get("p90_max", 0.0), "v_max": item.get("v_max", 0),
+                "vr_max": item.get("vr_max", 0.0), "ds_max": item.get("ds_max", 50.0), "f_max": item.get("f_max", 0)
+            })
         
         try:
             url = f"{BASE_URL_V1}/items/{slug}/statistics"
@@ -184,12 +209,12 @@ def main():
             
             if response.status_code == 200:
                 stats_payload = response.json().get("payload", {})
-                indicators = calculate_economic_indicators(stats_payload)
+                indicators = calculate_economic_indicators(stats_payload, calculate_max=had_max_indicators)
             else:
                 print(f"  ⚠️ Statut API anormal pour {slug} : {response.status_code}. Conservation des anciennes valeurs.")
                 
         except Exception as e:
-            print(f"  ⚠️ Erreur réseau pour {slug} : {e}. Valeurs par défaut appliquées.")
+            print(f"  ⚠️ Erreur réseau pour {slug} : {e}. Valeurs précédentes conservées.")
             
         updated_item = {"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators}
         updated_items.append(updated_item)
