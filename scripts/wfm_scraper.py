@@ -473,8 +473,9 @@ def main():
     
     for cat in CATEGORIES:
         all_extracted_table_items.extend(new_data[cat]["table"])
-        for det in new_data[cat]["details"]:
-            details_registry[det["id"]] = det
+        # Correction : On parcourt correctement le dictionnaire de détails (clé, valeur)
+        for slug_id, det_content in new_data[cat]["details"].items():
+            details_registry[slug_id] = det_content
 
     # 2. On trie par volume 'v' (le volume 48h calculé par ta nouvelle fonction) décroissant
     # et on extrait les 50 premiers
