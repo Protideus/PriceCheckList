@@ -476,9 +476,8 @@ def main():
     with open(DATA_DIR / "wfm50_table.json", 'w', encoding='utf-8') as f:
         json.dump(wfm50_table, f, ensure_ascii=False, separators=(',', ':'))
         
-    if run_type in ["UPDATE", "RESET"]:
-        with open(DATA_DIR / "wfm50_details.json", 'w', encoding='utf-8') as f:
-            json.dump(wfm50_details, f, ensure_ascii=False)
+    with open(DATA_DIR / "wfm50_details.json", 'w', encoding='utf-8') as f:
+        json.dump(wfm50_details, f, ensure_ascii=False)
 
     print(f"✅ Fichiers wfm50_table.json et wfm50_details.json créés avec succès ({len(wfm50_table)} items).")
 
