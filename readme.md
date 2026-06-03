@@ -11,15 +11,15 @@ Le projet est entièrement **Open Source**, hébergé sur **GitHub Pages**, et m
 
 L'application permet de filtrer et trier des milliers d'objets (Warframes, Armes, Mods, Arcanes, etc.) selon 6 indicateurs mathématiques clés :
 
-*   **Prix Actuel** : Moyenne lissée des 3 derniers jours d'activité [1].
-*   **Prix à 90 et 90 jours** : Comparaison du prix à 30 et 90 jours pour détecter les tendances lourdes [1].
-*   **Volume** : Quantité d'unités vendues récemment (mesure de la liquidité) [1].
-*   **Volume Ratio** : **L'indicateur de "hype"**. Un ratio > 1.5 signale une explosion soudaine de la demande [1].
-*   **Fiabilité** : Un score de 0 à 3 ❤️ évaluant la stabilité des données sur l'objet [1].
-
+*   **Prix d'Équilibre** : Le prix de référence de l'objet basé sur la Moyenne pondérée par les volumes des dernières 48 heures.
+*   **Variation 90j** : Il s'agit du pourcentage de variation entre le prix actuel et la moyenne mobile d'il y a 90 jours.
+*   **Hype Ratio** : Il divise le volume des dernières 48 heures par la moyenne quotidienne des 90 derniers jours. 
+*   **Donchian Score** : La position du prix actuel au sein de son canal de Donchian (le plus haut et le plus bas historiques des 90 derniers jours), exprimée de 0% à 100%.
+*   **Volumétrie** : Le volume de transactions réelles sur les dernières 48 heures.
+*   **Indice de Fiabilité** : Le marché de WFM étant auto-déclaratif, certains acteurs tentent de fausser les statistiques (*Market Cornering* ou *Price Dumping*). Cet indice tente de détecter les irrégularités dans les stats.
 👉 *Pour une explication approfondie de la méthodologie et des conseils de trading, consultez le guide.md.*
 
-🗂️ **Structure et Harmonisation des 7 Catégories** : 
+🗂️ **Structure et Harmonisation des 8 Catégories** : 
 1. **Warframes :** Uniquement les Sets complets des Warframes Primes.
 2. **Armes :** Uniquement les Sets complets (Prime, Syndicat, Vandal, Wraith...).
 3. **Compagnons & Équipements Primes :** Uniquement les Sets complets (Sentinelles, Archwings, Colliers).
@@ -27,6 +27,7 @@ L'application permet de filtrer et trier des milliers d'objets (Warframes, Armes
 5. **Mods :** Tous les mods du jeu.
 6. **Arcanes :** Toutes les arcanes.
 7. **Composants & Ressources :** Uniquement les marchandises unitaires incontournables du commerce de fin de jeu et privées de structure en "Set" (ex: Parties construites de *Necramech*, Lentilles de Focus, Étoiles/Sculptures Ayatan).
+8. **Le WFM50** : Les 50 items avec le plus gros volume de ventes parmi les 7 catégories précédentes.
 👉 Afin de purifier l'interface graphique et de s'aligner sur l'économie moderne du jeu (exclusion des Poissons et Gemmes obsolètes), une règle d'or est appliquée : **Si un équipement s'échange sous forme de "Set", seuls les Sets complets sont conservés.** Les composants isolés (schémas, canons, culasses) sont purgés pour éviter les doublons.
 
 ---
@@ -44,11 +45,13 @@ Racine du projet :
 *   guide.md : Le guide détaillé expliquant la méthodologie des indicateurs économiques
 *   PCL_background.jpg : L'image de fond et de prévisualisation de l'interface PCL
 
-**/data** : Regroupe les 16 fichiers JSON générés par le script et maintenus à jour automatiquement (comprenant les fichiers de tables et de détails pour chaque catégorie)
+**/data** : Regroupe les 18 fichiers JSON générés par le script et maintenus à jour automatiquement (comprenant les fichiers de tables et de détails pour chaque catégorie)
 
-**/scripts** : wfm_scraper.py : Le script Python chargé du scraping de l'API et du calcul des indicateurs
+**/scripts** : 
+*   wfm_scraper.py : Le script Python chargé du scraping de l'API et du calcul des indicateurs. Déclenchement quotidien.
+*   wfm_scraper_50only : La mise à jour horaire du WFM50.
 
-**/.github/workflows** : wfm_scraper.yml : Le fichier de configuration au format YAML pilotant l'automatisation via GitHub Actions
+**/.github/workflows** : wfm_scraper.yml et wfm_scraper_50only : Les fichiers de configuration au format YAML pilotant l'automatisation via GitHub Actions
 
 
 ### 1. Automatisation via GitHub Actions
