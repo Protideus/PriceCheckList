@@ -337,7 +337,7 @@ def main():
 
     res_manifest = requests.get(f"{BASE_URL_V2}/items", headers=HEADERS_EN, timeout=10)
     if res_manifest.status_code != 200:
-        print(f"❌ Échec du manifeste global ({res_manifest.status_code}) : {res_manifest.text[:200]}")
+        raise RuntimeError(f"❌ Échec du manifeste global ({res_manifest.status_code}) : {res_manifest.text[:200]}")
         return
 
     all_items = res_manifest.json().get("data", [])
@@ -352,6 +352,9 @@ def main():
         slug = item.get("slug") or item.get("url_name") or ""
         if not slug or slug in blacklist:
             continue
+
+        # On initialise TOUJOURS la liste de composantsà vide pour cet item précis
+        components_blueprint = []
 
         found_category = None
         if run_type != "RESET":
@@ -386,11 +389,31 @@ def main():
                     n_en = i18n_en.get("name") or json_en.get("name") or slug
                     n_fr = i18n_fr.get("name") or json_fr.get("name") or slug
                     
+                    # Récupération TRÈS sécurisée des composants de la famille présents dans le payload V2
+                    v2_items_list = json_en.get("items", [])
+                    components_blueprint = []
+                    # On vérifie que 'items' est bien une liste et qu'elle contient plus d'un objet 
+                    # (si c'est un set, il y a le set + les composants, donc la longueur est > 1)
+                    if isinstance(v2_items_list, list) and len(v2_items_list) > 1:
+                        for sub_item in v2_items_list:
+                            if isinstance(sub_item, dict):
+                                # On ne prend QUE les composants (setRoot == False)
+                                # .get() avec valeur par défaut pour éviter les KeyErrors
+                                if not sub_item.get("setRoot", False):
+                                    comp_slug = sub_item.get("slug")
+                                    # Sécurité : on ne l'ajoute que si le slug existe bien
+                                    if comp_slug:
+                                        components_blueprint.append({
+                                            "slug": comp_slug,
+                                            "qty": sub_item.get("quantityInSet", 1)
+                                        })
+
                     new_data[cat]["details"][slug] = {
                         "desc_fr": i18n_fr.get("description", ""),
                         "desc_en": i18n_en.get("description", ""),
-                        "wiki_fr": i18n_fr.get("wikiLink", ""),
-                        "icon": i18n_en.get("icon", "")
+                        "wiki_en": i18n_en.get("wikiLink", ""),
+                        "icon": i18n_en.get("icon", ""),
+                        "components": [] # On va le remplir juste après avec les prix !
                     }
                     found_category = cat
                 else:
@@ -404,6 +427,15 @@ def main():
                 
                 if run_type == "UPDATE" and slug not in new_data[found_category]["details"]:
                     new_data[found_category]["details"][slug] = cache[found_category]["details"].get(slug, {})
+
+                # En mode UPDATE, on récupère le blueprint depuis le cache pour éviter d'avoir à refaire une requête V2
+                old_details = cache[found_category]["details"].get(slug, {})
+                old_components = old_details.get("components", [])
+                for comp in old_components:
+                    components_blueprint.append({
+                        "slug": comp.get("slug"),
+                        "qty": comp.get("qty", 1)
+                    })
 
             # 🔄 MIGRATION POINT: Statistics endpoint - Currently V1 ONLY
             # TODO: When /v2/items/{slug}/statistics becomes available, replace:
@@ -424,12 +456,66 @@ def main():
             else:
                 print(f"  ⚠️ Statut anormal ({res_stats.status_code}) pour {slug}, indicateurs mis à zéro.")
 
-            new_data[found_category]["table"].append({
-                "id": slug, 
-                "n_fr": n_fr, 
-                "n_en": n_en, 
-                **indicators
-            })
+            set_components_data = []
+            
+            # Cette boucle ne s'exécute QUE si 'components_blueprint' contient des éléments
+            # (Rempli plus haut uniquement pour les Sets)
+            for comp in components_blueprint:
+                comp_slug = comp.get("slug")
+                comp_qty = comp.get("qty", 1)
+                
+                if not comp_slug:
+                    continue
+                    
+                # Aspiration Courtoise : Pause obligatoire avant chaque sous-requête
+                time.sleep(DELAY)
+                
+                print(f"   ↳ 📊 Requête statistique composant : {comp_slug} (Qté: {comp_qty})")
+                
+                try:
+                    res_comp_stats = requests.get(
+                        f"{BASE_URL_V1}/items/{comp_slug}/statistics", 
+                        headers=HEADERS_EN, 
+                        timeout=10
+                    )
+                    
+                    comp_indicators = {"p": 0.0, "v": 0} # Valeurs de secours (fallback)
+                    
+                    if res_comp_stats.status_code == 200:
+                        comp_payload = res_comp_stats.json().get("payload", {})
+                        if comp_payload and isinstance(comp_payload, dict):
+                            comp_calc = calculate_economic_indicators(comp_payload)
+                            if isinstance(comp_calc, dict):
+                                comp_indicators = {
+                                    "p": float(comp_calc.get("p", 0.0)),
+                                    "v": int(comp_calc.get("v", 0))
+                                }
+                    else:
+                        print(f"   ⚠️ Code {res_comp_stats.status_code} sur les stats de {comp_slug}, fallback à 0.")
+                        
+                except Exception as e:
+                    print(f"   ❌ Erreur sur le composant {comp_slug} : {e}")
+                    comp_indicators = {"p": 0.0, "v": 0}
+                    
+                set_components_data.append({
+                    "slug": comp_slug,
+                    "qty": comp_qty,
+                    **comp_indicators
+                })
+                
+            # Injection sécurisée dans le dictionnaire de détails du Set principal
+            # Si la liste est vide (Mod, Arcane, Relique...), cela ajoutera un tableau vide [] sans bug.
+            # Sécurité : On s'assure que la catégorie a bien été identifiée dans notre dictionnaire
+            if found_category and found_category in new_data:
+                if slug in new_data[found_category]["details"]:
+                    new_data[found_category]["details"][slug]["components"] = set_components_data
+
+                new_data[found_category]["table"].append({
+                    "id": slug, 
+                    "n_fr": n_fr, 
+                    "n_en": n_en, 
+                    **indicators
+                })
          
         except Exception as e:
             print(f"⚠️ Erreur sur {slug} : {e}")
