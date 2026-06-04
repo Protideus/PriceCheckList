@@ -347,6 +347,8 @@ def main():
 
     print(f"📋 {len(all_items)} objets trouvés dans le manifeste global. Filtrage...")
 
+    item_id_map = {item.get("id"): item.get("slug") for item in all_items if item.get("id") and item.get("slug")}
+
     # Boucle Principale
     for index, item in enumerate(all_items):
         slug = item.get("slug") or item.get("url_name") or ""
@@ -392,8 +394,7 @@ def main():
                     # Récupération TRÈS sécurisée des composants de la famille présents dans le payload V2
                     v2_items_list = json_en.get("items", [])
                     components_blueprint = []
-                    # On vérifie que 'items' est bien une liste et qu'elle contient plus d'un objet 
-                    # (si c'est un set, il y a le set + les composants, donc la longueur est > 1)
+
                     if isinstance(v2_items_list, list) and len(v2_items_list) > 1:
                         for sub_item in v2_items_list:
                             if isinstance(sub_item, dict):
@@ -406,6 +407,17 @@ def main():
                                         components_blueprint.append({
                                             "slug": comp_slug,
                                             "qty": sub_item.get("quantityInSet", 1)
+                                        })
+                    else:
+                        set_parts = json_en.get("setParts", [])
+                        if isinstance(set_parts, list) and set_parts:
+                            for part in set_parts:
+                                if isinstance(part, str):
+                                    comp_slug = item_id_map.get(part, part)
+                                    if comp_slug:
+                                        components_blueprint.append({
+                                            "slug": comp_slug,
+                                            "qty": 1
                                         })
 
                     new_data[cat]["details"][slug] = {
