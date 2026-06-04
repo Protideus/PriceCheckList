@@ -486,10 +486,8 @@ def main():
                         if comp_payload and isinstance(comp_payload, dict):
                             comp_calc = calculate_economic_indicators(comp_payload)
                             if isinstance(comp_calc, dict):
-                                comp_indicators = {
-                                    "p": float(comp_calc.get("p", 0.0)),
-                                    "v": int(comp_calc.get("v", 0))
-                                }
+                                # 🟢 On conserve l'intégralité des indicateurs calculés (p, p90, v, vr, ds, f)
+                                comp_indicators = comp_calc
                     else:
                         print(f"   ⚠️ Code {res_comp_stats.status_code} sur les stats de {comp_slug}, fallback à 0.")
                         
