@@ -391,42 +391,46 @@ def main():
                     n_en = i18n_en.get("name") or json_en.get("name") or slug
                     n_fr = i18n_fr.get("name") or json_fr.get("name") or slug
                     
-                    # Récupération TRÈS sécurisée des composants de la famille présents dans le payload V2
-                    v2_items_list = json_en.get("items", [])
+                    # 🟢 EXTRACTION BLINDÉE DES COMPOSANTS (Correction définitive des doublons et cumul V2)
                     components_blueprint = []
+                    set_parts = json_en.get("setParts", [])
+                    v2_items_list = json_en.get("items", [])
 
+                    # 1. Analyse du bloc setParts
+                    if isinstance(set_parts, list) and set_parts:
+                        for part in set_parts:
+                            comp_slug = None  # Évite l'UnboundLocalError
+                            qty = 1
+
+                            if isinstance(part, dict):
+                                if part.get("setRoot", False):
+                                    continue
+                                comp_slug = part.get("slug") or item_id_map.get(part.get("id"))
+                                qty = part.get("quantityInSet") or part.get("quantity") or 1
+                            elif isinstance(part, str):
+                                comp_slug = item_id_map.get(part, part)
+                                qty = 1
+                            else:
+                                continue
+
+                            if comp_slug and comp_slug != slug:
+                                components_blueprint.append({
+                                    "slug": comp_slug,
+                                    "qty": qty
+                                })
+
+                    # 2. Analyse du bloc items (Indépendant, on utilise 'if' au lieu de 'elif')
                     if isinstance(v2_items_list, list) and len(v2_items_list) > 1:
                         for sub_item in v2_items_list:
-                            if isinstance(sub_item, dict):
-                                # On ne prend QUE les composants (setRoot == False)
-                                # .get() avec valeur par défaut pour éviter les KeyErrors
-                                if not sub_item.get("setRoot", False):
-                                    comp_slug = sub_item.get("slug")
-                                    # Sécurité : on ne l'ajoute que si le slug existe bien
-                                    if comp_slug:
+                            if isinstance(sub_item, dict) and not sub_item.get("setRoot", False):
+                                comp_slug = sub_item.get("slug") or item_id_map.get(sub_item.get("id"))
+                                if comp_slug and comp_slug != slug:
+                                    # Sécurité pour éviter d'ajouter deux fois le même composant s'il était déjà dans setParts
+                                    if not any(c["slug"] == comp_slug for c in components_blueprint):
                                         components_blueprint.append({
                                             "slug": comp_slug,
-                                            "qty": sub_item.get("quantityInSet", 1)
+                                            "qty": sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
                                         })
-                    else:
-                        set_parts = json_en.get("setParts", [])
-                        if isinstance(set_parts, list) and set_parts:
-                            for part in set_parts:
-                                comp_slug = None
-                                # Sécurité : Si c'est le set parent (setRoot: True), on l'ignore
-                                if isinstance(part, dict):
-                                    if part.get("setRoot", False):
-                                        continue
-                                    comp_slug = part.get("slug") or item_id_map.get(part.get("id"))
-                                elif isinstance(part, str):
-                                    comp_slug = item_id_map.get(part, part)
-                                
-                        # Sécurité supplémentaire : On s'assure que le composant n'a pas le même slug que le set lui-même
-                        if comp_slug and comp_slug != slug:
-                            components_blueprint.append({
-                                "slug": comp_slug,
-                                "qty": part.get("quantity") if isinstance(part, dict) else 1
-                                })
 
                     new_data[cat]["details"][slug] = {
                         "desc_fr": i18n_fr.get("description", ""),
