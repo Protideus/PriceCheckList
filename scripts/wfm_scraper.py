@@ -67,6 +67,33 @@ CATEGORIES = ["warframes", "armes", "equipements", "reliques", "mods", "arcanes"
 # FONCTIONS UTILITAIRES & MATHÉMATIQUES
 # ==============================================================================
 
+def safe_request(url, headers, max_retries=3, backoff_factor=1.5):
+    """
+    Exécute une requête GET de manière sécurisée avec un mécanisme de tentative (Retry).
+    En cas d'échec ou de timeout, elle attend un peu avant de réessayer.
+    """
+    for attempt in range(max_retries):
+        try:
+            res = requests.get(url, headers=headers, timeout=10)
+            # Si c'est un code de succès, on renvoie la réponse immédiatement
+            if res.status_code == 200:
+                return res
+            # Si le serveur nous dit explicitement qu'il est surchargé (ex: Code 429 Too Many Requests)
+            elif res.status_code in [429, 502, 503, 504]:
+                time.sleep(backoff_factor * (attempt + 1))
+            else:
+                # Pour les autres codes d'erreur (404, etc.), inutile de s'acharner
+                return res
+        except (requests.exceptions.RequestException, requests.exceptions.Timeout):
+            # En cas de Timeout ou coupure réseau, on attend de plus en plus longtemps (Backoff)
+            time.sleep(backoff_factor * (attempt + 1))
+            
+    # Si toutes les tentatives ont échoué, on fait une dernière requête brute qui lèvera l'erreur ou sera interceptée
+    try:
+        return requests.get(url, headers=headers, timeout=10)
+    except:
+        return None
+
 def categorize_item(tags, url_name):
     """Filtre l'objet selon ses VRAIS tags de l'API."""
     is_set = url_name.endswith("_set")
@@ -284,7 +311,7 @@ def main():
     
     current_version = None
     try:
-        res = requests.get(f"{BASE_URL_V2}/versions", headers=HEADERS_EN, timeout=10)
+        res = safe_requests.get(f"{BASE_URL_V2}/versions", headers=HEADERS_EN, timeout=10)
         if res.status_code == 200:
             api_data = res.json().get("data", {})
             if isinstance(api_data, dict):
@@ -335,7 +362,7 @@ def main():
         for cat in CATEGORIES:
             new_data[cat]["details"] = cache[cat]["details"]
 
-    res_manifest = requests.get(f"{BASE_URL_V2}/items", headers=HEADERS_EN, timeout=10)
+    res_manifest = safe_requests.get(f"{BASE_URL_V2}/items", headers=HEADERS_EN, timeout=10)
     if res_manifest.status_code != 200:
         raise RuntimeError(f"❌ Échec du manifeste global ({res_manifest.status_code}) : {res_manifest.text[:200]}")
         return
@@ -369,8 +396,8 @@ def main():
             # SCÉNARIO A : L'objet est totalement inconnu ou mode RESET
             if not found_category or run_type == "RESET":
                 time.sleep(DELAY)
-                res_en = requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_EN, timeout=10)
-                res_fr = requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_FR, timeout=10)
+                res_en = safe_requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_EN, timeout=10)
+                res_fr = safe_requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_FR, timeout=10)
                 
                 if res_en.status_code == 200 and res_fr.status_code == 200:
                     json_en = res_en.json().get("data", {})
@@ -467,7 +494,7 @@ def main():
             #   NEW: f"{BASE_URL_V2}/items/{slug}/statistics"
             # And update calculate_economic_indicators() to parse V2 response format
             time.sleep(DELAY)
-            res_stats = requests.get(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
+            res_stats = safe_requests.get(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
             
             # Valeurs de secours si les statistiques sont manquantes ou en erreur
             indicators = {"p": 0.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 50.0, "f": 0}
@@ -495,7 +522,7 @@ def main():
                 time.sleep(DELAY)
                 
                 try:
-                    res_comp_stats = requests.get(
+                    res_comp_stats = safe_requests.get(
                         f"{BASE_URL_V1}/items/{comp_slug}/statistics", 
                         headers=HEADERS_EN, 
                         timeout=10
