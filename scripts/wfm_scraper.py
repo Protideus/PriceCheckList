@@ -412,13 +412,21 @@ def main():
                         set_parts = json_en.get("setParts", [])
                         if isinstance(set_parts, list) and set_parts:
                             for part in set_parts:
-                                if isinstance(part, str):
+                                comp_slug = None
+                                # Sécurité : Si c'est le set parent (setRoot: True), on l'ignore
+                                if isinstance(part, dict):
+                                    if part.get("setRoot", False):
+                                        continue
+                                    comp_slug = part.get("slug") or item_id_map.get(part.get("id"))
+                                elif isinstance(part, str):
                                     comp_slug = item_id_map.get(part, part)
-                                    if comp_slug:
-                                        components_blueprint.append({
-                                            "slug": comp_slug,
-                                            "qty": 1
-                                        })
+                                
+                        # Sécurité supplémentaire : On s'assure que le composant n'a pas le même slug que le set lui-même
+                        if comp_slug and comp_slug != slug:
+                            components_blueprint.append({
+                                "slug": comp_slug,
+                                "qty": part.get("quantity") if isinstance(part, dict) else 1
+                                })
 
                     new_data[cat]["details"][slug] = {
                         "desc_fr": i18n_fr.get("description", ""),
@@ -481,8 +489,6 @@ def main():
                     
                 # Aspiration Courtoise : Pause obligatoire avant chaque sous-requête
                 time.sleep(DELAY)
-                
-                print(f"   ↳ 📊 Requête statistique composant : {comp_slug} (Qté: {comp_qty})")
                 
                 try:
                     res_comp_stats = requests.get(
