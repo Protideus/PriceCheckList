@@ -311,7 +311,7 @@ def main():
     
     current_version = None
     try:
-        res = safe_requests.get(f"{BASE_URL_V2}/versions", headers=HEADERS_EN, timeout=10)
+        res = safe_requests(f"{BASE_URL_V2}/versions", headers=HEADERS_EN)
         if res.status_code == 200:
             api_data = res.json().get("data", {})
             if isinstance(api_data, dict):
@@ -362,7 +362,7 @@ def main():
         for cat in CATEGORIES:
             new_data[cat]["details"] = cache[cat]["details"]
 
-    res_manifest = safe_requests.get(f"{BASE_URL_V2}/items", headers=HEADERS_EN, timeout=10)
+    res_manifest = safe_requests(f"{BASE_URL_V2}/items", headers=HEADERS_EN)
     if res_manifest.status_code != 200:
         raise RuntimeError(f"❌ Échec du manifeste global ({res_manifest.status_code}) : {res_manifest.text[:200]}")
         return
@@ -396,8 +396,8 @@ def main():
             # SCÉNARIO A : L'objet est totalement inconnu ou mode RESET
             if not found_category or run_type == "RESET":
                 time.sleep(DELAY)
-                res_en = safe_requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_EN, timeout=10)
-                res_fr = safe_requests.get(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_FR, timeout=10)
+                res_en = safe_requests(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_EN)
+                res_fr = safe_requests(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_FR)
                 
                 if res_en.status_code == 200 and res_fr.status_code == 200:
                     json_en = res_en.json().get("data", {})
@@ -494,7 +494,7 @@ def main():
             #   NEW: f"{BASE_URL_V2}/items/{slug}/statistics"
             # And update calculate_economic_indicators() to parse V2 response format
             time.sleep(DELAY)
-            res_stats = safe_requests.get(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN, timeout=10)
+            res_stats = safe_requests(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN)
             
             # Valeurs de secours si les statistiques sont manquantes ou en erreur
             indicators = {"p": 0.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 50.0, "f": 0}
@@ -522,10 +522,9 @@ def main():
                 time.sleep(DELAY)
                 
                 try:
-                    res_comp_stats = safe_requests.get(
+                    res_comp_stats = safe_requests(
                         f"{BASE_URL_V1}/items/{comp_slug}/statistics", 
-                        headers=HEADERS_EN, 
-                        timeout=10
+                        headers=HEADERS_EN
                     )
                     
                     comp_indicators = {"p": 0.0, "v": 0} # Valeurs de secours (fallback)
