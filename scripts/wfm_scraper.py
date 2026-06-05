@@ -432,32 +432,32 @@ def main():
                     n_fr = i18n_fr.get("name") or json_fr.get("name") or slug
                     
                     # 🟢 EXTRACTION BLINDÉE DES COMPOSANTS (Correction définitive des doublons et cumul V2)
+                    # ==============================================================================
+                    # EXTRACTION DES COMPOSANTS (Nettoyée et Factuelle)
+                    # ==============================================================================
                     components_blueprint = []
-                    set_parts = json_en.get("setParts", [])
+
+                    # L'API V2 liste toutes les déclinaisons dans le tableau "items"
                     v2_items_list = json_en.get("items", [])
 
-                    # 1. Analyse du bloc setParts
-                    if isinstance(set_parts, list) and set_parts:
-                        for part in set_parts:
-                            comp_slug = None  # Évite l'UnboundLocalError
-                            qty = 1
-
-                            if isinstance(part, dict):
-                                if part.get("setRoot", False):
+                    if isinstance(v2_items_list, list):
+                        for sub_item in v2_items_list:
+                            if isinstance(sub_item, dict):
+                                # On ignore l'objet parent lui-même (le Set complet)
+                                if sub_item.get("setRoot", False) or sub_item.get("slug") == slug:
                                     continue
-                                comp_slug = part.get("slug") or item_id_map.get(part.get("id"))
-                                qty = part.get("quantityInSet") or part.get("quantity") or 1
-                            elif isinstance(part, str):
-                                comp_slug = item_id_map.get(part, part)
-                                qty = 1
-                            else:
-                                continue
-
-                            if comp_slug and comp_slug != slug:
-                                components_blueprint.append({
-                                    "slug": comp_slug,
-                                    "qty": qty
-                                })
+                
+                                comp_slug = sub_item.get("slug")
+                                if comp_slug:
+                                    # Récupération stricte de la quantité avec repli sur 1 si absent
+                                    qty = sub_item.get("quantityInSet") or 1
+                
+                                    # Évite les doublons et applique la vraie quantité trouvée
+                                    if not any(c["slug"] == comp_slug for c in components_blueprint):
+                                        components_blueprint.append({
+                                            "slug": comp_slug,
+                                            "qty": int(qty)
+                                        })
 
                     # 2. Analyse du bloc items (Indépendant, on utilise 'if' au lieu de 'elif')
                     if isinstance(v2_items_list, list) and len(v2_items_list) > 1:
