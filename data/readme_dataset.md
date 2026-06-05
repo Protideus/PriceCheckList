@@ -7,7 +7,8 @@ Ce dossier contient l'ensemble des données extraites de l'API de Warframe Marke
 ## 📁 Liste des Fichiers et Rôles
 
 ### 1. Fichiers de Configuration et Suivi
-* **`api_version.json`** : Stocke la version actuelle de l'API de WFM, la date du dernier run et la date du dernier cycle de `RESET` complet. Permet de déterminer automatiquement le mode de lancement (`PARTIAL`, `UPDATE` ou `RESET`).
+* **`api_version.json`** : Stocke la version actuelle de l'API de WFM, la date du dernier run global et la date du dernier cycle de `RESET` complet. Permet de déterminer automatiquement le mode de lancement (`PARTIAL`, `UPDATE` ou `RESET`).
+  * 🆕 **`last_wfm50_hourly_update`** : Stocke l'horodatage ISO de la toute dernière mise à jour flash horaire de la liste WFM50. Permet au Frontend d'indiquer l'heure exacte de fraîcheur des prix du Top 50 sans se baser sur la date du gros script quotidien.
 * **`ignored_slugs.json`** : Liste brute (Array) des objets exclus du scraping pour éviter les requêtes API inutiles.
 
 ### 2. Les Fichiers Tables (`{categorie}_table.json`)
@@ -18,6 +19,15 @@ Fichiers lourds structurés sous forme de dictionnaire (`clé: valeur`) où la c
 
 ### 4. Liste Virtuelle (`wfm50_table.json` & `wfm50_details.json`)
 Une 8ème catégorie générée dynamiquement par le script. Elle regroupe les 50 objets toutes catégories confondues ayant le plus gros volume d'échange sur les dernières 48 heures (les objets les plus liquides du marché).
+
+---
+
+## ⏱️ Fréquence de rafraîchissement (Stratégie à deux vitesses)
+
+Pour optimiser les performances et respecter les quotas de l'API Warframe Market, les fichiers sont mis à jour selon deux cycles distincts :
+
+1. **Cycle Global (Quotidien / `wfm_scraper.py`)** : Met à jour l'intégralité des 3 700+ objets du jeu à travers les 7 catégories principales. C'est ce script qui détermine quels sont les 50 objets les plus liquides et fige la liste WFM50.
+2. **Cycle Flash (Horaire / `wfm_top50_updater.py`)** : S'exécute toutes les heures. Sans modifier la liste des objets établie par le script quotidien, il va chercher en mode ultra-rapide (uniquement via l'API V1 de statistiques) les nouveaux prix du Top 50 et de leurs composants. À la fin de son exécution, il met à jour le champ `last_wfm50_hourly_update` dans `api_version.json`.
 
 ---
 
