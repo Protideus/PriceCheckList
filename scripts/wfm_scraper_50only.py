@@ -1,239 +1,173 @@
 import requests
 import json
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 # ==============================================================================
-# CONFIGURATION & CONFIG ARCHITECTURE
+# CONFIGURATION FLASH WFM50
 # ==============================================================================
-DATA_DIR = Path("data")
+
+# ==============================================================================
+# ⚠️ FUTURE MIGRATION NOTE - PLAN D'ADAPTATION V1 EN V2 (STATISTIQUES)
+# ==============================================================================
+#
+# CONTEXTE :
+# Actuellement, ce script utilise la route V1 pour récupérer l'historique des prix
+# et les volumes (`/v1/items/{slug}/statistics`) car Warframe Market n'a pas encore
+# déployé l'équivalent en V2.
+#
+# LORSQUE WFM TERMINERA SA MIGRATION ET SORTIRA LA ROUTE V2 DES STATISTIQUES :
+#
+# 1. MODIFICATION DES URLS (Lignes ~13) :
+#    - Supprimer la variable `BASE_URL_V1`.
+#    - Modifier les appels de statistiques pour pointer vers la V2 :
+#      Ancien : f"{BASE_URL_V1}/items/{slug}/statistics"
+#      Nouveau : f"{BASE_URL_V2}/items/{slug}/statistics" (ou la nouvelle structure V2 définie par WFM)
+#
+# 2. ADAPTATION DE LA FONCTION DE CALCUL `calculate_economic_indicators` :
+#    - La fonction importée de `wfm_scraper.py` lit un payload au format V1 :
+#      `payload["statistics_closed"]["48hours"]` et `["90days"]`.
+#    - En V2, la structure du JSON va changer (WFM standardise ses réponses sous la clé `"data"`).
+#    - Il faudra donc modifier l'extraction dans cette fonction pour cibler les nouvelles clés
+#      V2 correspondantes aux données des dernières 48h et 90j.
+#
+# 3. CONSERVATION DE LA LOGIQUE SECURISEE :
+#    - La logique de vérification de version au démarrage (`/v2/versions`) restera
+#      identique et protégera toujours le script si une rupture de structure survient.
+#
+# ==============================================================================
+
+BASE_URL_V2 = "https://api.warframe.market/v2"
+BASE_URL_V1 = "https://api.warframe.market/v1"
+DELAY = 0.4  # Vitesse de scraping courtoise
+
+HEADERS_EN = {"Accept": "application/json", "Language": "en", "User-Agent": "WF-PriceCheck-Top50Hourly"}
+
+BASE_DIR = Path(".")
+DATA_DIR = BASE_DIR / "data"
+VERSION_PATH = DATA_DIR / "api_version.json"
 WFM50_TABLE_PATH = DATA_DIR / "wfm50_table.json"
 WFM50_DETAILS_PATH = DATA_DIR / "wfm50_details.json"
-VERSION_PATH = DATA_DIR / "version.json"
 
-BASE_URL_V1 = "https://api.warframe.market/v1"
-HEADERS = {
-    "User-Agent": "PriceCheckList-FastScraper/1.0 (Contact: github.com/Protideus/PriceCheckList)",
-    "Language": "fr"
-}
-DELAY = 0.4  # Respect de l'API de Warframe Market
+# Import de la fonction de calcul partagée depuis ton script principal
+from wfm_scraper import calculate_economic_indicators
 
-# ==============================================================================
-# FONCTION ÉCONOMIQUE SÉCURISÉE
-# ==============================================================================
-def calculate_metrics_for_slice(h48_filtered, d90_filtered):
-    """Calcule le bloc standard de 6 indicateurs pour un lot de données filtré par rang."""
-    total_volume_48h = 0
-    weighted_price_sum = 0.0
-
-    for entry in h48_filtered:
-        vol = entry.get("volume", 0)
-        wa_price = entry.get("wa_price", entry.get("median", 0))
-        total_volume_48h += vol
-        weighted_price_sum += (wa_price * vol)
-
-    p_actuel = 0.0
-    if total_volume_48h > 0:
-        p_actuel = round(weighted_price_sum / total_volume_48h, 1)
-    elif h48_filtered:
-        medians_48h = [e.get("median", 0) for e in h48_filtered if e.get("median", 0) > 0]
-        p_actuel = round(sum(medians_48h) / len(medians_48h), 1) if medians_48h else 0.0
-
-    vl = total_volume_48h
-
-    if not d90_filtered:
-        return {"p": p_actuel, "p90": 0.0, "v": vl, "vr": 0.0, "ds": 50.0, "f": 1}
-
-    raw_data_90j = {}
-    for entry in d90_filtered:
-        dt_str = entry.get("datetime", "")
-        if dt_str:
-            date_key = dt_str[:10]
-            if date_key in raw_data_90j:
-                raw_data_90j[date_key]["volume"] += entry.get("volume", 0)
+def safe_requests(url, headers, max_retries=3, backoff_factor=1.5):
+    """Exécute une requête GET avec mécanisme de Retry exponentiel."""
+    for attempt in range(max_retries):
+        try:
+            res = requests.get(url, headers=headers, timeout=10)
+            if res.status_code == 200:
+                return res
+            elif res.status_code in [429, 502, 503, 504]:
+                time.sleep(backoff_factor * (attempt + 1))
             else:
-                raw_data_90j[date_key] = {
-                    "volume": entry.get("volume", 0),
-                    "moving_avg": entry.get("moving_avg", entry.get("median", 0)),
-                    "median": entry.get("median", 0),
-                    "avg_price": entry.get("avg_price", entry.get("median", 0)),
-                    "min_price": entry.get("min_price", entry.get("median", 0)),
-                    "max_price": entry.get("max_price", entry.get("median", 0))
-                }
+                return res
+        except (requests.exceptions.RequestException, requests.exceptions.Timeout):
+            time.sleep(backoff_factor * (attempt + 1))
+    try:
+        return requests.get(url, headers=headers, timeout=10)
+    except:
+        return None
 
-    today_dt = datetime.now()
-    start_date = today_dt - timedelta(days=89)
-    filled_90j = []
-    last_valid = None
-
-    for i in range(90):
-        current_date = (start_date + timedelta(days=i)).strftime("%Y-%m-%d")
-        has_data = current_date in raw_data_90j
-        if has_data:
-            last_valid = raw_data_90j[current_date]
-
-        if last_valid:
-            filled_90j.append({
-                "date": current_date,
-                "volume": raw_data_90j[current_date]["volume"] if has_data else 0,
-                "moving_avg": last_valid["moving_avg"],
-                "median": last_valid["median"],
-                "avg_price": last_valid["avg_price"],
-                "min_price": last_valid["min_price"],
-                "max_price": last_valid["max_price"],
-                "has_real_data": has_data
-            })
-
-    if p_actuel == 0.0 and filled_90j:
-        p_actuel = filled_90j[-1]["moving_avg"]
-
-    p_90j = filled_90j[0]["moving_avg"] if filled_90j else 0.0
-    p90_delta = 0.0
-    if p_90j > 0:
-        p90_delta = round(((p_actuel - p_90j) / p_90j) * 100, 1)
-
-    vol_24h_recent = vl / 2.0
-    active_volumes = [d["volume"] for d in filled_90j if d["volume"] > 0]
-    avg_vol_journalier_90j = sum(active_volumes) / len(active_volumes) if active_volumes else 0.0
-    
-    vr = 0.0
-    if avg_vol_journalier_90j > 0:
-        vr = round(vol_24h_recent / avg_vol_journalier_90j, 2)
-
-    real_medians = [d["median"] for d in filled_90j if d["has_real_data"] and d["median"] > 0]
-    ds = 50.0
-    if real_medians:
-        donch_bot = min(real_medians)
-        donch_top = max(real_medians)
-        if donch_top > donch_bot:
-            ds = round(((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100, 1)
-            ds = max(0.0, min(100.0, ds))
-
-    f = 3
-    recent_real_days = [d for d in reversed(filled_90j) if d["has_real_data"]][:7]
-    if recent_real_days:
-        avg_ratio = sum(d["avg_price"] / d["median"] for d in recent_real_days if d["median"] > 0) / len(recent_real_days)
-        if avg_ratio > 1.2: f -= 1
-    total_volume_90j = sum(d["volume"] for d in filled_90j)
-    if total_volume_90j < 30: f -= 1
-    if recent_real_days:
-        avg_min_ratio = sum(d["min_price"] / d["median"] for d in recent_real_days if d["median"] > 0) / len(recent_real_days)
-        if avg_min_ratio < 0.6: f -= 1
-    f = max(0, f)
-
-    return {"p": p_actuel, "p90": p90_delta, "v": vl, "vr": vr, "ds": ds, "f": f}
-
-
-def calculate_economic_indicators(stats_data, calculate_max=False):
-    """
-    Sépare les données pour envoyer le bon slice à la fonction de calcul.
-    Retourne les indicateurs de base, et optionnellement les indicateurs max.
-    """
-    default_indicators = {"p": 0.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 50.0, "f": 3}
-    if not isinstance(stats_data, dict):
-        return default_indicators
-
-    hours_48 = []
-    if "statistics_closed" in stats_data:
-        hours_48 = stats_data["statistics_closed"].get("48hours", [])
-    elif "statistics_live" in stats_data:
-        hours_48 = stats_data["statistics_live"].get("48hours", [])
-
-    days_90 = []
-    if "statistics_closed" in stats_data:
-        days_90 = stats_data["statistics_closed"].get("90days", [])
-    if not days_90 and "statistics_live" in stats_data:
-        days_90 = stats_data["statistics_live"].get("90days", [])
-
-    # Extraction Rang 0
-    h48_r0 = [e for e in hours_48 if e.get("rank", e.get("mod_rank", 0)) == 0]
-    d90_r0 = [e for e in days_90 if e.get("rank", e.get("mod_rank", 0)) == 0]
-    output = calculate_metrics_for_slice(h48_r0, d90_r0)
-
-    # Extraction Rang Max (si demandé)
-    if calculate_max:
-        h48_rmax = [e for e in hours_48 if e.get("rank", e.get("mod_rank", 0)) > 0]
-        d90_rmax = [e for e in days_90 if e.get("rank", e.get("mod_rank", 0)) > 0]
-        metrics_max = calculate_metrics_for_slice(h48_rmax, d90_rmax)
-        
-        output.update({f"{k}_max": v for k, v in metrics_max.items()})
-
-    return output
-
-# ==============================================================================
-# SCRIPT PRINCIPAL
-# ==============================================================================
 def main():
-    print("⚡ Démarrage du rafraîchissement rapide WFM50...")
+    print("🚀 Démarrage de la mise à jour horaire flash WFM50...")
+    today = datetime.utcnow()
 
-    if not WFM50_TABLE_PATH.exists():
-        print(f"❌ Erreur : Le fichier {WFM50_TABLE_PATH} n'existe pas.")
+    # 1. VERIFICATION STRICTE DE LA VERSION DE L'API
+    if not VERSION_PATH.exists():
+        print("❌ Fichier api_version.json introuvable. Le script principal doit tourner d'abord.")
+        return
+
+    with open(VERSION_PATH, 'r', encoding='utf-8') as f:
+        version_data = json.load(f)
+    
+    local_api_version = version_data.get("api_version")
+
+    # Requête rapide pour voir si WFM a changé de version
+    res_ver = safe_requests(f"{BASE_URL_V2}/versions", headers=HEADERS_EN)
+    remote_api_version = None
+    if res_ver and res_ver.status_code == 200:
+        try:
+            remote_api_version = res_ver.json().get("data", {}).get("v")
+        except:
+            pass
+
+    if remote_api_version and local_api_version and remote_api_version != local_api_version:
+        print(f"⚠️ L'API WFM a changé de version ({local_api_version} -> {remote_api_version}).")
+        print("🛑 Annulation de la mise à jour horaire. En attente de la resynchronisation du script principal.")
+        return
+
+    # 2. CHARGEMENT DES FICHIERS WFM50 EXISTANTS
+    if not WFM50_TABLE_PATH.exists() or not WFM50_DETAILS_PATH.exists():
+        print("❌ Fichiers wfm50_table.json ou wfm50_details.json manquants. Annulation.")
         return
 
     with open(WFM50_TABLE_PATH, 'r', encoding='utf-8') as f:
-        wfm50_items = json.load(f)
+        wfm50_table = json.load(f)
+    with open(WFM50_DETAILS_PATH, 'r', encoding='utf-8') as f:
+        wfm50_details = json.load(f)
 
-    if not wfm50_items:
-        print("⚠️ La liste WFM50 est vide.")
-        return
-
-    print(f"🔄 Mise à jour des statistiques pour {len(wfm50_items)} objets...")
+    # Conversion des détails en dictionnaire pour un accès direct par slug si ce n'est pas déjà le cas
+    # (Selon que ton wfm50_details est une liste ou un dict, on s'adapte)
+    is_details_dict = isinstance(wfm50_details, dict)
     
-    updated_items = []
+    # 3. MISE À JOUR DES STATISTIQUES (ITEMS + COMPOSANTS)
+    print("🔄 Rafraîchissement des indices économiques pour les 50 items...")
     
-    for index, item in enumerate(wfm50_items):
+    # On boucle sur la table existante (qui contient la liste des 50 slugs)
+    for item in wfm50_table:
         slug = item.get("id")
-        n_fr = item.get("n_fr")
-        n_en = item.get("n_en")
-        
-        print(f"  [{index+1}/{len(wfm50_items)}] Mise à jour : {n_fr}...")
-        
-        # Savoir si l'item avait déjà des indicateurs max enregistrés
-        had_max_indicators = "p_max" in item
+        if not slug:
+            continue
 
-        # Structure d'indicateurs par défaut (sécurisée avec conservation des valeurs de l'item actuel)
-        indicators = {
-            "p": item.get("p", 0.0), "p90": item.get("p90", 0.0), "v": item.get("v", 0),
-            "vr": item.get("vr", 0.0), "ds": item.get("ds", 50.0), "f": item.get("f", 0)
-        }
-        if had_max_indicators:
-            indicators.update({
-                "p_max": item.get("p_max", 0.0), "p90_max": item.get("p90_max", 0.0), "v_max": item.get("v_max", 0),
-                "vr_max": item.get("vr_max", 0.0), "ds_max": item.get("ds_max", 50.0), "f_max": item.get("f_max", 0)
-            })
-        
-        try:
-            url = f"{BASE_URL_V1}/items/{slug}/statistics"
-            response = requests.get(url, headers=HEADERS, timeout=10)
-            
-            if response.status_code == 200:
-                stats_payload = response.json().get("payload", {})
-                indicators = calculate_economic_indicators(stats_payload, calculate_max=had_max_indicators)
-            else:
-                print(f"  ⚠️ Statut API anormal pour {slug} : {response.status_code}. Conservation des anciennes valeurs.")
-                
-        except Exception as e:
-            print(f"  ⚠️ Erreur réseau pour {slug} : {e}. Valeurs précédentes conservées.")
-            
-        updated_item = {"id": slug, "n_fr": n_fr, "n_en": n_en, **indicators}
-        updated_items.append(updated_item)
+        # A. Update de l'item principal (V1 Statistics)
         time.sleep(DELAY)
+        res_stats = safe_requests(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN)
+        if res_stats and res_stats.status_code == 200:
+            indicators = calculate_economic_indicators(res_stats.json().get("payload", {}))
+            # Mise à jour des clés dans la table
+            item.update(indicators)
 
+        # B. Récupération des composants existants dans le fichier details pour cet item
+        item_details = wfm50_details.get(slug) if is_details_dict else next((d for d in wfm50_details if d.get("id") == slug or slug in d), None)
+        
+        # Gestion de la structure de ton fichier details
+        actual_details_obj = item_details
+        if not is_details_dict and isinstance(item_details, dict) and slug in item_details:
+            actual_details_obj = item_details[slug]
+
+        if actual_details_obj and isinstance(actual_details_obj, dict):
+            components = actual_details_obj.get("components", [])
+            if isinstance(components, list) and components:
+                for comp in components:
+                    comp_slug = comp.get("slug")
+                    if not comp_slug:
+                        continue
+                    
+                    # Update du composant (V1 Statistics)
+                    time.sleep(DELAY)
+                    res_comp_stats = safe_requests(f"{BASE_URL_V1}/items/{comp_slug}/statistics", headers=HEADERS_EN)
+                    if res_comp_stats and res_comp_stats.status_code == 200:
+                        comp_indicators = calculate_economic_indicators(res_comp_stats.json().get("payload", {}))
+                        # On met à jour les indicateurs du composant (p, v, etc.)
+                        comp.update(comp_indicators)
+
+    # 4. SAUVEGARDE DES FICHIERS WFM50
+    print("💾 Enregistrement des fichiers WFM50 mis à jour...")
     with open(WFM50_TABLE_PATH, 'w', encoding='utf-8') as f:
-        json.dump(updated_items, f, ensure_ascii=False, separators=(',', ':'))
+        json.dump(wfm50_table, f, ensure_ascii=False, separators=(',', ':'))
+        
+    with open(WFM50_DETAILS_PATH, 'w', encoding='utf-8') as f:
+        json.dump(wfm50_details, f, ensure_ascii=False)
 
-    if VERSION_PATH.exists():
-        try:
-            with open(VERSION_PATH, 'r', encoding='utf-8') as f:
-                v_data = json.load(f)
-            v_data["last_run"] = datetime.now().strftime("%Y-%m-%d")
-            with open(VERSION_PATH, 'w', encoding='utf-8') as f:
-                json.dump(v_data, f)
-        except Exception as e:
-            print(f"⚠️ Impossible de mettre à jour version.json : {e}")
+    # 5. MISE À JOUR DU FICHIER VERSION (Heure de l'update horaire)
+    version_data["last_wfm50_hourly_update"] = today.isoformat()
+    with open(VERSION_PATH, 'w', encoding='utf-8') as f:
+        json.dump(version_data, f, ensure_ascii=False, indent=2)
 
-    print("✅ Liste WFM50 rafraîchie avec succès !")
+    print(f"✅ Opération réussie. WFM50 actualisé à {today.strftime('%H:%M:%S')} UTC.")
 
 if __name__ == "__main__":
     main()
