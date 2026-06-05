@@ -67,7 +67,7 @@ CATEGORIES = ["warframes", "armes", "equipements", "reliques", "mods", "arcanes"
 # FONCTIONS UTILITAIRES & MATHÉMATIQUES
 # ==============================================================================
 
-def safe_request(url, headers, max_retries=3, backoff_factor=1.5):
+def safe_requests(url, headers, max_retries=3, backoff_factor=1.5):
     """
     Exécute une requête GET de manière sécurisée avec un mécanisme de tentative (Retry).
     En cas d'échec ou de timeout, elle attend un peu avant de réessayer.
