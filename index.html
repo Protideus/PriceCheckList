@@ -147,22 +147,22 @@
                                 Nom de l'objet <span id="sort-icon-n_fr" class="ml-1 text-gray-600"></span>
                             </th>
                             <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-right" onclick="handleSort('p')">
-                                Prix Actuel (p) <span id="sort-icon-p" class="ml-1 text-gray-600"></span>
-                            </th>
-                            <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-right" onclick="handleSort('p30')">
-                                Prix 30j (p30) <span id="sort-icon-p30" class="ml-1 text-gray-600"></span>
-                            </th>
-                            <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-right" onclick="handleSort('p90')">
-                                Prix 90j (p90) <span id="sort-icon-p90" class="ml-1 text-gray-600"></span>
+                                Prix (p) <span id="sort-icon-p" class="ml-1 text-gray-600"></span>
                             </th>
                             <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-right" onclick="handleSort('v')">
-                                Volume (v) <span id="sort-icon-v" class="ml-1 text-gray-600"></span>
+                                VL <span id="sort-icon-v" class="ml-1 text-gray-600"></span>
+                            </th>
+                            <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-right" onclick="handleSort('p90')">
+                                Δ90 <span id="sort-icon-p90" class="ml-1 text-gray-600"></span>
                             </th>
                             <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-right" onclick="handleSort('vr')">
-                                Vol. Ratio (vr) <span id="sort-icon-vr" class="ml-1 text-gray-600"></span>
+                                VR <span id="sort-icon-vr" class="ml-1 text-gray-600"></span>
+                            </th>
+                            <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-left" onclick="handleSort('ds')">
+                                DS <span id="sort-icon-ds" class="ml-1 text-gray-600"></span>
                             </th>
                             <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-center" onclick="handleSort('f')">
-                                Fiabilité (f) <span id="sort-icon-f" class="ml-1 text-gray-600"></span>
+                                Fiabilité <span id="sort-icon-f" class="ml-1 text-gray-600"></span>
                             </th>
                         </tr>
                     </thead>
@@ -510,19 +510,36 @@
             let tableHTML = "";
             
             data.forEach(item => {
+                const deltaValue = item.p90 !== undefined && item.p90 !== null ? Number(item.p90) : 0;
+                const dsValue = item.ds !== undefined && item.ds !== null ? Number(item.ds) : 0;
+                const vrValue = item.vr !== undefined && item.vr !== null ? Number(item.vr) : 0;
+
                 tableHTML += `
                     <tr class="table-row-hover border-b border-gray-800/30 cursor-pointer text-gray-300 font-medium" onclick="openItemDetails('${item.id}')">
                         <td class="p-4">
                             <div class="text-white">${item.n_fr || item.id}</div>
                             <div class="text-xs text-gray-500 italic font-mono">${item.n_en || ''}</div>
                         </td>
-                        <td class="p-4 text-right font-mono text-cyan-400">${item.p ? item.p.toFixed(1) : '0.0'}</td>
-                        <td class="p-4 text-right font-mono ${getPriceColorClass(item.p, item.p30)}">${item.p30 ? item.p30.toFixed(1) : '0.0'}</td>
-                        <td class="p-4 text-right font-mono ${getPriceColorClass(item.p, item.p90)}">${item.p90 ? item.p90.toFixed(1) : '0.0'}</td>
-                        <td class="p-4 text-right font-mono text-gray-400">${item.v || 0}</td>
-                        <td class="p-4 text-right font-mono ${item.vr > 1.5 ? 'text-amber-400' : 'text-gray-400'}">${item.vr ? item.vr.toFixed(2) : '0.00'}</td>
-                        <td class="p-4 text-center">
-                            <i class="fa-solid fa-shield-heart fiability-${item.f || 0} text-base" title="Indice de fiabilité : ${item.f || 0}/3"></i>
+                        <td class="p-4 text-right font-mono text-cyan-300">
+                            ${formatPrice(item.p)}
+                        </td>
+                        <td class="p-4 text-right font-mono text-gray-100">${formatVolume(item.v)}</td>
+                        <td class="p-4 text-right text-sm font-semibold ${getDeltaClass(deltaValue)}">
+                            ${renderDelta(deltaValue)}
+                        </td>
+                        <td class="p-4 text-right">
+                            <span class="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold ${getVrBadgeClass(vrValue)}">
+                                ${vrValue ? vrValue.toFixed(1) : '0.0'}x
+                                ${vrValue > 2 ? '<span class="ml-1">🔥</span>' : ''}
+                            </span>
+                        </td>
+                        <td class="p-4 text-left">
+                            <div class="w-full min-w-[120px] bg-gray-800 rounded-full h-2 overflow-hidden">
+                                <div class="h-full rounded-full ${getDsBarClass(dsValue)}" style="width: ${clamp(dsValue, 0, 100)}%;"></div>
+                            </div>
+                        </td>
+                        <td class="p-4 text-center text-sm">
+                            ${renderFiabilityIcons(item.f || 0)}
                         </td>
                     </tr>
                 `;
@@ -533,6 +550,62 @@
         }
 
         // DETERMINER LA COULEUR DES TENDANCES DE PRIX
+        function clamp(value, min, max) {
+            return Math.min(Math.max(value, min), max);
+        }
+
+        function formatPrice(value) {
+            if (value === undefined || value === null || Number.isNaN(Number(value))) return '0.0 pl';
+            return `${Number(value).toFixed(1)} pl`;
+        }
+
+        function formatVolume(value) {
+            if (value === undefined || value === null || Number.isNaN(Number(value))) return '0';
+            const normalized = Number(value);
+            if (normalized >= 1000) {
+                return `${(normalized / 1000).toFixed(1)}k`;
+            }
+            return normalized.toString();
+        }
+
+        function getDeltaClass(delta) {
+            if (delta > 0) return 'text-emerald-300';
+            if (delta < 0) return 'text-rose-400';
+            return 'text-gray-400';
+        }
+
+        function renderDelta(delta) {
+            if (delta > 0) return `▲ +${delta.toFixed(1)}%`;
+            if (delta < 0) return `▼ ${delta.toFixed(1)}%`;
+            return '• 0.0%';
+        }
+
+        function getVrBadgeClass(vr) {
+            if (vr > 2.0) return 'bg-rose-500/15 text-rose-200 border border-rose-500/30';
+            if (vr > 1.5) return 'bg-amber-500/15 text-amber-200 border border-amber-500/30';
+            return 'bg-slate-800 text-slate-300 border border-slate-700';
+        }
+
+        function getDsBarClass(score) {
+            if (score >= 75) return 'bg-rose-500';
+            if (score >= 45) return 'bg-sky-500';
+            return 'bg-emerald-500';
+        }
+
+        function renderFiabilityIcons(score) {
+            const filled = clamp(score, 0, 3);
+            let icons = '';
+            for (let i = 1; i <= 3; i += 1) {
+                if (i <= filled) {
+                    const colorClass = score === 3 ? 'text-emerald-400' : score === 2 ? 'text-amber-400' : 'text-rose-400';
+                    icons += `<i class="fa-solid fa-shield-alt ${colorClass} mx-0.5"></i>`;
+                } else {
+                    icons += `<i class="fa-solid fa-shield text-slate-600 mx-0.5"></i>`;
+                }
+            }
+            return `<div class="flex items-center justify-center text-base">${icons}</div>`;
+        }
+
         function getPriceColorClass(current, old) {
             if (!current || !old || current === old) return "text-gray-400";
             return current > old ? "text-emerald-500/90" : "text-rose-500/90";
@@ -551,7 +624,7 @@
 
         // RE-DESSINER LES FLÈCHES DE TRI (▲/▼)
         function updateSortIcons() {
-            const columns = ["n_fr", "p", "p30", "p90", "v", "vr", "f"];
+            const columns = ["n_fr", "p", "v", "p90", "vr", "ds", "f"];
             columns.forEach(col => {
                 const icon = document.getElementById(`sort-icon-${col}`);
                 if (!icon) return;
