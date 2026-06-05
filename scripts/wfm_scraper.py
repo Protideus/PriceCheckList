@@ -95,22 +95,35 @@ def safe_requests(url, headers, max_retries=3, backoff_factor=1.5):
         return None
 
 def categorize_item(tags, url_name):
-    """Filtre l'objet selon ses VRAIS tags de l'API."""
+    """Filtre l'objet selon ses VRAIS tags de l'API avec support Necramech."""
     is_set = url_name.endswith("_set")
     
+    # 1. WARFRAMES
     if "warframe" in tags: 
         return "warframes" if is_set else "ignore"
-    if "weapon" in tags: 
+        
+    # 2. ARMES (Inclus les armes normales et les armes lourdes/necramech)
+    if "weapon" in tags or "necramech_weapon" in tags: 
         return "armes" if is_set else "ignore"
-    if any(t in tags for t in ["sentinel", "archwing", "kubrow", "kavat"]): 
+        
+    # 3. EQUIPEMENTS (Sentinelles, Archwings, Compagnons, et désormais les Sets Necramech)
+    if any(t in tags for t in ["sentinel", "archwing", "kubrow", "kavat", "necramech"]): 
         return "equipements" if is_set else "ignore"
+        
+    # 4. RELIQUES
     if "relic" in tags: 
         return "reliques"
+        
+    # 5. MODS
     if "mod" in tags: 
         return "mods"
+        
+    # 6. ARCANES
     if "arcane_enhancement" in tags: 
         return "arcanes"
-    if any(t in tags for t in ["necramech", "lens", "ayatan_star", "ayatan_sculpture"]): 
+        
+    # 7. RESSOURCES (Uniquement les objets utilitaires bruts, jamais de structures '_set')
+    if any(t in tags for t in ["lens", "ayatan_star", "ayatan_sculpture"]): 
         return "ignore" if is_set else "ressources"
         
     return "ignore"
