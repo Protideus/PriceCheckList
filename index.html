@@ -511,8 +511,11 @@
             
             data.forEach(item => {
                 const deltaValue = item.p90 !== undefined && item.p90 !== null ? Number(item.p90) : 0;
+                const deltaMax = item.p90_max !== undefined && item.p90_max !== null ? Number(item.p90_max) : null;
                 const dsValue = item.ds !== undefined && item.ds !== null ? Number(item.ds) : 0;
+                const dsMax = item.ds_max !== undefined && item.ds_max !== null ? Number(item.ds_max) : null;
                 const vrValue = item.vr !== undefined && item.vr !== null ? Number(item.vr) : 0;
+                const vrMax = item.vr_max !== undefined && item.vr_max !== null ? Number(item.vr_max) : null;
 
                 tableHTML += `
                     <tr class="table-row-hover border-b border-gray-800/30 cursor-pointer text-gray-300 font-medium" onclick="openItemDetails('${item.id}')">
@@ -521,25 +524,22 @@
                             <div class="text-xs text-gray-500 italic font-mono">${item.n_en || ''}</div>
                         </td>
                         <td class="p-4 text-right font-mono text-cyan-300">
-                            ${formatPrice(item.p)}
+                            ${renderRankValue(item.p, item.p_max, formatPrice)}
                         </td>
-                        <td class="p-4 text-right font-mono text-gray-100">${formatVolume(item.v)}</td>
-                        <td class="p-4 text-right text-sm font-semibold ${getDeltaClass(deltaValue)}">
-                            ${renderDelta(deltaValue)}
+                        <td class="p-4 text-right font-mono text-gray-100">
+                            ${renderRankValue(item.v, item.v_max, formatVolume)}
+                        </td>
+                        <td class="p-4 text-right text-sm font-semibold ${getDeltaClass(deltaValue, deltaMax)}">
+                            ${renderRankValue(deltaValue, deltaMax, renderDelta, 'R0', 'Rmax')}
                         </td>
                         <td class="p-4 text-right">
-                            <span class="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold ${getVrBadgeClass(vrValue)}">
-                                ${vrValue ? vrValue.toFixed(1) : '0.0'}x
-                                ${vrValue > 2 ? '<span class="ml-1">🔥</span>' : ''}
-                            </span>
+                            ${renderRankValue(vrValue, vrMax, renderVrBadge)}
                         </td>
                         <td class="p-4 text-left">
-                            <div class="w-full min-w-[120px] bg-gray-800 rounded-full h-2 overflow-hidden">
-                                <div class="h-full rounded-full ${getDsBarClass(dsValue)}" style="width: ${clamp(dsValue, 0, 100)}%;"></div>
-                            </div>
+                            ${renderRankValue(dsValue, dsMax, renderDsBar)}
                         </td>
                         <td class="p-4 text-center text-sm">
-                            ${renderFiabilityIcons(item.f || 0)}
+                            ${renderRankValue(item.f, item.f_max, renderFiabilityIcons)}
                         </td>
                     </tr>
                 `;
@@ -568,16 +568,50 @@
             return normalized.toString();
         }
 
-        function getDeltaClass(delta) {
+        function getDeltaClass(delta, deltaMax) {
+            if (deltaMax !== null) {
+                if (delta > 0 || deltaMax > 0) return 'text-emerald-300';
+                if (delta < 0 && deltaMax < 0) return 'text-rose-400';
+                return 'text-gray-400';
+            }
             if (delta > 0) return 'text-emerald-300';
             if (delta < 0) return 'text-rose-400';
             return 'text-gray-400';
+        }
+
+        function renderRankValue(base, max, renderer, labelBase = 'R0', labelMax = 'Rmax') {
+            if (max === undefined || max === null) {
+                return renderer(base);
+            }
+            return `
+                <div>${renderer(base)}</div>
+                <div class="text-[10px] text-slate-500 uppercase tracking-[0.18em] mt-1">${labelBase}</div>
+                <div class="mt-1">${renderer(max)}</div>
+                <div class="text-[10px] text-slate-500 uppercase tracking-[0.18em]">${labelMax}</div>
+            `;
         }
 
         function renderDelta(delta) {
             if (delta > 0) return `▲ +${delta.toFixed(1)}%`;
             if (delta < 0) return `▼ ${delta.toFixed(1)}%`;
             return '• 0.0%';
+        }
+
+        function renderVrBadge(vr) {
+            const value = vr ? vr.toFixed(1) : '0.0';
+            const badgeClass = getVrBadgeClass(vr);
+            const icon = vr > 2 ? '<span class="ml-1">🔥</span>' : '';
+            return `<span class="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold ${badgeClass}">${value}x${icon}</span>`;
+        }
+
+        function renderDsBar(score) {
+            const width = clamp(score, 0, 100);
+            const barClass = getDsBarClass(score);
+            return `
+                <div class="w-full min-w-[120px] bg-gray-800 rounded-full h-2 overflow-hidden">
+                    <div class="h-full rounded-full ${barClass}" style="width: ${width}%;"></div>
+                </div>
+            `;
         }
 
         function getVrBadgeClass(vr) {
@@ -705,6 +739,22 @@
                                 <div class="font-bold text-base ${getPriceColorClass(summary.p, summary.p90)}">${summary.p90 ? summary.p90.toFixed(1) : '0.0'}<span class="text-xs opacity-60 ml-0.5">p</span></div>
                             </div>
                         </div>
+                        ${summary.p_max !== undefined ? `
+                        <div class="grid grid-cols-3 gap-2 text-center font-mono text-sm">
+                            <div class="bg-gray-900/50 border border-gray-700/50 p-2.5 rounded-xl">
+                                <div class="text-[10px] text-slate-400 uppercase tracking-[0.2em] mb-1">Rmax Actuel</div>
+                                <div class="text-white font-bold text-base">${summary.p_max ? summary.p_max.toFixed(1) : '0.0'}<span class="text-xs text-cyan-500 ml-0.5">p</span></div>
+                            </div>
+                            <div class="bg-gray-900/50 border border-gray-700/50 p-2.5 rounded-xl">
+                                <div class="text-[10px] text-slate-400 uppercase tracking-[0.2em] mb-1">Rmax 30j</div>
+                                <div class="font-bold text-base ${getPriceColorClass(summary.p_max, summary.p30_max)}">${summary.p30_max ? summary.p30_max.toFixed(1) : '0.0'}<span class="text-xs opacity-60 ml-0.5">p</span></div>
+                            </div>
+                            <div class="bg-gray-900/50 border border-gray-700/50 p-2.5 rounded-xl">
+                                <div class="text-[10px] text-slate-400 uppercase tracking-[0.2em] mb-1">Rmax 90j</div>
+                                <div class="font-bold text-base ${getPriceColorClass(summary.p_max, summary.p90_max)}">${summary.p90_max ? summary.p90_max.toFixed(1) : '0.0'}<span class="text-xs opacity-60 ml-0.5">p</span></div>
+                            </div>
+                        </div>
+                        ` : ''}
                     </div>
                 </div>
 
