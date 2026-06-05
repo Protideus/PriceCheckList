@@ -176,48 +176,73 @@
         </div>
     </main>
 
+    <div id="bg-loader-status" class="fixed bottom-4 right-4 z-50 min-w-[280px] bg-gray-950/90 backdrop-blur-md border border-cyan-500/30 p-3 rounded-lg shadow-2xl shadow-cyan-950/20 transform translate-y-0 transition-all duration-700 ease-in-out">
+        <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center space-x-2">
+                <span id="bg-loader-ping" class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span id="bg-loader-dot" class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </span>
+                <span class="text-[10px] font-mono tracking-widest text-cyan-400 uppercase font-bold">PCL_CORE_SYNC</span>
+            </div>
+            <span id="bg-loader-percent" class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/50 px-1.5 py-0.5 rounded border border-cyan-500/20">0%</span>
+        </div>
+
+        <div class="space-y-1.5">
+            <div id="bg-loader-text" class="text-xs font-medium text-gray-300 truncate">
+                Initialisation du flux...
+            </div>
+            
+            <div class="w-full h-1 bg-gray-900 rounded-full overflow-hidden border border-gray-800">
+                <div id="bg-loader-bar" class="h-full w-0 bg-gradient-to-r from-cyan-500 to-blue-600 transition-all duration-300 ease-out"></div>
+            </div>
+        </div>
+    </div>
+
     <div id="modal-container" class="fixed inset-0 bg-gray-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300" onclick="closeModal(event)">
         <div id="modal-content" class="bg-gray-900/95 border border-gray-800/60 w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl m-4 transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
             </div>
     </div>
 
     <script>
-        // CONFIGURATION DES SECTIONS DU SITE
-        const CATEGORIES = [
-            { id: "warframes", label: "Warframes", icon: "fa-shield-halved" },
-            { id: "armes", label: "Armes", icon: "fa-gun" },
-            { id: "equipements", label: "Équipements", icon: "fa-robot" },
-            { id: "reliques", label: "Reliques", icon: "fa-cube" },
-            { id: "mods", label: "Mods", icon: "fa-id-card" },
-            { id: "arcanes", label: "Arcanes", icon: "fa-gem" },
-            { id: "ressources", label: "Ressources", icon: "fa-box-tissue" }
+        // STRUCTURE GLOBALE DES DONNÉES
+        const PCLData = {
+            version: null,
+            tables: {},
+            details: {}
+        };
+
+        const LIST_CONFIG = [
+            { id: 'wfm50', table: 'wfm50_table.json', details: 'wfm50_details.json', label: 'WFM 50', icon: 'fa-fire' },
+            { id: 'warframes', table: 'warframes_table.json', details: 'warframes_details.json', label: 'Warframes', icon: 'fa-shield-halved' },
+            { id: 'armes', table: 'armes_table.json', details: 'armes_details.json', label: 'Armes', icon: 'fa-gun' },
+            { id: 'equipements', table: 'equipements_table.json', details: 'equipements_details.json', label: 'Équipements', icon: 'fa-robot' },
+            { id: 'mods', table: 'mods_table.json', details: 'mods_details.json', label: 'Mods', icon: 'fa-id-card' },
+            { id: 'arcanes', table: 'arcanes_table.json', details: 'arcanes_details.json', label: 'Arcanes', icon: 'fa-gem' },
+            { id: 'reliques', table: 'reliques_table.json', details: 'reliques_details.json', label: 'Reliques', icon: 'fa-cube' },
+            { id: 'ressources', table: 'ressources_table.json', details: 'ressources_details.json', label: 'Ressources', icon: 'fa-box-tissue' }
         ];
+
+        const CATEGORIES = LIST_CONFIG;
 
         // ÉTAT GLOBAL DE L'APPLICATION
         let appState = {
-            currentCategory: "warframes",
+            currentCategory: "wfm50",
             searchQuery: "",
             sortColumn: "n_fr",
-            sortDirection: "asc",
-            tables: {},       // Index d'indicateurs économiques légers
-            details: {},      // Dictionnaires de descriptions lourdes (cache)
-            versionInfo: null
+            sortDirection: "asc"
         };
 
         // INITIALISATION DE L'APPLICATION
         window.addEventListener("DOMContentLoaded", async () => {
             buildProgressChecklist();
-            await initializeLoadingSequence();
-            buildNavigationTabs();
-            renderTable();
-            
-            // Écouteur pour la recherche dynamique
+            await initApplicationPipeline();
+
             document.getElementById("search-input").addEventListener("input", (e) => {
                 appState.searchQuery = e.target.value.toLowerCase().trim();
                 renderTable();
             });
 
-            // Écouteurs pour les nouveaux boutons
             document.getElementById("guide-btn").addEventListener("click", openGuideModal);
             document.getElementById("readme-btn").addEventListener("click", openReadmeModal);
             document.getElementById("author-btn").addEventListener("click", openAuthorModal);
@@ -226,82 +251,176 @@
         // CONSTRUIRE LA CHECKLIST GRAPHIQUE DU CHARGEMENT
         function buildProgressChecklist() {
             const container = document.getElementById("progress-checklist");
-            CATEGORIES.forEach(cat => {
+            container.innerHTML = `
+                <div id="check-version" class="flex items-center justify-between text-gray-500">
+                    <span><i class="fa-solid fa-circle-notch fa-spin mr-2 text-cyan-400"></i> api_version.json</span>
+                    <span class="text-xs">En attente</span>
+                </div>
+            `;
+
+            LIST_CONFIG.forEach(cat => {
                 container.innerHTML += `
                     <div id="check-${cat.id}" class="flex items-center justify-between text-gray-500">
-                        <span><i class="fa-solid fa-circle-notch fa-spin mr-2 text-gray-700"></i>${cat.id}_table.json</span>
+                        <span><i class="fa-solid fa-circle-notch fa-spin mr-2 text-gray-700"></i>${cat.table}</span>
                         <span class="text-xs">En attente</span>
                     </div>
                 `;
             });
         }
 
-        // SEQUENCE DE TELECHARGEMENT PILOTÉE AVEC EFFET CINÉMATIQUE LISEBLE
-        async function initializeLoadingSequence() {
-            const progressBar = document.getElementById("progress-bar");
-            const statusText = document.getElementById("loading-status-text");
-            const totalSteps = CATEGORIES.length + 1; // +1 pour api_version.json
-            let completedSteps = 0;
+        async function fetchJSON(url, label) {
+            try {
+                updateLoaderWidget(`Chargement : ${label}`, 0);
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.warn(`⚠️ Impossible de charger le fichier : ${url}. Contenu ignoré.`, error);
+                return null;
+            }
+        }
 
-            const updateProgress = (stepId, label, isSuccess) => {
-                completedSteps++;
-                const percentage = Math.round((completedSteps / totalSteps) * 100);
-                progressBar.style.width = `${percentage}%`;
-                
-                const element = document.getElementById(`check-${stepId}`);
-                if (element) {
-                    if (isSuccess) {
-                        element.className = "flex items-center justify-between text-emerald-400";
-                        element.innerHTML = `<span><i class="fa-solid fa-circle-check mr-2"></i>${label}</span><span class="text-xs">OK</span>`;
-                    } else {
-                        element.className = "flex items-center justify-between text-rose-400";
-                        element.innerHTML = `<span><i class="fa-solid fa-circle-xmark mr-2"></i>${label}</span><span class="text-xs">Erreur</span>`;
+        function displaySyncDate(isoString) {
+            const target = document.getElementById("api-version-info");
+            if (!target) return;
+            const dateObj = new Date(isoString);
+            target.innerHTML = `<i class="fa-solid fa-clock text-cyan-400"></i> Synchro : ${dateObj.toLocaleString('fr-FR')}`;
+        }
+
+        function showGlobalError(message) {
+            const statusText = document.getElementById("loading-status-text");
+            if (statusText) {
+                statusText.innerText = message;
+                statusText.classList.add("text-rose-400");
+            }
+            updateLoaderWidget(message, 100);
+        }
+
+        function updateLoaderWidget(text, percent) {
+            const textStatus = document.getElementById("bg-loader-text");
+            const percentStatus = document.getElementById("bg-loader-percent");
+            const barStatus = document.getElementById("bg-loader-bar");
+            const pingStatus = document.getElementById("bg-loader-ping");
+            const dotStatus = document.getElementById("bg-loader-dot");
+            const widget = document.getElementById("bg-loader-status");
+
+            if (textStatus) textStatus.innerText = text;
+            if (percentStatus) percentStatus.innerText = `${percent}%`;
+            if (barStatus) barStatus.style.width = `${percent}%`;
+
+            if (percent === 100) {
+                if (percentStatus) {
+                    percentStatus.className = "text-xs font-mono font-bold text-green-400 bg-green-950/50 px-1.5 py-0.5 rounded border border-green-500/20";
+                }
+                if (barStatus) {
+                    barStatus.className = "h-full w-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-300 ease-out";
+                }
+                if (dotStatus) {
+                    dotStatus.className = "relative inline-flex rounded-full h-2 w-2 bg-green-500";
+                }
+                if (pingStatus) {
+                    const pingEffect = pingStatus.querySelector('.animate-ping');
+                    if (pingEffect) pingEffect.remove();
+                }
+
+                setTimeout(() => {
+                    if (widget) {
+                        widget.classList.add("translate-y-full", "opacity-0");
                     }
+                }, 1800);
+            }
+        }
+
+        async function initApplicationPipeline() {
+            const loaderOverlay = document.getElementById("loading-screen");
+            const statusText = document.getElementById("loading-status-text");
+            const totalFiles = 1 + LIST_CONFIG.length * 2;
+            let loadedFiles = 0;
+
+            const markFile = (stepId, label, isSuccess) => {
+                loadedFiles += 1;
+                const progress = Math.round((loadedFiles / totalFiles) * 100);
+                updateLoaderWidget(`Chargement : ${label}`, progress);
+
+                const element = document.getElementById(`check-${stepId}`);
+                if (!element) return;
+                if (isSuccess) {
+                    element.className = "flex items-center justify-between text-emerald-400";
+                    element.innerHTML = `<span><i class="fa-solid fa-circle-check mr-2"></i>${label}</span><span class="text-xs">OK</span>`;
+                } else {
+                    element.className = "flex items-center justify-between text-rose-400";
+                    element.innerHTML = `<span><i class="fa-solid fa-circle-xmark mr-2"></i>${label}</span><span class="text-xs">Erreur</span>`;
                 }
             };
 
-            // Fonction utilitaire pour créer une petite pause artificielle (lisibilité)
             const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-            // Étape 1 : Récupérer api_version.json
-            try {
-                statusText.innerText = "Lecture des métadonnées de version...";
-                const res = await fetch("data/api_version.json");
-                appState.versionInfo = await res.json();
-                
-                if (appState.versionInfo && appState.versionInfo.last_run) {
-                    const dateObj = new Date(appState.versionInfo.last_run);
-                    document.getElementById("api-version-info").innerHTML = `
-                        <i class="fa-solid fa-clock text-cyan-400"></i> Synchro : ${dateObj.toLocaleString('fr-FR')}
-                    `;
-                }
-                updateProgress("version", "api_version.json", true);
-            } catch (e) {
-                updateProgress("version", "api_version.json", false);
+            updateLoaderWidget("Initialisation...", 5);
+            if (statusText) statusText.innerText = "Récupération des fichiers prioritaires...";
+
+            const startTime = performance.now();
+            const [versionData, wfm50Table] = await Promise.all([
+                fetchJSON('data/api_version.json', 'api_version.json'),
+                fetchJSON('data/wfm50_table.json', 'wfm50_table.json')
+            ]);
+
+            if (versionData) {
+                PCLData.version = versionData;
+                displaySyncDate(versionData.last_run);
+                markFile('version', 'api_version.json', true);
+            } else {
+                markFile('version', 'api_version.json', false);
             }
 
-            await sleep(200); // Petite temporisation rythmique
-
-            // Étapes suivantes : Les fichiers de table pour chaque catégorie
-            for (const cat of CATEGORIES) {
-                statusText.innerText = `Téléchargement de l'index : ${cat.label}...`;
-                try {
-                    const res = await fetch(`data/${cat.id}_table.json`);
-                    if (!res.ok) throw new Error();
-                    appState.tables[cat.id] = await res.json();
-                    updateProgress(cat.id, `${cat.id}_table.json`, true);
-                } catch (e) {
-                    appState.tables[cat.id] = []; 
-                    updateProgress(cat.id, `${cat.id}_table.json`, false);
-                }
-                await sleep(120); // Offre un effet visuel fluide de remplissage progressif
+            if (wfm50Table) {
+                PCLData.tables['wfm50'] = wfm50Table;
+                markFile('wfm50', 'wfm50_table.json', true);
+            } else {
+                markFile('wfm50', 'wfm50_table.json', false);
             }
 
-            statusText.innerText = "Finalisation de l'interface...";
-            await sleep(800); // Laisse le temps de voir que tous les voyants sont au vert
+            if (!wfm50Table) {
+                showGlobalError('Erreur critique : Impossible de charger la liste prioritaire.');
+                return;
+            }
 
-            const loader = document.getElementById("loading-screen");
-            loader.classList.add("opacity-0", "pointer-events-none", "transition-all", "duration-500");
+            buildNavigationTabs();
+            renderTable();
+            if (loaderOverlay) {
+                loaderOverlay.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => loaderOverlay.style.display = 'none', 600);
+            }
+
+            const elapsed = performance.now() - startTime;
+            if (elapsed < 200) await sleep(200 - elapsed);
+
+            updateLoaderWidget('Données prioritaires chargées. Chargement du catalogue...', 30);
+            if (statusText) statusText.innerText = 'Chargement des tables restantes...';
+
+            const tablePromises = LIST_CONFIG.filter(item => item.id !== 'wfm50').map(async (list) => {
+                const data = await fetchJSON(`data/${list.table}`, list.table);
+                if (data) {
+                    PCLData.tables[list.id] = data;
+                    markFile(list.id, list.table, true);
+                } else {
+                    PCLData.tables[list.id] = [];
+                    markFile(list.id, list.table, false);
+                }
+            });
+            await Promise.all(tablePromises);
+
+            updateLoaderWidget('Toutes les tables sont prêtes. Finalisation des détails...', 70);
+            if (statusText) statusText.innerText = 'Préchargement des fiches détaillées...';
+
+            const detailsPromises = LIST_CONFIG.map(async (list) => {
+                const data = await fetchJSON(`data/${list.details}`, list.details);
+                PCLData.details[list.id] = data ? data : {};
+                // Ne met pas à jour la checklist pour les détails, on affiche uniquement le widget global
+            });
+            await Promise.all(detailsPromises);
+
+            updateLoaderWidget('DATASET COMPLET', 100);
+            if (statusText) statusText.innerText = 'Dataset complet';
         }
 
         // CONSTRUIRE LA BARRE D'ONGLETS (DESKTOP & MOBILE)
@@ -354,7 +473,7 @@
         function renderTable() {
             const tbody = document.getElementById("table-body");
             const noResults = document.getElementById("no-results");
-            let data = appState.tables[appState.currentCategory] || [];
+            let data = PCLData.tables[appState.currentCategory] || [];
 
             // 1. Filtrage par barre de recherche (FR / EN)
             if (appState.searchQuery) {
@@ -462,18 +581,17 @@
             setTimeout(() => modalContainer.classList.add("modal-show"), 10);
             setTimeout(() => modalContent.classList.add("modal-scale"), 10);
 
-            // Fetch asynchrone ciblé si absent de la mémoire cache
-            if (!appState.details[cat]) {
+            if (!PCLData.details[cat] || Object.keys(PCLData.details[cat]).length === 0) {
                 try {
                     const res = await fetch(`data/${cat}_details.json`);
-                    appState.details[cat] = await res.json();
+                    PCLData.details[cat] = await res.json();
                 } catch (e) {
-                    appState.details[cat] = {};
+                    PCLData.details[cat] = {};
                 }
             }
 
-            const summary = appState.tables[cat].find(i => i.id === itemId) || {};
-            const info = appState.details[cat][itemId] || {};
+            const summary = (PCLData.tables[cat] || []).find(i => i.id === itemId) || {};
+            const info = (PCLData.details[cat] || {})[itemId] || {};
             const iconUrl = info.icon ? `https://warframe.market/static/assets/${info.icon}` : '';
 
             // Remplissage dynamique des données réelles
