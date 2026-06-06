@@ -1,0 +1,46 @@
+name: PCL 2 - Clan Tips Sync
+
+concurrency:
+  group: pcl-dataset-write
+  cancel-in-progress: false
+
+on:
+  workflow_run:
+    workflows: ["PCL 1 - Daily Price Scraper"]
+    types:
+      - completed
+  workflow_dispatch: 
+
+jobs:
+  sync-tips:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install gspread oauth2client
+
+    - name: Run Google Sheets Tips Scraper
+      env:
+        GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+      run: python scripts/googlesheets_scraper.py
+
+    - name: Commit and Push Tips Changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # On ajoute uniquement les fichiers détails qui contiennent les expert_tips
+        git add data/*_details.json
+        
+        git commit -m "Mise à jour des astuces du clan depuis le Google Sheets [skip ci]" || echo "Aucune nouvelle astuce"
+        git push
