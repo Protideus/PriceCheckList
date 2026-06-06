@@ -1,0 +1,12 @@
+name: PCL 2 - Clan Tips Sync
+
+concurrency:
+  group: pcl-dataset-write
+  cancel-in-progress: false
+
+on:
+  workflow_run:
+    workflows: ["PCL 1 - Daily Price Scraper"]
+    types:
+      - completed
+  workflow_dispatch: 
