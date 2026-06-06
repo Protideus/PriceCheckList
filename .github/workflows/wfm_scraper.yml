@@ -1,4 +1,4 @@
-name: Warframe Market Scraper Daily Run
+name: PCL 1 - Daily Price Scraper
 
 on:
   schedule:
