@@ -431,46 +431,44 @@ def main():
                     n_en = i18n_en.get("name") or json_en.get("name") or slug
                     n_fr = i18n_fr.get("name") or json_fr.get("name") or slug
                     
-                    # 🟢 EXTRACTION BLINDÉE DES COMPOSANTS (Correction définitive des doublons et cumul V2)
                     # ==============================================================================
-                    # EXTRACTION DES COMPOSANTS (Nettoyée et Factuelle)
+                    # 🟢 EXTRACTION BLINDÉE ET UNIVERSELLE DES COMPOSANTS (V2 COMPATIBLE)
                     # ==============================================================================
                     components_blueprint = []
 
-                    # L'API V2 liste toutes les déclinaisons dans le tableau "items"
-                    v2_items_list = json_en.get("items", [])
+                    # En V2, les détails d'un item peuvent être dans un sous-objet "item" ou à la racine
+                    item_root = json_en.get("item", json_en)
+                    
+                    # On cherche les composants dans les structures connues de l'API (set_parts, components, items)
+                    potential_components = (
+                        item_root.get("set_parts") or 
+                        item_root.get("components") or 
+                        json_en.get("items") or 
+                        []
+                    )
 
-                    if isinstance(v2_items_list, list):
-                        for sub_item in v2_items_list:
+                    if isinstance(potential_components, list):
+                        for sub_item in potential_components:
                             if isinstance(sub_item, dict):
-                                # On ignore l'objet parent lui-même (le Set complet)
+                                # 1. On ignore l'objet parent lui-même (le Set complet)
                                 if sub_item.get("setRoot", False) or sub_item.get("slug") == slug:
                                     continue
-                
-                                comp_slug = sub_item.get("slug")
-                                if comp_slug:
-                                    # Récupération stricte de la quantité avec repli sur 1 si absent
-                                    qty = sub_item.get("quantityInSet") or 1
-                
-                                    # Évite les doublons et applique la vraie quantité trouvée
-                                    if not any(c["slug"] == comp_slug for c in components_blueprint):
-                                        components_blueprint.append({
-                                            "slug": comp_slug,
-                                            "qty": int(qty)
-                                        })
-
-                    # 2. Analyse du bloc items (Indépendant, on utilise 'if' au lieu de 'elif')
-                    if isinstance(v2_items_list, list) and len(v2_items_list) > 1:
-                        for sub_item in v2_items_list:
-                            if isinstance(sub_item, dict) and not sub_item.get("setRoot", False):
+                                
+                                # 2. Extraction du slug du composant
                                 comp_slug = sub_item.get("slug") or item_id_map.get(sub_item.get("id"))
-                                if comp_slug and comp_slug != slug:
-                                    # Sécurité pour éviter d'ajouter deux fois le même composant s'il était déjà dans setParts
-                                    if not any(c["slug"] == comp_slug for c in components_blueprint):
-                                        components_blueprint.append({
-                                            "slug": comp_slug,
-                                            "qty": sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
-                                        })
+                                if not comp_slug or comp_slug == slug:
+                                    continue
+                                    
+                                # 3. Extraction de la quantité requise
+                                qty = sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
+                                
+                                # 4. Ajout sans doublon
+                                if not any(c["slug"] == comp_slug for c in components_blueprint):
+                                    components_blueprint.append({
+                                        "slug": comp_slug,
+                                        "qty": int(qty)
+                                    })
+                    # ==============================================================================
 
                     new_data[cat]["details"][slug] = {
                         "desc_fr": i18n_fr.get("description", ""),
