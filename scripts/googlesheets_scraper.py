@@ -70,7 +70,6 @@ def extraire_filtre_et_nom(saisie_expert):
             "arme": "armes", "armes": "armes", "principal": "armes", "secondaire": "armes", "mêlée": "armes", "melee": "armes",
             "mod": "mods", "mods": "mods", "riven": "mods", "rivens": "mods",
             "arcane": "arcanes", "arcanes": "arcanes",
-            # 'archwing' est maintenant uniquement ici pour cibler equipements_details.json
             "equipement": "equipements", "équipement": "equipements", "equipements": "equipements", "équipements": "equipements", 
             "sentinelle": "equipements", "sentinelles": "equipements", "archwing": "equipements", "archwings": "equipements", 
             "necramech": "equipements", "nécramech": "equipements",
@@ -120,9 +119,14 @@ def main():
         else:
             details_database[cat] = {}
 
-        # Reset des anciennes astuces
+        # 🟢 CORRECTION SÉCURITÉ : Réinitialise uniquement 'expert_tips' 
+        # en préservant ABSOLUMENT la clé 'components' et le reste de l'objet
         for slug in details_database[cat]:
-            details_database[cat][slug]['expert_tips'] = []
+            if isinstance(details_database[cat][slug], dict):
+                details_database[cat][slug]['expert_tips'] = []
+                # Si par hasard components n'est pas là, on met un tableau vide par défaut au lieu de planter
+                if 'components' not in details_database[cat][slug]:
+                    details_database[cat][slug]['components'] = []
 
     # Date actuelle pour la péremption
     aujourd_hui = datetime.now()
@@ -180,9 +184,10 @@ def main():
         if details_database[cat]:
             file_path = os.path.join(DATA_DIR, f"{cat}_details.json")
             with open(file_path, 'w', encoding='utf-8') as f:
+                # Sauvegarde propre avec indentation pour garder les fichiers lisibles
                 json.dump(details_database[cat], f, ensure_ascii=False, indent=2)
 
-    print("✅ Fin du traitement. Le conflit Archwing est définitivement résolu !")
+    print("✅ Fin du traitement. Le conflit Archwing est définitivement résolu et les composants sont préservés !")
 
 if __name__ == "__main__":
     main()
