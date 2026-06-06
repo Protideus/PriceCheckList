@@ -123,7 +123,7 @@ def categorize_item(tags, url_name):
         return "arcanes"
         
     # 7. RESSOURCES (Uniquement les objets utilitaires bruts, jamais de structures '_set')
-    if any(t in tags for t in ["lens", "ayatan_star", "ayatan_sculpture"]): 
+    if any(t in tags for t in ["lens", "ayatan_star", "ayatan_sculpture", "fusion core"]): 
         return "ignore" if is_set else "ressources"
         
     return "ignore"
