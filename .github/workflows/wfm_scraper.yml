@@ -1,5 +1,9 @@
 name: PCL 1 - Daily Price Scraper
 
+concurrency:
+  group: pcl-dataset-write
+  cancel-in-progress: false
+
 on:
   schedule:
     # Se lance une fois par jour à 02:00 UTC
