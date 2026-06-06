@@ -602,11 +602,12 @@ def main():
     wfm50_table = sorted(all_extracted_table_items, key=lambda x: x.get("v", 0) if isinstance(x, dict) else 0, reverse=True)[:50]
 
     # 3. On extrait les détails correspondants à ces 50 items
-    wfm50_details = []
+    # On utilise un dictionnaire pour wfm50_details
+    wfm50_details = {}
     for item in wfm50_table:
         slug = item["id"]
         if slug in details_registry:
-            wfm50_details.append(details_registry[slug])
+            wfm50_details[slug] = details_registry[slug] 
 
     # Enregistrement des 7 catégories classiques
     for cat in CATEGORIES:
