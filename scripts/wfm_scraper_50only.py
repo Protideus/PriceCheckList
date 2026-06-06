@@ -127,7 +127,10 @@ def main():
         if res_stats and res_stats.status_code == 200:
             indicators = calculate_economic_indicators(res_stats.json().get("payload", {}))
             
-            # Mise à jour dans le dictionnaire en protégeant la structure
+            # 🟢 1. Mise à jour de la table principale (Pour l'affichage flash)
+            item.update(indicators)
+            
+            # 🟢 2. Mise à jour du dictionnaire de détails
             if slug in wfm50_details and isinstance(wfm50_details[slug], dict):
                 wfm50_details[slug].update(indicators)
                 
