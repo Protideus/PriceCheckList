@@ -99,64 +99,61 @@ def main():
         print("🛑 Annulation de la mise à jour horaire. En attente de la resynchronisation du script principal.")
         return
 
+    # ==============================================================================
     # 2. CHARGEMENT DES FICHIERS WFM50 EXISTANTS
+    # ==============================================================================
     if not WFM50_TABLE_PATH.exists() or not WFM50_DETAILS_PATH.exists():
-        print("❌ Fichiers wfm50_table.json ou wfm50_details.json manquants. Annulation.")
+        print("❌ Fichiers WFM50 introuvables. Le script principal doit tourner d'abord.")
         return
 
     with open(WFM50_TABLE_PATH, 'r', encoding='utf-8') as f:
         wfm50_table = json.load(f)
     with open(WFM50_DETAILS_PATH, 'r', encoding='utf-8') as f:
-        wfm50_details = json.load(f)
+        wfm50_details = json.load(f) # C'est désormais un dictionnaire {"slug": {...}}
 
-    # 3. MISE À JOUR DES STATISTIQUES (ITEMS + COMPOSANTS)
-    print("🔄 Rafraîchissement des indices économiques pour les 50 items...")
+    # ==============================================================================
+    # 3. MISE À JOUR HORAIRE DES STATISTIQUES (Top 50)
+    # ==============================================================================
+    print(f"📊 Actualisation des indicateurs économiques pour les {len(wfm50_table)} items majeurs...")
     
-    # On boucle sur la table existante (qui contient la liste des 50 slugs)
     for item in wfm50_table:
         slug = item.get("id")
         if not slug:
             continue
 
-        # A. Update de l'item principal (V1 Statistics)
+        # Récupération des statistiques de l'item parent (V1 Statistics API)
         time.sleep(DELAY)
         res_stats = safe_requests(f"{BASE_URL_V1}/items/{slug}/statistics", headers=HEADERS_EN)
         if res_stats and res_stats.status_code == 200:
             indicators = calculate_economic_indicators(res_stats.json().get("payload", {}))
-            # Mise à jour des clés dans la table
-            item.update(indicators)
+            
+            # Mise à jour dans le dictionnaire en protégeant la structure
+            if slug in wfm50_details and isinstance(wfm50_details[slug], dict):
+                wfm50_details[slug].update(indicators)
+                
+                # S'il y a des composants enfants, on met aussi à jour leurs statistiques individuelles
+                components = wfm50_details[slug].get("components", [])
+                if isinstance(components, list) and components:
+                    for comp in components:
+                        comp_slug = comp.get("slug")
+                        if not comp_slug:
+                            continue
+                        
+                        time.sleep(DELAY)
+                        res_comp_stats = safe_requests(f"{BASE_URL_V1}/items/{comp_slug}/statistics", headers=HEADERS_EN)
+                        if res_comp_stats and res_comp_stats.status_code == 200:
+                            comp_indicators = calculate_economic_indicators(res_comp_stats.json().get("payload", {}))
+                            comp.update(comp_indicators)
 
-        # B. Récupération des composants existants dans le fichier details pour cet item
-        # Sécurité : On s'assure de cibler un dictionnaire indexé par le slug
-        actual_details_obj = None
-        if isinstance(wfm50_details, dict) and slug in wfm50_details:
-            actual_details_obj = wfm50_details[slug]
-        elif isinstance(wfm50_details, list):
-            # Fallback temporaire au cas où l'ancien format liste traîne encore sur le disque
-            actual_details_obj = next((d for d in wfm50_details if isinstance(d, dict) and d.get("id") == slug), None)
-
-        if isinstance(actual_details_obj, dict):
-            components = actual_details_obj.get("components", [])
-            if isinstance(components, list) and components:
-                for comp in components:
-                    comp_slug = comp.get("slug")
-                    if not comp_slug:
-                        continue
-                    
-                    # Update du composant (V1 Statistics)
-                    time.sleep(DELAY)
-                    res_comp_stats = safe_requests(f"{BASE_URL_V1}/items/{comp_slug}/statistics", headers=HEADERS_EN)
-                    if res_comp_stats and res_comp_stats.status_code == 200:
-                        comp_indicators = calculate_economic_indicators(res_comp_stats.json().get("payload", {}))
-                        # On met à jour les indicateurs du composant (p, v, etc.)
-                        comp.update(comp_indicators)
-
+    # ==============================================================================
     # 4. SAUVEGARDE DES FICHIERS WFM50
+    # ==============================================================================
     print("💾 Enregistrement des fichiers WFM50 mis à jour...")
     with open(WFM50_TABLE_PATH, 'w', encoding='utf-8') as f:
         json.dump(wfm50_table, f, ensure_ascii=False, separators=(',', ':'))
         
     with open(WFM50_DETAILS_PATH, 'w', encoding='utf-8') as f:
+        # On sauvegarde le dictionnaire avec une indentation propre
         json.dump(wfm50_details, f, ensure_ascii=False, indent=2)
 
     # 5. MISE À JOUR DU FICHIER VERSION (Heure de l'update horaire)
