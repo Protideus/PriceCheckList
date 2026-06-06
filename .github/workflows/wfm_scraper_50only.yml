@@ -1,5 +1,9 @@
 name: Warframe Market Scraper Hourly Flash Run
 
+concurrency:
+  group: pcl-dataset-write
+  cancel-in-progress: false
+
 on:
   schedule:
     # S'exécute au début de chaque heure SAUF à 02:00 et 03:00 UTC (fenêtre du script quotidien)
