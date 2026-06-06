@@ -83,14 +83,14 @@ def main():
     with open(VERSION_PATH, 'r', encoding='utf-8') as f:
         version_data = json.load(f)
     
-    local_api_version = version_data.get("api_version")
+    local_api_version = version_data.get("version")
 
     # Requête rapide pour voir si WFM a changé de version
     res_ver = safe_requests(f"{BASE_URL_V2}/versions", headers=HEADERS_EN)
     remote_api_version = None
     if res_ver and res_ver.status_code == 200:
         try:
-            remote_api_version = res_ver.json().get("data", {}).get("v")
+            remote_api_version = res_ver.json().get("data", {}).get("version")
         except:
             pass
 
@@ -109,10 +109,6 @@ def main():
     with open(WFM50_DETAILS_PATH, 'r', encoding='utf-8') as f:
         wfm50_details = json.load(f)
 
-    # Conversion des détails en dictionnaire pour un accès direct par slug si ce n'est pas déjà le cas
-    # (Selon que ton wfm50_details est une liste ou un dict, on s'adapte)
-    is_details_dict = isinstance(wfm50_details, dict)
-    
     # 3. MISE À JOUR DES STATISTIQUES (ITEMS + COMPOSANTS)
     print("🔄 Rafraîchissement des indices économiques pour les 50 items...")
     
@@ -131,14 +127,15 @@ def main():
             item.update(indicators)
 
         # B. Récupération des composants existants dans le fichier details pour cet item
-        item_details = wfm50_details.get(slug) if is_details_dict else next((d for d in wfm50_details if d.get("id") == slug or slug in d), None)
-        
-        # Gestion de la structure de ton fichier details
-        actual_details_obj = item_details
-        if not is_details_dict and isinstance(item_details, dict) and slug in item_details:
-            actual_details_obj = item_details[slug]
+        # Sécurité : On s'assure de cibler un dictionnaire indexé par le slug
+        actual_details_obj = None
+        if isinstance(wfm50_details, dict) and slug in wfm50_details:
+            actual_details_obj = wfm50_details[slug]
+        elif isinstance(wfm50_details, list):
+            # Fallback temporaire au cas où l'ancien format liste traîne encore sur le disque
+            actual_details_obj = next((d for d in wfm50_details if isinstance(d, dict) and d.get("id") == slug), None)
 
-        if actual_details_obj and isinstance(actual_details_obj, dict):
+        if isinstance(actual_details_obj, dict):
             components = actual_details_obj.get("components", [])
             if isinstance(components, list) and components:
                 for comp in components:
@@ -160,7 +157,7 @@ def main():
         json.dump(wfm50_table, f, ensure_ascii=False, separators=(',', ':'))
         
     with open(WFM50_DETAILS_PATH, 'w', encoding='utf-8') as f:
-        json.dump(wfm50_details, f, ensure_ascii=False)
+        json.dump(wfm50_details, f, ensure_ascii=False, indent=2)
 
     # 5. MISE À JOUR DU FICHIER VERSION (Heure de l'update horaire)
     version_data["last_wfm50_hourly_update"] = today.isoformat()
