@@ -2398,6 +2398,11 @@
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [
+      {
+        "author": "Protideus",
+        "text": "Astuce de test pour vérifier le bon comportement du bot"
+      }
+    ]
   }
 }

@@ -52,7 +52,12 @@
     "vr": 0.64,
     "ds": 0.3,
     "f": 3,
-    "expert_tips": []
+    "expert_tips": [
+      {
+        "author": "Protideus",
+        "text": "Astuce de test pour vérifier le bon comportement du bot"
+      }
+    ]
   },
   "melee_riven_mod_(veiled)": {
     "desc_fr": "",
