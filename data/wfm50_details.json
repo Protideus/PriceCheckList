@@ -51,7 +51,8 @@
     "v": 1055,
     "vr": 0.64,
     "ds": 0.3,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "melee_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -64,7 +65,8 @@
     "v": 988,
     "vr": 0.94,
     "ds": 90.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "arcane_hot_shot": {
     "desc_fr": "Gagnez 6% de Chances de Critique avec votre arme pendant 10s lorsque vous utilisez des Pouvoirs pour infliger des Effets de Statut de Feu aux ennemis. Nombre maximal de cumuls: 50.\n+1 Réanimation Arcane",
@@ -83,7 +85,8 @@
     "v_max": 268,
     "vr_max": 1.11,
     "ds_max": 57.8,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "rifle_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -96,7 +99,8 @@
     "v": 814,
     "vr": 0.98,
     "ds": 87.7,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "nautilus_prime_set": {
     "desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.",
@@ -150,7 +154,8 @@
     "v": 816,
     "vr": 1.51,
     "ds": 62.5,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "ayatan_anasa_sculpture": {
     "desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.",
@@ -163,7 +168,13 @@
     "v": 677,
     "vr": 0.58,
     "ds": 45.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
+      }
+    ]
   },
   "arcane_energize": {
     "desc_fr": "Sur Ramassage d'Énergie:\n60% de chances de restaurer 150 points d'Énergie à vous-même et aux alliés à moins de 15m\n15s de temps de recharge\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -182,7 +193,8 @@
     "v_max": 189,
     "vr_max": 0.64,
     "ds_max": 70.3,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "sevagoth_prime_set": {
     "desc_fr": "Le timonier doré émerge de la tempête, son ombre étant un appât pour les âmes damnées.",
@@ -236,7 +248,8 @@
     "v": 563,
     "vr": 1.46,
     "ds": 82.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "molt_augmented": {
     "desc_fr": "Sur Élimination:\n+0.24% Puissance de Pouvoir. Cumulable jusqu'à 250x.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -255,7 +268,8 @@
     "v_max": 527,
     "vr_max": 1.1,
     "ds_max": 32.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "caliban_prime_set": {
     "desc_fr": "Forgé pour célébrer la paix bien trop brève entre les Orokins et les Sentients, Caliban Prime est un véritable chef-d'œuvre collaboratif. L'héritier des royaumes jumeaux s'élève dans une tenue dorée royale.",
@@ -309,7 +323,8 @@
     "v": 507,
     "vr": 1.16,
     "ds": 41.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "xaku_prime_set": {
     "desc_fr": "L'enfant de la guerre et du Néant renaît en or. Ce qui a été brisé un jour peut se relever plus fort que ce qui n'a jamais été endommagé.",
@@ -363,7 +378,8 @@
     "v": 502,
     "vr": 1.19,
     "ds": 43.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "wisp_prime_set": {
     "desc_fr": "La splendeur dorée de Wisp Prime hante le champ de bataille. Les alliés célèbrent sa beauté interdimensionnelle.",
@@ -417,7 +433,8 @@
     "v": 491,
     "vr": 1.12,
     "ds": 95.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "pistol_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -430,7 +447,8 @@
     "v": 511,
     "vr": 0.75,
     "ds": 92.5,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "gyre_prime_set": {
     "desc_fr": "Des circuits dorés activent et dynamisent des mouvements frénétiques résonnant à travers les âges. Dansez pour l'éternité avec Gyre Prime.",
@@ -484,7 +502,8 @@
     "v": 455,
     "vr": 0.89,
     "ds": 5.3,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "critical_delay": {
     "desc_fr": "+200% de Chance de Critique\n-20% de Cadence de Tir (x2 pour les Arcs)",
@@ -503,7 +522,8 @@
     "v_max": 103,
     "vr_max": 1.08,
     "ds_max": 25.7,
-    "f_max": 2
+    "f_max": 2,
+    "expert_tips": []
   },
   "primary_deadhead": {
     "desc_fr": "Sur un Tir à la Tête Fatal:\n+120% de Dégâts pendant 24s. Cumulable jusqu'à 3x.\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme",
@@ -522,7 +542,8 @@
     "v_max": 230,
     "vr_max": 1.29,
     "ds_max": 82.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "gauss_prime_set": {
     "desc_fr": "Le vif-argent prend forme. Gauss Prime ne tolère aucune allusion à la défaite.",
@@ -576,7 +597,8 @@
     "v": 398,
     "vr": 0.82,
     "ds": 32.5,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "axi_s3_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -589,7 +611,8 @@
     "v": 384,
     "vr": 0.89,
     "ds": 3.8,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "mesa_prime_set": {
     "desc_fr": "Cette exécutrice tire plus rapidement que son ombre. Possède des polarités de mods modifiées pour plus de personnalisation.",
@@ -643,7 +666,8 @@
     "v": 386,
     "vr": 1.11,
     "ds": 99.2,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "arcane_aegis": {
     "desc_fr": "Sur Bouclier Endommagé:\n3% de chances de: +30% de Recharge des Boucliers pendant 12s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -662,7 +686,8 @@
     "v_max": 245,
     "vr_max": 0.85,
     "ds_max": 16.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "ayatan_cyan_star": {
     "desc_fr": "Placez ces étoiles dans des Sculptures Ayatans pour alimenter leur mouvement. Peut également être une source d'Endo.",
@@ -675,7 +700,13 @@
     "v": 377,
     "vr": 1.25,
     "ds": 20.0,
-    "f": 2
+    "f": 2,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
+      }
+    ]
   },
   "nyx_prime_set": {
     "desc_fr": "Infiltrez-vous dans les pensées de vos ennemis avec Nyx Prime. Comporte d'ailleurs des polarités de mod modifiées pour permettre plus de personnalisation.",
@@ -729,7 +760,8 @@
     "v": 373,
     "vr": 2.17,
     "ds": 0.9,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "primary_merciless": {
     "desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge",
@@ -748,7 +780,8 @@
     "v_max": 216,
     "vr_max": 0.88,
     "ds_max": 34.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "lavos_prime_set": {
     "desc_fr": "Certaines Warframes étaient Prime dès le départ. D'autres ont évolué. Lavos, le maître de la transmutation, ne s'est incliné devant personne alors qu'il forgeait son propre chemin vers la bravoure.",
@@ -802,7 +835,8 @@
     "v": 360,
     "vr": 1.04,
     "ds": 14.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "yareli_prime_set": {
     "desc_fr": "Waverider surgit, renaissant de l'écume de l'océan. Dans sa splendeur originelle de l'ère Orokin, elle incarne la vigueur éternelle de la jeunesse.",
@@ -856,7 +890,8 @@
     "v": 349,
     "vr": 1.08,
     "ds": 41.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "hildryn_prime_set": {
     "desc_fr": "Hildryn Prime prouve que le succès récompense la discipline.",
@@ -910,7 +945,8 @@
     "v": 335,
     "vr": 0.95,
     "ds": 90.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "titania_prime_set": {
     "desc_fr": "Envoûtante et terrifiante, voici Titania dans sa forme ultime.",
@@ -964,7 +1000,8 @@
     "v": 327,
     "vr": 0.91,
     "ds": 71.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "arcane_battery": {
     "desc_fr": "Gagnez 0.30 points d'Énergie maximale par point d'Armure, jusqu'à 1 000 points d'Énergie.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -983,7 +1020,8 @@
     "v_max": 76,
     "vr_max": 0.29,
     "ds_max": 7.3,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "vile_acceleration": {
     "desc_fr": "+90% de Cadence de Tir (x2 pour les Arcs)\n-15% de Dégâts",
@@ -1002,7 +1040,8 @@
     "v_max": 36,
     "vr_max": 0.75,
     "ds_max": 11.8,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "arcane_impetus": {
     "desc_fr": "Les Effets de Statut uniques des Pouvoirs confèrent +6% de Puissance de Pouvoir et +3% d'Efficacité de Pouvoir pendant 20s.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1021,7 +1060,8 @@
     "v_max": 237,
     "vr_max": 0.91,
     "ds_max": 21.3,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "weeping_wounds": {
     "desc_fr": "+40% de Chance de Statut par Multiplicateur de Combo",
@@ -1040,7 +1080,8 @@
     "v_max": 45,
     "vr_max": 0.69,
     "ds_max": 40.0,
-    "f_max": 2
+    "f_max": 2,
+    "expert_tips": []
   },
   "secondary_enervate": {
     "desc_fr": "Sur coup: augmentation des Chances de Critique de 10%. Se réinitialise après 6 Critiques Majeurs.",
@@ -1059,7 +1100,8 @@
     "v_max": 372,
     "vr_max": 1.06,
     "ds_max": 78.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "ayatan_orta_sculpture": {
     "desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.",
@@ -1072,7 +1114,13 @@
     "v": 314,
     "vr": 0.63,
     "ds": 80.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
+      }
+    ]
   },
   "rhino_prime_set": {
     "desc_fr": "Propulsez les anciens pouvoirs percutants de Rhino au niveau supérieur avec des polarités de mod altérées pour un contrôle encore plus aisé dans le feu de l'action.",
@@ -1126,7 +1174,8 @@
     "v": 321,
     "vr": 1.65,
     "ds": 5.4,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "wukong_prime_set": {
     "desc_fr": "Le guerrier-farceur s'élève à une nouvelle incarnation.",
@@ -1180,7 +1229,8 @@
     "v": 311,
     "vr": 1.01,
     "ds": 17.5,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "burston_prime_set": {
     "desc_fr": "Ses derniers exemplaires ayant été perdus il y a longtemps, les tentatives pour reconstruire le Burston Prime n'ont jamais complètement reproduit sa puissance et sa maniabilité originelles.",
@@ -1234,7 +1284,8 @@
     "v": 297,
     "vr": 1.39,
     "ds": 42.7,
-    "f": 2
+    "f": 2,
+    "expert_tips": []
   },
   "arcane_avenger": {
     "desc_fr": "Sur Dégâts reçus:\n21% de chances de: +45% de Chances de Critique pendant 12s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1253,7 +1304,8 @@
     "v_max": 216,
     "vr_max": 1.06,
     "ds_max": 19.4,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "melee_influence": {
     "desc_fr": "Melee Arcane that, on Melee Electricity Status, creates a 20% chance for elemental Melee Status Effects to apply to enemies within 20 meters for 18 seconds. This cannot refresh while active.",
@@ -1272,7 +1324,8 @@
     "v_max": 372,
     "vr_max": 0.99,
     "ds_max": 79.2,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "protea_prime_set": {
     "desc_fr": "L'enfant née de deux pères. Protea Prime a autrefois réalisé la vision de Parvos Granum d'un gardien manipulant le temps. Maintenant, elle défend l'idéal Tenno de protéger les plus faibles.",
@@ -1326,7 +1379,8 @@
     "v": 290,
     "vr": 0.85,
     "ds": 70.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "arcane_camisado": {
     "desc_fr": "Les attaques des serviteurs invoqués augmentent la Puissance des Pouvoirs de 6% jusqu'à 60% sur le prochain lancement de Pouvoir. Summons gain 20% Movement Speed.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1345,7 +1399,8 @@
     "v_max": 101,
     "vr_max": 0.61,
     "ds_max": 53.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "neo_r1_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -1358,7 +1413,8 @@
     "v": 264,
     "vr": 0.61,
     "ds": 0.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "arcane_velocity": {
     "desc_fr": "Sur Coup Critique:\n90% de chances de: +120% Cadence de Tir aux Pistolets pendant 9s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1377,7 +1433,8 @@
     "v_max": 188,
     "vr_max": 0.73,
     "ds_max": 31.8,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "gilded_truth": {
     "desc_fr": "+80% Cadence de Tir\n+1 'Vérité'",
@@ -1396,7 +1453,8 @@
     "v_max": 67,
     "vr_max": 2.0,
     "ds_max": 70.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "malignant_force": {
     "desc_fr": "+60% Poison\n+60% de Chances de Statut",
@@ -1415,7 +1473,8 @@
     "v_max": 41,
     "vr_max": 0.95,
     "ds_max": 63.0,
-    "f_max": 2
+    "f_max": 2,
+    "expert_tips": []
   },
   "melee_exposure": {
     "desc_fr": "Melee Arcane that, on Ability Cast, generates 60% Corrosive Damage on Melee strikes for 25s and stacks up to 240%.",
@@ -1434,7 +1493,8 @@
     "v_max": 211,
     "vr_max": 0.96,
     "ds_max": 48.5,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "khora_prime_set": {
     "desc_fr": "Maîtresse et monstre dans un ensemble harmonieux. Cette chasseresse parée d'or et son loyal Kavat, Venari, dominent le champ de bataille de leur volonté.",
@@ -1488,7 +1548,8 @@
     "v": 263,
     "vr": 0.92,
     "ds": 93.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "epitaph_prime_set": {
     "desc_fr": "Donnez des frissons à vos ennemis avec cette arme secondaire portée sur le poignet. En tant qu'arme emblématique de Sevagoth Prime, elle inflige des Dégâts supplémentaires sur Tir à la Tête lorsqu'il l'utilise.",
@@ -1532,7 +1593,8 @@
     "v": 262,
     "vr": 1.09,
     "ds": 80.0,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "condition_overload": {
     "desc_fr": "+80% de Dégâts de Mêlée pour chaque Type de Statut affectant la cible",
@@ -1551,7 +1613,8 @@
     "v_max": 31,
     "vr_max": 0.77,
     "ds_max": 48.0,
-    "f_max": 3
+    "f_max": 3,
+    "expert_tips": []
   },
   "meso_a7_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -1564,7 +1627,8 @@
     "v": 260,
     "vr": 2.79,
     "ds": 33.3,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   },
   "revenant_prime_set": {
     "desc_fr": "L'égaré se lève. Réifiez l'essence Eidolon en utilisant la puissance de Revenant Prime.",
@@ -1618,6 +1682,7 @@
     "v": 259,
     "vr": 0.85,
     "ds": 57.3,
-    "f": 3
+    "f": 3,
+    "expert_tips": []
   }
 }
