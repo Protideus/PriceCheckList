@@ -50,8 +50,9 @@ Racine du projet :
 **/scripts** : 
 *   wfm_scraper.py : Le script Python chargé du scraping de l'API et du calcul des indicateurs. Déclenchement quotidien.
 *   wfm_scraper_50only : La mise à jour horaire du WFM50.
+*   googlesheets_scraper.py : Le script chargé de lire le Google Sheets du clan qui contient des astuces sur les items. Ce script nécessite un compte de service google et une clé placée dans les secrets du projet Github.
 
-**/.github/workflows** : wfm_scraper.yml et wfm_scraper_50only : Les fichiers de configuration au format YAML pilotant l'automatisation via GitHub Actions
+**/.github/workflows** : wfm_scraper.yml , wfm_scraper_50only.yml et googlesheets_scraper.yml : Les fichiers de configuration au format YAML pilotant l'automatisation via GitHub Actions
 
 
 ### 1. Automatisation via GitHub Actions
@@ -59,6 +60,7 @@ Le rafraîchissement des données est piloté par un workflow **YAML** dans GitH
 *   Scanner l'API Warframe Market.
 *   Calculer les indicateurs économiques (moyennes mobiles, lissage "Forward Fill" pour combler les jours sans ventes) [2].
 *   Générer des fichiers JSON statiques dans le répertoire `/data`.
+*   Puisque les scripts travaillent sur les mêmes fichiers, ils sont synchronisés pour ne pas fonctionner en même temps (concurrency). 
 
 ### 2. Optimisation Backend : Aspiration Courtoise 
 Pour éviter le bannissement IP par le pare-feu de WFM, le script intègre des règles strictes de politesse réseau :
@@ -87,6 +89,19 @@ L'interface a été conçue pour rester instantanée, même avec des milliers d'
     * * **Les fichiers Détails (`*_details.json`) :** Dictionnaires riches (descriptions, liens wiki, images), téléchargés de manière asynchrone par le JavaScript pour alimenter les infobulles uniquement au survol de la souris.
 *   **Tailwind CSS** : Utilisation de Tailwind pour un rendu visuel moderne et ultra-léger (poids CSS minimal).
 *   **Recherche i18n** : Le moteur de recherche JavaScript permet de filtrer les objets simultanément en français et en anglais grâce aux métadonnées récupérées via les headers `Language: fr/en` [6].
+
+### 6.✍️ Module d'Enrichissement : Analyse Humaine & Astuces d'Experts (`googlesheets_scraper.py`)
+Pour pallier la cécité des algorithmes face aux annonces de mises à jour ou aux cycles de la "Vault", PCL intègre un second module asynchrone connecté à un **Google Sheets** collaboratif via l'API Google Drive (`gspread`). 
+
+#### 1. Complémentarité Stratégique (La "Distance" Data vs Humain)
+Le système maintient une séparation stricte entre les données brutes et l'interprétation humaine :
+* **L'API WFM** modélise le *passé* et le *présent* via des indicateurs purement mathématiques (volumes récents, cassures de canaux de Donchian, prix d'équilibre).
+* **Le Google Sheet** modélise le *futur* et le *contexte* via des alertes de spéculation, des conseils de rétention de stock (Vaulting) ou des analyses d'impact sur les builds à la suite des patchnotes de Digital Extremes.
+
+#### 2. Fonctionnement du Flux & Alignement Temporel
+* **Appariement Intelligent (Fuzzy Matching)** : Pour l'intégration, le script nettoie les saisies manuelles des experts (retrait des accents, casses, espaces superflus) et utilise un algorithme de correspondance de mots. Si un expert écrit `"Chroma Prime"` ou `"Chroma Set"`, le script résout automatiquement le conflit pour cibler le slug exact `"chroma_prime_set"`.
+* **Cumul non-destructif** : L'injection dans les fichiers `{categorie}_details.json` se fait par enrichissement. Le script ajoute les conseils dans un tableau `"expert_tips"` sans altérer les statistiques d'artisanat ou de prix déjà calculées. Si plusieurs experts ciblent le même objet, leurs avis se cumulent.
+* **Auto-nettoyage par Péremption** : Les conseils économiques étant hautement volatiles, le script compare la date d'exécution avec la date de péremption saisie par l'expert (format `JJ/MM/AAAA`). Toute astuce obsolète est **immédiatement purgée** du fichier JSON final, évitant ainsi d'afficher des conseils de spéculation dépassés sur le site.
 
 ## 🚀 Déploiement
 Le projet est configuré pour être déployé en un clic via **GitHub Pages**. Toute modification poussée sur la branche principale déclenche automatiquement la mise à jour du site et des données.
