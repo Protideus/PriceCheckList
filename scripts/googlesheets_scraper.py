@@ -186,7 +186,34 @@ def main():
                 # Écriture indentée propre qui préserve l'intégralité du dictionnaire
                 json.dump(details_database[cat], f, ensure_ascii=False, indent=2)
 
-    print("✅ Fin du traitement. Le conflit de structure est résolu et les composants sont blindés !")
+    # ==============================================================================
+    # 🟢 DUPLICATION DES ASTUCES DANS LE FICHIER FLASH TOP 50 (WFM50)
+    # ==============================================================================
+    wfm50_path = os.path.join(DATA_DIR, "wfm50_details.json")
+    if os.path.exists(wfm50_path):
+        print("⚡ Duplication des astuces d'experts dans wfm50_details.json...")
+        try:
+            with open(wfm50_path, 'r', encoding='utf-8') as f:
+                wfm50_data = json.load(f)
+            
+            wfm50_modifie = False
+            # On parcourt les items actuellement présents dans le Top 50
+            for slug in wfm50_data.keys():
+                # On cherche dans nos 7 catégories si cet item a reçu des astuces aujourd'hui
+                for cat in CATEGORIES:
+                    if slug in details_database[cat] and "expert_tips" in details_database[cat][slug]:
+                        wfm50_data[slug]["expert_tips"] = details_database[cat][slug]["expert_tips"]
+                        wfm50_modifie = True
+            
+            if wfm50_modifie:
+                with open(wfm50_path, 'w', encoding='utf-8') as f:
+                    json.dump(wfm50_data, f, ensure_ascii=False, indent=2)
+                print("💾 Fichier wfm50_details.json enrichi avec succès !")
+                
+        except Exception as e:
+            print(f"⚠️ Erreur lors de la duplication dans le Top 50 : {e}")
+    
+    print("✅ Fin du traitement.")
 
 if __name__ == "__main__":
     main()
