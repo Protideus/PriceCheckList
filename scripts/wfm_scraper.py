@@ -53,6 +53,7 @@ BASE_URL_V2 = "https://api.warframe.market/v2"
 BASE_URL_V1 = "https://api.warframe.market/v1"
 DELAY = 0.4 
 
+#The WFM api answers diferently according to header. If language is not EN then it gives data for both EN and the desired language.
 HEADERS_EN = {"Accept": "application/json", "Language": "en", "User-Agent": "WF-PriceCheck-Scraper"}
 HEADERS_FR = {"Accept": "application/json", "Language": "fr", "User-Agent": "WF-PriceCheck-Scraper"}
 
