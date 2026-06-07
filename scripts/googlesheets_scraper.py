@@ -119,12 +119,11 @@ def main():
         else:
             details_database[cat] = {}
 
-        # 🟢 CORRECTION SÉCURITÉ : Réinitialise uniquement 'expert_tips' 
-        # en préservant ABSOLUMENT la clé 'components' et le reste de l'objet
-        for slug in details_database[cat]:
+        # 🟢 MUTATION SÉCURISÉE : On ne détruit rien, on nettoie uniquement la clé cible.
+        for slug in list(details_database[cat].keys()):
             if isinstance(details_database[cat][slug], dict):
                 details_database[cat][slug]['expert_tips'] = []
-                # Si par hasard components n'est pas là, on met un tableau vide par défaut au lieu de planter
+                # Sécurité : Si le scraper n'a pas encore créé la liste des composants, on initialise proprement
                 if 'components' not in details_database[cat][slug]:
                     details_database[cat][slug]['components'] = []
 
@@ -184,10 +183,10 @@ def main():
         if details_database[cat]:
             file_path = os.path.join(DATA_DIR, f"{cat}_details.json")
             with open(file_path, 'w', encoding='utf-8') as f:
-                # Sauvegarde propre avec indentation pour garder les fichiers lisibles
+                # Écriture indentée propre qui préserve l'intégralité du dictionnaire
                 json.dump(details_database[cat], f, ensure_ascii=False, indent=2)
 
-    print("✅ Fin du traitement. Le conflit Archwing est définitivement résolu et les composants sont préservés !")
+    print("✅ Fin du traitement. Le conflit de structure est résolu et les composants sont blindés !")
 
 if __name__ == "__main__":
     main()
