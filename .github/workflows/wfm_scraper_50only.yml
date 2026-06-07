@@ -1,4 +1,4 @@
-name: Warframe Market Scraper Hourly Flash Run
+name: PCL 3 - Hourly WFM50 price scraper
 
 concurrency:
   group: pcl-dataset-write
