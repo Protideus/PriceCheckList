@@ -6,7 +6,35 @@
     <title>Warframe PriceCheckList</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Police Manuscrite */
+        .handwriting {
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+        }
+
+        /* Animation des Astuces */
+        .tips-carousel {
+            position: relative;
+            min-height: 140px;
+            overflow: hidden;
+        }
+
+        .tip-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            width: 100%;
+        }
+
+        .tip-item.active {
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+        }
+
         /* Ambiance Graphique Immersive*/
         body {
             background-image: linear-gradient(rgba(3, 7, 18, 0.90), rgba(3, 7, 18, 0.90)), url('PCL_background.jpg');
@@ -791,6 +819,27 @@
                         </div>
                     </div>
 
+                    ${info.expert_tips && info.expert_tips.length > 0 ? `
+                    <div class="flex flex-col gap-2">
+                        <span class="text-xs font-bold text-orange-400 uppercase tracking-widest">💡 Astuces d'Experts</span>
+                        <div class="tips-carousel bg-gradient-to-br from-orange-950/20 to-amber-950/20 border border-orange-700/40 rounded-xl p-4">
+                            ${info.expert_tips.map((tip, idx) => `
+                                <div class="tip-item ${idx === 0 ? 'active' : ''}" data-tip-index="${idx}">
+                                    <div class="mb-2">
+                                        <h4 class="text-sm font-semibold text-orange-300">L'astuce de <span class="handwriting text-orange-200 text-base">${tip.author}</span> :</h4>
+                                    </div>
+                                    <p class="handwriting text-base text-amber-100 leading-relaxed italic bg-orange-950/40 rounded-lg p-3 border border-orange-700/20">
+                                        "${tip.text}"
+                                    </p>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="text-xs text-gray-500 text-center">
+                            <span id="tip-counter"></span>
+                        </div>
+                    </div>
+                    ` : ''}
+
                     ${components.length > 0 ? `
                     <div class="flex flex-col gap-2">
                         <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Composants du Set</span>
@@ -846,6 +895,9 @@
                     </div>
                 </div>
             `;
+            
+            // Démarrer le carrousel des astuces si disponible
+            setTimeout(() => startTipsCarousel(), 100);
         }
 
         // OUVERTURE DE LA MODALE "GUIDE"
@@ -982,9 +1034,54 @@
             const modalContainer = document.getElementById("modal-container");
             const modalContent = document.getElementById("modal-content");
             
+            // Nettoyer l'intervalle du carrousel d'astuces si actif
+            if (window.tipsCarouselInterval) {
+                clearInterval(window.tipsCarouselInterval);
+                window.tipsCarouselInterval = null;
+            }
+            
             modalContainer.classList.remove("modal-show");
             modalContent.classList.remove("modal-scale");
             setTimeout(() => modalContainer.classList.add("hidden"), 300);
+        }
+
+        // GESTION DU CARROUSEL D'ASTUCES D'EXPERTS
+        function startTipsCarousel() {
+            // Nettoyer tout intervalle existant
+            if (window.tipsCarouselInterval) {
+                clearInterval(window.tipsCarouselInterval);
+            }
+
+            const tipItems = document.querySelectorAll('.tip-item');
+            const tipCounter = document.getElementById('tip-counter');
+            
+            if (tipItems.length === 0) return;
+
+            let currentIndex = 0;
+
+            const showTip = (index) => {
+                tipItems.forEach((item, i) => {
+                    if (i === index) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Mettre à jour le compteur
+                if (tipCounter && tipItems.length > 1) {
+                    tipCounter.textContent = `Astuce ${index + 1} / ${tipItems.length}`;
+                }
+            };
+
+            // Afficher la première astuce
+            showTip(currentIndex);
+
+            // Boucle automatique toutes les 10 secondes
+            window.tipsCarouselInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % tipItems.length;
+                showTip(currentIndex);
+            }, 10000);
         }
     </script>
 </body>
