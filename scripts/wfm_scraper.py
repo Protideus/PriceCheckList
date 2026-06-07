@@ -46,6 +46,36 @@ from pathlib import Path
 #   □ Run full RESET mode and verify output files are populated
 #
 # ==============================================================================
+# 💡 WFM API V2 ARCHITECTURE & BEHAVIOR
+# ==============================================================================
+#
+# 1. THE '/set' ENDPOINT REQUIREMENT
+#    - Standard `/v2/items/{slug}` requests only return the item itself.
+#    - To get a Set AND all its components, you MUST use the dedicated endpoint:
+#      👉 GET https://api.warframe.market/v2/item/{slug}/set
+#
+# 2. FLAT LIST STRUCTURE (data.items)
+#    - The response returns a flat list of objects inside `data.items`.
+#    - The main item (the Set) has `"setRoot": true`.
+#    - The craftable components have `"setRoot": false` (and a `"component"` tag).
+#
+# 3. CONCRETE JSON EXAMPLE (Chroma Prime Set):
+#    {
+#      "data": {
+#        "items": [
+#          { "slug": "chroma_prime_set", "setRoot": true, "i18n": { "fr": { "name": "Chroma Prime - Set" }, "en": { ... } } },
+#          { "slug": "chroma_prime_blueprint", "setRoot": false, "quantityInSet": 1 },
+#          { "slug": "chroma_prime_chassis_blueprint", "setRoot": false, "quantityInSet": 1 }
+#        ]
+#      }
+#    }
+#
+# 4. OPTIMIZED LANGUAGE HEADERS (i18n)
+#    - Sending `{"Language": "fr"}` returns BOTH "fr" and "en" translations 
+#      simultaneously inside the "i18n" block.
+#    - No need for two separate API calls (saves 50% request time and prevents rate limits).
+# 
+# ==============================================================================
 # CONFIGURATION
 # ==============================================================================
 
