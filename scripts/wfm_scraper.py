@@ -436,33 +436,28 @@ def main():
                     # ==============================================================================
                     components_blueprint = []
 
-                    # En V2, les détails d'un item peuvent être dans un sous-objet "item" ou à la racine
-                    item_root = json_en.get("item", json_en)
+                    # Extraction sécurisée des listes d'items V2
+                    items_en = json_en.get("data", {}).get("items", [])
                     
-                    # On cherche les composants dans les structures connues de l'API (set_parts, components, items)
-                    potential_components = (
-                        item_root.get("set_parts") or 
-                        item_root.get("components") or 
-                        json_en.get("items") or 
-                        []
-                    )
-
-                    if isinstance(potential_components, list):
-                        for sub_item in potential_components:
-                            if isinstance(sub_item, dict):
-                                # 1. On ignore l'objet parent lui-même (le Set complet)
-                                if sub_item.get("setRoot", False) or sub_item.get("slug") == slug:
-                                    continue
+                    if items_en and isinstance(items_en, list):
+                        # L'item principal (le Set) est celui qui a setRoot = True
+                        main_item_en = next((item for item in items_en if item.get("setRoot") is True), items_en[0])
+                        
+                        # Les composants sont tous les AUTRES éléments de la liste
+                        for sub_item in items_en:
+                            if sub_item == main_item_en:
+                                continue
                                 
-                                # 2. Extraction du slug du composant
-                                comp_slug = sub_item.get("slug") or item_id_map.get(sub_item.get("id"))
+                            if isinstance(sub_item, dict):
+                                comp_slug = sub_item.get("slug")
+                                # Sécurité : si pas de slug ou si c'est le set lui-même, on zappe
                                 if not comp_slug or comp_slug == slug:
                                     continue
                                     
-                                # 3. Extraction de la quantité requise
+                                # Extraction de la quantité requise (V2 utilise quantityInSet)
                                 qty = sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
                                 
-                                # 4. Ajout sans doublon
+                                # Ajout propre sans doublon pour la future boucle de statistiques
                                 if not any(c["slug"] == comp_slug for c in components_blueprint):
                                     components_blueprint.append({
                                         "slug": comp_slug,
