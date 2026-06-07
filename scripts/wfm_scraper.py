@@ -409,68 +409,66 @@ def main():
             # SCÉNARIO A : L'objet est totalement inconnu ou mode RESET
             if not found_category or run_type == "RESET":
                 time.sleep(DELAY)
-                res_en = safe_requests(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_EN)
-                res_fr = safe_requests(f"{BASE_URL_V2}/items/{slug}", headers=HEADERS_FR)
                 
-                if res_en.status_code == 200 and res_fr.status_code == 200:
-                    json_en = res_en.json().get("data", {})
+                # 🟢 UNE SEULE REQUÊTE : L'endpoint V2 '/set' avec header FR contient tout
+                url_set = f"https://api.warframe.market/v2/item/{slug}/set"
+                res_fr = safe_requests(url_set, headers=HEADERS_FR)
+                
+                if res_fr and res_fr.status_code == 200:
                     json_fr = res_fr.json().get("data", {})
                     
-                    tags = json_en.get("tags", [])
+                    # Récupération de la liste plate d'items retournée par la V2
+                    items_list = json_fr.get("items", [])
+                    if not items_list:
+                        continue
+                        
+                    # L'item principal (le Set) possède 'setRoot': True
+                    main_item = next((item for item in items_list if item.get("setRoot") is True), items_list[0])
+                    
+                    # Extraction des tags depuis l'item principal
+                    tags = main_item.get("tags", [])
                     cat = categorize_item(tags, slug)
                     
                     if cat == "ignore":
                         blacklist.add(slug)
                         continue
                     
-                    # Extract i18n translations (V2 structure)
-                    i18n_en = json_en.get("i18n", {}).get("en", {})
-                    i18n_fr = json_fr.get("i18n", {}).get("fr", {})
+                    # Extraction linguistique (Le bloc 'fr' embarque aussi le 'en' en V2)
+                    i18n_en = main_item.get("i18n", {}).get("en", {})
+                    i18n_fr = main_item.get("i18n", {}).get("fr", {})
                     
-                    # Try to get names: use 'name' key or fallback to slug
-                    n_en = i18n_en.get("name") or json_en.get("name") or slug
-                    n_fr = i18n_fr.get("name") or json_fr.get("name") or slug
+                    n_en = i18n_en.get("name") or slug
+                    n_fr = i18n_fr.get("name") or slug
                     
-                    # ==============================================================================
-                    # 🟢 EXTRACTION BLINDÉE ET UNIVERSELLE DES COMPOSANTS (V2 COMPATIBLE)
-                    # ==============================================================================
+                    # 🟢 EXTRACTION SÉCURISÉE DES COMPOSANTS (V2 COMPATIBLE)
                     components_blueprint = []
-
-                    # Extraction sécurisée des listes d'items V2
-                    items_en = json_en.get("data", {}).get("items", [])
                     
-                    if items_en and isinstance(items_en, list):
-                        # L'item principal (le Set) est celui qui a setRoot = True
-                        main_item_en = next((item for item in items_en if item.get("setRoot") is True), items_en[0])
-                        
-                        # Les composants sont tous les AUTRES éléments de la liste
-                        for sub_item in items_en:
-                            if sub_item == main_item_en:
+                    for sub_item in items_list:
+                        # On ignore le Set lui-même
+                        if sub_item == main_item:
+                            continue
+                            
+                        if isinstance(sub_item, dict):
+                            comp_slug = sub_item.get("slug")
+                            if not comp_slug or comp_slug == slug:
                                 continue
                                 
-                            if isinstance(sub_item, dict):
-                                comp_slug = sub_item.get("slug")
-                                # Sécurité : si pas de slug ou si c'est le set lui-même, on zappe
-                                if not comp_slug or comp_slug == slug:
-                                    continue
-                                    
-                                # Extraction de la quantité requise (V2 utilise quantityInSet)
-                                qty = sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
-                                
-                                # Ajout propre sans doublon pour la future boucle de statistiques
-                                if not any(c["slug"] == comp_slug for c in components_blueprint):
-                                    components_blueprint.append({
-                                        "slug": comp_slug,
-                                        "qty": int(qty)
-                                    })
-                    # ==============================================================================
+                            # Récupération de la quantité (V2 utilise quantityInSet)
+                            qty = sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
+                            
+                            if not any(c["slug"] == comp_slug for c in components_blueprint):
+                                components_blueprint.append({
+                                    "slug": comp_slug,
+                                    "qty": int(qty)
+                                })
 
+                    # Initialisation de la structure des détails
                     new_data[cat]["details"][slug] = {
                         "desc_fr": i18n_fr.get("description", ""),
                         "desc_en": i18n_en.get("description", ""),
                         "wiki_en": i18n_en.get("wikiLink", ""),
                         "icon": i18n_en.get("icon", ""),
-                        "components": [] # On va le remplir juste après avec les prix !
+                        "components": [] # Sera peuplé juste après par la boucle de statistiques
                     }
                     found_category = cat
                 else:
