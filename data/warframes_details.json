@@ -2398,15 +2398,6 @@
         "f": 3
       }
     ],
-    "expert_tips": [
-      {
-        "author": "Protideus",
-        "text": "Astuce de test pour vérifier le bon comportement du bot"
-      },
-      {
-        "author": "Machin Truc",
-        "text": "Voruna c caca"
-      }
-    ]
+    "expert_tips": []
   }
 }
