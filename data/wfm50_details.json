@@ -5,7 +5,19 @@
     "wiki_en": "",
     "icon": "items/images/en/arcane_hot_shot.b488affbc34321e8b1dba284f889d634.webp",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 19.9,
+    "p90": -1.5,
+    "v": 1030,
+    "vr": 0.95,
+    "ds": 48.3,
+    "f": 2,
+    "p_max": 453.3,
+    "p90_max": -7.6,
+    "v_max": 238,
+    "vr_max": 0.98,
+    "ds_max": 42.6,
+    "f_max": 3
   },
   "melee_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -13,7 +25,13 @@
     "wiki_en": "https://warframe.fandom.com/wiki/Melee_Riven_Mod",
     "icon": "items/images/en/melee_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 8.5,
+    "p90": 37.1,
+    "v": 855,
+    "vr": 0.81,
+    "ds": 75.0,
+    "f": 3
   },
   "voruna_prime_set": {
     "desc_fr": "Splendeur et férocité atteignent leur paroxysme sauvage avec Voruna Prime. Bien qu'exaltée par l'or Orokin, elle est plus redoutable que jamais.",
@@ -26,7 +44,7 @@
         "qty": 1,
         "p": 27.8,
         "p90": -52.9,
-        "v": 442,
+        "v": 446,
         "vr": 0.41,
         "ds": 8.2,
         "f": 3
@@ -36,7 +54,7 @@
         "qty": 1,
         "p": 4.6,
         "p90": -75.8,
-        "v": 292,
+        "v": 293,
         "vr": 0.37,
         "ds": 4.0,
         "f": 2
@@ -46,7 +64,7 @@
         "qty": 1,
         "p": 5.3,
         "p90": -68.8,
-        "v": 294,
+        "v": 299,
         "vr": 0.37,
         "ds": 2.3,
         "f": 1
@@ -56,13 +74,19 @@
         "qty": 1,
         "p": 14.6,
         "p90": -79.1,
-        "v": 398,
-        "vr": 0.38,
+        "v": 402,
+        "vr": 0.39,
         "ds": 1.1,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 59.8,
+    "p90": -70.1,
+    "v": 798,
+    "vr": 0.49,
+    "ds": 0.0,
+    "f": 3
   },
   "nautilus_prime_set": {
     "desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.",
@@ -75,8 +99,8 @@
         "qty": 1,
         "p": 9.9,
         "p90": 12.5,
-        "v": 349,
-        "vr": 1.13,
+        "v": 338,
+        "vr": 1.1,
         "ds": 90.0,
         "f": 3
       },
@@ -85,19 +109,19 @@
         "qty": 1,
         "p": 6.0,
         "p90": 76.5,
-        "v": 242,
-        "vr": 1.65,
+        "v": 249,
+        "vr": 1.69,
         "ds": 100.0,
         "f": 3
       },
       {
         "slug": "nautilus_prime_cerebrum",
         "qty": 1,
-        "p": 17.0,
-        "p90": -26.7,
-        "v": 422,
-        "vr": 1.1,
-        "ds": 46.7,
+        "p": 17.2,
+        "p90": -25.9,
+        "v": 417,
+        "vr": 1.09,
+        "ds": 48.0,
         "f": 3
       },
       {
@@ -105,13 +129,19 @@
         "qty": 1,
         "p": 2.7,
         "p90": -3.6,
-        "v": 178,
-        "vr": 0.91,
+        "v": 184,
+        "vr": 0.94,
         "ds": 70.0,
         "f": 2
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 37.7,
+    "p90": -2.3,
+    "v": 732,
+    "vr": 1.31,
+    "ds": 80.8,
+    "f": 3
   },
   "ayatan_anasa_sculpture": {
     "desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.",
@@ -124,7 +154,13 @@
         "author": "Ka_Lagoon",
         "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
       }
-    ]
+    ],
+    "p": 8.9,
+    "p90": 12.7,
+    "v": 711,
+    "vr": 0.62,
+    "ds": 45.0,
+    "f": 3
   },
   "rifle_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -132,7 +168,13 @@
     "wiki_en": "https://warframe.fandom.com/wiki/Rifle_Riven_Mod",
     "icon": "items/images/en/rifle_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 11.4,
+    "p90": 32.6,
+    "v": 633,
+    "vr": 0.77,
+    "ds": 83.1,
+    "f": 3
   },
   "sevagoth_prime_set": {
     "desc_fr": "Le timonier doré émerge de la tempête, son ombre étant un appât pour les âmes damnées.",
@@ -145,8 +187,8 @@
         "qty": 1,
         "p": 6.6,
         "p90": 120.0,
-        "v": 208,
-        "vr": 1.59,
+        "v": 210,
+        "vr": 1.61,
         "ds": 65.7,
         "f": 3
       },
@@ -155,8 +197,8 @@
         "qty": 1,
         "p": 19.1,
         "p90": -17.7,
-        "v": 358,
-        "vr": 1.02,
+        "v": 352,
+        "vr": 1.01,
         "ds": 45.6,
         "f": 3
       },
@@ -165,8 +207,8 @@
         "qty": 1,
         "p": 1.9,
         "p90": -20.8,
-        "v": 89,
-        "vr": 1.4,
+        "v": 91,
+        "vr": 1.43,
         "ds": 90.0,
         "f": 2
       },
@@ -181,7 +223,13 @@
         "f": 1
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 30.4,
+    "p90": 21.6,
+    "v": 512,
+    "vr": 1.31,
+    "ds": 100.0,
+    "f": 3
   },
   "pistol_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -189,7 +237,13 @@
     "wiki_en": "https://warframe.fandom.com/wiki/Pistol_Riven_Mod",
     "icon": "items/images/en/pistol_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 7.0,
+    "p90": 22.8,
+    "v": 497,
+    "vr": 0.73,
+    "ds": 100.0,
+    "f": 3
   },
   "molt_augmented": {
     "desc_fr": "Sur Élimination:\n+0.24% Puissance de Pouvoir. Cumulable jusqu'à 250x.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -197,7 +251,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Molt_Augmented",
     "icon": "items/images/en/molt_augmented.9def654a0d24b7f085940dfc8ef843b5.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 3.4,
+    "p90": -2.9,
+    "v": 461,
+    "vr": 0.55,
+    "ds": 40.0,
+    "f": 3,
+    "p_max": 50.1,
+    "p90_max": -8.6,
+    "v_max": 424,
+    "vr_max": 0.89,
+    "ds_max": 34.0,
+    "f_max": 3
   },
   "arcane_energize": {
     "desc_fr": "Sur Ramassage d'Énergie:\n60% de chances de restaurer 150 points d'Énergie à vous-même et aux alliés à moins de 15m\n15s de temps de recharge\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -205,7 +271,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Arcane_Energize",
     "icon": "items/images/en/arcane_energize.e5f85590ceb29db89c6753dfdf823485.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 6.5,
+    "p90": -3.0,
+    "v": 451,
+    "vr": 0.89,
+    "ds": 75.0,
+    "f": 3,
+    "p_max": 100.8,
+    "p90_max": 3.5,
+    "v_max": 153,
+    "vr_max": 0.52,
+    "ds_max": 73.7,
+    "f_max": 3
   },
   "arcane_crepuscular": {
     "desc_fr": "En étant invisible, gagnez +30% de Puissance de Pouvoir et +3x aux Dégâts Critiques finaux.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -213,7 +291,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Arcane_Crepuscular",
     "icon": "items/images/en/arcane_crepuscular.8e34ad3ac57362158d9ec6d642364427.webp",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.1,
+    "p90": -8.7,
+    "v": 416,
+    "vr": 1.05,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 29.6,
+    "p90_max": 17.0,
+    "v_max": 156,
+    "vr_max": 0.68,
+    "ds_max": 64.0,
+    "f_max": 3
   },
   "ayatan_orta_sculpture": {
     "desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.",
@@ -226,7 +316,13 @@
         "author": "Ka_Lagoon",
         "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
       }
-    ]
+    ],
+    "p": 6.7,
+    "p90": 48.9,
+    "v": 337,
+    "vr": 0.68,
+    "ds": 85.0,
+    "f": 3
   },
   "xaku_prime_set": {
     "desc_fr": "L'enfant de la guerre et du Néant renaît en or. Ce qui a été brisé un jour peut se relever plus fort que ce qui n'a jamais été endommagé.",
@@ -239,8 +335,8 @@
         "qty": 1,
         "p": 10.4,
         "p90": -4.6,
-        "v": 247,
-        "vr": 0.95,
+        "v": 242,
+        "vr": 0.93,
         "ds": 35.0,
         "f": 3
       },
@@ -249,8 +345,8 @@
         "qty": 1,
         "p": 2.6,
         "p90": -46.9,
-        "v": 147,
-        "vr": 1.07,
+        "v": 158,
+        "vr": 1.15,
         "ds": 20.0,
         "f": 2
       },
@@ -259,23 +355,29 @@
         "qty": 1,
         "p": 2.2,
         "p90": -24.1,
-        "v": 74,
-        "vr": 1.05,
+        "v": 76,
+        "vr": 1.08,
         "ds": 20.0,
         "f": 2
       },
       {
         "slug": "xaku_prime_systems_blueprint",
         "qty": 1,
-        "p": 6.9,
-        "p90": 38.0,
-        "v": 172,
-        "vr": 0.96,
-        "ds": 72.5,
+        "p": 7.0,
+        "p90": 40.0,
+        "v": 176,
+        "vr": 0.98,
+        "ds": 75.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 25.0,
+    "p90": 0.0,
+    "v": 387,
+    "vr": 0.92,
+    "ds": 50.0,
+    "f": 3
   },
   "gauss_prime_set": {
     "desc_fr": "Le vif-argent prend forme. Gauss Prime ne tolère aucune allusion à la défaite.",
@@ -306,25 +408,31 @@
       {
         "slug": "gauss_prime_neuroptics_blueprint",
         "qty": 1,
-        "p": 8.8,
-        "p90": -5.4,
-        "v": 191,
-        "vr": 0.83,
-        "ds": 40.0,
+        "p": 8.9,
+        "p90": -4.3,
+        "v": 193,
+        "vr": 0.84,
+        "ds": 45.0,
         "f": 3
       },
       {
         "slug": "gauss_prime_systems_blueprint",
         "qty": 1,
-        "p": 26.6,
-        "p90": -4.3,
-        "v": 196,
-        "vr": 0.72,
-        "ds": 69.1,
+        "p": 26.8,
+        "p90": -3.6,
+        "v": 199,
+        "vr": 0.73,
+        "ds": 70.9,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 50.5,
+    "p90": 1.0,
+    "v": 373,
+    "vr": 0.76,
+    "ds": 40.6,
+    "f": 3
   },
   "primary_deadhead": {
     "desc_fr": "Sur un Tir à la Tête Fatal:\n+120% de Dégâts pendant 24s. Cumulable jusqu'à 3x.\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme",
@@ -332,7 +440,19 @@
     "wiki_en": "https://warframe.fandom.com/wiki/Primary_Deadhead",
     "icon": "items/images/en/primary_deadhead.75738d3c111067da8e673bf8000a6710.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 1.7,
+    "p90": 0.0,
+    "v": 366,
+    "vr": 1.03,
+    "ds": 70.0,
+    "f": 2,
+    "p_max": 14.5,
+    "p90_max": -1.4,
+    "v_max": 192,
+    "vr_max": 1.06,
+    "ds_max": 70.0,
+    "f_max": 3
   },
   "wisp_prime_set": {
     "desc_fr": "La splendeur dorée de Wisp Prime hante le champ de bataille. Les alliés célèbrent sa beauté interdimensionnelle.",
@@ -343,31 +463,31 @@
       {
         "slug": "wisp_prime_blueprint",
         "qty": 1,
-        "p": 37.1,
-        "p90": 4.5,
-        "v": 172,
-        "vr": 0.79,
-        "ds": 78.9,
+        "p": 37.2,
+        "p90": 4.8,
+        "v": 173,
+        "vr": 0.8,
+        "ds": 80.0,
         "f": 3
       },
       {
         "slug": "wisp_prime_chassis_blueprint",
         "qty": 1,
-        "p": 17.7,
-        "p90": 18.0,
+        "p": 17.8,
+        "p90": 18.7,
         "v": 167,
         "vr": 0.87,
-        "ds": 74.0,
+        "ds": 76.0,
         "f": 3
       },
       {
         "slug": "wisp_prime_neuroptics_blueprint",
         "qty": 1,
-        "p": 5.4,
-        "p90": -8.5,
-        "v": 136,
-        "vr": 0.94,
-        "ds": 46.7,
+        "p": 5.3,
+        "p90": -10.2,
+        "v": 132,
+        "vr": 0.91,
+        "ds": 43.3,
         "f": 3
       },
       {
@@ -375,13 +495,19 @@
         "qty": 1,
         "p": 5.4,
         "p90": 10.2,
-        "v": 101,
-        "vr": 0.73,
+        "v": 99,
+        "vr": 0.71,
         "ds": 40.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 70.0,
+    "p90": 4.3,
+    "v": 354,
+    "vr": 0.81,
+    "ds": 100.0,
+    "f": 3
   },
   "gyre_prime_set": {
     "desc_fr": "Des circuits dorés activent et dynamisent des mouvements frénétiques résonnant à travers les âges. Dansez pour l'éternité avec Gyre Prime.",
@@ -394,8 +520,8 @@
         "qty": 1,
         "p": 4.6,
         "p90": -19.3,
-        "v": 139,
-        "vr": 0.75,
+        "v": 130,
+        "vr": 0.7,
         "ds": 20.0,
         "f": 2
       },
@@ -404,8 +530,8 @@
         "qty": 1,
         "p": 9.2,
         "p90": -28.7,
-        "v": 204,
-        "vr": 0.71,
+        "v": 201,
+        "vr": 0.7,
         "ds": 3.3,
         "f": 3
       },
@@ -414,8 +540,8 @@
         "qty": 1,
         "p": 9.6,
         "p90": 0.0,
-        "v": 218,
-        "vr": 0.74,
+        "v": 227,
+        "vr": 0.77,
         "ds": 60.0,
         "f": 3
       },
@@ -424,13 +550,19 @@
         "qty": 1,
         "p": 4.1,
         "p90": -14.6,
-        "v": 110,
-        "vr": 0.82,
+        "v": 108,
+        "vr": 0.8,
         "ds": 10.0,
         "f": 2
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 35.9,
+    "p90": -16.7,
+    "v": 347,
+    "vr": 0.68,
+    "ds": 6.0,
+    "f": 3
   },
   "primary_merciless": {
     "desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge",
@@ -438,7 +570,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Primary_Merciless",
     "icon": "items/images/en/primary_merciless.baca700cca91762be6465c5f52584fa7.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.0,
+    "p90": 25.0,
+    "v": 339,
+    "vr": 0.74,
+    "ds": 100.0,
+    "f": 2,
+    "p_max": 16.8,
+    "p90_max": 5.0,
+    "v_max": 220,
+    "vr_max": 0.89,
+    "ds_max": 36.0,
+    "f_max": 3
   },
   "hildryn_prime_set": {
     "desc_fr": "Hildryn Prime prouve que le succès récompense la discipline.",
@@ -451,8 +595,8 @@
         "qty": 1,
         "p": 38.4,
         "p90": 5.5,
-        "v": 209,
-        "vr": 1.1,
+        "v": 212,
+        "vr": 1.11,
         "ds": 77.1,
         "f": 3
       },
@@ -461,8 +605,8 @@
         "qty": 1,
         "p": 10.3,
         "p90": -14.2,
-        "v": 120,
-        "vr": 0.69,
+        "v": 118,
+        "vr": 0.68,
         "ds": 21.7,
         "f": 3
       },
@@ -471,8 +615,8 @@
         "qty": 1,
         "p": 8.2,
         "p90": 17.1,
-        "v": 154,
-        "vr": 1.13,
+        "v": 164,
+        "vr": 1.2,
         "ds": 80.0,
         "f": 3
       },
@@ -481,13 +625,19 @@
         "qty": 1,
         "p": 4.4,
         "p90": -4.3,
-        "v": 109,
-        "vr": 1.16,
+        "v": 112,
+        "vr": 1.19,
         "ds": 60.0,
         "f": 2
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 69.3,
+    "p90": 7.4,
+    "v": 335,
+    "vr": 0.95,
+    "ds": 93.0,
+    "f": 3
   },
   "caliban_prime_set": {
     "desc_fr": "Forgé pour célébrer la paix bien trop brève entre les Orokins et les Sentients, Caliban Prime est un véritable chef-d'œuvre collaboratif. L'héritier des royaumes jumeaux s'élève dans une tenue dorée royale.",
@@ -500,7 +650,7 @@
         "qty": 1,
         "p": 2.7,
         "p90": 8.0,
-        "v": 107,
+        "v": 108,
         "vr": 0.85,
         "ds": 35.0,
         "f": 2
@@ -508,11 +658,11 @@
       {
         "slug": "caliban_prime_chassis_blueprint",
         "qty": 1,
-        "p": 2.3,
-        "p90": -8.0,
-        "v": 67,
-        "vr": 0.91,
-        "ds": 65.0,
+        "p": 2.2,
+        "p90": -12.0,
+        "v": 64,
+        "vr": 0.87,
+        "ds": 60.0,
         "f": 1
       },
       {
@@ -520,23 +670,29 @@
         "qty": 1,
         "p": 10.0,
         "p90": -3.8,
-        "v": 186,
-        "vr": 0.73,
+        "v": 182,
+        "vr": 0.71,
         "ds": 33.3,
         "f": 3
       },
       {
         "slug": "caliban_prime_systems_blueprint",
         "qty": 1,
-        "p": 22.6,
-        "p90": -2.6,
-        "v": 283,
-        "vr": 0.88,
-        "ds": 65.7,
+        "p": 22.7,
+        "p90": -2.2,
+        "v": 273,
+        "vr": 0.85,
+        "ds": 67.1,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 39.5,
+    "p90": -11.8,
+    "v": 326,
+    "vr": 0.76,
+    "ds": 45.0,
+    "f": 3
   },
   "melee_influence": {
     "desc_fr": "Melee Arcane that, on Melee Electricity Status, creates a 20% chance for elemental Melee Status Effects to apply to enemies within 20 meters for 18 seconds. This cannot refresh while active.",
@@ -544,7 +700,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Melee_Influence",
     "icon": "items/images/en/melee_influence.b22232a58406e5feeb8bbe94c07c18d2.webp",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 4.1,
+    "p90": 7.9,
+    "v": 356,
+    "vr": 0.66,
+    "ds": 100.0,
+    "f": 2,
+    "p_max": 71.8,
+    "p90_max": 15.6,
+    "v_max": 272,
+    "vr_max": 0.73,
+    "ds_max": 87.2,
+    "f_max": 3
   },
   "nyx_prime_set": {
     "desc_fr": "Infiltrez-vous dans les pensées de vos ennemis avec Nyx Prime. Comporte d'ailleurs des polarités de mod modifiées pour permettre plus de personnalisation.",
@@ -557,19 +725,19 @@
         "qty": 1,
         "p": 9.1,
         "p90": -19.5,
-        "v": 217,
-        "vr": 1.63,
+        "v": 221,
+        "vr": 1.66,
         "ds": 22.0,
         "f": 3
       },
       {
         "slug": "nyx_prime_chassis_blueprint",
         "qty": 1,
-        "p": 6.5,
-        "p90": -52.2,
-        "v": 211,
-        "vr": 1.46,
-        "ds": 5.6,
+        "p": 6.6,
+        "p90": -51.5,
+        "v": 220,
+        "vr": 1.52,
+        "ds": 6.7,
         "f": 3
       },
       {
@@ -577,8 +745,8 @@
         "qty": 1,
         "p": 23.1,
         "p90": -40.3,
-        "v": 303,
-        "vr": 1.83,
+        "v": 308,
+        "vr": 1.86,
         "ds": 15.5,
         "f": 3
       },
@@ -587,13 +755,19 @@
         "qty": 1,
         "p": 9.2,
         "p90": -19.3,
-        "v": 258,
-        "vr": 1.69,
+        "v": 278,
+        "vr": 1.82,
         "ds": 6.7,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 56.6,
+    "p90": -35.2,
+    "v": 319,
+    "vr": 1.79,
+    "ds": 7.2,
+    "f": 3
   },
   "critical_delay": {
     "desc_fr": "+200% de Chance de Critique\n-20% de Cadence de Tir (x2 pour les Arcs)",
@@ -601,7 +775,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Critical_Delay",
     "icon": "items/images/en/critical_delay.5e621ae9ee9a6d2d4576565a26af45cb.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 14.3,
+    "p90": 10.9,
+    "v": 302,
+    "vr": 0.78,
+    "ds": 53.8,
+    "f": 3,
+    "p_max": 19.4,
+    "p90_max": -11.4,
+    "v_max": 76,
+    "vr_max": 0.79,
+    "ds_max": 20.0,
+    "f_max": 2
   },
   "rhino_prime_set": {
     "desc_fr": "Propulsez les anciens pouvoirs percutants de Rhino au niveau supérieur avec des polarités de mod altérées pour un contrôle encore plus aisé dans le feu de l'action.",
@@ -622,11 +808,11 @@
       {
         "slug": "rhino_prime_chassis_blueprint",
         "qty": 1,
-        "p": 7.9,
-        "p90": -40.2,
-        "v": 297,
-        "vr": 2.05,
-        "ds": 11.3,
+        "p": 8.0,
+        "p90": -39.4,
+        "v": 294,
+        "vr": 2.03,
+        "ds": 12.5,
         "f": 3
       },
       {
@@ -634,8 +820,8 @@
         "qty": 1,
         "p": 10.4,
         "p90": -49.0,
-        "v": 204,
-        "vr": 1.41,
+        "v": 202,
+        "vr": 1.4,
         "ds": 8.8,
         "f": 3
       },
@@ -644,13 +830,19 @@
         "qty": 1,
         "p": 9.1,
         "p90": 5.8,
-        "v": 322,
-        "vr": 2.37,
+        "v": 319,
+        "vr": 2.35,
         "ds": 55.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 57.9,
+    "p90": -29.4,
+    "v": 332,
+    "vr": 1.64,
+    "ds": 8.3,
+    "f": 3
   },
   "arcane_aegis": {
     "desc_fr": "Sur Bouclier Endommagé:\n3% de chances de: +30% de Recharge des Boucliers pendant 12s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -658,7 +850,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Arcane",
     "icon": "items/images/en/arcane_aegis.05226d37b29123fba267f5f131a9dcd8.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 5.1,
+    "p90": -17.7,
+    "v": 277,
+    "vr": 0.82,
+    "ds": 3.3,
+    "f": 2,
+    "p_max": 86.9,
+    "p90_max": -20.7,
+    "v_max": 95,
+    "vr_max": 0.33,
+    "ds_max": 17.9,
+    "f_max": 3
   },
   "arcane_camisado": {
     "desc_fr": "Les attaques des serviteurs invoqués augmentent la Puissance des Pouvoirs de 6% jusqu'à 60% sur le prochain lancement de Pouvoir. Summons gain 20% Movement Speed.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -666,7 +870,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Arcane_Camisado",
     "icon": "items/images/en/arcane_camisado.49bb15acacdfe7a2782b56151d0a8a3f.webp",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.0,
+    "p90": -16.7,
+    "v": 303,
+    "vr": 1.13,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 27.1,
+    "p90_max": 11.5,
+    "v_max": 174,
+    "vr_max": 1.05,
+    "ds_max": 71.0,
+    "f_max": 3
   },
   "wukong_prime_set": {
     "desc_fr": "Le guerrier-farceur s'élève à une nouvelle incarnation.",
@@ -677,11 +893,11 @@
       {
         "slug": "wukong_prime_blueprint",
         "qty": 1,
-        "p": 33.5,
-        "p90": -11.8,
-        "v": 169,
-        "vr": 0.98,
-        "ds": 18.8,
+        "p": 33.4,
+        "p90": -12.1,
+        "v": 165,
+        "vr": 0.96,
+        "ds": 17.5,
         "f": 3
       },
       {
@@ -689,8 +905,8 @@
         "qty": 1,
         "p": 9.9,
         "p90": -16.8,
-        "v": 90,
-        "vr": 0.58,
+        "v": 88,
+        "vr": 0.57,
         "ds": 0.0,
         "f": 3
       },
@@ -699,8 +915,8 @@
         "qty": 1,
         "p": 7.8,
         "p90": -6.0,
-        "v": 88,
-        "vr": 0.62,
+        "v": 83,
+        "vr": 0.59,
         "ds": 26.7,
         "f": 3
       },
@@ -709,13 +925,19 @@
         "qty": 1,
         "p": 14.5,
         "p90": -19.9,
-        "v": 99,
-        "vr": 0.61,
+        "v": 104,
+        "vr": 0.64,
         "ds": 8.3,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 82.9,
+    "p90": -10.5,
+    "v": 293,
+    "vr": 0.95,
+    "ds": 19.5,
+    "f": 3
   },
   "melee_duplicate": {
     "desc_fr": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.",
@@ -723,7 +945,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Melee_Duplicate",
     "icon": "items/images/en/melee_duplicate.0ac0137e555cde39902706e96853dff9.webp",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 9.0,
+    "p90": 0.0,
+    "v": 311,
+    "vr": 0.9,
+    "ds": 71.4,
+    "f": 3,
+    "p_max": 208.9,
+    "p90_max": -3.8,
+    "v_max": 74,
+    "vr_max": 0.85,
+    "ds_max": 58.9,
+    "f_max": 3
   },
   "titania_prime_set": {
     "desc_fr": "Envoûtante et terrifiante, voici Titania dans sa forme ultime.",
@@ -734,11 +968,11 @@
       {
         "slug": "titania_prime_blueprint",
         "qty": 1,
-        "p": 12.1,
-        "p90": 9.0,
-        "v": 161,
-        "vr": 0.94,
-        "ds": 52.5,
+        "p": 12.0,
+        "p90": 8.1,
+        "v": 164,
+        "vr": 0.95,
+        "ds": 50.0,
         "f": 3
       },
       {
@@ -746,8 +980,8 @@
         "qty": 1,
         "p": 10.2,
         "p90": 0.0,
-        "v": 108,
-        "vr": 0.64,
+        "v": 106,
+        "vr": 0.62,
         "ds": 30.0,
         "f": 3
       },
@@ -756,8 +990,8 @@
         "qty": 1,
         "p": 9.5,
         "p90": 14.5,
-        "v": 165,
-        "vr": 0.9,
+        "v": 172,
+        "vr": 0.94,
         "ds": 75.0,
         "f": 3
       },
@@ -766,13 +1000,19 @@
         "qty": 1,
         "p": 44.6,
         "p90": -0.4,
-        "v": 113,
-        "vr": 0.59,
+        "v": 111,
+        "vr": 0.58,
         "ds": 92.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 88.1,
+    "p90": 2.9,
+    "v": 305,
+    "vr": 0.85,
+    "ds": 81.0,
+    "f": 3
   },
   "secondary_merciless": {
     "desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge",
@@ -780,7 +1020,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Secondary_Merciless",
     "icon": "items/images/en/secondary_merciless.3269867879aabaa2cb4c47af6302ea4e.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 1.2,
+    "p90": 20.0,
+    "v": 294,
+    "vr": 2.2,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 8.7,
+    "p90_max": 1.2,
+    "v_max": 109,
+    "vr_max": 1.21,
+    "ds_max": 56.7,
+    "f_max": 3
   },
   "neo_r1_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -788,7 +1040,13 @@
     "wiki_en": "",
     "icon": "items/images/en/neo_r1_relic.404dc9ef087cc16ca255f5b5fd17fff0.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 5.6,
+    "p90": -6.7,
+    "v": 293,
+    "vr": 0.65,
+    "ds": 2.4,
+    "f": 3
   },
   "lavos_prime_set": {
     "desc_fr": "Certaines Warframes étaient Prime dès le départ. D'autres ont évolué. Lavos, le maître de la transmutation, ne s'est incliné devant personne alors qu'il forgeait son propre chemin vers la bravoure.",
@@ -811,8 +1069,8 @@
         "qty": 1,
         "p": 2.6,
         "p90": 8.3,
-        "v": 60,
-        "vr": 0.99,
+        "v": 59,
+        "vr": 0.98,
         "ds": 60.0,
         "f": 1
       },
@@ -821,8 +1079,8 @@
         "qty": 1,
         "p": 4.5,
         "p90": -11.8,
-        "v": 117,
-        "vr": 0.89,
+        "v": 116,
+        "vr": 0.88,
         "ds": 50.0,
         "f": 2
       },
@@ -831,13 +1089,19 @@
         "qty": 1,
         "p": 10.3,
         "p90": 22.6,
-        "v": 206,
-        "vr": 0.87,
+        "v": 199,
+        "vr": 0.84,
         "ds": 100.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 22.2,
+    "p90": -11.2,
+    "v": 292,
+    "vr": 0.83,
+    "ds": 22.0,
+    "f": 3
   },
   "weeping_wounds": {
     "desc_fr": "+40% de Chance de Statut par Multiplicateur de Combo",
@@ -845,7 +1109,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Weeping_Wounds",
     "icon": "items/images/en/weeping_wounds.b1b82c8b21d3fb09861b8f004f4278cf.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 17.0,
+    "p90": 15.6,
+    "v": 291,
+    "vr": 1.11,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 24.1,
+    "p90_max": 5.2,
+    "v_max": 50,
+    "vr_max": 0.76,
+    "ds_max": 50.8,
+    "f_max": 3
   },
   "melee_exposure": {
     "desc_fr": "Melee Arcane that, on Ability Cast, generates 60% Corrosive Damage on Melee strikes for 25s and stacks up to 240%.",
@@ -853,7 +1129,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Melee_Exposure",
     "icon": "items/images/en/melee_exposure.8f640378cd4d4ca4758da310524b90c6.webp",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 4.8,
+    "p90": 23.1,
+    "v": 284,
+    "vr": 1.05,
+    "ds": 80.0,
+    "f": 2,
+    "p_max": 78.4,
+    "p90_max": 14.0,
+    "v_max": 182,
+    "vr_max": 0.82,
+    "ds_max": 55.4,
+    "f_max": 3
   },
   "yareli_prime_set": {
     "desc_fr": "Waverider surgit, renaissant de l'écume de l'océan. Dans sa splendeur originelle de l'ère Orokin, elle incarne la vigueur éternelle de la jeunesse.",
@@ -866,8 +1154,8 @@
         "qty": 1,
         "p": 2.9,
         "p90": -12.1,
-        "v": 65,
-        "vr": 0.68,
+        "v": 62,
+        "vr": 0.65,
         "ds": 45.0,
         "f": 1
       },
@@ -876,8 +1164,8 @@
         "qty": 1,
         "p": 1.9,
         "p90": -40.6,
-        "v": 48,
-        "vr": 0.78,
+        "v": 45,
+        "vr": 0.73,
         "ds": 0.0,
         "f": 1
       },
@@ -886,7 +1174,7 @@
         "qty": 1,
         "p": 14.2,
         "p90": 26.8,
-        "v": 175,
+        "v": 174,
         "vr": 0.8,
         "ds": 88.6,
         "f": 3
@@ -896,13 +1184,19 @@
         "qty": 1,
         "p": 19.3,
         "p90": -6.3,
-        "v": 151,
-        "vr": 0.57,
+        "v": 155,
+        "vr": 0.58,
         "ds": 44.7,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 39.3,
+    "p90": -17.4,
+    "v": 268,
+    "vr": 0.83,
+    "ds": 43.0,
+    "f": 3
   },
   "arcane_velocity": {
     "desc_fr": "Sur Coup Critique:\n90% de chances de: +120% Cadence de Tir aux Pistolets pendant 9s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -910,7 +1204,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Arcane_Velocity",
     "icon": "items/images/en/arcane_velocity.ea37edd24f8212ce4bb283205658829b.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 6.2,
+    "p90": -10.1,
+    "v": 215,
+    "vr": 0.66,
+    "ds": 44.0,
+    "f": 3,
+    "p_max": 108.2,
+    "p90_max": -6.0,
+    "v_max": 208,
+    "vr_max": 0.8,
+    "ds_max": 39.1,
+    "f_max": 3
   },
   "khora_prime_set": {
     "desc_fr": "Maîtresse et monstre dans un ensemble harmonieux. Cette chasseresse parée d'or et son loyal Kavat, Venari, dominent le champ de bataille de leur volonté.",
@@ -923,8 +1229,8 @@
         "qty": 1,
         "p": 31.9,
         "p90": 22.2,
-        "v": 139,
-        "vr": 0.94,
+        "v": 138,
+        "vr": 0.93,
         "ds": 69.0,
         "f": 3
       },
@@ -933,8 +1239,8 @@
         "qty": 1,
         "p": 7.6,
         "p90": 4.1,
-        "v": 95,
-        "vr": 0.78,
+        "v": 90,
+        "vr": 0.74,
         "ds": 80.0,
         "f": 3
       },
@@ -943,7 +1249,7 @@
         "qty": 1,
         "p": 30.0,
         "p90": 18.6,
-        "v": 97,
+        "v": 96,
         "vr": 0.64,
         "ds": 100.0,
         "f": 3
@@ -951,15 +1257,21 @@
       {
         "slug": "khora_prime_systems_blueprint",
         "qty": 1,
-        "p": 6.8,
-        "p90": -2.9,
-        "v": 97,
-        "vr": 0.78,
-        "ds": 60.0,
+        "p": 6.7,
+        "p90": -4.3,
+        "v": 101,
+        "vr": 0.81,
+        "ds": 56.7,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 84.6,
+    "p90": 11.9,
+    "v": 234,
+    "vr": 0.82,
+    "ds": 96.0,
+    "f": 3
   },
   "primary_dexterity": {
     "desc_fr": "Sur Élimination en Mêlée:\n+60% de Dégâts pendant 20s. Cumulable jusqu'à 6x.\n+7.5s Durée de Combo\n+7.5s Durée de Combo",
@@ -967,7 +1279,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Primary_Dexterity",
     "icon": "items/images/en/primary_dexterity.accc2c9a2780152f354696b2549814bc.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 1.0,
+    "p90": 0.0,
+    "v": 238,
+    "vr": 3.25,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 8.3,
+    "p90_max": -2.4,
+    "v_max": 69,
+    "vr_max": 0.91,
+    "ds_max": 43.3,
+    "f_max": 3
   },
   "vile_acceleration": {
     "desc_fr": "+90% de Cadence de Tir (x2 pour les Arcs)\n-15% de Dégâts",
@@ -975,7 +1299,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Vile_Acceleration",
     "icon": "items/images/en/vile_acceleration.099e12a749ebb259d6cf079c8608297f.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 9.1,
+    "p90": 9.6,
+    "v": 239,
+    "vr": 0.76,
+    "ds": 55.0,
+    "f": 3,
+    "p_max": 17.4,
+    "p90_max": 0.0,
+    "v_max": 34,
+    "vr_max": 0.71,
+    "ds_max": 40.0,
+    "f_max": 2
   },
   "brief_respite": {
     "desc_fr": "Sur utilisation de Pouvoir: L'escouade convertit 150% de l'Énergie dépensée en Boucliers tant qu'il n'y a pas d'Exoboucliers",
@@ -983,7 +1319,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Brief_Respite",
     "icon": "items/images/en/brief_respite.716172347813d137cc5d9d0cbe249d6c.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 13.0,
+    "p90": 15.0,
+    "v": 233,
+    "vr": 0.78,
+    "ds": 60.0,
+    "f": 3,
+    "p_max": 18.3,
+    "p90_max": 9.6,
+    "v_max": 38,
+    "vr_max": 0.81,
+    "ds_max": 66.0,
+    "f_max": 3
   },
   "mesa_prime_set": {
     "desc_fr": "Cette exécutrice tire plus rapidement que son ombre. Possède des polarités de mods modifiées pour plus de personnalisation.",
@@ -996,19 +1344,19 @@
         "qty": 1,
         "p": 6.4,
         "p90": 18.5,
-        "v": 111,
-        "vr": 0.94,
+        "v": 107,
+        "vr": 0.91,
         "ds": 46.7,
         "f": 3
       },
       {
         "slug": "mesa_prime_chassis_blueprint",
         "qty": 1,
-        "p": 6.6,
-        "p90": 10.0,
-        "v": 102,
-        "vr": 0.87,
-        "ds": 53.3,
+        "p": 6.5,
+        "p90": 8.3,
+        "v": 98,
+        "vr": 0.83,
+        "ds": 50.0,
         "f": 3
       },
       {
@@ -1016,7 +1364,7 @@
         "qty": 1,
         "p": 35.7,
         "p90": 27.5,
-        "v": 152,
+        "v": 153,
         "vr": 0.85,
         "ds": 89.2,
         "f": 3
@@ -1024,15 +1372,21 @@
       {
         "slug": "mesa_prime_systems_blueprint",
         "qty": 1,
-        "p": 17.1,
-        "p90": 47.4,
-        "v": 173,
-        "vr": 1.07,
-        "ds": 78.9,
+        "p": 17.3,
+        "p90": 49.1,
+        "v": 183,
+        "vr": 1.13,
+        "ds": 81.1,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 70.7,
+    "p90": 13.7,
+    "v": 237,
+    "vr": 0.66,
+    "ds": 100.0,
+    "f": 3
   },
   "blood_rush": {
     "desc_fr": "+40% de Chance de Critique se superposent avec le Multiplicateur de Combo",
@@ -1040,7 +1394,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Blood_Rush",
     "icon": "items/images/en/blood_rush.7512063f1029665d1ddc9b5d9a0700f8.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 9.6,
+    "p90": 10.3,
+    "v": 238,
+    "vr": 0.84,
+    "ds": 60.0,
+    "f": 3,
+    "p_max": 59.4,
+    "p90_max": 1.2,
+    "v_max": 73,
+    "vr_max": 1.0,
+    "ds_max": 58.5,
+    "f_max": 3
   },
   "protea_prime_set": {
     "desc_fr": "L'enfant née de deux pères. Protea Prime a autrefois réalisé la vision de Parvos Granum d'un gardien manipulant le temps. Maintenant, elle défend l'idéal Tenno de protéger les plus faibles.",
@@ -1051,31 +1417,31 @@
       {
         "slug": "protea_prime_blueprint",
         "qty": 1,
-        "p": 3.0,
-        "p90": 20.0,
-        "v": 36,
-        "vr": 0.77,
+        "p": 3.2,
+        "p90": 28.0,
+        "v": 32,
+        "vr": 0.68,
         "ds": 100.0,
         "f": 2
       },
       {
         "slug": "protea_prime_neuroptics_blueprint",
         "qty": 1,
-        "p": 3.3,
-        "p90": 3.1,
-        "v": 58,
-        "vr": 0.62,
+        "p": 3.4,
+        "p90": 6.2,
+        "v": 59,
+        "vr": 0.63,
         "ds": 100.0,
         "f": 2
       },
       {
         "slug": "protea_prime_chassis_blueprint",
         "qty": 1,
-        "p": 12.5,
-        "p90": 40.4,
-        "v": 163,
-        "vr": 0.79,
-        "ds": 64.3,
+        "p": 12.7,
+        "p90": 42.7,
+        "v": 167,
+        "vr": 0.81,
+        "ds": 67.1,
         "f": 3
       },
       {
@@ -1083,13 +1449,19 @@
         "qty": 1,
         "p": 14.3,
         "p90": 31.2,
-        "v": 93,
-        "vr": 0.47,
+        "v": 96,
+        "vr": 0.48,
         "ds": 86.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 35.1,
+    "p90": 33.0,
+    "v": 228,
+    "vr": 0.68,
+    "ds": 72.1,
+    "f": 3
   },
   "arcane_bellicose": {
     "desc_fr": "Gagnez 6% de Puissance de Pouvoir pour chaque 250 de Santé max jusqu'à 72%.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1097,7 +1469,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Arcane_Bellicose",
     "icon": "items/images/en/arcane_bellicose.cba86d2bfb1b20b4a512b6913e79ba0c.webp",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.0,
+    "p90": -9.1,
+    "v": 226,
+    "vr": 0.94,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 24.9,
+    "p90_max": 4.6,
+    "v_max": 141,
+    "vr_max": 0.81,
+    "ds_max": 61.2,
+    "f_max": 3
   },
   "revenant_prime_set": {
     "desc_fr": "L'égaré se lève. Réifiez l'essence Eidolon en utilisant la puissance de Revenant Prime.",
@@ -1110,8 +1494,8 @@
         "qty": 1,
         "p": 28.9,
         "p90": 2.8,
-        "v": 71,
-        "vr": 0.5,
+        "v": 70,
+        "vr": 0.49,
         "ds": 63.3,
         "f": 3
       },
@@ -1120,8 +1504,8 @@
         "qty": 1,
         "p": 5.8,
         "p90": -13.4,
-        "v": 86,
-        "vr": 0.84,
+        "v": 87,
+        "vr": 0.85,
         "ds": 26.7,
         "f": 3
       },
@@ -1130,8 +1514,8 @@
         "qty": 1,
         "p": 8.4,
         "p90": 5.0,
-        "v": 113,
-        "vr": 0.98,
+        "v": 108,
+        "vr": 0.93,
         "ds": 54.3,
         "f": 3
       },
@@ -1140,13 +1524,19 @@
         "qty": 1,
         "p": 11.4,
         "p90": 3.6,
-        "v": 69,
-        "vr": 0.5,
+        "v": 70,
+        "vr": 0.51,
         "ds": 48.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 69.1,
+    "p90": 5.2,
+    "v": 229,
+    "vr": 0.75,
+    "ds": 60.7,
+    "f": 3
   },
   "epitaph_prime_set": {
     "desc_fr": "Donnez des frissons à vos ennemis avec cette arme secondaire portée sur le poignet. En tant qu'arme emblématique de Sevagoth Prime, elle inflige des Dégâts supplémentaires sur Tir à la Tête lorsqu'il l'utilise.",
@@ -1159,19 +1549,19 @@
         "qty": 1,
         "p": 2.9,
         "p90": 3.6,
-        "v": 153,
-        "vr": 1.08,
+        "v": 151,
+        "vr": 1.06,
         "ds": 45.0,
         "f": 2
       },
       {
         "slug": "epitaph_prime_blueprint",
         "qty": 1,
-        "p": 3.9,
-        "p90": 95.0,
-        "v": 40,
-        "vr": 1.54,
-        "ds": 96.7,
+        "p": 4.0,
+        "p90": 100.0,
+        "v": 41,
+        "vr": 1.58,
+        "ds": 100.0,
         "f": 2
       },
       {
@@ -1179,13 +1569,19 @@
         "qty": 1,
         "p": 8.4,
         "p90": 2.4,
-        "v": 207,
-        "vr": 0.96,
+        "v": 215,
+        "vr": 1.0,
         "ds": 46.7,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 14.2,
+    "p90": 16.4,
+    "v": 213,
+    "vr": 0.88,
+    "ds": 84.0,
+    "f": 3
   },
   "arcane_fury": {
     "desc_fr": "Sur Coup Critique:\n60% de chances de: +180% de Dégâts en Mêlée aux armes de Mêlée pendant 18s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1193,7 +1589,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Arcane_Fury",
     "icon": "items/images/en/arcane_fury.221e1166ea44c6d2473f59b7cfa4396a.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 5.0,
+    "p90": -7.4,
+    "v": 220,
+    "vr": 0.62,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 72.5,
+    "p90_max": -8.6,
+    "v_max": 184,
+    "vr_max": 0.71,
+    "ds_max": 31.2,
+    "f_max": 3
   },
   "condition_overload": {
     "desc_fr": "+80% de Dégâts de Mêlée pour chaque Type de Statut affectant la cible",
@@ -1201,7 +1609,19 @@
     "wiki_en": "https://wiki.warframe.com/w/Condition_Overload",
     "icon": "items/images/en/condition_overload.fe7962221a25bc6305bbad0dc925e38b.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 8.9,
+    "p90": 8.5,
+    "v": 211,
+    "vr": 0.82,
+    "ds": 45.0,
+    "f": 3,
+    "p_max": 15.1,
+    "p90_max": 7.1,
+    "v_max": 13,
+    "vr_max": 0.32,
+    "ds_max": 51.0,
+    "f_max": 3
   },
   "perigale_prime_set": {
     "desc_fr": "Celui qui a élevé Voruna à sa forme Prime a doté son Fusil de Sniper emblématique d'une Taille de chargeur et de Capacité de munitions accrues, comme pour l'armer en vue d'une longue chasse.",
@@ -1212,20 +1632,20 @@
       {
         "slug": "perigale_prime_barrel",
         "qty": 1,
-        "p": 13.6,
-        "p90": -66.0,
+        "p": 13.7,
+        "p90": -65.8,
         "v": 114,
         "vr": 0.42,
-        "ds": 5.7,
+        "ds": 6.1,
         "f": 3
       },
       {
         "slug": "perigale_prime_blueprint",
         "qty": 1,
-        "p": 4.0,
-        "p90": -55.6,
-        "v": 50,
-        "vr": 0.38,
+        "p": 3.9,
+        "p90": -56.7,
+        "v": 47,
+        "vr": 0.35,
         "ds": 0.0,
         "f": 2
       },
@@ -1234,8 +1654,8 @@
         "qty": 1,
         "p": 3.9,
         "p90": -82.3,
-        "v": 71,
-        "vr": 0.37,
+        "v": 72,
+        "vr": 0.38,
         "ds": 0.0,
         "f": 2
       },
@@ -1244,13 +1664,19 @@
         "qty": 1,
         "p": 8.4,
         "p90": -53.3,
-        "v": 95,
-        "vr": 0.46,
+        "v": 98,
+        "vr": 0.47,
         "ds": 4.0,
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 39.8,
+    "p90": -68.2,
+    "v": 216,
+    "vr": 0.53,
+    "ds": 0.9,
+    "f": 3
   },
   "corrosive_projection": {
     "desc_fr": "Les ennemis perdent -18% d'Armure",
@@ -1258,6 +1684,18 @@
     "wiki_en": "https://wiki.warframe.com/w/Corrosive_Projection",
     "icon": "items/images/en/corrosive_projection.d09df012220dab45c2b256a5eb5806d4.png",
     "components": [],
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 11.4,
+    "p90": -21.9,
+    "v": 215,
+    "vr": 1.15,
+    "ds": 9.3,
+    "f": 3,
+    "p_max": 15.6,
+    "p90_max": -23.9,
+    "v_max": 77,
+    "vr_max": 1.17,
+    "ds_max": 20.0,
+    "f_max": 3
   }
 }
