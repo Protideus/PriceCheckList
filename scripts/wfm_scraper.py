@@ -353,30 +353,43 @@ def main():
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     today = datetime.utcnow()
     
-    current_version = None
+    # Initialisation des variables de contrôle
+    current_api_version = "unknown"
+    current_items_hash = None
+    
+    # 1. RECUPERATION INTELLIGENTE DU HASH ET DE L'API VERSION (V2 /versions)
     try:
         res = safe_requests(f"{BASE_URL_V2}/versions", headers=HEADERS_EN)
         if res.status_code == 200:
-            api_data = res.json().get("data", {})
+            payload = res.json()
+            current_api_version = payload.get("apiVersion", "unknown") # Version technique
+            api_data = payload.get("data", {})
+            
             if isinstance(api_data, dict):
-                current_version = api_data.get("version")
-            elif isinstance(api_data, list) and len(api_data) > 0:
-                current_version = api_data[0].get("version")
-    except: 
+                # La pépite : Le hash qui change dès qu'un objet est ajouté/modifié en jeu
+                current_items_hash = api_data.get("collections", {}).get("items")
+    except Exception as e: 
+        print(f"⚠️ Impossible de joindre le endpoint des versions ({e}), repli sur sauvegarde.")
         pass
 
-    if not current_version:
-        current_version = f"fallback_{today.strftime('%Y_%m')}"
+    # Fallback si l'API ou le réseau a un raté
+    if not current_items_hash:
+        current_items_hash = f"fallback_{today.strftime('%Y_%m_%d')}"
 
-    saved_version = None
+    # 2. LECTURE DE LA CONFIGURATION SAUVEGARDÉE
+    saved_api_version = None
+    saved_items_hash = None
     last_reset = None
+    
     if VERSION_PATH.exists():
         try:
-            with open(VERSION_PATH, 'r') as f:
+            with open(VERSION_PATH, 'r', encoding='utf-8') as f:
                 v_data = json.load(f)
-                saved_version = v_data.get("version")
+                saved_api_version = v_data.get("api_version")
+                saved_items_hash = v_data.get("items_hash") # Comparaison sur le hash
                 last_reset = datetime.fromisoformat(v_data.get("last_full_reset", "2000-01-01"))
-        except: 
+        except Exception as e: 
+            print(f"⚠️ Erreur lecture api_version.json : {e}")
             pass
 
     # Chargement et validation stricte du Cache
@@ -385,20 +398,26 @@ def main():
     blacklist = set()
     if VERSION_PATH.exists() and BLACKLIST_PATH.exists():
         try:
-            with open(BLACKLIST_PATH, 'r') as f:
+            with open(BLACKLIST_PATH, 'r', encoding='utf-8') as f:
                 blacklist = set(json.load(f))
         except:
             pass
 
-    # Détermination du mode de run
+    # 3. DÉTERMINATION DU MODE DE RUN (LA LOGIQUE LOGICIELLE LOGIQUE)
     run_type = "PARTIAL"
+    
+    # Cas 1 : Pas de reset depuis 90j ou le cache local est corrompu/absent -> RESET complet
     if not last_reset or (today - last_reset).days >= 90 or not has_valid_cache:
         run_type = "RESET"
         blacklist = set() # On vide la blacklist pour tout réanalyser proprement
-    elif current_version != saved_version:
+        
+    # Cas 2 : Le hash de la collection d'items a changé ! (Nouveau contenu ou modification)
+    # On passe en mode UPDATE pour forcer la mise à jour des structures de données
+    elif current_items_hash != saved_items_hash:
         run_type = "UPDATE"
 
     print(f"🚀 Démarrage du Scraper V3 | Mode : {run_type} (Cache valide : {has_valid_cache})")
+    print(f"📊 API Version: {current_api_version} | Items Hash: {current_items_hash}")
 
     new_data = {cat: {"table": [], "details": {}} for cat in CATEGORIES}
     
@@ -667,13 +686,16 @@ def main():
     with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
         json.dump(list(blacklist), f)
         
+# 3. Sauvegarde finale de l'état du scraper
     reset_date = today.isoformat() if run_type == "RESET" else (last_reset.isoformat() if last_reset else today.isoformat())
-    with open(VERSION_PATH, 'w') as f:
+    
+    with open(VERSION_PATH, 'w', encoding='utf-8') as f:
         json.dump({
-            "version": current_version, 
+            "api_version": current_api_version,  # 🆕 Version de l'API WFM technique (ex: 0.24.0)
+            "items_hash": current_items_hash,    # 🆕 L'empreinte de la collection (base64) pour le prochain run
             "last_run": today.isoformat(),
             "last_full_reset": reset_date
-        }, f)
+        }, f, ensure_ascii=False, indent=2)
 
     print(f"🎉 Scraping {run_type} terminé avec succès !")
 
