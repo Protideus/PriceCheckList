@@ -525,13 +525,15 @@ def main():
                 if run_type == "UPDATE" and slug not in new_data[found_category]["details"]:
                     new_data[found_category]["details"][slug] = cache[found_category]["details"].get(slug, {})
 
-                # En mode UPDATE, on récupère le blueprint depuis le cache pour éviter d'avoir à refaire une requête V2
+                # En mode UPDATE, on récupère le blueprint depuis le cache
                 old_details = cache[found_category]["details"].get(slug, {})
                 old_components = old_details.get("components", [])
                 for comp in old_components:
                     components_blueprint.append({
                         "slug": comp.get("slug"),
-                        "qty": comp.get("qty", 1)
+                        "qty": comp.get("qty", 1),
+                        "n_fr": comp.get("n_fr", comp.get("slug")), # 🆕 Récupération nom FR
+                        "n_en": comp.get("n_en", comp.get("slug"))  # 🆕 Récupération nom EN
                     })
 
             # 🔄 MIGRATION POINT: Statistics endpoint - Currently V1 ONLY
@@ -556,10 +558,11 @@ def main():
             set_components_data = []
             
             # Cette boucle ne s'exécute QUE si 'components_blueprint' contient des éléments
-            # (Rempli plus haut uniquement pour les Sets)
             for comp in components_blueprint:
                 comp_slug = comp.get("slug")
                 comp_qty = comp.get("qty", 1)
+                comp_n_fr = comp.get("n_fr", comp_slug) # 🆕 Extraction
+                comp_n_en = comp.get("n_en", comp_slug) # 🆕 Extraction
                 
                 if not comp_slug:
                     continue
@@ -580,7 +583,6 @@ def main():
                         if comp_payload and isinstance(comp_payload, dict):
                             comp_calc = calculate_economic_indicators(comp_payload)
                             if isinstance(comp_calc, dict):
-                                # 🟢 On conserve l'intégralité des indicateurs calculés (p, p90, v, vr, ds, f)
                                 comp_indicators = comp_calc
                     else:
                         print(f"   ⚠️ Code {res_comp_stats.status_code} sur les stats de {comp_slug}, fallback à 0.")
@@ -591,6 +593,8 @@ def main():
                     
                 set_components_data.append({
                     "slug": comp_slug,
+                    "n_fr": comp_n_fr, # 🆕 Injection du nom FR
+                    "n_en": comp_n_en, # 🆕 Injection du nom EN
                     "qty": comp_qty,
                     **comp_indicators
                 })
