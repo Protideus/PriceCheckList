@@ -288,7 +288,7 @@ def calculate_economic_indicators(stats_data):
 
         # Si le prix max historique est 5x supérieur au prix minimum sur 90j, danger imminent.
         if donch_bot > 0 and (donch_top_reel / donch_bot) > 5.0:
-        f -= 1
+            f -= 1
         
 
         # 3. Alerte manipulation des prix récents (Écart Prix Moyen / Médiane)
