@@ -202,7 +202,7 @@ def calculate_economic_indicators(stats_data):
         vl = total_volume_48h
 
         if not d90_filtered:
-            return p_actuel, 0.0, vl, 0.0, 50.0, 1
+            return p_actuel, 0.0, vl, 0.0, 50.0, 0 # Pas d'historique = Fiabilité 0
 
         raw_data_90j = {}
         for entry in d90_filtered:
@@ -253,9 +253,10 @@ def calculate_economic_indicators(stats_data):
         if p_90j > 0:
             p90_delta = round(((p_actuel - p_90j) / p_90j) * 100, 1)
 
+        # CORRECTION 1: Le volume moyen journalier doit inclure les jours à 0 vente (divisé par 90)
         vol_24h_recent = vl / 2.0
-        active_volumes = [d["volume"] for d in filled_90j if d["volume"] > 0]
-        avg_vol_journalier_90j = sum(active_volumes) / len(active_volumes) if active_volumes else 0.0
+        total_volume_90j = sum(d["volume"] for d in filled_90j)
+        avg_vol_journalier_90j = total_volume_90j / 90.0
         
         vr = 0.0
         if avg_vol_journalier_90j > 0:
@@ -263,6 +264,7 @@ def calculate_economic_indicators(stats_data):
 
         real_medians = [d["median"] for d in filled_90j if d["has_real_data"] and d["median"] > 0]
         ds = 50.0
+        donch_bot, donch_top = 0.0, 0.0
         if real_medians:
             donch_bot = min(real_medians)
             donch_top = max(real_medians)
@@ -270,18 +272,32 @@ def calculate_economic_indicators(stats_data):
                 ds = round(((p_actuel - donch_bot) / (donch_top - donch_bot)) * 100, 1)
                 ds = max(0.0, min(100.0, ds))
 
+        # --- CALCUL CORRIGÉ DE LA FIABILITÉ (F) ---
         f = 3
-        recent_real_days = [d for d in reversed(filled_90j) if d["has_real_data"]][:7]
-        if recent_real_days:
-            avg_ratio = sum(d["avg_price"] / d["median"] for d in recent_real_days if d["median"] > 0) / len(recent_real_days)
-            if avg_ratio > 1.2: f -= 1
-        total_volume_90j = sum(d["volume"] for d in filled_90j)
-        if total_volume_90j < 30: f -= 1
-        if recent_real_days:
-            avg_min_ratio = sum(d["min_price"] / d["median"] for d in recent_real_days if d["median"] > 0) / len(recent_real_days)
-            if avg_min_ratio < 0.6: f -= 1
-        f = max(0, f)
+        
+        # 1. Alerte Illiquidité : Calcul du taux de jours "morts" sur les 90 derniers jours
+        days_with_data = sum(1 for d in filled_90j if d["has_real_data"])
+        if days_with_data < 15:  # Moins de 15 jours actifs sur 90 = Marché fantôme
+            f -= 1
+        elif total_volume_90j < 45: # Seuil global rehaussé (moins de 0.5 vente / jour)
+            f -= 1
 
+        # 2. Alerte Volatilité / Spéculation (Donchian instable)
+        # Si le prix max historique est 5x supérieur au prix minimum sur 90j, danger imminent.
+        if donch_bot > 0 and (donch_top / donch_bot) > 5.0:
+            f -= 1
+
+        # 3. Alerte manipulation des prix récents (Écart Prix Moyen / Médiane)
+        # On regarde STRICTEMENT les 7 derniers jours calendaires (avec ou sans données)
+        recent_7_days = filled_90j[-7:]
+        recent_ratios = [d["avg_price"] / d["median"] for d in recent_7_days if d["has_real_data"] and d["median"] > 0]
+        
+        if recent_ratios:
+            avg_ratio = sum(recent_ratios) / len(recent_ratios)
+            if avg_ratio > 1.2: 
+                f -= 1
+
+        f = max(0, f)
         return p_actuel, p90_delta, vl, vr, ds, f
 
     # --- SÉPARATION DES FLUX (Vision simple et robuste) ---
