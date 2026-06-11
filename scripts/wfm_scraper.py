@@ -474,24 +474,35 @@ def main():
                     # 🟢 EXTRACTION SÉCURISÉE DES COMPOSANTS (V2 COMPATIBLE)
                     components_blueprint = []
                     
-                    for sub_item in items_list:
-                        # On ignore le Set lui-même
-                        if sub_item == main_item:
-                            continue
-                            
-                        if isinstance(sub_item, dict):
-                            comp_slug = sub_item.get("slug")
-                            if not comp_slug or comp_slug == slug:
+                    # Sécurité : On extrait les composants UNIQUEMENT si l'objet principal est un Set
+                    main_tags = main_item.get("tags", [])
+                    if "set" in main_tags:
+                        for sub_item in items_list:
+                            # On ignore le Set lui-même
+                            if sub_item == main_item:
                                 continue
                                 
-                            # Récupération de la quantité (V2 utilise quantityInSet)
-                            qty = sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
-                            
-                            if not any(c["slug"] == comp_slug for c in components_blueprint):
-                                components_blueprint.append({
-                                    "slug": comp_slug,
-                                    "qty": int(qty)
-                                })
+                            if isinstance(sub_item, dict):
+                                comp_slug = sub_item.get("slug")
+                                if not comp_slug or comp_slug == slug:
+                                    continue
+                                    
+                                # Récupération de la quantité
+                                qty = sub_item.get("quantityInSet") or sub_item.get("quantity") or 1
+                                
+                                # EXTRACTION DES TRADUCTIONS DES COMPOSANTS
+                                comp_i18n_en = sub_item.get("i18n", {}).get("en", {})
+                                comp_i18n_fr = sub_item.get("i18n", {}).get("fr", {})
+                                comp_n_en = comp_i18n_en.get("name") or comp_slug
+                                comp_n_fr = comp_i18n_fr.get("name") or comp_slug
+                                
+                                if not any(c["slug"] == comp_slug for c in components_blueprint):
+                                    components_blueprint.append({
+                                        "slug": comp_slug,
+                                        "qty": int(qty),
+                                        "n_fr": comp_n_fr,  
+                                        "n_en": comp_n_en   
+                                    })
 
                     # Initialisation de la structure des détails
                     new_data[cat]["details"][slug] = {
