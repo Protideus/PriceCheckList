@@ -283,9 +283,13 @@ def calculate_economic_indicators(stats_data):
             f -= 1
 
         # 2. Alerte Volatilité / Spéculation (Donchian instable)
+        # Au lieu de prendre uniquement les hauts historiques du tableau 90j on :
+        donch_top_reel = max(donch_top, p_actuel)
+
         # Si le prix max historique est 5x supérieur au prix minimum sur 90j, danger imminent.
-        if donch_bot > 0 and (donch_top / donch_bot) > 5.0:
-            f -= 1
+        if donch_bot > 0 and (donch_top_reel / donch_bot) > 5.0:
+        f -= 1
+        
 
         # 3. Alerte manipulation des prix récents (Écart Prix Moyen / Médiane)
         # On regarde STRICTEMENT les 7 derniers jours calendaires (avec ou sans données)
