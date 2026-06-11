@@ -7,7 +7,8 @@ Ce dossier contient l'ensemble des données extraites de l'API de Warframe Marke
 ## 📁 Liste des Fichiers et Rôles
 
 ### 1. Fichiers de Configuration et Suivi
-* **`api_version.json`** : Stocke la version actuelle de l'API de WFM, la date du dernier run global et la date du dernier cycle de `RESET` complet. Permet de déterminer automatiquement le mode de lancement (`PARTIAL`, `UPDATE` ou `RESET`).
+* **`api_version.json`** : Stocke l'état de synchronisation avec l'API de WFM. Contient la version technique du serveur (`api_version`), l'empreinte unique en base64 de la liste des objets (`items_hash`), la date du dernier run et celle du dernier `RESET` complet. Permet de déterminer automatiquement le mode de lancement (`PARTIAL`, `UPDATE` ou `RESET`).
+  * 🆕 **`items_hash`** : Empreinte de sécurité (Base64/MD5) fournie par l'endpoint `/v2/versions`. Elle change instantanément dès qu'un objet est ajouté, renommé ou modifié sur Warframe Market. C'est le déclencheur officiel des runs `UPDATE`.
   * 🆕 **`last_wfm50_hourly_update`** : Stocke l'horodatage ISO de la toute dernière mise à jour flash horaire de la liste WFM50. Permet au Frontend d'indiquer l'heure exacte de fraîcheur des prix du Top 50 sans se baser sur la date du gros script quotidien.
 * **`ignored_slugs.json`** : Liste brute (Array) des objets exclus du scraping pour éviter les requêtes API inutiles.
 
@@ -15,7 +16,7 @@ Ce dossier contient l'ensemble des données extraites de l'API de Warframe Marke
 Fichiers ultra-légers chargés dès l'ouverture de l'application. Ils contiennent la liste globale des objets d'une catégorie sous forme de tableau d'objets, avec uniquement les indicateurs économiques nécessaires au tri et à l'affichage principal.
 
 ### 3. Les Fichiers Détails (`{categorie}_details.json`)
-Fichiers lourds structurés sous forme de dictionnaire (`clé: valeur`) où la clé est l'identifiant (`slug`) de l'objet. Ils contiennent les données textuelles (traductions, descriptions, liens), la structure interne de l'objet (ses sous-composants avec leurs propres statistiques), ainsi que les astuces d'experts injectées. Ils sont chargés à la demande (ex: au survol ou au clic sur un Set).
+Fichiers lourds structurés sous forme de dictionnaire (`clé: valeur`) où la clé est l'identifiant (`slug`) de l'objet. Ils contiennent les données textuelles (traductions, descriptions, liens), la structure interne de l'objet (ses sous-composants enrichis avec leurs indicateurs et leurs traductions), ainsi que les astuces d'experts injectées. Ils sont chargés à la demande (ex: au survol ou au clic sur un Set).
 
 ### 4. Liste Virtuelle (`wfm50_table.json` & `wfm50_details.json`)
 Une 8ème catégorie générée dynamiquement par le script. Elle regroupe les 50 objets toutes catégories confondues ayant le plus gros volume d'échange sur les dernières 48 heures (les objets les plus liquides du marché).
@@ -26,7 +27,7 @@ Une 8ème catégorie générée dynamiquement par le script. Elle regroupe les 5
 
 Pour optimiser les performances, respecter les quotas de l'API Warframe Market et intégrer les connaissances humaines, les fichiers sont mis à jour selon trois cycles distincts :
 
-1. **Cycle Global (Quotidien / `wfm_scraper.py`)** : Met à jour l'intégralité des 3 700+ objets du jeu à travers les 7 catégories principales. C'est ce script qui détermine quels sont les 50 objets les plus liquides et fige la liste WFM50.
+1. **Cycle Global (Quotidien / `wfm_scraper.py`)** : Met à jour l'intégralité des objets cibles du jeu à travers les 7 catégories principales. C'est ce script qui interroge `/v2/versions`, compare l'icône de l'empreinte (`items_hash`), détermine quels sont les 50 objets les plus liquides et fige la liste WFM50.
 2. **Cycle Flash (Horaire / `wfm_top50_updater.py`)** : S'exécute toutes les heures. Sans modifier la liste des objets établie par le script quotidien, il va chercher en mode ultra-rapide les nouveaux prix du Top 50 et de leurs composants. À la fin de son exécution, il met à jour le champ `last_wfm50_hourly_update` dans `api_version.json`.
 3. **Cycle d'Astuces Clan (Quotidien / `googlesheets_scraper.py`)** : S'exécute juste après le script de scraping principal. Il se connecte de manière sécurisée à un Google Sheets privé via un compte de service Google Cloud. Il récupère les conseils rédigés par les experts du clan, élimine les conseils obsolètes grâce à un système de date de péremption, et injecte dynamiquement les astuces sous forme de liste dans les fiches d'items des fichiers de détails.
 
@@ -50,6 +51,7 @@ Pour optimiser les performances, respecter les quotas de l'API Warframe Market e
   }
 ]
 🔍 Format des Détails (_details.json)JSON{
+{
   "frost_prime_set": {
     "desc_fr": "En plus des Pouvoirs polaires de Frost, Frost Prime dispose de polarités de Mods uniques...",
     "desc_en": "Frost Prime has the same chilling abilities as Frost but provides unique mod polarities...",
@@ -65,6 +67,8 @@ Pour optimiser les performances, respecter les quotas de l'API Warframe Market e
       {
         "slug": "frost_prime_blueprint",
         "qty": 1,
+        "n_fr": "Schéma Frost Prime",
+        "n_en": "Frost Prime Blueprint",
         "p": 15.0,
         "p90": -1.2,
         "v": 45,
@@ -75,6 +79,8 @@ Pour optimiser les performances, respecter les quotas de l'API Warframe Market e
       {
         "slug": "frost_prime_systems",
         "qty": 1,
+        "n_fr": "Systèmes Frost Prime",
+        "n_en": "Frost Prime Systems",
         "p": 22.5,
         "p90": 4.0,
         "v": 32,
