@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="alertsManager.js" defer></script>
     <script src="app.js" defer></script>
 </head>
 <body class="text-gray-200 font-sans antialiased min-h-screen flex flex-col pb-8">
@@ -46,6 +47,10 @@
                 </div>
                 <nav id="nav-tabs" class="hidden md:flex space-x-1"></nav>
                 <div class="flex items-center gap-2">
+                    <button id="alerts-btn" class="relative text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium px-3 py-2 rounded-lg hover:bg-gray-800/30">
+                        <i class="fa-solid fa-bell"></i>
+                        <span id="alerts-count" class="absolute -top-1 -right-1 inline-flex items-center justify-center h-5 min-w-[18px] rounded-full bg-rose-500 text-[10px] font-bold text-white leading-none px-1 hidden">0</span>
+                    </button>
                     <button id="guide-btn" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium px-3 py-2 rounded-lg hover:bg-gray-800/30">
                         <i class="fa-solid fa-book mr-1"></i> GUIDE
                     </button>

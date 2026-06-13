@@ -62,9 +62,20 @@
                 });
             }
 
+            const alertsBtn = document.getElementById("alerts-btn");
+            if (alertsBtn) {
+                alertsBtn.addEventListener("click", openAlertsPanel);
+            }
             document.getElementById("guide-btn").addEventListener("click", openGuideModal);
             document.getElementById("readme-btn").addEventListener("click", openReadmeModal);
             document.getElementById("author-btn").addEventListener("click", openAuthorModal);
+
+            AlertStore.subscribe((alerts) => {
+                updateAlertsBadge(alerts.length);
+                if (alerts.length > 0) {
+                    renderTable();
+                }
+            });
 
             updateClearSearchButton();
         });
@@ -98,6 +109,113 @@
                     </div>
                 `;
             });
+        }
+
+        function updateAlertsBadge(count) {
+            const badge = document.getElementById('alerts-count');
+            if (!badge) return;
+            badge.textContent = count;
+            badge.classList.toggle('hidden', count === 0);
+        }
+
+        function escapeHtml(value) {
+            return String(value || '').replace(/[&<>"']/g, (char) => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[char]);
+        }
+
+        function getAlertBadgeClass(priority) {
+            if (priority === 'critical') return 'bg-rose-500/15 text-rose-300 border border-rose-500/30';
+            if (priority === 'high') return 'bg-amber-500/15 text-amber-300 border border-amber-500/30';
+            return 'bg-yellow-500/15 text-yellow-200 border border-yellow-500/30';
+        }
+
+        function getAlertIconForItem(category, itemId) {
+            const alerts = AlertStore.getItemAlerts(category, itemId);
+            return alerts.length ? alerts[0] : null;
+        }
+
+        function renderAlertMarker(category, itemId) {
+            const alert = getAlertIconForItem(category, itemId);
+            if (!alert) return '';
+            return ` <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${getAlertBadgeClass(alert.priority)}" title="${escapeHtml(alert.message)}">${alert.icon}</span>`;
+        }
+
+        function getCategoryLabel(categoryId) {
+            const config = LIST_CONFIG.find((item) => item.id === categoryId);
+            return config ? config.label : categoryId;
+        }
+
+        function renderAlertsList(categoryFilter = 'all') {
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContent) return;
+
+            const categories = ['all', ...AlertStore.getCategories()];
+            const alerts = AlertStore.getAlerts({ category: categoryFilter, priority: 'all' });
+            const filterButtons = categories.map(catId => {
+                const label = catId === 'all' ? 'Toutes' : getCategoryLabel(catId);
+                const activeClass = catId === categoryFilter ? 'bg-cyan-500 text-black' : 'bg-gray-900/70 text-gray-300 hover:bg-gray-800';
+                return `<button onclick="renderAlertsList('${catId}')" class="px-3 py-2 rounded-full text-xs font-semibold transition ${activeClass}">${label}</button>`;
+            }).join('');
+
+            const alertRows = alerts.length ? alerts.map(alert => {
+                return `
+                    <div class="bg-gray-950/80 border border-gray-800/50 rounded-2xl p-4 mb-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="space-y-2">
+                                <div class="flex flex-wrap items-center gap-2 text-sm font-semibold ${getAlertBadgeClass(alert.priority)} rounded-full px-2 py-1">
+                                    <span>${alert.icon}</span>
+                                    <span>${escapeHtml(alert.label)}</span>
+                                </div>
+                                <p class="text-sm text-gray-200 leading-snug">${escapeHtml(alert.message)}</p>
+                            </div>
+                            <div class="text-right text-xs text-gray-400">
+                                <div>${getCategoryLabel(alert.category)}</div>
+                                <div class="mt-1 font-semibold">${escapeHtml(alert.targetRank)}</div>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between text-[11px] text-gray-500">
+                            <span>Item ID: ${escapeHtml(alert.itemId)}</span>
+                            <button onclick="openItemDetails('${alert.itemId}')" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 hover:bg-cyan-500/25 transition">Voir le détail</button>
+                        </div>
+                    </div>
+                `;
+            }).join('') : `
+                <div class="p-6 rounded-2xl bg-gray-950/70 border border-gray-800/50 text-center text-gray-400">
+                    <p class="text-sm font-medium">Aucune alerte active pour le filtre sélectionné.</p>
+                </div>
+            `;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-bell text-cyan-400"></i> Alertes économiques
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-1">${alerts.length} alerte(s) active(s) triées par priorité.</p>
+                    </div>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
+                    <div class="flex flex-wrap gap-2 mb-4">${filterButtons}</div>
+                    ${alertRows}
+                </div>
+            `;
+        }
+
+        function openAlertsPanel() {
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+            renderAlertsList('all');
         }
 
         async function fetchJSON(url, label) {
@@ -256,6 +374,7 @@
 
             buildNavigationTabs();
             renderTable();
+            AlertStore.scanCategory('wfm50', wfm50Table);
             if (loaderOverlay) {
                 loaderOverlay.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => loaderOverlay.style.display = 'none', 600);
@@ -267,7 +386,7 @@
             updateLoaderWidget('Données prioritaires chargées. Chargement du catalogue...', 30);
             if (statusText) statusText.innerText = 'Chargement des tables restantes...';
 
-            const tablePromises = LIST_CONFIG.filter(item => item.id !== 'wfm50').map(async (list) => {
+            const scanAllTablesPromise = Promise.all(LIST_CONFIG.filter(item => item.id !== 'wfm50').map(async (list) => {
                 const data = await fetchJSON(`data/${list.table}`, list.table);
                 if (data) {
                     PCLData.tables[list.id] = data;
@@ -276,8 +395,9 @@
                     PCLData.tables[list.id] = [];
                     markFile(list.id, list.table, false);
                 }
-            });
-            await Promise.all(tablePromises);
+            })).then(() => AlertStore.scanAllTables(PCLData.tables));
+
+            await scanAllTablesPromise;
 
             updateLoaderWidget('Toutes les tables sont prêtes. Finalisation des détails...', 70);
             if (statusText) statusText.innerText = 'Préchargement des fiches détaillées...';
@@ -406,11 +526,12 @@
                 const dsMax = item.ds_max !== undefined && item.ds_max !== null ? Number(item.ds_max) : null;
                 const vrValue = item.vr !== undefined && item.vr !== null ? Number(item.vr) : 0;
                 const vrMax = item.vr_max !== undefined && item.vr_max !== null ? Number(item.vr_max) : null;
+                const alertMarker = renderAlertMarker(appState.currentCategory, item.id);
 
                 tableHTML += `
                     <tr class="table-row-hover border-b border-gray-800/30 cursor-pointer text-gray-300 font-medium" onclick="openItemDetails('${item.id}')">
                         <td class="p-4">
-                            <div class="text-white">${item.n_fr || item.id}</div>
+                            <div class="text-white">${item.n_fr || item.id}${alertMarker}</div>
                             <div class="text-xs text-gray-500 italic font-mono">${item.n_en || ''}</div>
                         </td>
                         <td class="p-4 text-right font-mono text-cyan-300">
@@ -614,8 +735,21 @@
             const summary = (PCLData.tables[cat] || []).find(i => i.id === itemId) || {};
             const info = (PCLData.details[cat] || {})[itemId] || {};
             
-            // Construction de l'URL de l'icône
-            const iconUrl = info.icon ? `https://warframe.market/static/assets/${info.icon}` : '';
+            // Construction robuste de l'URL de l'icône
+            let iconUrl = '';
+            if (info && info.icon) {
+                try {
+                    const raw = String(info.icon).trim();
+                    if (raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('//')) {
+                        iconUrl = raw;
+                    } else {
+                        const base = 'https://warframe.market/static/assets/';
+                        iconUrl = base + encodeURI(raw.replace(/^\/+/, ''));
+                    }
+                } catch (e) {
+                    iconUrl = '';
+                }
+            }
             
             // Récupération et calcul des composants
             const components = (info.components || []);
@@ -635,7 +769,7 @@
             modalContent.innerHTML = `
                 <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-start justify-between gap-4">
                     <div class="flex items-center gap-4">
-                        ${iconUrl ? `<img src="${iconUrl}" alt="${summary.n_fr}" class="w-20 h-20 object-contain bg-gray-950 rounded-xl border border-gray-800 p-1 shadow-inner" onerror="this.style.display='none'">` : ''}
+                        ${iconUrl ? `<img src="${iconUrl}" loading="lazy" alt="${summary.n_fr || itemId}" class="w-20 h-20 object-contain bg-gray-950 rounded-xl border border-gray-800 p-1 shadow-inner" onerror="this.onerror=null;this.style.display='none'">` : ''}
                         ${!iconUrl ? `<div class="w-20 h-20 bg-gray-950 rounded-xl border border-gray-800 flex items-center justify-center"><i class="fa-solid fa-box text-2xl text-gray-600"></i></div>` : ''}
                         <div>
                             <h2 class="text-xl font-bold text-white tracking-wide">${summary.n_fr || itemId}</h2>
@@ -730,8 +864,9 @@
                                     <div class="bg-gray-900/50 border border-gray-800/50 rounded-lg p-3">
                                         <div class="flex items-start justify-between gap-2 mb-2">
                                             <div>
-                                                <div class="text-sm font-semibold text-white">${comp.slug}</div>
-                                                <div class="text-xs text-gray-500">Qty: ${comp.qty || 1}</div>
+                                                <div class="text-base font-bold text-white">${comp.n_fr || comp.slug}</div>
+                                                <div class="text-xs text-gray-500 italic font-mono">${comp.n_en || ''}</div>
+                                                <div class="text-xs text-gray-600 mt-1">Qty: ${comp.qty || 1}</div>
                                             </div>
                                             <div class="text-right">
                                                 <div class="text-sm font-bold text-cyan-300">${(comp.p || 0).toFixed(1)} pl × ${comp.qty || 1} = <span class="text-emerald-400">${((comp.p || 0) * (comp.qty || 1)).toFixed(1)} pl</span></div>
