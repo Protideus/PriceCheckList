@@ -73,6 +73,36 @@ Chaque tableau comparatif presents 6 indices clés, calculés pour vous aider à
 
 ---
 
+## RÈGLES LOGIQUES DES ALERTES
+
+### 1. Les Opportunités de Timing (Achat / Vente)
+Note : L'intégration de Math.abs(p90) >= 10 sert de sécurité anti-faux positifs pour s'assurer que le canal de prix a une vraie amplitude historique et éviter les alertes sur les marchés plats.
+
+Sommet Historique (Moment de Vendre) (Priorité: Élevée 🔴)
+Condition JS : item.ds >= 92 && item.vr >= 1.2 && Math.abs(item.p90) >= 10
+Message: "🔥 SOMMET : [Nom] est proche de son plus haut des 90 jours avec un volume fort. Excellent moment pour liquider vos stocks."
+
+Opportunité d'Achat (Creux Sain) (Priorité: Élevée 🔴)
+Condition JS : item.ds <= 12 && item.vr >= 1.0 && item.f >= 2 && Math.abs(item.p90) >= 10
+Message: "💎 CREUX HISTORIQUE : [Nom] est au plus bas des 90 jours sur un marché actif et fiable. Très bon point d'entrée pour accumuler."
+
+Chute Libre (Dumping en cours) (Priorité: Moyenne 🟠)
+Condition JS : item.ds <= 15 && item.vr > 1.8 && Math.abs(item.p90) >= 10
+Message: "⚠️ CHUTE LIBRE : Énorme pic de volume sur [Nom] mais le prix s'effondre. Vente panique ou correction majeure en cours."
+
+### 2. Les Alertes d'Arbitrage de Rang (Uniquement pour arcanes)
+Note : Ces alertes comparent les écarts de Donchian entre les deux rangs, la sécurité p90 n'est pas requise ici car l'anomalie provient du découplage entre R0 et RMAX.
+
+Anomalie : RMAX Bradé (Achat direct du Max) (Priorité: Élevée 🔴)
+Condition JS : item.ds_max <= 15 && item.ds >= 50 && item.f_max >= 2
+Message: "⚡ ANOMALIE RANG : Le prix RMAX de [Nom] ([p_max] pl) est anormalement bas (Donchian [ds_max]%) alors que sa version Rang 0 ([p] pl) reste forte. Idéal pour acheter le RMAX directement."
+
+Anomalie : Spéculation RMAX (Opportunité de Fusion/Craft) (Priorité: Critique 🔥)
+Condition JS : item.ds_max >= 80 && item.ds <= 20 && item.f >= 2
+Message: "🛠️ ARBITRAGE FUSION : Le prix R0 de [Nom] ([p] pl) s'est effondré mais la version RMAX ([p_max] pl) reste très chère. Achetez des R0, maxez-les et vendez le RMAX pour une marge maximale."
+
+---
+
 ## ⚙️ Contraintes Techniques et Fraîcheur des Données
 
 PCL extrait ses informations depuis l'API de *Warframe.market*. Pour respecter la charge des serveurs hôtes et garantir la pérennité de notre application, les données tournent à deux vitesses :
