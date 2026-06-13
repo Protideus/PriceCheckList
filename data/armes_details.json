@@ -5945,7 +5945,12 @@
         "f": 3
       }
     ],
-    "expert_tips": []
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "Soyez prudent, ne sélectionnez pas les parties de la version Prime. Ne cliquez pas vite ici !"
+      }
+    ]
   },
   "sarofang_set": {
     "desc_fr": "Infligez la douleur aiguë de la justice. Les Frappes au sol Lourdes créent un vortex qui attire les ennemis soulevés lorsque le multiplicateur de Combo du Sarofang atteint 8. Entre les mains de Voruna, le Sarofang n'a besoin que d'un multiplicateur de Combo de 5 pour invoquer le vortex.",
@@ -5981,7 +5986,7 @@
     "expert_tips": [
       {
         "author": "Ka_Lagoon",
-        "text": "Soyez prudent, des joueurs HL vont vous l'acheter en souhaitant que vous mettrez les parties primes. Ne cliquez pas vite ici !"
+        "text": "Soyez prudent, ne sélectionnez pas les parties de la version Prime. Ne cliquez pas vite ici !"
       }
     ]
   },
