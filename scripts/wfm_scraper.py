@@ -703,6 +703,91 @@ def main():
 
     print(f"✅ Fichiers wfm50_table.json et wfm50_details.json créés avec succès ({len(wfm50_table)} items).")
 
+    # ==============================================================================
+    # GÉNÉRATION DU CLASSIEUR EXCEL AVEC NOM FIXE (POUR LES JOUEURS & LE FRONTEND)
+    # ==============================================================================
+    print("\n📊 Génération du fichier Excel pour les joueurs...")
+    try:
+        import pandas as pd
+
+        # 1. Nettoyage de sécurité au cas où d'anciens fichiers datés traîneraient
+        for old_file in DATA_DIR.glob("Warframe_Prices_*.xlsx"):
+            try:
+                old_file.unlink()
+            except:
+                pass
+
+        # Le dictionnaire qui va contenir nos feuilles Excel
+        excel_sheets = {}
+
+        # On prépare les catégories (les 7 de base + le WFM50)
+        all_categories_to_export = CATEGORIES + ["wfm50"]
+
+        for cat in all_categories_to_export:
+            # Récupération de la table correspondante
+            cat_table = wfm50_table if cat == "wfm50" else new_data[cat]["table"]
+            
+            if not cat_table:
+                continue
+
+            # Convertir la liste de dictionnaires en DataFrame Pandas
+            df = pd.DataFrame(cat_table)
+
+            # On renomme l'ID brut de l'API en "Slug" (plus propre en fin de tableau)
+            df = df.rename(columns={"id": "Slug"})
+
+            # Réorganisation des colonnes pour une lecture logique par un joueur
+            columns_order = ["n_fr", "n_en", "p", "p90", "v", "vr", "ds", "f"]
+            
+            # Si la catégorie contient des objets avec des rangs (Mods, Arcanes), on ajoute le bloc max
+            if "p_max" in df.columns:
+                columns_order += ["p_max", "p90_max", "v_max", "vr_max", "ds_max", "f_max"]
+            
+            columns_order.append("Slug")
+
+            # Sécurité : on ne garde que les colonnes qui existent réellement
+            columns_order = [col for col in columns_order if col in df.columns]
+            df = df[columns_order]
+
+            # Dictionnaire de traduction des en-têtes techniques pour l'utilisateur
+            friendly_names = {
+                "n_fr": "Nom (FR)",
+                "n_en": "Nom (EN)",
+                "p": "Prix Moyen (Plat)",
+                "p90": "Évolution 90j (%)",
+                "v": "Volume (48h)",
+                "vr": "Volume Relatif",
+                "ds": "Position Marché (%)",
+                "f": "Fiabilité (0-3)",
+                "p_max": "Prix Max (Plat)",
+                "p90_max": "Évolution Max 90j (%)",
+                "v_max": "Volume Max (48h)",
+                "vr_max": "Volume Relatif Max",
+                "ds_max": "Position Marché Max (%)",
+                "f_max": "Fiabilité Max (0-3)",
+                "Slug": "Identifiant API (Slug)"
+            }
+            df = df.rename(columns=friendly_names)
+
+            # Nom de l'onglet (Première lettre en majuscule, max 31 caractères pour Excel)
+            sheet_name = cat.capitalize()[:30]
+            excel_sheets[sheet_name] = df
+
+        # Écriture du fichier Excel final (Nom fixe pour écrasement automatique)
+        excel_path = DATA_DIR / "Warframe_Prices_Latest.xlsx"
+        with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
+            for sheet_name, df in excel_sheets.items():
+                # index=False pour éviter la colonne inutile des numéros de lignes (0, 1, 2...)
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+
+        print(f"✅ Fichier Excel permanent créé avec succès : {excel_path.name}")
+
+    except ImportError:
+        print("⚠️ Erreur : Les bibliothèques 'pandas' ou 'openpyxl' manquent à l'appel.")
+        print("👉 Lance cette commande dans ton terminal : pip install pandas openpyxl")
+    except Exception as e:
+        print(f"❌ Impossible de générer le fichier Excel : {e}")
+
     with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
         json.dump(list(blacklist), f)
         
