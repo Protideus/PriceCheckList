@@ -41,13 +41,15 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         
+        # On ajoute les JSON ET le fichier Excel permanent
         if [ -d "data" ]; then
           git add -f data/*.json
+          git add -f data/Warframe_Prices_Latest.xlsx
         fi
         
         if git diff --staged --quiet; then
           echo "💤 Aucun changement détecté dans les données globales. Fin du job."
         else
-          git commit -m "📈 Mise à jour quotidienne globale de l'index des prix"
+          git commit -m "📈 Mise à jour quotidienne globale de l'index des prix et tableur Excel"
           git push
         fi
