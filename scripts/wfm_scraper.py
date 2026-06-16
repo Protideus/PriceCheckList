@@ -704,9 +704,9 @@ def main():
     print(f"✅ Fichiers wfm50_table.json et wfm50_details.json créés avec succès ({len(wfm50_table)} items).")
 
     # ==============================================================================
-    # GÉNÉRATION DU CLASSIEUR EXCEL AVEC NOM FIXE (POUR LES JOUEURS & LE FRONTEND)
+    # GÉNÉRATION DU CLASSIEUR EXCEL AVEC ONGLETS COMPOSANTS CIBLÉS (POUR LES JOUEURS)
     # ==============================================================================
-    print("\n📊 Génération du fichier Excel pour les joueurs...")
+    print("\n📊 Génération du fichier Excel pour les joueurs (onglets composants séparés)...")
     try:
         import pandas as pd
 
@@ -720,71 +720,112 @@ def main():
         # Le dictionnaire qui va contenir nos feuilles Excel
         excel_sheets = {}
 
-        # On prépare les catégories (les 7 de base + le WFM50)
-        all_categories_to_export = CATEGORIES + ["wfm50"]
+        # Dictionnaires pour accumuler les composants par grande catégorie parente de Set
+        components_by_cat = {
+            "warframes": [],
+            "armes": [],
+            "equipements": []
+        }
 
-        for cat in all_categories_to_export:
-            # Récupération de la table correspondante
-            cat_table = wfm50_table if cat == "wfm50" else new_data[cat]["table"]
-            
+        # Dictionnaire de traduction global des en-têtes pour les joueurs
+        friendly_names = {
+            "n_fr": "Nom (FR)", "n_en": "Nom (EN)", "p": "Prix Moyen (Plat)",
+            "p90": "Évolution 90j (%)", "v": "Volume (48h)", "vr": "Volume Relatif",
+            "ds": "Position Marché (%)", "f": "Fiabilité (0-3)",
+            "p_max": "Prix Max (Plat)", "p90_max": "Évolution Max 90j (%)",
+            "v_max": "Volume Max (48h)", "vr_max": "Volume Relatif Max",
+            "ds_max": "Position Marché Max (%)", "f_max": "Fiabilité Max (0-3)",
+            "Slug": "Identifiant API (Slug)"
+        }
+
+        # On parcourt STRICTEMENT les 7 catégories de base (Le WFM50 est exclu de l'export Excel)
+        for cat in CATEGORIES:
+            cat_table = new_data[cat].get("table", [])
             if not cat_table:
                 continue
 
-            # Convertir la liste de dictionnaires en DataFrame Pandas
-            df = pd.DataFrame(cat_table)
+            # --- EXTRACTEUR DE COMPOSANTS (Uniquement pour les catégories à Sets) ---
+            if cat in components_by_cat:
+                for item in cat_table:
+                    slug_parent = item.get("id")
+                    if slug_parent in new_data[cat]["details"]:
+                        comps = new_data[cat]["details"][slug_parent].get("components", [])
+                        for c in comps:
+                            components_by_cat[cat].append({
+                                "parent_fr": item.get("n_fr"), # Nom du Set parent
+                                "n_fr": c.get("n_fr"),
+                                "n_en": c.get("n_en"),
+                                "p": c.get("p", 0.0),
+                                "v": c.get("v", 0),
+                                "qty": c.get("qty", 1),
+                                "slug": c.get("slug")
+                            })
 
-            # On renomme l'ID brut de l'API en "Slug" (plus propre en fin de tableau)
+            # --- TRAITEMENT ET FORMATAGE DE L'ONGLET PRINCIPAL ---
+            df = pd.DataFrame(cat_table)
             df = df.rename(columns={"id": "Slug"})
 
-            # Réorganisation des colonnes pour une lecture logique par un joueur
+            # Ordre de lecture logique pour un joueur
             columns_order = ["n_fr", "n_en", "p", "p90", "v", "vr", "ds", "f"]
-            
-            # Si la catégorie contient des objets avec des rangs (Mods, Arcanes), on ajoute le bloc max
             if "p_max" in df.columns:
                 columns_order += ["p_max", "p90_max", "v_max", "vr_max", "ds_max", "f_max"]
-            
             columns_order.append("Slug")
 
-            # Sécurité : on ne garde que les colonnes qui existent réellement
             columns_order = [col for col in columns_order if col in df.columns]
             df = df[columns_order]
-
-            # Dictionnaire de traduction des en-têtes techniques pour l'utilisateur
-            friendly_names = {
-                "n_fr": "Nom (FR)",
-                "n_en": "Nom (EN)",
-                "p": "Prix Moyen (Plat)",
-                "p90": "Évolution 90j (%)",
-                "v": "Volume (48h)",
-                "vr": "Volume Relatif",
-                "ds": "Position Marché (%)",
-                "f": "Fiabilité (0-3)",
-                "p_max": "Prix Max (Plat)",
-                "p90_max": "Évolution Max 90j (%)",
-                "v_max": "Volume Max (48h)",
-                "vr_max": "Volume Relatif Max",
-                "ds_max": "Position Marché Max (%)",
-                "f_max": "Fiabilité Max (0-3)",
-                "Slug": "Identifiant API (Slug)"
-            }
             df = df.rename(columns=friendly_names)
 
-            # Nom de l'onglet (Première lettre en majuscule, max 31 caractères pour Excel)
+            # Ajout de la feuille principale (ex: Warframes, Armes...)
             sheet_name = cat.capitalize()[:30]
             excel_sheets[sheet_name] = df
 
-        # Écriture du fichier Excel final (Nom fixe pour écrasement automatique)
+        # ==============================================================================
+        # 2. INJECTION DES 3 ONGLETS DE COMPOSANTS DICTÉS PAR LES RÈGLES DU JEU
+        # ==============================================================================
+        friendly_names_comps = {
+            "parent_fr": "Appartient au Set",
+            "n_fr": "Nom du Composant (FR)",
+            "n_en": "Nom du Composant (EN)",
+            "p": "Prix Moyen (Plat)",
+            "v": "Volume (48h)",
+            "qty": "Quantité Requise",
+            "slug": "Identifiant API (Slug)"
+        }
+
+        # Ordre précis d'apparition demandé pour les composants
+        target_components = [
+            ("warframes", "Warframes Composants"),
+            ("armes", "Armes Composants"),
+            ("equipements", "Equipements Composants")
+        ]
+
+        for cat_key, sheet_title in target_components:
+            list_comps = components_by_cat[cat_key]
+            if list_comps:
+                df_comps = pd.DataFrame(list_comps)
+                # Sécurité anti-doublons et tri chronologique/alphabétique pour le confort du joueur
+                df_comps = df_comps.drop_duplicates(subset=["slug", "parent_fr"])
+                df_comps = df_comps.sort_values(by=["parent_fr", "n_fr"])
+                
+                # Réorganisation structurelle des colonnes composants
+                df_comps = df_comps[["parent_fr", "n_fr", "n_en", "p", "v", "qty", "slug"]]
+                df_comps = df_comps.rename(columns=friendly_names_comps)
+                
+                # Enregistrement de l'onglet associé
+                excel_sheets[sheet_title] = df_comps
+
+        # ==============================================================================
+        # 3. ÉCRITURE DU FICHIER BI-FORMAT FINAL EXCEL
+        # ==============================================================================
         excel_path = DATA_DIR / "Warframe_Prices_Latest.xlsx"
         with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
             for sheet_name, df in excel_sheets.items():
-                # index=False pour éviter la colonne inutile des numéros de lignes (0, 1, 2...)
                 df.to_excel(writer, sheet_name=sheet_name, index=False)
 
         print(f"✅ Fichier Excel permanent créé avec succès : {excel_path.name}")
 
     except ImportError:
         print("⚠️ Erreur : Les bibliothèques 'pandas' ou 'openpyxl' manquent à l'appel.")
-        print("👉 Lance cette commande dans ton terminal : pip install pandas openpyxl")
     except Exception as e:
         print(f"❌ Impossible de générer le fichier Excel : {e}")
 
