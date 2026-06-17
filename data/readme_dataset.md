@@ -21,6 +21,8 @@ Fichiers lourds structurés sous forme de dictionnaire (`clé: valeur`) où la c
 ### 4. Liste Virtuelle (`wfm50_table.json` & `wfm50_details.json`)
 Une 8ème catégorie générée dynamiquement par le script. Elle regroupe les 50 objets toutes catégories confondues ayant le plus gros volume d'échange sur les dernières 48 heures (les objets les plus liquides du marché).
 
+### 5. Fichier /Warframe_Prices_Latest.xlsx réunissant toutes les infos destiné au téléchargement.
+
 ---
 
 ## ⏱️ Fréquence de rafraîchissement (Stratégie multi-sources)
