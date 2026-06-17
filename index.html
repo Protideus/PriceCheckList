@@ -51,6 +51,9 @@
                         <i class="fa-solid fa-bell"></i>
                         <span id="alerts-count" class="absolute -top-1 -right-1 inline-flex items-center justify-center h-5 min-w-[18px] rounded-full bg-rose-500 text-[10px] font-bold text-white leading-none px-1 hidden">0</span>
                     </button>
+                    <a id="download-xlsx-link" href="https://raw.githubusercontent.com/Protideus/PriceCheckList/main/data/Warframe_Prices_Latest.xlsx" class="relative text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium px-3 py-2 rounded-lg hover:bg-gray-800/30" title="Télécharger le fichier Excel">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </a>
                     <button id="guide-btn" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium px-3 py-2 rounded-lg hover:bg-gray-800/30">
                         <i class="fa-solid fa-book mr-1"></i> GUIDE
                     </button>
@@ -79,13 +82,19 @@
                 </button>
             </div>
 
-            <div id="rank-filter-container" class="flex items-center gap-2 w-full sm:w-auto opacity-40">
-                <label for="rank-filter" class="hidden sm:inline-block text-[11px] uppercase tracking-[0.22em] text-gray-400">Filtre rang</label>
-                <select id="rank-filter" class="min-w-[180px] w-full bg-gray-950/50 border border-gray-800/80 rounded-xl text-white text-sm px-3 py-2 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all disabled:cursor-not-allowed disabled:bg-gray-900/40 disabled:border-gray-700 disabled:text-gray-500">
-                    <option value="all">Tous les rangs</option>
-                    <option value="r0">Rang 0 uniquement</option>
-                    <option value="rmax">Rang Max uniquement</option>
-                </select>
+            <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                <div id="rank-filter-container" class="flex items-center gap-2 opacity-40">
+                    <label for="rank-filter" class="hidden sm:inline-block text-[11px] uppercase tracking-[0.22em] text-gray-400">Filtre rang</label>
+                    <select id="rank-filter" class="min-w-[180px] w-full bg-gray-950/50 border border-gray-800/80 rounded-xl text-white text-sm px-3 py-2 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all disabled:cursor-not-allowed disabled:bg-gray-900/40 disabled:border-gray-700 disabled:text-gray-500">
+                        <option value="all">Tous les rangs</option>
+                        <option value="r0">Rang 0 uniquement</option>
+                        <option value="rmax">Rang Max uniquement</option>
+                    </select>
+                </div>
+                <button id="copy-data-btn" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
+                    <i class="fa-regular fa-copy"></i>
+                    Copier
+                </button>
             </div>
             <div class="text-xs text-gray-400 font-mono bg-gray-950/40 px-3 py-1.5 rounded-lg border border-gray-800/30 flex items-center gap-2" id="api-version-info">
                 <i class="fa-solid fa-clock text-cyan-500"></i> Index non synchronisé
@@ -157,5 +166,67 @@
         <div id="modal-content" class="bg-gray-900/95 border border-gray-800/60 w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl m-4 transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
         </div>
     </div>
+    <script>
+    (function(){
+        const RAW_XLSX_URL = 'https://raw.githubusercontent.com/Protideus/PriceCheckList/main/data/Warframe_Prices_Latest.xlsx';
+
+        function formatVersionDate(versionData){
+            if (!versionData || !versionData.last_run) return null;
+            const d = new Date(versionData.last_run);
+            if (Number.isNaN(d.getTime())) return null;
+            const locale = navigator.language || 'fr-FR';
+            const dateStr = d.toLocaleDateString(locale, {day: 'numeric', month: 'long', year: 'numeric'});
+            const timeStr = d.toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'});
+            const pad = n => String(n).padStart(2,'0');
+            const fnDate = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}`;
+            return {
+                label: `Mise à jour le ${dateStr} à ${timeStr}`,
+                filename: `Warframe_Prices_${fnDate}.xlsx`
+            };
+        }
+
+        window.xlsxManager = window.xlsxManager || {};
+        window.updateXlsxMetadata = function(versionData) {
+            const link = document.getElementById('download-xlsx-link');
+            if (!link) return;
+            const formatted = formatVersionDate(versionData);
+            if (formatted) {
+                link.title = `Télécharger le fichier Excel (${formatted.label})`;
+                link.dataset.suggestedFilename = formatted.filename;
+            } else {
+                link.title = 'Télécharger le fichier Excel';
+            }
+            link.href = RAW_XLSX_URL;
+        };
+
+        async function downloadWithFilename(event){
+            event.preventDefault();
+            const link = event.currentTarget;
+            const url = link.href;
+            const suggested = link.dataset.suggestedFilename || 'Warframe_Prices_Latest.xlsx';
+            try{
+                const resp = await fetch(url);
+                if(!resp.ok) throw new Error('Failed to download file');
+                const blob = await resp.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = suggested;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(()=> URL.revokeObjectURL(blobUrl), 10000);
+            }catch(err){
+                window.open(url, '_blank', 'noopener');
+            }
+        }
+
+        const init = () => {
+            const dl = document.getElementById('download-xlsx-link');
+            if(dl) dl.addEventListener('click', downloadWithFilename);
+        };
+        init();
+    })();
+    </script>
 </body>
 </html>

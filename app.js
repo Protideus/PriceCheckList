@@ -66,6 +66,10 @@
             if (alertsBtn) {
                 alertsBtn.addEventListener("click", openAlertsPanel);
             }
+            const copyDataBtn = document.getElementById("copy-data-btn");
+            if (copyDataBtn) {
+                copyDataBtn.addEventListener("click", handleCopyVisibleTableData);
+            }
             document.getElementById("guide-btn").addEventListener("click", openGuideModal);
             document.getElementById("readme-btn").addEventListener("click", openReadmeModal);
             document.getElementById("author-btn").addEventListener("click", openAuthorModal);
@@ -348,15 +352,21 @@
 
             const startTime = performance.now();
             const [versionData, wfm50Table] = await Promise.all([
-                fetchJSON('data/api_version.json', 'api_version.json'),
+                fetchJSON('https://raw.githubusercontent.com/Protideus/PriceCheckList/main/data/api_version.json', 'api_version.json'),
                 fetchJSON('data/wfm50_table.json', 'wfm50_table.json')
             ]);
 
             if (versionData) {
                 PCLData.version = versionData;
                 displaySyncDate(versionData);
+                if (window.updateXlsxMetadata) {
+                    window.updateXlsxMetadata(versionData);
+                }
                 markFile('version', 'api_version.json', true);
             } else {
+                if (window.updateXlsxMetadata) {
+                    window.updateXlsxMetadata(null);
+                }
                 markFile('version', 'api_version.json', false);
             }
 
@@ -480,12 +490,10 @@
         }
 
         // RENDU ULTRA-RAPIDE DU TABLEAU DYNAMIQUE (ZÉRO FREEZE)
-        function renderTable() {
-            const tbody = document.getElementById("table-body");
-            const noResults = document.getElementById("no-results");
-            let data = PCLData.tables[appState.currentCategory] || [];
+        function getVisibleTableData() {
+            const rawData = PCLData.tables[appState.currentCategory] || [];
+            let data = rawData.slice();
 
-            // 1. Filtrage par barre de recherche (FR / EN)
             if (appState.searchQuery) {
                 data = data.filter(item => 
                     (item.n_fr && item.n_fr.toLowerCase().includes(appState.searchQuery)) ||
@@ -493,19 +501,26 @@
                 );
             }
 
-            // 2. Tri des colonnes
             const col = appState.sortColumn;
             const dir = appState.sortDirection === "asc" ? 1 : -1;
-            
+
             data.sort((a, b) => {
                 let valA = a[col] !== undefined ? a[col] : 0;
                 let valB = b[col] !== undefined ? b[col] : 0;
-                
+
                 if (typeof valA === 'string') {
                     return valA.localeCompare(valB, 'fr') * dir;
                 }
                 return (valA - valB) * dir;
             });
+
+            return data;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById("table-body");
+            const noResults = document.getElementById("no-results");
+            let data = getVisibleTableData();
 
             updateSortIcons();
 
@@ -558,6 +573,97 @@
 
             // Une seule et unique injection pour liquider instantanément le freeze
             tbody.innerHTML = tableHTML;
+        }
+
+        function formatExportPrice(value) {
+            const num = Number(value);
+            if (Number.isNaN(num)) return '0.0 pl';
+            return `${num.toFixed(1)} pl`;
+        }
+
+        function formatExportPercent(value) {
+            const num = Number(value);
+            if (Number.isNaN(num)) return '0%';
+            const normalized = num % 1 === 0 ? num : Number(num.toFixed(1));
+            return `${normalized > 0 ? '+' : ''}${normalized}%`;
+        }
+
+        function formatExportNumber(value) {
+            const num = Number(value);
+            if (Number.isNaN(num)) return '0';
+            return num % 1 === 0 ? String(num) : String(num);
+        }
+
+        function getExportLinesForItem(item) {
+            const baseFields = {
+                p: item.p,
+                p90: item.p90,
+                v: item.v,
+                vr: item.vr,
+                ds: item.ds,
+                f: item.f
+            };
+            const maxFields = {
+                p: item.p_max,
+                p90: item.p90_max,
+                v: item.v_max,
+                vr: item.vr_max,
+                ds: item.ds_max,
+                f: item.f_max
+            };
+
+            const hasRank = item.p_max !== undefined || item.v_max !== undefined || item.p90_max !== undefined || item.vr_max !== undefined || item.ds_max !== undefined || item.f_max !== undefined;
+            const state = appState.rankFilter;
+            const nameFr = item.n_fr || "";
+            const nameEn = item.n_en || "";
+            const lines = [];
+
+            function buildLine(rankLabel, fields) {
+                return [
+                    nameFr,
+                    nameEn,
+                    rankLabel,
+                    formatExportPrice(fields.p),
+                    formatExportPercent(fields.p90),
+                    formatExportNumber(fields.v),
+                    formatExportNumber(fields.vr),
+                    formatExportPercent(fields.ds),
+                    formatExportNumber(fields.f)
+                ].join("\t");
+            }
+
+            if (!hasRank || state !== 'all') {
+                const rankLabel = hasRank && state === 'rmax' ? 'Rmax' : (hasRank && state === 'r0' ? 'R0' : '-');
+                const fields = state === 'rmax' ? maxFields : baseFields;
+                lines.push(buildLine(rankLabel, fields));
+                return lines;
+            }
+
+            // Export both R0 and Rmax as separate lines for rank-aware objects when the filter allows both.
+            lines.push(buildLine('R0', baseFields));
+            lines.push(buildLine('Rmax', maxFields));
+            return lines;
+        }
+
+        function handleCopyVisibleTableData() {
+            const data = getVisibleTableData();
+            if (!data.length) return;
+
+            const lines = data.flatMap(item => getExportLinesForItem(item));
+            if (!lines.length) return;
+
+            const textToCopy = lines.join("\n");
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const button = document.getElementById("copy-data-btn");
+                if (!button) return;
+                const originalText = button.textContent;
+                button.textContent = "Copié !";
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }).catch(() => {
+                console.warn("Impossible de copier les données dans le presse-papiers.");
+            });
         }
 
         // DETERMINER LA COULEUR DES TENDANCES DE PRIX
@@ -750,6 +856,9 @@
                     iconUrl = '';
                 }
             }
+
+            const marketSlug = String(info.marketSlug || info.slug || itemId || '').trim().toLowerCase();
+            const marketSlugUrl = encodeURIComponent(marketSlug);
             
             // Récupération et calcul des composants
             const components = (info.components || []);
@@ -904,11 +1013,14 @@
                     ` : ''}
                 </div>
 
-                <div class="px-6 py-4 bg-gray-950/40 border-t border-gray-800/40 flex justify-between items-center text-xs">
-                    <div class="flex gap-2">
+                <div class="px-6 py-4 bg-gray-950/40 border-t border-gray-800/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs">
+                    <div class="flex flex-wrap gap-2">
                         ${info.wiki_fr ? `<a href="${info.wiki_fr}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-950/40 text-cyan-400 border border-cyan-500/30 font-semibold rounded-lg hover:bg-cyan-500 hover:text-black transition-all text-xs"><i class="fa-solid fa-book-open"></i> Wiki FR</a>` : ''}
                         ${info.wiki_en ? `<a href="${info.wiki_en}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-950/40 text-blue-400 border border-blue-500/30 font-semibold rounded-lg hover:bg-blue-500 hover:text-black transition-all text-xs"><i class="fa-solid fa-book-open"></i> Wiki EN</a>` : ''}
+                        ${marketSlug ? `<a href="https://warframe.market/items/${marketSlugUrl}?type=sell" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-950/40 text-emerald-300 border border-emerald-500/30 font-semibold rounded-lg hover:bg-emerald-500 hover:text-black transition-all text-xs"><i class="fa-solid fa-hand-holding-dollar"></i> Offres</a>` : ''}
+                        ${marketSlug ? `<a href="https://warframe.market/items/${marketSlugUrl}/statistics" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-violet-950/40 text-violet-300 border border-violet-500/30 font-semibold rounded-lg hover:bg-violet-500 hover:text-black transition-all text-xs"><i class="fa-solid fa-chart-line"></i> Statistiques</a>` : ''}
                     </div>
+                    ${marketSlug ? `<span class="text-gray-400 italic">Market slug: ${marketSlug}</span>` : ''}
                 </div>
             `;
             
