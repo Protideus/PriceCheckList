@@ -98,6 +98,20 @@ CATEGORIES = ["warframes", "armes", "equipements", "reliques", "mods", "arcanes"
 # FONCTIONS UTILITAIRES & MATHÉMATIQUES
 # ==============================================================================
 
+def get_fusion_ratio(max_rank):
+    """
+    Calcule le nombre total de copies R0 nécessaires pour atteindre max_rank.
+    Logique : somme cumulative des copies par rang.
+    Si DE ajoute des rangs, cette logique reste valide.
+    """
+    # 1 (l'unité de base) + somme des copies pour chaque étape de fusion
+    # Pour les arcanes : R0 -> R1 (1), R1 -> R2 (2), R2 -> R3 (4), etc.
+    # Cette formule dépend de la progression spécifique choisie par DE.
+    total = 1
+    for r in range(1, max_rank + 1):
+        total += (2**(r-1)) # Ajuste cette ligne si le coût par rang change
+    return total
+
 def safe_requests(url, headers, max_retries=3, backoff_factor=1.5):
     """
     Exécute une requête GET de manière sécurisée avec un mécanisme de tentative (Retry).
@@ -543,13 +557,22 @@ def main():
                                         "n_en": comp_n_en   
                                     })
 
+                    # Calcul du ratio de fusion (uniquement si c'est une arcane)
+                    fusion_ratio = None
+                    if cat == "arcanes":
+                        # On calcule le ratio dynamiquement selon le maxRank
+                        max_rank = main_item.get("maxRank", 5)
+                        # Logique : 1 + somme(2^(r-1) pour r de 1 à max_rank)
+                        fusion_ratio = 1 + sum(2**(r-1) for r in range(1, max_rank + 1))
+
                     # Initialisation de la structure des détails
                     new_data[cat]["details"][slug] = {
                         "desc_fr": i18n_fr.get("description", ""),
                         "desc_en": i18n_en.get("description", ""),
                         "wiki_en": i18n_en.get("wikiLink", ""),
                         "icon": i18n_en.get("icon", ""),
-                        "components": [] # Sera peuplé juste après par la boucle de statistiques
+                        "components": [], # Sera peuplé juste après
+                        "fusion_ratio": fusion_ratio # 🆕 Stockage du ratio calculé
                     }
                     found_category = cat
                 else:
