@@ -668,10 +668,21 @@ def main():
                 if slug in new_data[found_category]["details"]:
                     new_data[found_category]["details"][slug]["components"] = set_components_data
 
+                # Avant d'ajouter à la table, définis la valeur (si c'est une arcane)
+                # Si ce n'est pas une arcane, on peut mettre 1 (neutre) ou None
+                ratio_to_add = None
+                if found_category == "arcanes":
+                    # On récupère le maxRank depuis l'item ou le détail
+                    max_rank = main_item.get("maxRank", 5) 
+                    # Utilise ta fonction de calcul ici
+                    ratio_to_add = get_arcane_fusion_ratio(max_rank) 
+
+                # Puis dans l'injection :
                 new_data[found_category]["table"].append({
                     "id": slug, 
                     "n_fr": n_fr, 
                     "n_en": n_en, 
+                    "fusion_ratio": ratio_to_add, # <--- C'est ici que ça se joue !
                     **indicators
                 })
          
