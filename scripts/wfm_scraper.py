@@ -665,26 +665,29 @@ def main():
             # Si la liste est vide (Mod, Arcane, Relique...), cela ajoutera un tableau vide [] sans bug.
             # Sécurité : On s'assure que la catégorie a bien été identifiée dans notre dictionnaire
             if found_category and found_category in new_data:
-                if slug in new_data[found_category]["details"]:
-                    new_data[found_category]["details"][slug]["components"] = set_components_data
+            # 1. On peuple les composants si nécessaire
+            if slug in new_data[found_category]["details"]:
+                new_data[found_category]["details"][slug]["components"] = set_components_data
 
-                # Avant d'ajouter à la table, définis la valeur (si c'est une arcane)
-                # Si ce n'est pas une arcane, on peut mettre 1 (neutre) ou None
-                ratio_to_add = None
-                if found_category == "arcanes":
-                    # On récupère le maxRank depuis l'item ou le détail
-                    max_rank = main_item.get("maxRank", 5) 
-                    # Utilise ta fonction de calcul ici
-                    ratio_to_add = get_arcane_fusion_ratio(max_rank) 
+            # 2. CALCUL ET STOCKAGE DU RATIO (Le correctif)
+            ratio_to_add = None
+            if found_category == "arcanes":
+                # On récupère maxRank depuis 'main_item'. 
+                # ATTENTION : Si on est dans le "SCÉNARIO B" (cache), main_item n'existe pas.
+                # Il faut soit le récupérer du cache, soit stocker le maxRank dans les détails lors du premier run.
+                max_rank = main_item.get("maxRank", 5) if 'main_item' in locals() else 5
+                ratio_to_add = get_fusion_ratio(max_rank)
 
-                # Puis dans l'injection :
-                new_data[found_category]["table"].append({
-                    "id": slug, 
-                    "n_fr": n_fr, 
-                    "n_en": n_en, 
-                    "fusion_ratio": ratio_to_add, # <--- C'est ici que ça se joue !
-                    **indicators
-                })
+            # 3. AJOUT À LA TABLE
+            # On crée l'objet ligne en s'assurant que fusion_ratio est inclus
+            row = {
+                "id": slug, 
+                "n_fr": n_fr, 
+                "n_en": n_en, 
+                "fusion_ratio": ratio_to_add, 
+                **indicators
+            }
+            new_data[found_category]["table"].append(row)
          
         except Exception as e:
             print(f"⚠️ Erreur sur {slug} : {e}")
