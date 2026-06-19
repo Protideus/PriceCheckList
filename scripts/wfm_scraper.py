@@ -98,19 +98,10 @@ CATEGORIES = ["warframes", "armes", "equipements", "reliques", "mods", "arcanes"
 # FONCTIONS UTILITAIRES & MATHÉMATIQUES
 # ==============================================================================
 
-def get_fusion_ratio(max_rank):
-    """
-    Calcule le nombre total de copies R0 nécessaires pour atteindre max_rank.
-    Logique : somme cumulative des copies par rang.
-    Si DE ajoute des rangs, cette logique reste valide.
-    """
-    # 1 (l'unité de base) + somme des copies pour chaque étape de fusion
-    # Pour les arcanes : R0 -> R1 (1), R1 -> R2 (2), R2 -> R3 (4), etc.
-    # Cette formule dépend de la progression spécifique choisie par DE.
-    total = 1
-    for r in range(1, max_rank + 1):
-        total += (2**(r-1)) # Ajuste cette ligne si le coût par rang change
-    return total
+def get_fusion_ratio(max_rank: int) -> int:
+    if max_rank < 0:
+        return 0
+    return (max_rank * (max_rank + 3) // 2) + 1
 
 def safe_requests(url, headers, max_retries=3, backoff_factor=1.5):
     """
