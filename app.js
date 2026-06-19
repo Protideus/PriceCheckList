@@ -25,7 +25,8 @@
             searchQuery: "",
             sortColumn: "n_fr",
             sortDirection: "asc",
-            rankFilter: "all"
+            rankFilter: "all",
+            alertProfitThreshold: 30
         };
 
         // INITIALISATION DE L'APPLICATION
@@ -158,8 +159,13 @@
             const modalContent = document.getElementById('modal-content');
             if (!modalContent) return;
 
+            const threshold = Number(appState.alertProfitThreshold || 30);
             const categories = ['all', ...AlertStore.getCategories()];
-            const alerts = AlertStore.getAlerts({ category: categoryFilter, priority: 'all' });
+            const alerts = AlertStore.getAlerts({ category: categoryFilter, priority: 'all' })
+                .filter(alert => {
+                    if (typeof alert.profit !== 'number') return true;
+                    return alert.profit >= threshold;
+                });
             const filterButtons = categories.map(catId => {
                 const label = catId === 'all' ? 'Toutes' : getCategoryLabel(catId);
                 const activeClass = catId === categoryFilter ? 'bg-cyan-500 text-black' : 'bg-gray-900/70 text-gray-300 hover:bg-gray-800';
@@ -195,14 +201,20 @@
             `;
 
             modalContent.innerHTML = `
-                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between gap-4">
+                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2">
                             <i class="fa-solid fa-bell text-cyan-400"></i> Alertes économiques
                         </h2>
                         <p class="text-xs text-gray-400 mt-1">${alerts.length} alerte(s) active(s) triées par priorité.</p>
                     </div>
-                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                        <label class="flex items-center gap-2 text-xs text-gray-300">
+                            <span>Seuil profit</span>
+                            <input id="alert-profit-threshold" type="number" min="0" step="5" value="${threshold}" onchange="handleAlertProfitThresholdChange(this.value)" class="w-20 bg-gray-950/70 border border-gray-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30">
+                        </label>
+                        <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    </div>
                 </div>
                 <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
                     <div class="flex flex-wrap gap-2 mb-4">${filterButtons}</div>
@@ -487,6 +499,12 @@
             rankFilterSelect.classList.toggle('border-cyan-500', available);
             rankFilterSelect.classList.toggle('border-gray-700', !available);
             rankFilterWrapper.title = available ? 'Filtre actif pour cette catégorie' : 'Ce filtre n\'est pas disponible pour cette catégorie';
+        }
+
+        function handleAlertProfitThresholdChange(value) {
+            const threshold = Number(value);
+            appState.alertProfitThreshold = Number.isFinite(threshold) && threshold >= 0 ? threshold : 30;
+            renderAlertsList('all');
         }
 
         // RENDU ULTRA-RAPIDE DU TABLEAU DYNAMIQUE (ZÉRO FREEZE)

@@ -25,7 +25,7 @@ window.AlertStore = (() => {
         return `${n.toFixed(1)} pl`;
     };
 
-    const createAlert = ({ category, itemId, label, icon, priority, message, targetRank = 'R0' }) => {
+    const createAlert = ({ category, itemId, label, icon, priority, message, targetRank = 'R0', profit = null }) => {
         const uid = `${category}:${itemId}:${label}:${targetRank}`;
         if (alertIndex.has(uid)) return null;
 
@@ -38,6 +38,7 @@ window.AlertStore = (() => {
             priority,
             message,
             targetRank,
+            profit,
             weight: PRIORITY[priority]?.weight || 4,
             timestamp: Date.now()
         };
@@ -138,7 +139,8 @@ window.AlertStore = (() => {
                     message: `💔 SÉPARATION RENTABLE : ${baseName} RMAX vaut ${formatPrice(pMax)}. 
                               Acheter des R0 et séparer coûterait ${formatPrice(costToCraft)} (${ratio} copies). 
                               Profit potentiel : +${profitSeparation.toFixed(1)} pl.`,
-                    targetRank: 'RMAX'
+                    targetRank: 'RMAX',
+                    profit: profitSeparation
                 });
             }
 
@@ -154,7 +156,8 @@ window.AlertStore = (() => {
                     message: `⚗️ FUSION RENTABLE : ${baseName} RMAX se vend ${formatPrice(pMax)}. 
                               Acheter ${ratio} copies R0 coûterait ${formatPrice(costToCraft)}. 
                               Profit potentiel : +${profitFusion.toFixed(1)} pl.`,
-                    targetRank: 'RMAX'
+                    targetRank: 'RMAX',
+                    profit: profitFusion
                 });
             }
         }
