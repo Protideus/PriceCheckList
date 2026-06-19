@@ -118,33 +118,35 @@ window.AlertStore = (() => {
         if (category !== 'arcanes') return;
 
         const baseName = item.n_fr || item.id || 'Objet inconnu';
-        const ds = normalizeNumber(item.ds);
-        const dsMax = normalizeNumber(item.ds_max);
-        const fMax = normalizeNumber(item.f_max);
+        const ratio = normalizeNumber(item.fusion_ratio) || 21;
         const p = normalizeNumber(item.p);
         const pMax = normalizeNumber(item.p_max);
+        const costToCraft = p * ratio;
 
-        if (item.p_max !== undefined && item.ds_max !== undefined) {
-            if (dsMax <= 15 && ds >= 50 && fMax >= 2) {
+        if (pMax > 0 && p > 0) {
+            if (pMax < costToCraft * 0.85) {
                 createAlert({
                     category,
                     itemId: item.id,
-                    label: 'RMAX Bradé',
+                    label: 'RMAX Sous-évalué',
                     icon: '⚡',
                     priority: 'high',
-                    message: `⚡ ANOMALIE RANG : Le prix RMAX de ${baseName} (${formatPrice(pMax)}) est anormalement bas (Donchian ${dsMax.toFixed(1)}%) alors que sa version Rang 0 (${formatPrice(p)}) reste forte. Idéal pour acheter le RMAX directement.`,
+                    message: `⚡ ANOMALIE FUSION : ${baseName} RMAX vaut ${formatPrice(pMax)}. 
+                              Le crafter coûte ${formatPrice(costToCraft)} (${ratio} copies R0).`,
                     targetRank: 'RMAX'
                 });
             }
 
-            if (dsMax >= 80 && ds <= 20 && normalizeNumber(item.f) >= 2) {
+            if (pMax > costToCraft * 1.5) {
                 createAlert({
                     category,
                     itemId: item.id,
-                    label: 'Spéculation RMAX',
+                    label: 'Arbitrage Fusion',
                     icon: '🛠️',
                     priority: 'critical',
-                    message: `🛠️ ARBITRAGE FUSION : Le prix R0 de ${baseName} (${formatPrice(p)}) s'est effondré mais la version RMAX (${formatPrice(pMax)}) reste très chère. Achetez des R0, maxez-les et vendez le RMAX pour une marge maximale.`,
+                    message: `🛠️ ARBITRAGE : ${baseName} RMAX est très lucratif (${formatPrice(pMax)}). 
+                              Le coût de fusion est de ${formatPrice(costToCraft)}. 
+                              Rentabilité : ${((pMax / costToCraft - 1) * 100).toFixed(0)}%.`,
                     targetRank: 'RMAX'
                 });
             }
