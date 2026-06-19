@@ -122,31 +122,38 @@ window.AlertStore = (() => {
         const p = normalizeNumber(item.p);
         const pMax = normalizeNumber(item.p_max);
         const costToCraft = p * ratio;
+        
+        const MIN_PROFIT_THRESHOLD = 30; // Seuil minimum de profit en platines
 
         if (pMax > 0 && p > 0) {
-            if (pMax < costToCraft * 0.85) {
+            // Alerte : RMAX Sous-évalué (arbitrage par séparation)
+            const profitSeparation = costToCraft - pMax;
+            if (profitSeparation >= MIN_PROFIT_THRESHOLD) {
                 createAlert({
                     category,
                     itemId: item.id,
                     label: 'RMAX Sous-évalué',
-                    icon: '⚡',
+                    icon: '💔',
                     priority: 'high',
-                    message: `⚡ ANOMALIE FUSION : ${baseName} RMAX vaut ${formatPrice(pMax)}. 
-                              Le crafter coûte ${formatPrice(costToCraft)} (${ratio} copies R0).`,
+                    message: `💔 SÉPARATION RENTABLE : ${baseName} RMAX vaut ${formatPrice(pMax)}. 
+                              Acheter des R0 et séparer coûterait ${formatPrice(costToCraft)} (${ratio} copies). 
+                              Profit potentiel : +${profitSeparation.toFixed(1)} pl.`,
                     targetRank: 'RMAX'
                 });
             }
 
-            if (pMax > costToCraft * 1.5) {
+            // Alerte : Arbitrage Fusion (arbitrage par fusion)
+            const profitFusion = pMax - costToCraft;
+            if (profitFusion >= MIN_PROFIT_THRESHOLD) {
                 createAlert({
                     category,
                     itemId: item.id,
                     label: 'Arbitrage Fusion',
-                    icon: '🛠️',
+                    icon: '⚗️',
                     priority: 'critical',
-                    message: `🛠️ ARBITRAGE : ${baseName} RMAX est très lucratif (${formatPrice(pMax)}). 
-                              Le coût de fusion est de ${formatPrice(costToCraft)}. 
-                              Rentabilité : ${((pMax / costToCraft - 1) * 100).toFixed(0)}%.`,
+                    message: `⚗️ FUSION RENTABLE : ${baseName} RMAX se vend ${formatPrice(pMax)}. 
+                              Acheter ${ratio} copies R0 coûterait ${formatPrice(costToCraft)}. 
+                              Profit potentiel : +${profitFusion.toFixed(1)} pl.`,
                     targetRank: 'RMAX'
                 });
             }
