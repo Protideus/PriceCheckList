@@ -74,6 +74,11 @@ window.AlertStore = (() => {
             // Protection contre valeurs non définies.
         }
 
+        // Exclure les items sans ventes récentes (volume 48h = 0)
+        if (row.v === 0) {
+            return;
+        }
+
         const baseName = item.n_fr || item.id || 'Objet inconnu';
         const rankSuffixLabel = rankSuffix ? ' RMAX' : '';
         const absP90 = Math.abs(row.p90);
@@ -123,6 +128,10 @@ window.AlertStore = (() => {
         const p = normalizeNumber(item.p);
         const pMax = normalizeNumber(item.p_max);
         const costToCraft = p * ratio;
+
+        // Exclure items sans ventes en 48h
+        const v = normalizeNumber(item.v);
+        if (v === 0) return;
         
         const MIN_PROFIT_THRESHOLD = 30; // Seuil minimum de profit en platines
 
