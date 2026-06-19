@@ -562,8 +562,7 @@ def main():
                     if cat == "arcanes":
                         # On calcule le ratio dynamiquement selon le maxRank
                         max_rank = main_item.get("maxRank", 5)
-                        # Logique : 1 + somme(2^(r-1) pour r de 1 à max_rank)
-                        fusion_ratio = 1 + sum(2**(r-1) for r in range(1, max_rank + 1))
+                        fusion_ratio = get_fusion_ratio(max_rank)
 
                     # Initialisation de la structure des détails
                     new_data[cat]["details"][slug] = {
