@@ -99,9 +99,18 @@ CATEGORIES = ["warframes", "armes", "equipements", "reliques", "mods", "arcanes"
 # ==============================================================================
 
 def get_fusion_ratio(max_rank: int) -> int:
+    """
+    Calcule le nombre total d'arcanes rang 0 nécessaires pour atteindre 'max_rank'.
+    Valide pour les arcanes standards (max rank 5) et ceux limités à rank 3.
+    """
     if max_rank < 0:
         return 0
-    return (max_rank * (max_rank + 3) // 2) + 1
+    
+    total = 1  # On commence avec 1 arcane R0
+    for r in range(1, max_rank + 1):
+        total += (r + 1)   # +2, +3, +4, +5, +6...
+    
+    return total
 
 def safe_requests(url, headers, max_retries=3, backoff_factor=1.5):
     """
