@@ -1144,6 +1144,13 @@
                             </p>
                         </div>
 
+                        <div class="border-t border-gray-800 pt-4">
+                            <h4 class="text-sm font-bold text-white mb-2">Disclaimer</h4>
+                            <ul class="text-xs text-gray-400 space-y-1.5">
+                                <span class="text-cyan-300">Digital Extremes Ltd, Warframe and the logo Warframe are registered trademarks. All rights are reserved worldwide. This site has no official link with Digital Extremes Ltd or Warframe or Warframe Market. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of Digital Extremes Ltd.</span>
+                            </ul>
+                        </div>
+
                         <div class="border-t border-gray-800 pt-4 flex flex-col gap-3">
                             <a href="https://clan-warframe.fr/" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-cyan-500 text-black font-bold rounded-xl hover:bg-cyan-400 transition-all text-xs uppercase tracking-wider shadow-md">
                                 <i class="fa-solid fa-globe"></i> Site du Clan L-Zass
