@@ -1,1 +1,1582 @@
-{"styanax_prime_set": {"desc_fr": "Bouclier des innocents, lance de justice, Styanax Prime résiste à la tyrannie.", "desc_en": "Shield of the innocent. Spear of justice. Styanax Prime holds the line in defiance of tyranny.", "wiki_en": "", "icon": "items/images/en/styanax_prime_set.27f0de9e366d4a69ace940a8f927783d.webp", "components": [{"slug": "styanax_prime_blueprint", "n_fr": "Styanax Prime (Schéma)", "n_en": "Styanax Prime Blueprint", "qty": 1, "p": 13.6, "p90": -54.7, "v": 582, "vr": 2.36, "ds": 3.5, "f": 3}, {"slug": "styanax_prime_chassis_blueprint", "n_fr": "Styanax Prime - Châssis (Schéma)", "n_en": "Styanax Prime Chassis Blueprint", "qty": 1, "p": 7.3, "p90": -59.4, "v": 389, "vr": 1.82, "ds": 2.3, "f": 3}, {"slug": "styanax_prime_neuroptics_blueprint", "n_fr": "Styanax Prime - Neuroptiques (Schéma)", "n_en": "Styanax Prime Neuroptics Blueprint", "qty": 1, "p": 17.2, "p90": -49.4, "v": 593, "vr": 2.36, "ds": 1.2, "f": 3}, {"slug": "styanax_prime_systems_blueprint", "n_fr": "Styanax Prime - Systèmes (Schéma)", "n_en": "Styanax Prime Systems Blueprint", "qty": 1, "p": 8.9, "p90": -77.8, "v": 573, "vr": 2.45, "ds": 0.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "arcane_hot_shot": {"desc_fr": "Gagnez 6% de Chances de Critique avec votre arme pendant 10s lorsque vous utilisez des Pouvoirs pour infliger des Effets de Statut de Feu aux ennemis. Nombre maximal de cumuls: 50.\n+1 Réanimation Arcane", "desc_en": "Gain 6% weapon Critical Chance for 10s, when using abilities to inflict Heat Status effect on enemies. Maximum 50x stacks.\n+1 Arcane Revive", "wiki_en": "", "icon": "items/images/en/arcane_hot_shot.b488affbc34321e8b1dba284f889d634.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "ayatan_anasa_sculpture": {"desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.", "desc_en": "This kinetic Orokin sculpture springs to life when filled with Ayatan Stars. It may also be a source of Endo.", "wiki_en": "https://wiki.warframe.com/w/Ayatan_Anasa_Sculpture", "icon": "items/images/en/ayatan_anasa_sculpture.4b0f22f5432ea4a4f196806a7b90ccb0.png", "components": [], "fusion_ratio": null, "expert_tips": [{"author": "Ka_Lagoon", "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"}]}, "rifle_riven_mod_(veiled)": {"desc_fr": "", "desc_en": "", "wiki_en": "https://warframe.fandom.com/wiki/Rifle_Riven_Mod", "icon": "items/images/en/rifle_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "melee_riven_mod_(veiled)": {"desc_fr": "", "desc_en": "", "wiki_en": "https://warframe.fandom.com/wiki/Melee_Riven_Mod", "icon": "items/images/en/melee_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "pistol_riven_mod_(veiled)": {"desc_fr": "", "desc_en": "", "wiki_en": "https://warframe.fandom.com/wiki/Pistol_Riven_Mod", "icon": "items/images/en/pistol_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "voruna_prime_set": {"desc_fr": "Splendeur et férocité atteignent leur paroxysme sauvage avec Voruna Prime. Bien qu'exaltée par l'or Orokin, elle est plus redoutable que jamais.", "desc_en": "Splendor and ferocity reach their savage apex in Voruna Prime. Though exalted by Orokin gold, she is more feral than ever.", "wiki_en": "", "icon": "items/images/en/voruna_prime_set.6a82ab2971991cfa9ff8b92df7ed8547.webp", "components": [{"slug": "voruna_prime_blueprint", "n_fr": "Voruna Prime (Schéma)", "n_en": "Voruna Prime Blueprint", "qty": 1, "p": 25.6, "p90": -36.0, "v": 411, "vr": 0.53, "ds": 3.3, "f": 3}, {"slug": "voruna_prime_chassis_blueprint", "n_fr": "Voruna Prime - Châssis (Schéma)", "n_en": "Voruna Prime Chassis Blueprint", "qty": 1, "p": 6.0, "p90": -62.5, "v": 249, "vr": 0.46, "ds": 16.7, "f": 3}, {"slug": "voruna_prime_neuroptics_blueprint", "n_fr": "Voruna Prime - Neuroptiques (Schéma)", "n_en": "Voruna Prime Neuroptics Blueprint", "qty": 1, "p": 3.4, "p90": -77.3, "v": 227, "vr": 0.43, "ds": 3.3, "f": 3}, {"slug": "voruna_prime_systems_blueprint", "n_fr": "Voruna Prime - Systèmes (Schéma)", "n_en": "Voruna Prime Systems Blueprint", "qty": 1, "p": 9.3, "p90": -76.8, "v": 329, "vr": 0.47, "ds": 1.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "molt_augmented": {"desc_fr": "Sur Élimination:\n+0.24% Puissance de Pouvoir. Cumulable jusqu'à 250x.\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On Kill:\n+0.24% Ability Strength. Stacks up to 250x.\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Molt_Augmented", "icon": "items/images/en/molt_augmented.9def654a0d24b7f085940dfc8ef843b5.png", "components": [], "fusion_ratio": 21, "expert_tips": []}, "xaku_prime_set": {"desc_fr": "L'enfant de la guerre et du Néant renaît en or. Ce qui a été brisé un jour peut se relever plus fort que ce qui n'a jamais été endommagé.", "desc_en": "The child of war and void is reborn in gold. That which was once shattered may rise stronger than that which was never broken.", "wiki_en": "https://wiki.warframe.com/w/Xaku_Prime", "icon": "items/images/en/xaku_prime.caeeda2f9eec158d19fd76d7631fa5de.webp", "components": [{"slug": "xaku_prime_blueprint", "n_fr": "Xaku Prime (Schéma)", "n_en": "Xaku Prime Blueprint", "qty": 1, "p": 11.4, "p90": -10.2, "v": 180, "vr": 0.66, "ds": 46.7, "f": 3}, {"slug": "xaku_prime_chassis_blueprint", "n_fr": "Xaku Prime - Châssis (Schéma)", "n_en": "Xaku Prime Chassis Blueprint", "qty": 1, "p": 3.3, "p90": -10.8, "v": 181, "vr": 1.23, "ds": 100.0, "f": 3}, {"slug": "xaku_prime_neuroptics_blueprint", "n_fr": "Xaku Prime - Neuroptiques (Schéma)", "n_en": "Xaku Prime Neuroptics Blueprint", "qty": 1, "p": 3.2, "p90": 14.3, "v": 130, "vr": 1.69, "ds": 100.0, "f": 3}, {"slug": "xaku_prime_systems_blueprint", "n_fr": "Xaku Prime - Systèmes (Schéma)", "n_en": "Xaku Prime Systems Blueprint", "qty": 1, "p": 3.9, "p90": -41.8, "v": 217, "vr": 1.1, "ds": 15.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "primary_merciless": {"desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge", "desc_en": "On Kill:\n+30% Damage for 4s. Stacks up to 12x.\n+30% Reload Speed\n+30% Reload Speed", "wiki_en": "https://wiki.warframe.com/w/Primary_Merciless", "icon": "items/images/en/primary_merciless.baca700cca91762be6465c5f52584fa7.png", "components": [], "fusion_ratio": 21, "expert_tips": []}, "arcane_sculptor": {"desc_fr": "Lors de la création d'un objet avec des Pouvoirs: les lancements ont 175% d'Efficacité de Pouvoir pendant 12s. +1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On creating an object with abilities: casts have 175% Ability Efficiency for 12s. +1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "", "icon": "items/images/en/arcane_sculptor.c585312d90bbedba54bd156a47489c7c.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "ayatan_cyan_star": {"desc_fr": "Placez ces étoiles dans des Sculptures Ayatans pour alimenter leur mouvement. Peut également être une source d'Endo.", "desc_en": "Place these stars into Ayatan Sculptures to power their movement. May also be a source of Endo.", "wiki_en": "https://wiki.warframe.com/w/Ayatan_Cyan_Star", "icon": "items/images/en/ayatan_cyan_star.89fae8de34c9b16b9f5a9c6acb84e8d9.png", "components": [], "fusion_ratio": null, "expert_tips": [{"author": "Ka_Lagoon", "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"}]}, "caliban_prime_set": {"desc_fr": "Forgé pour célébrer la paix bien trop brève entre les Orokins et les Sentients, Caliban Prime est un véritable chef-d'œuvre collaboratif. L'héritier des royaumes jumeaux s'élève dans une tenue dorée royale.", "desc_en": "Forged in celebration of the all-too-brief peace between the Orokin and Sentients, Caliban Prime is a true collaborative masterpiece. The heir of twin kingdoms arises in royal gold.", "wiki_en": "", "icon": "items/images/en/caliban_prime_set.cae2f667bfae7c3ae9f5089760f9f090.webp", "components": [{"slug": "caliban_prime_blueprint", "n_fr": "Caliban Prime (Schéma)", "n_en": "Caliban Prime Blueprint", "qty": 1, "p": 3.1, "p90": -3.1, "v": 304, "vr": 2.04, "ds": 100.0, "f": 3}, {"slug": "caliban_prime_chassis_blueprint", "n_fr": "Caliban Prime - Châssis (Schéma)", "n_en": "Caliban Prime Chassis Blueprint", "qty": 1, "p": 1.8, "p90": -37.9, "v": 63, "vr": 0.88, "ds": 80.0, "f": 2}, {"slug": "caliban_prime_neuroptics_blueprint", "n_fr": "Caliban Prime - Neuroptiques (Schéma)", "n_en": "Caliban Prime Neuroptics Blueprint", "qty": 1, "p": 11.9, "p90": 14.4, "v": 272, "vr": 1.04, "ds": 63.3, "f": 3}, {"slug": "caliban_prime_systems_blueprint", "n_fr": "Caliban Prime - Systèmes (Schéma)", "n_en": "Caliban Prime Systems Blueprint", "qty": 1, "p": 15.0, "p90": -21.1, "v": 322, "vr": 0.96, "ds": 0.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "melee_influence": {"desc_fr": "Melee Arcane that, on Melee Electricity Status, creates a 20% chance for elemental Melee Status Effects to apply to enemies within 20 meters for 18 seconds. This cannot refresh while active.", "desc_en": "Melee Arcane that, on Melee Electricity Status, creates a 20% chance for elemental Melee Status Effects to apply to enemies within 20 meters for 18 seconds. This cannot refresh while active.", "wiki_en": "https://wiki.warframe.com/w/Melee_Influence", "icon": "items/images/en/melee_influence.b22232a58406e5feeb8bbe94c07c18d2.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "afentis_prime_set": {"desc_fr": "La Lance à Énergie dorée de Styanax Prime brille comme un phare sur le champ de bataille, galvanisant les alliés et étourdissant les ennemis.", "desc_en": "The gilded speargun of Styanax Prime shines like a beacon across the battlefield, invigorating allies and stunning enemies.", "wiki_en": "", "icon": "items/images/en/afentis_prime_set.280c16ef2890301844a36006cb1dd723.webp", "components": [{"slug": "afentis_prime_barrel", "n_fr": "Afentis Prime - Canon", "n_en": "Afentis Prime Barrel", "qty": 1, "p": 7.4, "p90": -78.9, "v": 212, "vr": 2.33, "ds": 1.4, "f": 3}, {"slug": "afentis_prime_blade", "n_fr": "Afentis Prime - Lame", "n_en": "Afentis Prime Blade", "qty": 1, "p": 16.3, "p90": -61.2, "v": 287, "vr": 3.08, "ds": 4.8, "f": 3}, {"slug": "afentis_prime_blueprint", "n_fr": "Afentis Prime (Schéma)", "n_en": "Afentis Prime Blueprint", "qty": 1, "p": 21.4, "p90": -50.2, "v": 315, "vr": 2.98, "ds": 6.1, "f": 3}, {"slug": "afentis_prime_handle", "n_fr": "Afentis Prime - Manche", "n_en": "Afentis Prime Handle", "qty": 1, "p": 6.1, "p90": -41.9, "v": 165, "vr": 2.79, "ds": 20.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "yareli_prime_set": {"desc_fr": "Waverider surgit, renaissant de l'écume de l'océan. Dans sa splendeur originelle de l'ère Orokin, elle incarne la vigueur éternelle de la jeunesse.", "desc_en": "The Waverider arises, reborn from the ocean foam. In her original Orokin-era splendor she embodies the undying vigor of youth.", "wiki_en": "", "icon": "items/images/en/yareli_prime_set.80badf98bdde8e0c47cac61aa6149ea0.webp", "components": [{"slug": "yareli_prime_blueprint", "n_fr": "Yareli Prime (Schéma)", "n_en": "Yareli Prime Blueprint", "qty": 1, "p": 3.3, "p90": 0.0, "v": 169, "vr": 1.63, "ds": 65.0, "f": 3}, {"slug": "yareli_prime_chassis_blueprint", "n_fr": "Yareli Prime - Châssis (Schéma)", "n_en": "Yareli Prime Chassis Blueprint", "qty": 1, "p": 2.0, "p90": -35.5, "v": 60, "vr": 1.03, "ds": 0.0, "f": 2}, {"slug": "yareli_prime_neuroptics_blueprint", "n_fr": "Yareli Prime - Neuroptiques (Schéma)", "n_en": "Yareli Prime Neuroptics Blueprint", "qty": 1, "p": 9.8, "p90": -1.0, "v": 290, "vr": 1.18, "ds": 13.3, "f": 3}, {"slug": "yareli_prime_systems_blueprint", "n_fr": "Yareli Prime - Systèmes (Schéma)", "n_en": "Yareli Prime Systems Blueprint", "qty": 1, "p": 12.0, "p90": -39.1, "v": 338, "vr": 1.19, "ds": 20.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "arcane_energize": {"desc_fr": "Sur Ramassage d'Énergie:\n60% de chances de restaurer 150 points d'Énergie à vous-même et aux alliés à moins de 15m\n15s de temps de recharge\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On Energy Pickup:\n60% chance to replenish 150 Energy to self and allies within 15m\n15s cooldown\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Energize", "icon": "items/images/en/arcane_energize.e5f85590ceb29db89c6753dfdf823485.png", "components": [], "fusion_ratio": 21, "expert_tips": []}, "hildryn_prime_set": {"desc_fr": "Hildryn Prime prouve que le succès récompense la discipline.", "desc_en": "Hildryn Prime proves that power is discipline’s reward.", "wiki_en": "https://wiki.warframe.com/w/Hildryn_Prime", "icon": "items/images/en/hildryn_prime_set.7e3f1cd4b94baa590dde37cd0ad0ba9e.png", "components": [{"slug": "hildryn_prime_blueprint", "n_fr": "Hildryn Prime (Schéma)", "n_en": "Hildryn Prime Blueprint", "qty": 1, "p": 37.7, "p90": 9.6, "v": 217, "vr": 1.15, "ds": 67.5, "f": 3}, {"slug": "hildryn_prime_chassis_blueprint", "n_fr": "Hildryn Prime - Châssis (Schéma)", "n_en": "Hildryn Prime Chassis Blueprint", "qty": 1, "p": 9.7, "p90": 5.4, "v": 157, "vr": 0.92, "ds": 17.5, "f": 3}, {"slug": "hildryn_prime_neuroptics_blueprint", "n_fr": "Hildryn Prime - Neuroptiques (Schéma)", "n_en": "Hildryn Prime Neuroptics Blueprint", "qty": 1, "p": 7.3, "p90": 19.7, "v": 104, "vr": 0.78, "ds": 57.5, "f": 3}, {"slug": "hildryn_prime_systems_blueprint", "n_fr": "Hildryn Prime - Systèmes (Schéma)", "n_en": "Hildryn Prime Systems Blueprint", "qty": 1, "p": 4.0, "p90": 11.1, "v": 103, "vr": 1.13, "ds": 0.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "nautilus_prime_set": {"desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.", "desc_en": "This brave deckhand defends his crew with Verglas Prime.", "wiki_en": "https://wiki.warframe.com/w/Nautilus_Prime", "icon": "items/images/en/nautilus_prime.64f2680abc41ecdb62943bc1b55be8c4.webp", "components": [{"slug": "nautilus_prime_blueprint", "n_fr": "Nautilus Prime (Schéma)", "n_en": "Nautilus Prime Blueprint", "qty": 1, "p": 10.1, "p90": 3.1, "v": 166, "vr": 0.52, "ds": 100.0, "f": 3}, {"slug": "nautilus_prime_carapace", "n_fr": "Nautilus Prime - Carapace", "n_en": "Nautilus Prime Carapace", "qty": 1, "p": 5.4, "p90": 42.1, "v": 88, "vr": 0.52, "ds": 35.0, "f": 3}, {"slug": "nautilus_prime_cerebrum", "n_fr": "Nautilus Prime - Cerveau", "n_en": "Nautilus Prime Cerebrum", "qty": 1, "p": 16.6, "p90": 12.2, "v": 261, "vr": 0.68, "ds": 73.3, "f": 3}, {"slug": "nautilus_prime_systems", "n_fr": "Nautilus Prime - Systèmes", "n_en": "Nautilus Prime Systems", "qty": 1, "p": 3.4, "p90": 17.2, "v": 146, "vr": 0.74, "ds": 100.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "secondary_enervate": {"desc_fr": "Sur coup: augmentation des Chances de Critique de 10%. Se réinitialise après 6 Critiques Majeurs.", "desc_en": "On Hit: Increase Critical Chance by 10%. Resets after 6 Big Critical Hits.", "wiki_en": "https://wiki.warframe.com/w/Secondary_Enervate", "icon": "items/images/en/secondary_enervate.ad8d69119b058ad12c196bcf33352bd2.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "critical_delay": {"desc_fr": "+200% de Chance de Critique\n-20% de Cadence de Tir (x2 pour les Arcs)", "desc_en": "+200% Critical Chance\n-20% Fire Rate (x2 for Bows)", "wiki_en": "https://wiki.warframe.com/w/Critical_Delay", "icon": "items/images/en/critical_delay.5e621ae9ee9a6d2d4576565a26af45cb.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "lavos_prime_set": {"desc_fr": "Certaines Warframes étaient Prime dès le départ. D'autres ont évolué. Lavos, le maître de la transmutation, ne s'est incliné devant personne alors qu'il forgeait son propre chemin vers la bravoure.", "desc_en": "Some Warframes were Prime from the start. Others ascended. Lavos, the master of transmutation, bowed to no one as he forged his own path to valor.", "wiki_en": "https://wiki.warframe.com/w/Lavos_Prime", "icon": "items/images/en/lavos_prime_set.b50879ee28eb0c9effda56dadca76c86.webp", "components": [{"slug": "lavos_prime_blueprint", "n_fr": "Lavos Prime (Schéma)", "n_en": "Lavos Prime Blueprint", "qty": 1, "p": 3.8, "p90": -29.6, "v": 119, "vr": 1.01, "ds": 60.0, "f": 3}, {"slug": "lavos_prime_chassis_blueprint", "n_fr": "Lavos Prime - Châssis (Schéma)", "n_en": "Lavos Prime Chassis Blueprint", "qty": 1, "p": 1.7, "p90": -43.3, "v": 63, "vr": 1.02, "ds": 0.0, "f": 2}, {"slug": "lavos_prime_neuroptics_blueprint", "n_fr": "Lavos Prime - Neuroptiques (Schéma)", "n_en": "Lavos Prime Neuroptics Blueprint", "qty": 1, "p": 4.4, "p90": 0.0, "v": 97, "vr": 0.72, "ds": 40.0, "f": 3}, {"slug": "lavos_prime_systems_blueprint", "n_fr": "Lavos Prime - Systèmes (Schéma)", "n_en": "Lavos Prime Systems Blueprint", "qty": 1, "p": 10.1, "p90": 21.7, "v": 173, "vr": 0.73, "ds": 100.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "gyre_prime_set": {"desc_fr": "Des circuits dorés activent et dynamisent des mouvements frénétiques résonnant à travers les âges. Dansez pour l'éternité avec Gyre Prime.", "desc_en": "Gilded circuits spark and energize frenetic movements that echo through the ages. Dance into eternity with Gyre Prime.", "wiki_en": "", "icon": "items/images/en/gyre_prime_set.fd52e994eb0d81e21e28b7b7a98ad960.webp", "components": [{"slug": "gyre_prime_blueprint", "n_fr": "Gyre Prime (Schéma)", "n_en": "Gyre Prime Blueprint", "qty": 1, "p": 3.8, "p90": -24.0, "v": 124, "vr": 0.78, "ds": 40.0, "f": 3}, {"slug": "gyre_prime_chassis_blueprint", "n_fr": "Gyre Prime - Châssis (Schéma)", "n_en": "Gyre Prime Chassis Blueprint", "qty": 1, "p": 8.9, "p90": -16.0, "v": 209, "vr": 0.8, "ds": 45.0, "f": 3}, {"slug": "gyre_prime_neuroptics_blueprint", "n_fr": "Gyre Prime - Neuroptiques (Schéma)", "n_en": "Gyre Prime Neuroptics Blueprint", "qty": 1, "p": 9.3, "p90": -7.0, "v": 261, "vr": 0.92, "ds": 30.0, "f": 3}, {"slug": "gyre_prime_systems_blueprint", "n_fr": "Gyre Prime - Systèmes (Schéma)", "n_en": "Gyre Prime Systems Blueprint", "qty": 1, "p": 3.7, "p90": -17.8, "v": 92, "vr": 0.79, "ds": 35.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "athodai_prime_set": {"desc_fr": "Libérez le chant du guerrier vertueux avec ce pistolet doré qui génère une Surcharge sur les Tirs à la Tête, maximisant la Cadence de Tir et l'Efficacité des Munitions pendant un court instant.", "desc_en": "Unleash the song of the righteous warrior with this gilded pistol that goes into Overdrive on headshot kills, maximizing fire rate and ammo efficiency for a short time.", "wiki_en": "", "icon": "items/images/en/athodai_prime_set.481c252cb75a8c0c0ff351c65688a3e4.webp", "components": [{"slug": "athodai_prime_barrel", "n_fr": "Athodai Prime - Canon", "n_en": "Athodai Prime Barrel", "qty": 1, "p": 14.2, "p90": -79.4, "v": 200, "vr": 2.55, "ds": 0.4, "f": 3}, {"slug": "athodai_prime_blueprint", "n_fr": "Athodai Prime (Schéma)", "n_en": "Athodai Prime Blueprint", "qty": 1, "p": 5.0, "p90": -68.8, "v": 103, "vr": 2.44, "ds": 0.0, "f": 3}, {"slug": "athodai_prime_receiver", "n_fr": "Athodai Prime - Culasse", "n_en": "Athodai Prime Receiver", "qty": 1, "p": 15.0, "p90": -66.7, "v": 139, "vr": 2.27, "ds": 3.2, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "wukong_prime_set": {"desc_fr": "Le guerrier-farceur s'élève à une nouvelle incarnation.", "desc_en": "The trickster-warrior ascends to his ultimate incarnation. ", "wiki_en": "https://wiki.warframe.com/w/Wukong_Prime", "icon": "items/images/en/wukong_prime_set.6fa7196ae48a7a3901c35834476f3891.png", "components": [{"slug": "wukong_prime_blueprint", "n_fr": "Wukong Prime (Schéma)", "n_en": "Wukong Prime Blueprint", "qty": 1, "p": 24.1, "p90": -35.2, "v": 393, "vr": 1.7, "ds": 6.5, "f": 3}, {"slug": "wukong_prime_chassis_blueprint", "n_fr": "Wukong Prime - Châssis (Schéma)", "n_en": "Wukong Prime Chassis Blueprint", "qty": 1, "p": 10.2, "p90": 2.0, "v": 326, "vr": 1.54, "ds": 4.0, "f": 3}, {"slug": "wukong_prime_neuroptics_blueprint", "n_fr": "Wukong Prime - Neuroptiques (Schéma)", "n_en": "Wukong Prime Neuroptics Blueprint", "qty": 1, "p": 8.8, "p90": 10.0, "v": 295, "vr": 1.54, "ds": 90.0, "f": 3}, {"slug": "wukong_prime_systems_blueprint", "n_fr": "Wukong Prime - Systèmes (Schéma)", "n_en": "Wukong Prime Systems Blueprint", "qty": 1, "p": 13.3, "p90": -19.9, "v": 328, "vr": 1.55, "ds": 16.3, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "wisp_prime_set": {"desc_fr": "La splendeur dorée de Wisp Prime hante le champ de bataille. Les alliés célèbrent sa beauté interdimensionnelle.", "desc_en": "Wisp Prime’s gilded splendor haunts the battlefield. Allies welcome her interdimensional beauty.", "wiki_en": "https://wiki.warframe.com/w/Wisp_Prime", "icon": "items/images/en/wisp_prime_set.609bc4e8676a77247cc126ca150cb132.png", "components": [{"slug": "wisp_prime_blueprint", "n_fr": "Wisp Prime (Schéma)", "n_en": "Wisp Prime Blueprint", "qty": 1, "p": 35.4, "p90": 18.0, "v": 175, "vr": 0.82, "ds": 60.0, "f": 3}, {"slug": "wisp_prime_chassis_blueprint", "n_fr": "Wisp Prime - Châssis (Schéma)", "n_en": "Wisp Prime Chassis Blueprint", "qty": 1, "p": 17.9, "p90": 29.7, "v": 175, "vr": 0.92, "ds": 78.0, "f": 3}, {"slug": "wisp_prime_neuroptics_blueprint", "n_fr": "Wisp Prime - Neuroptiques (Schéma)", "n_en": "Wisp Prime Neuroptics Blueprint", "qty": 1, "p": 4.9, "p90": 2.1, "v": 113, "vr": 0.8, "ds": 50.0, "f": 3}, {"slug": "wisp_prime_systems_blueprint", "n_fr": "Wisp Prime - Systèmes (Schéma)", "n_en": "Wisp Prime Systems Blueprint", "qty": 1, "p": 5.2, "p90": -14.8, "v": 110, "vr": 0.82, "ds": 20.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "critical_deceleration": {"desc_fr": "+200% de Chances de Critique\n-20% Cadence de Tir", "desc_en": "+200% Critical Chance\n-20% Fire Rate", "wiki_en": "https://wiki.warframe.com/w/Critical_Deceleration", "icon": "items/images/en/critical_deceleration.1e6f0389e96ef70a93f09667ac7282a4.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "ayatan_orta_sculpture": {"desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.", "desc_en": "This kinetic Orokin sculpture springs to life when filled with Ayatan Stars. It may also be a source of Endo.", "wiki_en": "https://warframe.fandom.com/wiki/Ayatan_Sculpture", "icon": "items/images/en/ayatan_orta_sculpture.942499eea26924073ddbb60d8d3016d6.png", "components": [], "fusion_ratio": null, "expert_tips": [{"author": "Ka_Lagoon", "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"}]}, "gauss_prime_set": {"desc_fr": "Le vif-argent prend forme. Gauss Prime ne tolère aucune allusion à la défaite.", "desc_en": "Quicksilver takes form. Gauss Prime brooks no talk of defeat.", "wiki_en": "https://wiki.warframe.com/w/Gauss_Prime", "icon": "items/images/en/gauss_prime_set.df5aa569d863730a4de767fd449c107e.png", "components": [{"slug": "gauss_prime_blueprint", "n_fr": "Gauss Prime (Schéma)", "n_en": "Gauss Prime Blueprint", "qty": 1, "p": 4.6, "p90": -4.2, "v": 103, "vr": 0.74, "ds": 60.0, "f": 3}, {"slug": "gauss_prime_chassis_blueprint", "n_fr": "Gauss Prime - Châssis (Schéma)", "n_en": "Gauss Prime Chassis Blueprint", "qty": 1, "p": 4.5, "p90": -4.3, "v": 106, "vr": 0.73, "ds": 16.7, "f": 3}, {"slug": "gauss_prime_neuroptics_blueprint", "n_fr": "Gauss Prime - Neuroptiques (Schéma)", "n_en": "Gauss Prime Neuroptics Blueprint", "qty": 1, "p": 8.8, "p90": 3.5, "v": 164, "vr": 0.74, "ds": 40.0, "f": 3}, {"slug": "gauss_prime_systems_blueprint", "n_fr": "Gauss Prime - Systèmes (Schéma)", "n_en": "Gauss Prime Systems Blueprint", "qty": 1, "p": 26.3, "p90": 11.9, "v": 235, "vr": 0.9, "ds": 73.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "titania_prime_set": {"desc_fr": "Envoûtante et terrifiante, voici Titania dans sa forme ultime.", "desc_en": "Tempting and terrifying, this is Titania in her ultimate form.", "wiki_en": "https://wiki.warframe.com/w/Titania_Prime", "icon": "items/images/en/titania_prime_set.d783da2b4926bc3760d50bba21eff7db.png", "components": [{"slug": "titania_prime_blueprint", "n_fr": "Titania Prime (Schéma)", "n_en": "Titania Prime Blueprint", "qty": 1, "p": 9.7, "p90": -11.0, "v": 121, "vr": 0.74, "ds": 4.4, "f": 3}, {"slug": "titania_prime_chassis_blueprint", "n_fr": "Titania Prime - Châssis (Schéma)", "n_en": "Titania Prime Chassis Blueprint", "qty": 1, "p": 9.2, "p90": -9.8, "v": 114, "vr": 0.69, "ds": 5.0, "f": 3}, {"slug": "titania_prime_neuroptics_blueprint", "n_fr": "Titania Prime - Neuroptiques (Schéma)", "n_en": "Titania Prime Neuroptics Blueprint", "qty": 1, "p": 8.4, "p90": -4.5, "v": 91, "vr": 0.52, "ds": 20.0, "f": 3}, {"slug": "titania_prime_systems_blueprint", "n_fr": "Titania Prime - Systèmes (Schéma)", "n_en": "Titania Prime Systems Blueprint", "qty": 1, "p": 35.3, "p90": -18.7, "v": 159, "vr": 0.82, "ds": 11.8, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "arcane_bellicose": {"desc_fr": "Gagnez 6% de Puissance de Pouvoir pour chaque 250 de Santé max jusqu'à 72%.\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "Gain 6% Ability Strength for every 250 Max Health up to 72%.\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Bellicose", "icon": "items/images/en/arcane_bellicose.cba86d2bfb1b20b4a512b6913e79ba0c.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "protea_prime_set": {"desc_fr": "L'enfant née de deux pères. Protea Prime a autrefois réalisé la vision de Parvos Granum d'un gardien manipulant le temps. Maintenant, elle défend l'idéal Tenno de protéger les plus faibles.", "desc_en": "Behold the child of two fathers. Protea Prime once fulfilled Parvos Granum's vision of a time-wielding guardian. Now she upholds the Tenno ideal of defending the defenseless.", "wiki_en": "https://wiki.warframe.com/w/Protea_Prime", "icon": "items/images/en/protea_prime_set.c4d0269d10f68228b05510982f06e58b.png", "components": [{"slug": "protea_prime_blueprint", "n_fr": "Protea Prime (Schéma)", "n_en": "Protea Prime Blueprint", "qty": 1, "p": 2.8, "p90": -3.4, "v": 45, "vr": 1.2, "ds": 80.0, "f": 3}, {"slug": "protea_prime_neuroptics_blueprint", "n_fr": "Protea Prime - Neuroptiques (Schéma)", "n_en": "Protea Prime Neuroptics Blueprint", "qty": 1, "p": 3.6, "p90": 38.5, "v": 81, "vr": 1.17, "ds": 80.0, "f": 3}, {"slug": "protea_prime_chassis_blueprint", "n_fr": "Protea Prime - Châssis (Schéma)", "n_en": "Protea Prime Chassis Blueprint", "qty": 1, "p": 13.6, "p90": 38.8, "v": 148, "vr": 0.91, "ds": 76.7, "f": 3}, {"slug": "protea_prime_systems_blueprint", "n_fr": "Protea Prime - Systèmes (Schéma)", "n_en": "Protea Prime Systems Blueprint", "qty": 1, "p": 14.0, "p90": 6.9, "v": 85, "vr": 0.53, "ds": 71.4, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "sevagoth_prime_set": {"desc_fr": "Le timonier doré émerge de la tempête, son ombre étant un appât pour les âmes damnées.", "desc_en": "The gilded helmsman emerges from the tempest, his shadow a lure for doomed souls.", "wiki_en": "https://wiki.warframe.com/w/Sevagoth_Prime", "icon": "items/images/en/sevagoth_prime.56633fb39859f758c11e42519c3521fb.webp", "components": [{"slug": "sevagoth_prime_blueprint", "n_fr": "Sevagoth Prime (Schéma)", "n_en": "Sevagoth Prime Blueprint", "qty": 1, "p": 4.9, "p90": 69.0, "v": 119, "vr": 0.8, "ds": 41.4, "f": 3}, {"slug": "sevagoth_prime_chassis_blueprint", "n_fr": "Sevagoth Prime - Châssis (Schéma)", "n_en": "Sevagoth Prime Chassis Blueprint", "qty": 1, "p": 20.2, "p90": 18.8, "v": 232, "vr": 0.7, "ds": 100.0, "f": 3}, {"slug": "sevagoth_prime_neuroptics_blueprint", "n_fr": "Sevagoth Prime - Neuroptiques (Schéma)", "n_en": "Sevagoth Prime Neuroptics Blueprint", "qty": 1, "p": 2.0, "p90": -25.9, "v": 53, "vr": 0.87, "ds": 100.0, "f": 3}, {"slug": "sevagoth_prime_systems_blueprint", "n_fr": "Sevagoth Prime - Systèmes (Schéma)", "n_en": "Sevagoth Prime Systems Blueprint", "qty": 1, "p": 2.1, "p90": -32.3, "v": 54, "vr": 0.69, "ds": 100.0, "f": 2}], "fusion_ratio": null, "expert_tips": []}, "arcane_velocity": {"desc_fr": "Sur Coup Critique:\n90% de chances de: +120% Cadence de Tir aux Pistolets pendant 9s\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On Critical Hit:\n90% chance for +120% Fire Rate to Pistols for 9s\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Velocity", "icon": "items/images/en/arcane_velocity.ea37edd24f8212ce4bb283205658829b.png", "components": [], "fusion_ratio": 21, "expert_tips": []}, "nidus_prime_set": {"desc_fr": "La mutation est infinie. Le porteur du mal dévorant revient sous une forme depuis longtemps oubliée, affecté par une souche primitive de l'Infestation.", "desc_en": "Mutation is endless. The ravening plague-bearer returns in a long-unseen form, seething with a primal strain of the Infestation.", "wiki_en": "https://wiki.warframe.com/w/Nidus_Prime", "icon": "items/images/en/nidus_prime_set.1cf479b37c98ce42340156c9c005e91e.png", "components": [{"slug": "nidus_prime_blueprint", "n_fr": "Nidus Prime (Schéma)", "n_en": "Nidus Prime Blueprint", "qty": 1, "p": 8.9, "p90": 23.6, "v": 79, "vr": 0.79, "ds": 78.0, "f": 3}, {"slug": "nidus_prime_chassis_blueprint", "n_fr": "Nidus Prime - Châssis (Schéma)", "n_en": "Nidus Prime Chassis Blueprint", "qty": 1, "p": 32.9, "p90": 25.6, "v": 144, "vr": 1.05, "ds": 32.9, "f": 3}, {"slug": "nidus_prime_neuroptics_blueprint", "n_fr": "Nidus Prime - Neuroptiques (Schéma)", "n_en": "Nidus Prime Neuroptics Blueprint", "qty": 1, "p": 38.6, "p90": 12.5, "v": 119, "vr": 0.9, "ds": 72.0, "f": 3}, {"slug": "nidus_prime_systems_blueprint", "n_fr": "Nidus Prime - Systèmes (Schéma)", "n_en": "Nidus Prime Systems Blueprint", "qty": 1, "p": 6.5, "p90": 44.4, "v": 70, "vr": 0.8, "ds": 50.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "melee_crescendo": {"desc_fr": "Melee Arcane that generates 1 Initial Combo for the rest of your mission on Finisher Kill.", "desc_en": "Melee Arcane that generates 1 Initial Combo for the rest of your mission on Finisher Kill.", "wiki_en": "https://wiki.warframe.com/w/Melee_Crescendo", "icon": "items/images/en/melee_crescendo.fec1a875c68b84f3282a21a82aabdb20.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "arcane_crepuscular": {"desc_fr": "En étant invisible, gagnez +30% de Puissance de Pouvoir et +3x aux Dégâts Critiques finaux.\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "While invisible, gain +30% Ability Strength and +3x Final Critical Damage.\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Crepuscular", "icon": "items/images/en/arcane_crepuscular.8e34ad3ac57362158d9ec6d642364427.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "meso_w2_relic": {"desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.", "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.", "wiki_en": "", "icon": "items/images/en/meso_w2_relic.a19d00c7586541c7fb6717fa2e27b7ca.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "khora_prime_set": {"desc_fr": "Maîtresse et monstre dans un ensemble harmonieux. Cette chasseresse parée d'or et son loyal Kavat, Venari, dominent le champ de bataille de leur volonté.", "desc_en": "A harmony of mistress and monster. The gilded huntress and her loyal Kavat, Venari, dominate the battlefield with their will.", "wiki_en": "https://wiki.warframe.com/w/Khora_Prime", "icon": "items/images/en/khora_prime_set.12b9da415ed4f659296947b5c7157dc0.png", "components": [{"slug": "khora_prime_blueprint", "n_fr": "Khora Prime (Schéma)", "n_en": "Khora Prime Blueprint", "qty": 1, "p": 30.7, "p90": 8.1, "v": 123, "vr": 0.86, "ds": 28.3, "f": 3}, {"slug": "khora_prime_chassis_blueprint", "n_fr": "Khora Prime - Châssis (Schéma)", "n_en": "Khora Prime Chassis Blueprint", "qty": 1, "p": 7.1, "p90": 7.6, "v": 113, "vr": 0.96, "ds": 55.0, "f": 3}, {"slug": "khora_prime_neuroptics_blueprint", "n_fr": "Khora Prime - Neuroptiques (Schéma)", "n_en": "Khora Prime Neuroptics Blueprint", "qty": 1, "p": 29.2, "p90": 8.1, "v": 118, "vr": 0.85, "ds": 73.3, "f": 3}, {"slug": "khora_prime_systems_blueprint", "n_fr": "Khora Prime - Systèmes (Schéma)", "n_en": "Khora Prime Systems Blueprint", "qty": 1, "p": 6.6, "p90": 8.2, "v": 94, "vr": 0.81, "ds": 53.3, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "meso_v15_relic": {"desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.", "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.", "wiki_en": "", "icon": "items/images/en/meso_v15_relic.a2f3850abeecafbbe3369af2aaf253ff.webp", "components": [], "fusion_ratio": null, "expert_tips": []}, "boar_prime_set": {"desc_fr": "Véritable chef-d'œuvre de l'artisanat Tenno, le Boar Prime se caractérise par une cadence de tir plus élevée, un chargeur étendu et des dégâts beaucoup plus importants.", "desc_en": "One of the finest examples of Tenno craftsmanship, the Boar Prime offers a higher Fire Rate, Magazine Capacity and a much higher per-shot damage.", "wiki_en": "https://wiki.warframe.com/w/Boar_Prime", "icon": "items/images/en/boar_prime_set.5e8a5ba1520169c7a99c738624328d26.png", "components": [{"slug": "boar_prime_barrel", "n_fr": "Boar Prime - Canon", "n_en": "Boar Prime Barrel", "qty": 1, "p": 16.5, "p90": 38.7, "v": 72, "vr": 1.71, "ds": 80.0, "f": 3}, {"slug": "boar_prime_blueprint", "n_fr": "Boar Prime (Schéma)", "n_en": "Boar Prime Blueprint", "qty": 1, "p": 9.5, "p90": 23.4, "v": 43, "vr": 1.44, "ds": 83.3, "f": 3}, {"slug": "boar_prime_receiver", "n_fr": "Boar Prime - Culasse", "n_en": "Boar Prime Receiver", "qty": 1, "p": 14.0, "p90": 15.7, "v": 59, "vr": 1.32, "ds": 40.0, "f": 3}, {"slug": "boar_prime_stock", "n_fr": "Boar Prime - Crosse", "n_en": "Boar Prime Stock", "qty": 1, "p": 41.0, "p90": 7.6, "v": 33, "vr": 0.71, "ds": 40.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "revenant_prime_set": {"desc_fr": "L'égaré se lève. Réifiez l'essence Eidolon en utilisant la puissance de Revenant Prime.", "desc_en": "The lost one rises. Reify the essence of the Eidolon as you wield Revenant Prime’s power.", "wiki_en": "https://wiki.warframe.com/w/Revenant_Prime", "icon": "items/images/en/revenant_prime_set.469f99b4183a5dda7769b78b2cde6658.png", "components": [{"slug": "revenant_prime_blueprint", "n_fr": "Revenant Prime (Schéma)", "n_en": "Revenant Prime Blueprint", "qty": 1, "p": 28.7, "p90": 2.5, "v": 138, "vr": 0.99, "ds": 74.0, "f": 3}, {"slug": "revenant_prime_chassis_blueprint", "n_fr": "Revenant Prime - Châssis (Schéma)", "n_en": "Revenant Prime Chassis Blueprint", "qty": 1, "p": 5.9, "p90": -11.9, "v": 55, "vr": 0.56, "ds": 36.0, "f": 3}, {"slug": "revenant_prime_neuroptics_blueprint", "n_fr": "Revenant Prime - Neuroptiques (Schéma)", "n_en": "Revenant Prime Neuroptics Blueprint", "qty": 1, "p": 7.5, "p90": 4.2, "v": 75, "vr": 0.66, "ds": 40.0, "f": 3}, {"slug": "revenant_prime_systems_blueprint", "n_fr": "Revenant Prime - Systèmes (Schéma)", "n_en": "Revenant Prime Systems Blueprint", "qty": 1, "p": 9.6, "p90": -3.0, "v": 111, "vr": 0.82, "ds": 15.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "lith_s13_relic": {"desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.", "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.", "wiki_en": "", "icon": "items/images/en/lith_s13_relic.b9883727b21e25d81bc115605254460a.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "cedo_prime_set": {"desc_fr": "Un Fusil à Pompe en or, forgé pour ceux qui rendent le jugement.", "desc_en": "A golden shotgun, forged for those who deliver judgment.", "wiki_en": "https://wiki.warframe.com/w/Cedo_Prime", "icon": "items/images/en/cedo_prime_set.0c958533f82b78967afb8394ec7c9af9.webp", "components": [{"slug": "cedo_prime_barrel", "n_fr": "Cedo Prime - Canon", "n_en": "Cedo Prime Barrel", "qty": 1, "p": 4.6, "p90": 35.3, "v": 73, "vr": 0.78, "ds": 30.0, "f": 3}, {"slug": "cedo_prime_blueprint", "n_fr": "Cedo Prime (Schéma)", "n_en": "Cedo Prime Blueprint", "qty": 1, "p": 9.4, "p90": 17.5, "v": 174, "vr": 1.11, "ds": 80.0, "f": 3}, {"slug": "cedo_prime_receiver", "n_fr": "Cedo Prime - Culasse", "n_en": "Cedo Prime Receiver", "qty": 1, "p": 3.2, "p90": 3.2, "v": 186, "vr": 1.83, "ds": 100.0, "f": 2}, {"slug": "cedo_prime_stock", "n_fr": "Cedo Prime - Crosse", "n_en": "Cedo Prime Stock", "qty": 1, "p": 4.2, "p90": 16.7, "v": 51, "vr": 0.87, "ds": 60.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "lethal_torrent": {"desc_fr": "+60% Cadence de Tir\n+60% de Tir Multiple", "desc_en": "+60% Fire Rate\n+60% Multishot", "wiki_en": "https://wiki.warframe.com/w/Lethal_Torrent", "icon": "items/images/en/lethal_torrent.5f97f70430d22026c0bbcf6030f046a8.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "blood_rush": {"desc_fr": "+40% de Chance de Critique se superposent avec le Multiplicateur de Combo", "desc_en": "+40% Critical Chance stacks with Combo Multiplier", "wiki_en": "https://wiki.warframe.com/w/Blood_Rush", "icon": "items/images/en/blood_rush.7512063f1029665d1ddc9b5d9a0700f8.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "condition_overload": {"desc_fr": "+80% de Dégâts de Mêlée pour chaque Type de Statut affectant la cible", "desc_en": "+80% Melee Damage per Status Type affecting the target", "wiki_en": "https://wiki.warframe.com/w/Condition_Overload", "icon": "items/images/en/condition_overload.fe7962221a25bc6305bbad0dc925e38b.png", "components": [], "fusion_ratio": null, "expert_tips": []}, "braton_prime_set": {"desc_fr": "Une arme Orokin classique, le Braton Prime dispose de niveaux de dégâts modifiés et d'un chargeur plus grand par rapport au modèle standard.", "desc_en": "A classic Orokin weapon, Braton Prime features modified damage levels and a larger magazine over the standard model.", "wiki_en": "https://wiki.warframe.com/w/Braton_Prime", "icon": "items/images/en/braton_prime_set.ae229642d6179ebfb1547ed7d976e749.png", "components": [{"slug": "braton_prime_barrel", "n_fr": "Braton Prime - Canon", "n_en": "Braton Prime Barrel", "qty": 1, "p": 4.2, "p90": 23.5, "v": 36, "vr": 0.75, "ds": 60.0, "f": 3}, {"slug": "braton_prime_blueprint", "n_fr": "Braton Prime (Schéma)", "n_en": "Braton Prime Blueprint", "qty": 1, "p": 2.5, "p90": 47.1, "v": 31, "vr": 1.1, "ds": 75.0, "f": 3}, {"slug": "braton_prime_receiver", "n_fr": "Braton Prime - Culasse", "n_en": "Braton Prime Receiver", "qty": 1, "p": 3.8, "p90": 8.6, "v": 68, "vr": 1.01, "ds": 40.0, "f": 3}, {"slug": "braton_prime_stock", "n_fr": "Braton Prime - Crosse", "n_en": "Braton Prime Stock", "qty": 1, "p": 1.8, "p90": -10.0, "v": 39, "vr": 0.9, "ds": 80.0, "f": 3}], "fusion_ratio": null, "expert_tips": []}, "melee_duplicate": {"desc_fr": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.", "desc_en": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.", "wiki_en": "https://wiki.warframe.com/w/Melee_Duplicate", "icon": "items/images/en/melee_duplicate.0ac0137e555cde39902706e96853dff9.webp", "components": [], "fusion_ratio": 21, "expert_tips": []}, "growing_power": {"desc_fr": "Sur Effet de Statut avec une arme : l'escouade augmente la Puissance de Pouvoir personnelle de 25% pendant 6s.", "desc_en": "On Status Effect with Weapon: Squad increases personal Ability Strength by 25% for 6s.", "wiki_en": "https://wiki.warframe.com/w/Growing_Power", "icon": "items/images/en/growing_power.9afc4cbee02acdde54e5f875b8048202.png", "components": [], "fusion_ratio": null, "expert_tips": []}}
+{
+  "styanax_prime_set": {
+    "desc_fr": "Bouclier des innocents, lance de justice, Styanax Prime résiste à la tyrannie.",
+    "desc_en": "Shield of the innocent. Spear of justice. Styanax Prime holds the line in defiance of tyranny.",
+    "wiki_en": "",
+    "icon": "items/images/en/styanax_prime_set.27f0de9e366d4a69ace940a8f927783d.webp",
+    "components": [
+      {
+        "slug": "styanax_prime_blueprint",
+        "n_fr": "Styanax Prime (Schéma)",
+        "n_en": "Styanax Prime Blueprint",
+        "qty": 1,
+        "p": 13.6,
+        "p90": -54.7,
+        "v": 582,
+        "vr": 2.36,
+        "ds": 3.5,
+        "f": 3
+      },
+      {
+        "slug": "styanax_prime_chassis_blueprint",
+        "n_fr": "Styanax Prime - Châssis (Schéma)",
+        "n_en": "Styanax Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 7.3,
+        "p90": -59.4,
+        "v": 389,
+        "vr": 1.82,
+        "ds": 2.3,
+        "f": 3
+      },
+      {
+        "slug": "styanax_prime_neuroptics_blueprint",
+        "n_fr": "Styanax Prime - Neuroptiques (Schéma)",
+        "n_en": "Styanax Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 17.2,
+        "p90": -49.4,
+        "v": 593,
+        "vr": 2.36,
+        "ds": 1.2,
+        "f": 3
+      },
+      {
+        "slug": "styanax_prime_systems_blueprint",
+        "n_fr": "Styanax Prime - Systèmes (Schéma)",
+        "n_en": "Styanax Prime Systems Blueprint",
+        "qty": 1,
+        "p": 8.9,
+        "p90": -77.8,
+        "v": 573,
+        "vr": 2.45,
+        "ds": 0.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_hot_shot": {
+    "desc_fr": "Gagnez 6% de Chances de Critique avec votre arme pendant 10s lorsque vous utilisez des Pouvoirs pour infliger des Effets de Statut de Feu aux ennemis. Nombre maximal de cumuls: 50.\n+1 Réanimation Arcane",
+    "desc_en": "Gain 6% weapon Critical Chance for 10s, when using abilities to inflict Heat Status effect on enemies. Maximum 50x stacks.\n+1 Arcane Revive",
+    "wiki_en": "",
+    "icon": "items/images/en/arcane_hot_shot.b488affbc34321e8b1dba284f889d634.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "ayatan_anasa_sculpture": {
+    "desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.",
+    "desc_en": "This kinetic Orokin sculpture springs to life when filled with Ayatan Stars. It may also be a source of Endo.",
+    "wiki_en": "https://wiki.warframe.com/w/Ayatan_Anasa_Sculpture",
+    "icon": "items/images/en/ayatan_anasa_sculpture.4b0f22f5432ea4a4f196806a7b90ccb0.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
+      }
+    ]
+  },
+  "rifle_riven_mod_(veiled)": {
+    "desc_fr": "",
+    "desc_en": "",
+    "wiki_en": "https://warframe.fandom.com/wiki/Rifle_Riven_Mod",
+    "icon": "items/images/en/rifle_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "melee_riven_mod_(veiled)": {
+    "desc_fr": "",
+    "desc_en": "",
+    "wiki_en": "https://warframe.fandom.com/wiki/Melee_Riven_Mod",
+    "icon": "items/images/en/melee_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "pistol_riven_mod_(veiled)": {
+    "desc_fr": "",
+    "desc_en": "",
+    "wiki_en": "https://warframe.fandom.com/wiki/Pistol_Riven_Mod",
+    "icon": "items/images/en/pistol_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "voruna_prime_set": {
+    "desc_fr": "Splendeur et férocité atteignent leur paroxysme sauvage avec Voruna Prime. Bien qu'exaltée par l'or Orokin, elle est plus redoutable que jamais.",
+    "desc_en": "Splendor and ferocity reach their savage apex in Voruna Prime. Though exalted by Orokin gold, she is more feral than ever.",
+    "wiki_en": "",
+    "icon": "items/images/en/voruna_prime_set.6a82ab2971991cfa9ff8b92df7ed8547.webp",
+    "components": [
+      {
+        "slug": "voruna_prime_blueprint",
+        "n_fr": "Voruna Prime (Schéma)",
+        "n_en": "Voruna Prime Blueprint",
+        "qty": 1,
+        "p": 25.6,
+        "p90": -36.0,
+        "v": 411,
+        "vr": 0.53,
+        "ds": 3.3,
+        "f": 3
+      },
+      {
+        "slug": "voruna_prime_chassis_blueprint",
+        "n_fr": "Voruna Prime - Châssis (Schéma)",
+        "n_en": "Voruna Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 6.0,
+        "p90": -62.5,
+        "v": 249,
+        "vr": 0.46,
+        "ds": 16.7,
+        "f": 3
+      },
+      {
+        "slug": "voruna_prime_neuroptics_blueprint",
+        "n_fr": "Voruna Prime - Neuroptiques (Schéma)",
+        "n_en": "Voruna Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 3.4,
+        "p90": -77.3,
+        "v": 227,
+        "vr": 0.43,
+        "ds": 3.3,
+        "f": 3
+      },
+      {
+        "slug": "voruna_prime_systems_blueprint",
+        "n_fr": "Voruna Prime - Systèmes (Schéma)",
+        "n_en": "Voruna Prime Systems Blueprint",
+        "qty": 1,
+        "p": 9.3,
+        "p90": -76.8,
+        "v": 329,
+        "vr": 0.47,
+        "ds": 1.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "molt_augmented": {
+    "desc_fr": "Sur Élimination:\n+0.24% Puissance de Pouvoir. Cumulable jusqu'à 250x.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On Kill:\n+0.24% Ability Strength. Stacks up to 250x.\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Molt_Augmented",
+    "icon": "items/images/en/molt_augmented.9def654a0d24b7f085940dfc8ef843b5.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "xaku_prime_set": {
+    "desc_fr": "L'enfant de la guerre et du Néant renaît en or. Ce qui a été brisé un jour peut se relever plus fort que ce qui n'a jamais été endommagé.",
+    "desc_en": "The child of war and void is reborn in gold. That which was once shattered may rise stronger than that which was never broken.",
+    "wiki_en": "https://wiki.warframe.com/w/Xaku_Prime",
+    "icon": "items/images/en/xaku_prime.caeeda2f9eec158d19fd76d7631fa5de.webp",
+    "components": [
+      {
+        "slug": "xaku_prime_blueprint",
+        "n_fr": "Xaku Prime (Schéma)",
+        "n_en": "Xaku Prime Blueprint",
+        "qty": 1,
+        "p": 11.4,
+        "p90": -10.2,
+        "v": 180,
+        "vr": 0.66,
+        "ds": 46.7,
+        "f": 3
+      },
+      {
+        "slug": "xaku_prime_chassis_blueprint",
+        "n_fr": "Xaku Prime - Châssis (Schéma)",
+        "n_en": "Xaku Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 3.3,
+        "p90": -10.8,
+        "v": 181,
+        "vr": 1.23,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "xaku_prime_neuroptics_blueprint",
+        "n_fr": "Xaku Prime - Neuroptiques (Schéma)",
+        "n_en": "Xaku Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 3.2,
+        "p90": 14.3,
+        "v": 130,
+        "vr": 1.69,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "xaku_prime_systems_blueprint",
+        "n_fr": "Xaku Prime - Systèmes (Schéma)",
+        "n_en": "Xaku Prime Systems Blueprint",
+        "qty": 1,
+        "p": 3.9,
+        "p90": -41.8,
+        "v": 217,
+        "vr": 1.1,
+        "ds": 15.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "primary_merciless": {
+    "desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge",
+    "desc_en": "On Kill:\n+30% Damage for 4s. Stacks up to 12x.\n+30% Reload Speed\n+30% Reload Speed",
+    "wiki_en": "https://wiki.warframe.com/w/Primary_Merciless",
+    "icon": "items/images/en/primary_merciless.baca700cca91762be6465c5f52584fa7.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "arcane_sculptor": {
+    "desc_fr": "Lors de la création d'un objet avec des Pouvoirs: les lancements ont 175% d'Efficacité de Pouvoir pendant 12s. +1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On creating an object with abilities: casts have 175% Ability Efficiency for 12s. +1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "",
+    "icon": "items/images/en/arcane_sculptor.c585312d90bbedba54bd156a47489c7c.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "ayatan_cyan_star": {
+    "desc_fr": "Placez ces étoiles dans des Sculptures Ayatans pour alimenter leur mouvement. Peut également être une source d'Endo.",
+    "desc_en": "Place these stars into Ayatan Sculptures to power their movement. May also be a source of Endo.",
+    "wiki_en": "https://wiki.warframe.com/w/Ayatan_Cyan_Star",
+    "icon": "items/images/en/ayatan_cyan_star.89fae8de34c9b16b9f5a9c6acb84e8d9.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
+      }
+    ]
+  },
+  "caliban_prime_set": {
+    "desc_fr": "Forgé pour célébrer la paix bien trop brève entre les Orokins et les Sentients, Caliban Prime est un véritable chef-d'œuvre collaboratif. L'héritier des royaumes jumeaux s'élève dans une tenue dorée royale.",
+    "desc_en": "Forged in celebration of the all-too-brief peace between the Orokin and Sentients, Caliban Prime is a true collaborative masterpiece. The heir of twin kingdoms arises in royal gold.",
+    "wiki_en": "",
+    "icon": "items/images/en/caliban_prime_set.cae2f667bfae7c3ae9f5089760f9f090.webp",
+    "components": [
+      {
+        "slug": "caliban_prime_blueprint",
+        "n_fr": "Caliban Prime (Schéma)",
+        "n_en": "Caliban Prime Blueprint",
+        "qty": 1,
+        "p": 3.1,
+        "p90": -3.1,
+        "v": 304,
+        "vr": 2.04,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "caliban_prime_chassis_blueprint",
+        "n_fr": "Caliban Prime - Châssis (Schéma)",
+        "n_en": "Caliban Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 1.8,
+        "p90": -37.9,
+        "v": 63,
+        "vr": 0.88,
+        "ds": 80.0,
+        "f": 2
+      },
+      {
+        "slug": "caliban_prime_neuroptics_blueprint",
+        "n_fr": "Caliban Prime - Neuroptiques (Schéma)",
+        "n_en": "Caliban Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 11.9,
+        "p90": 14.4,
+        "v": 272,
+        "vr": 1.04,
+        "ds": 63.3,
+        "f": 3
+      },
+      {
+        "slug": "caliban_prime_systems_blueprint",
+        "n_fr": "Caliban Prime - Systèmes (Schéma)",
+        "n_en": "Caliban Prime Systems Blueprint",
+        "qty": 1,
+        "p": 15.0,
+        "p90": -21.1,
+        "v": 322,
+        "vr": 0.96,
+        "ds": 0.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "melee_influence": {
+    "desc_fr": "Melee Arcane that, on Melee Electricity Status, creates a 20% chance for elemental Melee Status Effects to apply to enemies within 20 meters for 18 seconds. This cannot refresh while active.",
+    "desc_en": "Melee Arcane that, on Melee Electricity Status, creates a 20% chance for elemental Melee Status Effects to apply to enemies within 20 meters for 18 seconds. This cannot refresh while active.",
+    "wiki_en": "https://wiki.warframe.com/w/Melee_Influence",
+    "icon": "items/images/en/melee_influence.b22232a58406e5feeb8bbe94c07c18d2.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "afentis_prime_set": {
+    "desc_fr": "La Lance à Énergie dorée de Styanax Prime brille comme un phare sur le champ de bataille, galvanisant les alliés et étourdissant les ennemis.",
+    "desc_en": "The gilded speargun of Styanax Prime shines like a beacon across the battlefield, invigorating allies and stunning enemies.",
+    "wiki_en": "",
+    "icon": "items/images/en/afentis_prime_set.280c16ef2890301844a36006cb1dd723.webp",
+    "components": [
+      {
+        "slug": "afentis_prime_barrel",
+        "n_fr": "Afentis Prime - Canon",
+        "n_en": "Afentis Prime Barrel",
+        "qty": 1,
+        "p": 7.4,
+        "p90": -78.9,
+        "v": 212,
+        "vr": 2.33,
+        "ds": 1.4,
+        "f": 3
+      },
+      {
+        "slug": "afentis_prime_blade",
+        "n_fr": "Afentis Prime - Lame",
+        "n_en": "Afentis Prime Blade",
+        "qty": 1,
+        "p": 16.3,
+        "p90": -61.2,
+        "v": 287,
+        "vr": 3.08,
+        "ds": 4.8,
+        "f": 3
+      },
+      {
+        "slug": "afentis_prime_blueprint",
+        "n_fr": "Afentis Prime (Schéma)",
+        "n_en": "Afentis Prime Blueprint",
+        "qty": 1,
+        "p": 21.4,
+        "p90": -50.2,
+        "v": 315,
+        "vr": 2.98,
+        "ds": 6.1,
+        "f": 3
+      },
+      {
+        "slug": "afentis_prime_handle",
+        "n_fr": "Afentis Prime - Manche",
+        "n_en": "Afentis Prime Handle",
+        "qty": 1,
+        "p": 6.1,
+        "p90": -41.9,
+        "v": 165,
+        "vr": 2.79,
+        "ds": 20.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "yareli_prime_set": {
+    "desc_fr": "Waverider surgit, renaissant de l'écume de l'océan. Dans sa splendeur originelle de l'ère Orokin, elle incarne la vigueur éternelle de la jeunesse.",
+    "desc_en": "The Waverider arises, reborn from the ocean foam. In her original Orokin-era splendor she embodies the undying vigor of youth.",
+    "wiki_en": "",
+    "icon": "items/images/en/yareli_prime_set.80badf98bdde8e0c47cac61aa6149ea0.webp",
+    "components": [
+      {
+        "slug": "yareli_prime_blueprint",
+        "n_fr": "Yareli Prime (Schéma)",
+        "n_en": "Yareli Prime Blueprint",
+        "qty": 1,
+        "p": 3.3,
+        "p90": 0.0,
+        "v": 169,
+        "vr": 1.63,
+        "ds": 65.0,
+        "f": 3
+      },
+      {
+        "slug": "yareli_prime_chassis_blueprint",
+        "n_fr": "Yareli Prime - Châssis (Schéma)",
+        "n_en": "Yareli Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 2.0,
+        "p90": -35.5,
+        "v": 60,
+        "vr": 1.03,
+        "ds": 0.0,
+        "f": 2
+      },
+      {
+        "slug": "yareli_prime_neuroptics_blueprint",
+        "n_fr": "Yareli Prime - Neuroptiques (Schéma)",
+        "n_en": "Yareli Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 9.8,
+        "p90": -1.0,
+        "v": 290,
+        "vr": 1.18,
+        "ds": 13.3,
+        "f": 3
+      },
+      {
+        "slug": "yareli_prime_systems_blueprint",
+        "n_fr": "Yareli Prime - Systèmes (Schéma)",
+        "n_en": "Yareli Prime Systems Blueprint",
+        "qty": 1,
+        "p": 12.0,
+        "p90": -39.1,
+        "v": 338,
+        "vr": 1.19,
+        "ds": 20.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_energize": {
+    "desc_fr": "Sur Ramassage d'Énergie:\n60% de chances de restaurer 150 points d'Énergie à vous-même et aux alliés à moins de 15m\n15s de temps de recharge\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On Energy Pickup:\n60% chance to replenish 150 Energy to self and allies within 15m\n15s cooldown\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Energize",
+    "icon": "items/images/en/arcane_energize.e5f85590ceb29db89c6753dfdf823485.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "hildryn_prime_set": {
+    "desc_fr": "Hildryn Prime prouve que le succès récompense la discipline.",
+    "desc_en": "Hildryn Prime proves that power is discipline’s reward.",
+    "wiki_en": "https://wiki.warframe.com/w/Hildryn_Prime",
+    "icon": "items/images/en/hildryn_prime_set.7e3f1cd4b94baa590dde37cd0ad0ba9e.png",
+    "components": [
+      {
+        "slug": "hildryn_prime_blueprint",
+        "n_fr": "Hildryn Prime (Schéma)",
+        "n_en": "Hildryn Prime Blueprint",
+        "qty": 1,
+        "p": 37.7,
+        "p90": 9.6,
+        "v": 217,
+        "vr": 1.15,
+        "ds": 67.5,
+        "f": 3
+      },
+      {
+        "slug": "hildryn_prime_chassis_blueprint",
+        "n_fr": "Hildryn Prime - Châssis (Schéma)",
+        "n_en": "Hildryn Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 9.7,
+        "p90": 5.4,
+        "v": 157,
+        "vr": 0.92,
+        "ds": 17.5,
+        "f": 3
+      },
+      {
+        "slug": "hildryn_prime_neuroptics_blueprint",
+        "n_fr": "Hildryn Prime - Neuroptiques (Schéma)",
+        "n_en": "Hildryn Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 7.3,
+        "p90": 19.7,
+        "v": 104,
+        "vr": 0.78,
+        "ds": 57.5,
+        "f": 3
+      },
+      {
+        "slug": "hildryn_prime_systems_blueprint",
+        "n_fr": "Hildryn Prime - Systèmes (Schéma)",
+        "n_en": "Hildryn Prime Systems Blueprint",
+        "qty": 1,
+        "p": 4.0,
+        "p90": 11.1,
+        "v": 103,
+        "vr": 1.13,
+        "ds": 0.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "nautilus_prime_set": {
+    "desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.",
+    "desc_en": "This brave deckhand defends his crew with Verglas Prime.",
+    "wiki_en": "https://wiki.warframe.com/w/Nautilus_Prime",
+    "icon": "items/images/en/nautilus_prime.64f2680abc41ecdb62943bc1b55be8c4.webp",
+    "components": [
+      {
+        "slug": "nautilus_prime_blueprint",
+        "n_fr": "Nautilus Prime (Schéma)",
+        "n_en": "Nautilus Prime Blueprint",
+        "qty": 1,
+        "p": 10.1,
+        "p90": 3.1,
+        "v": 166,
+        "vr": 0.52,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_carapace",
+        "n_fr": "Nautilus Prime - Carapace",
+        "n_en": "Nautilus Prime Carapace",
+        "qty": 1,
+        "p": 5.4,
+        "p90": 42.1,
+        "v": 88,
+        "vr": 0.52,
+        "ds": 35.0,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_cerebrum",
+        "n_fr": "Nautilus Prime - Cerveau",
+        "n_en": "Nautilus Prime Cerebrum",
+        "qty": 1,
+        "p": 16.6,
+        "p90": 12.2,
+        "v": 261,
+        "vr": 0.68,
+        "ds": 73.3,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_systems",
+        "n_fr": "Nautilus Prime - Systèmes",
+        "n_en": "Nautilus Prime Systems",
+        "qty": 1,
+        "p": 3.4,
+        "p90": 17.2,
+        "v": 146,
+        "vr": 0.74,
+        "ds": 100.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "secondary_enervate": {
+    "desc_fr": "Sur coup: augmentation des Chances de Critique de 10%. Se réinitialise après 6 Critiques Majeurs.",
+    "desc_en": "On Hit: Increase Critical Chance by 10%. Resets after 6 Big Critical Hits.",
+    "wiki_en": "https://wiki.warframe.com/w/Secondary_Enervate",
+    "icon": "items/images/en/secondary_enervate.ad8d69119b058ad12c196bcf33352bd2.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "critical_delay": {
+    "desc_fr": "+200% de Chance de Critique\n-20% de Cadence de Tir (x2 pour les Arcs)",
+    "desc_en": "+200% Critical Chance\n-20% Fire Rate (x2 for Bows)",
+    "wiki_en": "https://wiki.warframe.com/w/Critical_Delay",
+    "icon": "items/images/en/critical_delay.5e621ae9ee9a6d2d4576565a26af45cb.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "lavos_prime_set": {
+    "desc_fr": "Certaines Warframes étaient Prime dès le départ. D'autres ont évolué. Lavos, le maître de la transmutation, ne s'est incliné devant personne alors qu'il forgeait son propre chemin vers la bravoure.",
+    "desc_en": "Some Warframes were Prime from the start. Others ascended. Lavos, the master of transmutation, bowed to no one as he forged his own path to valor.",
+    "wiki_en": "https://wiki.warframe.com/w/Lavos_Prime",
+    "icon": "items/images/en/lavos_prime_set.b50879ee28eb0c9effda56dadca76c86.webp",
+    "components": [
+      {
+        "slug": "lavos_prime_blueprint",
+        "n_fr": "Lavos Prime (Schéma)",
+        "n_en": "Lavos Prime Blueprint",
+        "qty": 1,
+        "p": 3.8,
+        "p90": -29.6,
+        "v": 119,
+        "vr": 1.01,
+        "ds": 60.0,
+        "f": 3
+      },
+      {
+        "slug": "lavos_prime_chassis_blueprint",
+        "n_fr": "Lavos Prime - Châssis (Schéma)",
+        "n_en": "Lavos Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 1.7,
+        "p90": -43.3,
+        "v": 63,
+        "vr": 1.02,
+        "ds": 0.0,
+        "f": 2
+      },
+      {
+        "slug": "lavos_prime_neuroptics_blueprint",
+        "n_fr": "Lavos Prime - Neuroptiques (Schéma)",
+        "n_en": "Lavos Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 4.4,
+        "p90": 0.0,
+        "v": 97,
+        "vr": 0.72,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "lavos_prime_systems_blueprint",
+        "n_fr": "Lavos Prime - Systèmes (Schéma)",
+        "n_en": "Lavos Prime Systems Blueprint",
+        "qty": 1,
+        "p": 10.1,
+        "p90": 21.7,
+        "v": 173,
+        "vr": 0.73,
+        "ds": 100.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "gyre_prime_set": {
+    "desc_fr": "Des circuits dorés activent et dynamisent des mouvements frénétiques résonnant à travers les âges. Dansez pour l'éternité avec Gyre Prime.",
+    "desc_en": "Gilded circuits spark and energize frenetic movements that echo through the ages. Dance into eternity with Gyre Prime.",
+    "wiki_en": "",
+    "icon": "items/images/en/gyre_prime_set.fd52e994eb0d81e21e28b7b7a98ad960.webp",
+    "components": [
+      {
+        "slug": "gyre_prime_blueprint",
+        "n_fr": "Gyre Prime (Schéma)",
+        "n_en": "Gyre Prime Blueprint",
+        "qty": 1,
+        "p": 3.8,
+        "p90": -24.0,
+        "v": 124,
+        "vr": 0.78,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "gyre_prime_chassis_blueprint",
+        "n_fr": "Gyre Prime - Châssis (Schéma)",
+        "n_en": "Gyre Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 8.9,
+        "p90": -16.0,
+        "v": 209,
+        "vr": 0.8,
+        "ds": 45.0,
+        "f": 3
+      },
+      {
+        "slug": "gyre_prime_neuroptics_blueprint",
+        "n_fr": "Gyre Prime - Neuroptiques (Schéma)",
+        "n_en": "Gyre Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 9.3,
+        "p90": -7.0,
+        "v": 261,
+        "vr": 0.92,
+        "ds": 30.0,
+        "f": 3
+      },
+      {
+        "slug": "gyre_prime_systems_blueprint",
+        "n_fr": "Gyre Prime - Systèmes (Schéma)",
+        "n_en": "Gyre Prime Systems Blueprint",
+        "qty": 1,
+        "p": 3.7,
+        "p90": -17.8,
+        "v": 92,
+        "vr": 0.79,
+        "ds": 35.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "athodai_prime_set": {
+    "desc_fr": "Libérez le chant du guerrier vertueux avec ce pistolet doré qui génère une Surcharge sur les Tirs à la Tête, maximisant la Cadence de Tir et l'Efficacité des Munitions pendant un court instant.",
+    "desc_en": "Unleash the song of the righteous warrior with this gilded pistol that goes into Overdrive on headshot kills, maximizing fire rate and ammo efficiency for a short time.",
+    "wiki_en": "",
+    "icon": "items/images/en/athodai_prime_set.481c252cb75a8c0c0ff351c65688a3e4.webp",
+    "components": [
+      {
+        "slug": "athodai_prime_barrel",
+        "n_fr": "Athodai Prime - Canon",
+        "n_en": "Athodai Prime Barrel",
+        "qty": 1,
+        "p": 14.2,
+        "p90": -79.4,
+        "v": 200,
+        "vr": 2.55,
+        "ds": 0.4,
+        "f": 3
+      },
+      {
+        "slug": "athodai_prime_blueprint",
+        "n_fr": "Athodai Prime (Schéma)",
+        "n_en": "Athodai Prime Blueprint",
+        "qty": 1,
+        "p": 5.0,
+        "p90": -68.8,
+        "v": 103,
+        "vr": 2.44,
+        "ds": 0.0,
+        "f": 3
+      },
+      {
+        "slug": "athodai_prime_receiver",
+        "n_fr": "Athodai Prime - Culasse",
+        "n_en": "Athodai Prime Receiver",
+        "qty": 1,
+        "p": 15.0,
+        "p90": -66.7,
+        "v": 139,
+        "vr": 2.27,
+        "ds": 3.2,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "wukong_prime_set": {
+    "desc_fr": "Le guerrier-farceur s'élève à une nouvelle incarnation.",
+    "desc_en": "The trickster-warrior ascends to his ultimate incarnation. ",
+    "wiki_en": "https://wiki.warframe.com/w/Wukong_Prime",
+    "icon": "items/images/en/wukong_prime_set.6fa7196ae48a7a3901c35834476f3891.png",
+    "components": [
+      {
+        "slug": "wukong_prime_blueprint",
+        "n_fr": "Wukong Prime (Schéma)",
+        "n_en": "Wukong Prime Blueprint",
+        "qty": 1,
+        "p": 24.1,
+        "p90": -35.2,
+        "v": 393,
+        "vr": 1.7,
+        "ds": 6.5,
+        "f": 3
+      },
+      {
+        "slug": "wukong_prime_chassis_blueprint",
+        "n_fr": "Wukong Prime - Châssis (Schéma)",
+        "n_en": "Wukong Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 10.2,
+        "p90": 2.0,
+        "v": 326,
+        "vr": 1.54,
+        "ds": 4.0,
+        "f": 3
+      },
+      {
+        "slug": "wukong_prime_neuroptics_blueprint",
+        "n_fr": "Wukong Prime - Neuroptiques (Schéma)",
+        "n_en": "Wukong Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 8.8,
+        "p90": 10.0,
+        "v": 295,
+        "vr": 1.54,
+        "ds": 90.0,
+        "f": 3
+      },
+      {
+        "slug": "wukong_prime_systems_blueprint",
+        "n_fr": "Wukong Prime - Systèmes (Schéma)",
+        "n_en": "Wukong Prime Systems Blueprint",
+        "qty": 1,
+        "p": 13.3,
+        "p90": -19.9,
+        "v": 328,
+        "vr": 1.55,
+        "ds": 16.3,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "wisp_prime_set": {
+    "desc_fr": "La splendeur dorée de Wisp Prime hante le champ de bataille. Les alliés célèbrent sa beauté interdimensionnelle.",
+    "desc_en": "Wisp Prime’s gilded splendor haunts the battlefield. Allies welcome her interdimensional beauty.",
+    "wiki_en": "https://wiki.warframe.com/w/Wisp_Prime",
+    "icon": "items/images/en/wisp_prime_set.609bc4e8676a77247cc126ca150cb132.png",
+    "components": [
+      {
+        "slug": "wisp_prime_blueprint",
+        "n_fr": "Wisp Prime (Schéma)",
+        "n_en": "Wisp Prime Blueprint",
+        "qty": 1,
+        "p": 35.4,
+        "p90": 18.0,
+        "v": 175,
+        "vr": 0.82,
+        "ds": 60.0,
+        "f": 3
+      },
+      {
+        "slug": "wisp_prime_chassis_blueprint",
+        "n_fr": "Wisp Prime - Châssis (Schéma)",
+        "n_en": "Wisp Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 17.9,
+        "p90": 29.7,
+        "v": 175,
+        "vr": 0.92,
+        "ds": 78.0,
+        "f": 3
+      },
+      {
+        "slug": "wisp_prime_neuroptics_blueprint",
+        "n_fr": "Wisp Prime - Neuroptiques (Schéma)",
+        "n_en": "Wisp Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 4.9,
+        "p90": 2.1,
+        "v": 113,
+        "vr": 0.8,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "wisp_prime_systems_blueprint",
+        "n_fr": "Wisp Prime - Systèmes (Schéma)",
+        "n_en": "Wisp Prime Systems Blueprint",
+        "qty": 1,
+        "p": 5.2,
+        "p90": -14.8,
+        "v": 110,
+        "vr": 0.82,
+        "ds": 20.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "critical_deceleration": {
+    "desc_fr": "+200% de Chances de Critique\n-20% Cadence de Tir",
+    "desc_en": "+200% Critical Chance\n-20% Fire Rate",
+    "wiki_en": "https://wiki.warframe.com/w/Critical_Deceleration",
+    "icon": "items/images/en/critical_deceleration.1e6f0389e96ef70a93f09667ac7282a4.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "ayatan_orta_sculpture": {
+    "desc_fr": "Cette sculpture cinétique Orokin prend vie lorsqu'elle est remplie d'Étoiles Ayatan. Elle peut également être une source d'Endo.",
+    "desc_en": "This kinetic Orokin sculpture springs to life when filled with Ayatan Stars. It may also be a source of Endo.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Ayatan_Sculpture",
+    "icon": "items/images/en/ayatan_orta_sculpture.942499eea26924073ddbb60d8d3016d6.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "A vendre par lot complet de 6 par échange. C'est à indiquer sur warframe.market"
+      }
+    ]
+  },
+  "gauss_prime_set": {
+    "desc_fr": "Le vif-argent prend forme. Gauss Prime ne tolère aucune allusion à la défaite.",
+    "desc_en": "Quicksilver takes form. Gauss Prime brooks no talk of defeat.",
+    "wiki_en": "https://wiki.warframe.com/w/Gauss_Prime",
+    "icon": "items/images/en/gauss_prime_set.df5aa569d863730a4de767fd449c107e.png",
+    "components": [
+      {
+        "slug": "gauss_prime_blueprint",
+        "n_fr": "Gauss Prime (Schéma)",
+        "n_en": "Gauss Prime Blueprint",
+        "qty": 1,
+        "p": 4.6,
+        "p90": -4.2,
+        "v": 103,
+        "vr": 0.74,
+        "ds": 60.0,
+        "f": 3
+      },
+      {
+        "slug": "gauss_prime_chassis_blueprint",
+        "n_fr": "Gauss Prime - Châssis (Schéma)",
+        "n_en": "Gauss Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 4.5,
+        "p90": -4.3,
+        "v": 106,
+        "vr": 0.73,
+        "ds": 16.7,
+        "f": 3
+      },
+      {
+        "slug": "gauss_prime_neuroptics_blueprint",
+        "n_fr": "Gauss Prime - Neuroptiques (Schéma)",
+        "n_en": "Gauss Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 8.8,
+        "p90": 3.5,
+        "v": 164,
+        "vr": 0.74,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "gauss_prime_systems_blueprint",
+        "n_fr": "Gauss Prime - Systèmes (Schéma)",
+        "n_en": "Gauss Prime Systems Blueprint",
+        "qty": 1,
+        "p": 26.3,
+        "p90": 11.9,
+        "v": 235,
+        "vr": 0.9,
+        "ds": 73.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "titania_prime_set": {
+    "desc_fr": "Envoûtante et terrifiante, voici Titania dans sa forme ultime.",
+    "desc_en": "Tempting and terrifying, this is Titania in her ultimate form.",
+    "wiki_en": "https://wiki.warframe.com/w/Titania_Prime",
+    "icon": "items/images/en/titania_prime_set.d783da2b4926bc3760d50bba21eff7db.png",
+    "components": [
+      {
+        "slug": "titania_prime_blueprint",
+        "n_fr": "Titania Prime (Schéma)",
+        "n_en": "Titania Prime Blueprint",
+        "qty": 1,
+        "p": 9.7,
+        "p90": -11.0,
+        "v": 121,
+        "vr": 0.74,
+        "ds": 4.4,
+        "f": 3
+      },
+      {
+        "slug": "titania_prime_chassis_blueprint",
+        "n_fr": "Titania Prime - Châssis (Schéma)",
+        "n_en": "Titania Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 9.2,
+        "p90": -9.8,
+        "v": 114,
+        "vr": 0.69,
+        "ds": 5.0,
+        "f": 3
+      },
+      {
+        "slug": "titania_prime_neuroptics_blueprint",
+        "n_fr": "Titania Prime - Neuroptiques (Schéma)",
+        "n_en": "Titania Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 8.4,
+        "p90": -4.5,
+        "v": 91,
+        "vr": 0.52,
+        "ds": 20.0,
+        "f": 3
+      },
+      {
+        "slug": "titania_prime_systems_blueprint",
+        "n_fr": "Titania Prime - Systèmes (Schéma)",
+        "n_en": "Titania Prime Systems Blueprint",
+        "qty": 1,
+        "p": 35.3,
+        "p90": -18.7,
+        "v": 159,
+        "vr": 0.82,
+        "ds": 11.8,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_bellicose": {
+    "desc_fr": "Gagnez 6% de Puissance de Pouvoir pour chaque 250 de Santé max jusqu'à 72%.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "Gain 6% Ability Strength for every 250 Max Health up to 72%.\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Bellicose",
+    "icon": "items/images/en/arcane_bellicose.cba86d2bfb1b20b4a512b6913e79ba0c.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "protea_prime_set": {
+    "desc_fr": "L'enfant née de deux pères. Protea Prime a autrefois réalisé la vision de Parvos Granum d'un gardien manipulant le temps. Maintenant, elle défend l'idéal Tenno de protéger les plus faibles.",
+    "desc_en": "Behold the child of two fathers. Protea Prime once fulfilled Parvos Granum's vision of a time-wielding guardian. Now she upholds the Tenno ideal of defending the defenseless.",
+    "wiki_en": "https://wiki.warframe.com/w/Protea_Prime",
+    "icon": "items/images/en/protea_prime_set.c4d0269d10f68228b05510982f06e58b.png",
+    "components": [
+      {
+        "slug": "protea_prime_blueprint",
+        "n_fr": "Protea Prime (Schéma)",
+        "n_en": "Protea Prime Blueprint",
+        "qty": 1,
+        "p": 2.8,
+        "p90": -3.4,
+        "v": 45,
+        "vr": 1.2,
+        "ds": 80.0,
+        "f": 3
+      },
+      {
+        "slug": "protea_prime_neuroptics_blueprint",
+        "n_fr": "Protea Prime - Neuroptiques (Schéma)",
+        "n_en": "Protea Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 3.6,
+        "p90": 38.5,
+        "v": 81,
+        "vr": 1.17,
+        "ds": 80.0,
+        "f": 3
+      },
+      {
+        "slug": "protea_prime_chassis_blueprint",
+        "n_fr": "Protea Prime - Châssis (Schéma)",
+        "n_en": "Protea Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 13.6,
+        "p90": 38.8,
+        "v": 148,
+        "vr": 0.91,
+        "ds": 76.7,
+        "f": 3
+      },
+      {
+        "slug": "protea_prime_systems_blueprint",
+        "n_fr": "Protea Prime - Systèmes (Schéma)",
+        "n_en": "Protea Prime Systems Blueprint",
+        "qty": 1,
+        "p": 14.0,
+        "p90": 6.9,
+        "v": 85,
+        "vr": 0.53,
+        "ds": 71.4,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "sevagoth_prime_set": {
+    "desc_fr": "Le timonier doré émerge de la tempête, son ombre étant un appât pour les âmes damnées.",
+    "desc_en": "The gilded helmsman emerges from the tempest, his shadow a lure for doomed souls.",
+    "wiki_en": "https://wiki.warframe.com/w/Sevagoth_Prime",
+    "icon": "items/images/en/sevagoth_prime.56633fb39859f758c11e42519c3521fb.webp",
+    "components": [
+      {
+        "slug": "sevagoth_prime_blueprint",
+        "n_fr": "Sevagoth Prime (Schéma)",
+        "n_en": "Sevagoth Prime Blueprint",
+        "qty": 1,
+        "p": 4.9,
+        "p90": 69.0,
+        "v": 119,
+        "vr": 0.8,
+        "ds": 41.4,
+        "f": 3
+      },
+      {
+        "slug": "sevagoth_prime_chassis_blueprint",
+        "n_fr": "Sevagoth Prime - Châssis (Schéma)",
+        "n_en": "Sevagoth Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 20.2,
+        "p90": 18.8,
+        "v": 232,
+        "vr": 0.7,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "sevagoth_prime_neuroptics_blueprint",
+        "n_fr": "Sevagoth Prime - Neuroptiques (Schéma)",
+        "n_en": "Sevagoth Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 2.0,
+        "p90": -25.9,
+        "v": 53,
+        "vr": 0.87,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "sevagoth_prime_systems_blueprint",
+        "n_fr": "Sevagoth Prime - Systèmes (Schéma)",
+        "n_en": "Sevagoth Prime Systems Blueprint",
+        "qty": 1,
+        "p": 2.1,
+        "p90": -32.3,
+        "v": 54,
+        "vr": 0.69,
+        "ds": 100.0,
+        "f": 2
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_velocity": {
+    "desc_fr": "Sur Coup Critique:\n90% de chances de: +120% Cadence de Tir aux Pistolets pendant 9s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On Critical Hit:\n90% chance for +120% Fire Rate to Pistols for 9s\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Velocity",
+    "icon": "items/images/en/arcane_velocity.ea37edd24f8212ce4bb283205658829b.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "nidus_prime_set": {
+    "desc_fr": "La mutation est infinie. Le porteur du mal dévorant revient sous une forme depuis longtemps oubliée, affecté par une souche primitive de l'Infestation.",
+    "desc_en": "Mutation is endless. The ravening plague-bearer returns in a long-unseen form, seething with a primal strain of the Infestation.",
+    "wiki_en": "https://wiki.warframe.com/w/Nidus_Prime",
+    "icon": "items/images/en/nidus_prime_set.1cf479b37c98ce42340156c9c005e91e.png",
+    "components": [
+      {
+        "slug": "nidus_prime_blueprint",
+        "n_fr": "Nidus Prime (Schéma)",
+        "n_en": "Nidus Prime Blueprint",
+        "qty": 1,
+        "p": 8.9,
+        "p90": 23.6,
+        "v": 79,
+        "vr": 0.79,
+        "ds": 78.0,
+        "f": 3
+      },
+      {
+        "slug": "nidus_prime_chassis_blueprint",
+        "n_fr": "Nidus Prime - Châssis (Schéma)",
+        "n_en": "Nidus Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 32.9,
+        "p90": 25.6,
+        "v": 144,
+        "vr": 1.05,
+        "ds": 32.9,
+        "f": 3
+      },
+      {
+        "slug": "nidus_prime_neuroptics_blueprint",
+        "n_fr": "Nidus Prime - Neuroptiques (Schéma)",
+        "n_en": "Nidus Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 38.6,
+        "p90": 12.5,
+        "v": 119,
+        "vr": 0.9,
+        "ds": 72.0,
+        "f": 3
+      },
+      {
+        "slug": "nidus_prime_systems_blueprint",
+        "n_fr": "Nidus Prime - Systèmes (Schéma)",
+        "n_en": "Nidus Prime Systems Blueprint",
+        "qty": 1,
+        "p": 6.5,
+        "p90": 44.4,
+        "v": 70,
+        "vr": 0.8,
+        "ds": 50.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "melee_crescendo": {
+    "desc_fr": "Melee Arcane that generates 1 Initial Combo for the rest of your mission on Finisher Kill.",
+    "desc_en": "Melee Arcane that generates 1 Initial Combo for the rest of your mission on Finisher Kill.",
+    "wiki_en": "https://wiki.warframe.com/w/Melee_Crescendo",
+    "icon": "items/images/en/melee_crescendo.fec1a875c68b84f3282a21a82aabdb20.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "arcane_crepuscular": {
+    "desc_fr": "En étant invisible, gagnez +30% de Puissance de Pouvoir et +3x aux Dégâts Critiques finaux.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "While invisible, gain +30% Ability Strength and +3x Final Critical Damage.\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Crepuscular",
+    "icon": "items/images/en/arcane_crepuscular.8e34ad3ac57362158d9ec6d642364427.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "meso_w2_relic": {
+    "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
+    "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.",
+    "wiki_en": "",
+    "icon": "items/images/en/meso_w2_relic.a19d00c7586541c7fb6717fa2e27b7ca.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "khora_prime_set": {
+    "desc_fr": "Maîtresse et monstre dans un ensemble harmonieux. Cette chasseresse parée d'or et son loyal Kavat, Venari, dominent le champ de bataille de leur volonté.",
+    "desc_en": "A harmony of mistress and monster. The gilded huntress and her loyal Kavat, Venari, dominate the battlefield with their will.",
+    "wiki_en": "https://wiki.warframe.com/w/Khora_Prime",
+    "icon": "items/images/en/khora_prime_set.12b9da415ed4f659296947b5c7157dc0.png",
+    "components": [
+      {
+        "slug": "khora_prime_blueprint",
+        "n_fr": "Khora Prime (Schéma)",
+        "n_en": "Khora Prime Blueprint",
+        "qty": 1,
+        "p": 30.7,
+        "p90": 8.1,
+        "v": 123,
+        "vr": 0.86,
+        "ds": 28.3,
+        "f": 3
+      },
+      {
+        "slug": "khora_prime_chassis_blueprint",
+        "n_fr": "Khora Prime - Châssis (Schéma)",
+        "n_en": "Khora Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 7.1,
+        "p90": 7.6,
+        "v": 113,
+        "vr": 0.96,
+        "ds": 55.0,
+        "f": 3
+      },
+      {
+        "slug": "khora_prime_neuroptics_blueprint",
+        "n_fr": "Khora Prime - Neuroptiques (Schéma)",
+        "n_en": "Khora Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 29.2,
+        "p90": 8.1,
+        "v": 118,
+        "vr": 0.85,
+        "ds": 73.3,
+        "f": 3
+      },
+      {
+        "slug": "khora_prime_systems_blueprint",
+        "n_fr": "Khora Prime - Systèmes (Schéma)",
+        "n_en": "Khora Prime Systems Blueprint",
+        "qty": 1,
+        "p": 6.6,
+        "p90": 8.2,
+        "v": 94,
+        "vr": 0.81,
+        "ds": 53.3,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "meso_v15_relic": {
+    "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
+    "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.",
+    "wiki_en": "",
+    "icon": "items/images/en/meso_v15_relic.a2f3850abeecafbbe3369af2aaf253ff.webp",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "boar_prime_set": {
+    "desc_fr": "Véritable chef-d'œuvre de l'artisanat Tenno, le Boar Prime se caractérise par une cadence de tir plus élevée, un chargeur étendu et des dégâts beaucoup plus importants.",
+    "desc_en": "One of the finest examples of Tenno craftsmanship, the Boar Prime offers a higher Fire Rate, Magazine Capacity and a much higher per-shot damage.",
+    "wiki_en": "https://wiki.warframe.com/w/Boar_Prime",
+    "icon": "items/images/en/boar_prime_set.5e8a5ba1520169c7a99c738624328d26.png",
+    "components": [
+      {
+        "slug": "boar_prime_barrel",
+        "n_fr": "Boar Prime - Canon",
+        "n_en": "Boar Prime Barrel",
+        "qty": 1,
+        "p": 16.5,
+        "p90": 38.7,
+        "v": 72,
+        "vr": 1.71,
+        "ds": 80.0,
+        "f": 3
+      },
+      {
+        "slug": "boar_prime_blueprint",
+        "n_fr": "Boar Prime (Schéma)",
+        "n_en": "Boar Prime Blueprint",
+        "qty": 1,
+        "p": 9.5,
+        "p90": 23.4,
+        "v": 43,
+        "vr": 1.44,
+        "ds": 83.3,
+        "f": 3
+      },
+      {
+        "slug": "boar_prime_receiver",
+        "n_fr": "Boar Prime - Culasse",
+        "n_en": "Boar Prime Receiver",
+        "qty": 1,
+        "p": 14.0,
+        "p90": 15.7,
+        "v": 59,
+        "vr": 1.32,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "boar_prime_stock",
+        "n_fr": "Boar Prime - Crosse",
+        "n_en": "Boar Prime Stock",
+        "qty": 1,
+        "p": 41.0,
+        "p90": 7.6,
+        "v": 33,
+        "vr": 0.71,
+        "ds": 40.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "revenant_prime_set": {
+    "desc_fr": "L'égaré se lève. Réifiez l'essence Eidolon en utilisant la puissance de Revenant Prime.",
+    "desc_en": "The lost one rises. Reify the essence of the Eidolon as you wield Revenant Prime’s power.",
+    "wiki_en": "https://wiki.warframe.com/w/Revenant_Prime",
+    "icon": "items/images/en/revenant_prime_set.469f99b4183a5dda7769b78b2cde6658.png",
+    "components": [
+      {
+        "slug": "revenant_prime_blueprint",
+        "n_fr": "Revenant Prime (Schéma)",
+        "n_en": "Revenant Prime Blueprint",
+        "qty": 1,
+        "p": 28.7,
+        "p90": 2.5,
+        "v": 138,
+        "vr": 0.99,
+        "ds": 74.0,
+        "f": 3
+      },
+      {
+        "slug": "revenant_prime_chassis_blueprint",
+        "n_fr": "Revenant Prime - Châssis (Schéma)",
+        "n_en": "Revenant Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 5.9,
+        "p90": -11.9,
+        "v": 55,
+        "vr": 0.56,
+        "ds": 36.0,
+        "f": 3
+      },
+      {
+        "slug": "revenant_prime_neuroptics_blueprint",
+        "n_fr": "Revenant Prime - Neuroptiques (Schéma)",
+        "n_en": "Revenant Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 7.5,
+        "p90": 4.2,
+        "v": 75,
+        "vr": 0.66,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "revenant_prime_systems_blueprint",
+        "n_fr": "Revenant Prime - Systèmes (Schéma)",
+        "n_en": "Revenant Prime Systems Blueprint",
+        "qty": 1,
+        "p": 9.6,
+        "p90": -3.0,
+        "v": 111,
+        "vr": 0.82,
+        "ds": 15.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "lith_s13_relic": {
+    "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
+    "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.",
+    "wiki_en": "",
+    "icon": "items/images/en/lith_s13_relic.b9883727b21e25d81bc115605254460a.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "cedo_prime_set": {
+    "desc_fr": "Un Fusil à Pompe en or, forgé pour ceux qui rendent le jugement.",
+    "desc_en": "A golden shotgun, forged for those who deliver judgment.",
+    "wiki_en": "https://wiki.warframe.com/w/Cedo_Prime",
+    "icon": "items/images/en/cedo_prime_set.0c958533f82b78967afb8394ec7c9af9.webp",
+    "components": [
+      {
+        "slug": "cedo_prime_barrel",
+        "n_fr": "Cedo Prime - Canon",
+        "n_en": "Cedo Prime Barrel",
+        "qty": 1,
+        "p": 4.6,
+        "p90": 35.3,
+        "v": 73,
+        "vr": 0.78,
+        "ds": 30.0,
+        "f": 3
+      },
+      {
+        "slug": "cedo_prime_blueprint",
+        "n_fr": "Cedo Prime (Schéma)",
+        "n_en": "Cedo Prime Blueprint",
+        "qty": 1,
+        "p": 9.4,
+        "p90": 17.5,
+        "v": 174,
+        "vr": 1.11,
+        "ds": 80.0,
+        "f": 3
+      },
+      {
+        "slug": "cedo_prime_receiver",
+        "n_fr": "Cedo Prime - Culasse",
+        "n_en": "Cedo Prime Receiver",
+        "qty": 1,
+        "p": 3.2,
+        "p90": 3.2,
+        "v": 186,
+        "vr": 1.83,
+        "ds": 100.0,
+        "f": 2
+      },
+      {
+        "slug": "cedo_prime_stock",
+        "n_fr": "Cedo Prime - Crosse",
+        "n_en": "Cedo Prime Stock",
+        "qty": 1,
+        "p": 4.2,
+        "p90": 16.7,
+        "v": 51,
+        "vr": 0.87,
+        "ds": 60.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "lethal_torrent": {
+    "desc_fr": "+60% Cadence de Tir\n+60% de Tir Multiple",
+    "desc_en": "+60% Fire Rate\n+60% Multishot",
+    "wiki_en": "https://wiki.warframe.com/w/Lethal_Torrent",
+    "icon": "items/images/en/lethal_torrent.5f97f70430d22026c0bbcf6030f046a8.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "blood_rush": {
+    "desc_fr": "+40% de Chance de Critique se superposent avec le Multiplicateur de Combo",
+    "desc_en": "+40% Critical Chance stacks with Combo Multiplier",
+    "wiki_en": "https://wiki.warframe.com/w/Blood_Rush",
+    "icon": "items/images/en/blood_rush.7512063f1029665d1ddc9b5d9a0700f8.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "condition_overload": {
+    "desc_fr": "+80% de Dégâts de Mêlée pour chaque Type de Statut affectant la cible",
+    "desc_en": "+80% Melee Damage per Status Type affecting the target",
+    "wiki_en": "https://wiki.warframe.com/w/Condition_Overload",
+    "icon": "items/images/en/condition_overload.fe7962221a25bc6305bbad0dc925e38b.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "braton_prime_set": {
+    "desc_fr": "Une arme Orokin classique, le Braton Prime dispose de niveaux de dégâts modifiés et d'un chargeur plus grand par rapport au modèle standard.",
+    "desc_en": "A classic Orokin weapon, Braton Prime features modified damage levels and a larger magazine over the standard model.",
+    "wiki_en": "https://wiki.warframe.com/w/Braton_Prime",
+    "icon": "items/images/en/braton_prime_set.ae229642d6179ebfb1547ed7d976e749.png",
+    "components": [
+      {
+        "slug": "braton_prime_barrel",
+        "n_fr": "Braton Prime - Canon",
+        "n_en": "Braton Prime Barrel",
+        "qty": 1,
+        "p": 4.2,
+        "p90": 23.5,
+        "v": 36,
+        "vr": 0.75,
+        "ds": 60.0,
+        "f": 3
+      },
+      {
+        "slug": "braton_prime_blueprint",
+        "n_fr": "Braton Prime (Schéma)",
+        "n_en": "Braton Prime Blueprint",
+        "qty": 1,
+        "p": 2.5,
+        "p90": 47.1,
+        "v": 31,
+        "vr": 1.1,
+        "ds": 75.0,
+        "f": 3
+      },
+      {
+        "slug": "braton_prime_receiver",
+        "n_fr": "Braton Prime - Culasse",
+        "n_en": "Braton Prime Receiver",
+        "qty": 1,
+        "p": 3.8,
+        "p90": 8.6,
+        "v": 68,
+        "vr": 1.01,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "braton_prime_stock",
+        "n_fr": "Braton Prime - Crosse",
+        "n_en": "Braton Prime Stock",
+        "qty": 1,
+        "p": 1.8,
+        "p90": -10.0,
+        "v": 39,
+        "vr": 0.9,
+        "ds": 80.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "melee_duplicate": {
+    "desc_fr": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.",
+    "desc_en": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.",
+    "wiki_en": "https://wiki.warframe.com/w/Melee_Duplicate",
+    "icon": "items/images/en/melee_duplicate.0ac0137e555cde39902706e96853dff9.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "growing_power": {
+    "desc_fr": "Sur Effet de Statut avec une arme : l'escouade augmente la Puissance de Pouvoir personnelle de 25% pendant 6s.",
+    "desc_en": "On Status Effect with Weapon: Squad increases personal Ability Strength by 25% for 6s.",
+    "wiki_en": "https://wiki.warframe.com/w/Growing_Power",
+    "icon": "items/images/en/growing_power.9afc4cbee02acdde54e5f875b8048202.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  }
+}
