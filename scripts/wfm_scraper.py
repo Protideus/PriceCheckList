@@ -143,34 +143,32 @@ def categorize_item(tags, url_name):
     """Filtre l'objet selon ses VRAIS tags de l'API avec support Necramech."""
     is_set = url_name.endswith("_set")
     
-    # 1. WARFRAMES
-    if "warframe" in tags: 
-        return "warframes" if is_set else "ignore"
-        
-    # 2. ARMES (Inclus les armes normales et les armes lourdes/necramech)
-    if "weapon" in tags or "necramech_weapon" in tags: 
-        return "armes" if is_set else "ignore"
-        
-    # 3. EQUIPEMENTS (Sentinelles, Archwings, Compagnons, et désormais les Sets Necramech)
-    if any(t in tags for t in ["sentinel", "archwing", "kubrow", "kavat", "necramech"]): 
-        return "equipements" if is_set else "ignore"
-        
-    # 4. RELIQUES
-    if "relic" in tags: 
-        return "reliques"
-        
-    # 5. MODS
-    if "mod" in tags: 
+    # PRIORITÉS ABSOLUES (doivent venir en premier)
+    if "mod" in tags:
         return "mods"
-        
-    # 6. ARCANES
-    if "arcane_enhancement" in tags: 
+    
+    if "arcane_enhancement" in tags:
         return "arcanes"
-        
-    # 7. RESSOURCES (Uniquement les objets utilitaires bruts, jamais de structures '_set')
-    if any(t in tags for t in ["lens", "ayatan_star", "ayatan_sculpture", "fusion core"]): 
+    
+    if "relic" in tags:
+        return "reliques"
+    
+    # Warframes (seulement les sets)
+    if "warframe" in tags:
+        return "warframes" if is_set else "ignore"
+    
+    # Armes (seulement les sets)
+    if "weapon" in tags or "necramech_weapon" in tags:
+        return "armes" if is_set else "ignore"
+    
+    # Équipements (seulement les sets)
+    if any(t in tags for t in ["sentinel", "archwing", "kubrow", "kavat", "necramech"]):
+        return "equipements" if is_set else "ignore"
+    
+    # Ressources
+    if any(t in tags for t in ["lens", "ayatan_star", "ayatan_sculpture", "fusion core"]):
         return "ignore" if is_set else "ressources"
-        
+    
     return "ignore"
 
 def calculate_economic_indicators(stats_data):
