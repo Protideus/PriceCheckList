@@ -850,10 +850,13 @@
                                 <button id="create-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Créer une nouvelle liste">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
-                                <button id="export-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Exporter la liste (JSON)">
+                                <button id="export-all-pinned-lists-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Exporter toutes les listes (JSON)">
+                                    <i class="fa-solid fa-folder-open"></i>
+                                </button>
+                                <button id="export-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Exporter la liste active (JSON)">
                                     <i class="fa-solid fa-file-export"></i>
                                 </button>
-                                <button id="import-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Importer depuis un JSON">
+                                <button id="import-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Importer une ou plusieurs listes depuis JSON">
                                     <i class="fa-solid fa-file-import"></i>
                                 </button>
                                 <button id="clear-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-amber-300 hover:border-amber-500 hover:bg-gray-900/80 transition" title="Vider le contenu de la liste">
@@ -870,6 +873,7 @@
 
             const select = document.getElementById('pinned-list-select');
             const createBtn = document.getElementById('create-pinned-list-btn');
+            const exportAllBtn = document.getElementById('export-all-pinned-lists-btn');
             const renameBtn = document.getElementById('rename-pinned-list-btn');
             const exportBtn = document.getElementById('export-pinned-list-btn');
             const importBtn = document.getElementById('import-pinned-list-btn');
@@ -889,6 +893,11 @@
             if (renameBtn) {
                 renameBtn.addEventListener('click', () => {
                     openPinnedRenameModal();
+                });
+            }
+            if (exportAllBtn) {
+                exportAllBtn.addEventListener('click', () => {
+                    openPinnedExportAllModal();
                 });
             }
             if (exportBtn) {
@@ -951,7 +960,55 @@
                     navigator.clipboard.writeText(textarea.value).then(() => {
                         copyExportBtn.textContent = 'Copié !';
                         setTimeout(() => {
-                            copyExportBtn.textContent = 'Copier';
+                            copyExportBtn.textContent = 'Copier le JSON';
+                        }, 2000);
+                    }).catch(() => {
+                        console.warn('Impossible de copier le JSON d\'export.');
+                    });
+                });
+            }
+        }
+
+        function openPinnedExportAllModal() {
+            const exportData = {};
+            for (const listId of getPinnedListIds()) {
+                exportData[listId] = Array.from(new Set(Array.isArray(pinnedListsState.lists[listId]) ? pinnedListsState.lists[listId] : []));
+            }
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/70 border-b border-gray-800/60 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-folder-open text-cyan-400"></i> Exporter toutes les listes</h2>
+                        <p class="text-sm text-gray-400 mt-1">JSON de toutes les listes épinglées présentes dans localStorage.</p>
+                    </div>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-2 rounded-full border border-gray-800/60 bg-gray-950/80"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="p-6 flex flex-col gap-4">
+                    <textarea id="pinned-export-json" class="w-full min-h-[220px] bg-gray-950/80 border border-gray-800/70 rounded-3xl p-4 text-sm text-gray-200 font-mono resize-none" readonly>${JSON.stringify(exportData, null, 2)}</textarea>
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <p class="text-xs text-gray-400">Copiez ce JSON pour restaurer toutes vos listes dans un autre navigateur ou un autre appareil.</p>
+                        <button id="copy-export-json-btn" type="button" class="inline-flex items-center gap-2 rounded-3xl border border-cyan-500/60 bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-200 hover:bg-cyan-500/15 transition">
+                            <i class="fa-solid fa-copy"></i> Copier le JSON
+                        </button>
+                    </div>
+                </div>
+            `;
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+
+            const copyExportBtn = document.getElementById('copy-export-json-btn');
+            if (copyExportBtn) {
+                copyExportBtn.addEventListener('click', () => {
+                    const textarea = document.getElementById('pinned-export-json');
+                    if (!textarea) return;
+                    navigator.clipboard.writeText(textarea.value).then(() => {
+                        copyExportBtn.textContent = 'Copié !';
+                        setTimeout(() => {
+                            copyExportBtn.textContent = 'Copier le JSON';
                         }, 2000);
                     }).catch(() => {
                         console.warn('Impossible de copier le JSON d\'export.');
@@ -967,14 +1024,15 @@
 
             modalContent.innerHTML = `
                 <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between">
-                    <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-file-import text-cyan-400"></i> Importer une liste</h2>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-file-import text-cyan-400"></i> Importer des listes</h2>
                     <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
                 </div>
                 <div class="p-6 flex flex-col gap-4">
-                    <label class="text-sm text-gray-300">Nom de la nouvelle liste</label>
+                    <label class="text-sm text-gray-300">Nom de la liste (uniquement pour un tableau de slugs)</label>
                     <input id="pinned-import-name" type="text" class="w-full bg-gray-950/80 border border-gray-800/70 rounded-2xl p-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30" placeholder="vault-2026" />
+                    <p class="text-xs text-gray-400">Saisissez un tableau de slugs pour une seule liste, ou un objet JSON {"nom":"slugs"} / {"lists":{"nom":"slugs"}} pour plusieurs listes.</p>
                     <label class="text-sm text-gray-300">JSON des slugs</label>
-                    <textarea id="pinned-import-json" class="w-full min-h-[180px] bg-gray-950/80 border border-gray-800/70 rounded-2xl p-4 text-sm text-gray-200 font-mono" placeholder='["slug1","slug2"]'></textarea>
+                    <textarea id="pinned-import-json" class="w-full min-h-[180px] bg-gray-950/80 border border-gray-800/70 rounded-2xl p-4 text-sm text-gray-200 font-mono" placeholder='["slug1","slug2"] or {"liste1":["slugA"],"liste2":["slugB"]}'></textarea>
                     <div class="flex justify-end gap-2">
                         <button id="confirm-import-json-btn" type="button" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
                             <i class="fa-solid fa-check"></i> Importer
@@ -993,7 +1051,7 @@
                     const jsonInput = document.getElementById('pinned-import-json');
                     if (!nameInput || !jsonInput) return;
 
-                    const rawName = nameInput.value;
+                    const rawName = nameInput.value.trim();
                     let values;
                     try {
                         values = JSON.parse(jsonInput.value);
@@ -1002,16 +1060,39 @@
                         return;
                     }
 
-                    if (!Array.isArray(values)) {
-                        alert('Le JSON doit être un tableau de slugs.');
+                    if (values && typeof values === 'object' && !Array.isArray(values) && values.lists && typeof values.lists === 'object' && !Array.isArray(values.lists)) {
+                        values = values.lists;
+                    }
+
+                    let createdAny = false;
+                    if (Array.isArray(values)) {
+                        if (!rawName) {
+                            alert('Veuillez renseigner un nom pour la liste importée.');
+                            return;
+                        }
+                        const listName = createPinnedList(rawName, values);
+                        if (!listName) {
+                            alert('Nom invalide pour la liste.');
+                            return;
+                        }
+                        createdAny = true;
+                    } else if (values && typeof values === 'object') {
+                        const keys = Object.keys(values);
+                        for (const key of keys) {
+                            const itemValues = values[key];
+                            if (!Array.isArray(itemValues)) continue;
+                            const created = createPinnedList(key, itemValues);
+                            if (created) createdAny = true;
+                        }
+                        if (!createdAny) {
+                            alert('Aucune liste valide trouvée dans le JSON.');
+                            return;
+                        }
+                    } else {
+                        alert('Le JSON doit être un tableau de slugs ou un objet de listes.');
                         return;
                     }
 
-                    const listName = createPinnedList(rawName, values);
-                    if (!listName) {
-                        alert('Nom invalide pour la liste.');
-                        return;
-                    }
                     closeModal();
                     renderView();
                 });
