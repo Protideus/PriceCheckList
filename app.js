@@ -18,10 +18,13 @@
 
         const CATEGORIES = LIST_CONFIG;
         const RANK_FILTER_CATEGORIES = new Set(['mods', 'arcanes', 'wfm50']);
+        const PIN_STORAGE_KEY = 'pcl_pinned_items';
+        let pinnedItems = new Set();
 
         // ÉTAT GLOBAL DE L'APPLICATION
         let appState = {
             currentCategory: "wfm50",
+            currentView: "category",
             searchQuery: "",
             sortColumn: "n_fr",
             sortDirection: "asc",
@@ -32,6 +35,7 @@
         // INITIALISATION DE L'APPLICATION
         window.addEventListener("DOMContentLoaded", async () => {
             buildProgressChecklist();
+            loadPinnedItems();
             await initApplicationPipeline();
 
             const searchInput = document.getElementById("search-input");
@@ -70,6 +74,10 @@
             const copyDataBtn = document.getElementById("copy-data-btn");
             if (copyDataBtn) {
                 copyDataBtn.addEventListener("click", handleCopyVisibleTableData);
+            }
+            const pinnedPageBtn = document.getElementById('pinned-page-btn');
+            if (pinnedPageBtn) {
+                pinnedPageBtn.addEventListener('click', openPinnedPage);
             }
             document.getElementById("guide-btn").addEventListener("click", openGuideModal);
             document.getElementById("readme-btn").addEventListener("click", openReadmeModal);
@@ -461,10 +469,11 @@
         // CHANGER DE CATÉGORIE ACTIVE
         function switchCategory(catId) {
             appState.currentCategory = catId;
+            appState.currentView = 'category';
             updateTabStyle();
             updateRankFilterUI();
             displaySyncDate(PCLData.version);
-            renderTable();
+            renderView();
         }
 
         // METTRE À JOUR LE STYLE GRAPHIQUE DES ONGLETS SÉLECTIONNÉS
@@ -535,6 +544,79 @@
             return data;
         }
 
+        function loadPinnedItems() {
+            try {
+                const raw = localStorage.getItem(PIN_STORAGE_KEY);
+                const parsed = raw ? JSON.parse(raw) : [];
+                pinnedItems = new Set(Array.isArray(parsed) ? parsed.filter(slug => typeof slug === 'string') : []);
+            } catch (error) {
+                pinnedItems = new Set();
+                console.warn('Impossible de charger les items épinglés depuis localStorage.', error);
+            }
+        }
+
+        function savePinnedItems() {
+            try {
+                localStorage.setItem(PIN_STORAGE_KEY, JSON.stringify(Array.from(pinnedItems)));
+            } catch (error) {
+                console.warn('Impossible de sauvegarder les items épinglés.', error);
+            }
+        }
+
+        function isItemPinned(itemId) {
+            return pinnedItems.has(itemId);
+        }
+
+        function togglePinnedItem(itemId) {
+            if (!itemId) return;
+            if (pinnedItems.has(itemId)) {
+                pinnedItems.delete(itemId);
+            } else {
+                pinnedItems.add(itemId);
+            }
+            savePinnedItems();
+            renderView();
+        }
+
+        function getPinnedItemData(slug) {
+            const tables = Object.entries(PCLData.tables);
+            for (const [category, table] of tables) {
+                const found = table.find(item => item.id === slug);
+                if (found) return { ...found, __category: category };
+            }
+            return { id: slug, n_fr: slug, n_en: '', p: null, v: null, p90: null, vr: null, ds: null, f: null, __category: appState.currentCategory };
+        }
+
+        function getPinnedItemsData() {
+            return Array.from(pinnedItems).map(getPinnedItemData);
+        }
+
+        function renderView() {
+            const pinnedPageBtn = document.getElementById('pinned-page-btn');
+            const isPinnedView = appState.currentView === 'pinned';
+            if (pinnedPageBtn) {
+                pinnedPageBtn.classList.toggle('bg-cyan-950/30', isPinnedView);
+                pinnedPageBtn.classList.toggle('border-cyan-500/50', isPinnedView);
+                pinnedPageBtn.classList.toggle('text-cyan-400', isPinnedView);
+            }
+            if (isPinnedView) {
+                renderPinnedPage();
+            } else {
+                displaySyncDate(PCLData.version);
+                renderTable();
+            }
+        }
+
+        function openPinnedPage() {
+            appState.currentView = 'pinned';
+            renderView();
+        }
+
+        function openCategoryView() {
+            appState.currentView = 'category';
+            renderView();
+        }
+
         function renderTable() {
             const tbody = document.getElementById("table-body");
             const noResults = document.getElementById("no-results");
@@ -560,9 +642,10 @@
                 const vrValue = item.vr !== undefined && item.vr !== null ? Number(item.vr) : 0;
                 const vrMax = item.vr_max !== undefined && item.vr_max !== null ? Number(item.vr_max) : null;
                 const alertMarker = renderAlertMarker(appState.currentCategory, item.id);
+                const isPinned = isItemPinned(item.id);
 
                 tableHTML += `
-                    <tr class="table-row-hover border-b border-gray-800/30 cursor-pointer text-gray-300 font-medium" onclick="openItemDetails('${item.id}')">
+                    <tr class="table-row-hover border-b border-gray-800/30 cursor-pointer text-gray-300 font-medium" onclick="openItemDetails('${item.id}', '${appState.currentCategory}')">
                         <td class="p-4">
                             <div class="text-white">${item.n_fr || item.id}${alertMarker}</div>
                             <div class="text-xs text-gray-500 italic font-mono">${item.n_en || ''}</div>
@@ -585,12 +668,109 @@
                         <td class="p-4 text-center text-sm">
                             ${renderRankValue(item.f, item.f_max, renderFiabilityIcons)}
                         </td>
+                        <td class="p-4 text-center">
+                            <button type="button" onclick="event.stopPropagation(); togglePinnedItem('${item.id}')" class="inline-flex items-center justify-center h-10 w-10 rounded-xl border transition ${isPinned ? 'bg-amber-400/15 border-amber-400 text-amber-300' : 'bg-gray-950/50 border-gray-800 text-gray-400 hover:text-amber-300 hover:border-amber-300'}" title="${isPinned ? 'Désépingler' : 'Épingler'}">
+                                <i class="fa-solid ${isPinned ? 'fa-thumbtack' : 'fa-map-pin'}"></i>
+                            </button>
+                        </td>
                     </tr>
                 `;
             });
 
             // Une seule et unique injection pour liquider instantanément le freeze
             tbody.innerHTML = tableHTML;
+        }
+
+        function getVisiblePinnedData() {
+            const rawData = getPinnedItemsData();
+            let data = rawData.slice();
+
+            if (appState.searchQuery) {
+                data = data.filter(item => 
+                    (item.n_fr && item.n_fr.toLowerCase().includes(appState.searchQuery)) ||
+                    (item.n_en && item.n_en.toLowerCase().includes(appState.searchQuery))
+                );
+            }
+
+            const col = appState.sortColumn;
+            const dir = appState.sortDirection === "asc" ? 1 : -1;
+
+            data.sort((a, b) => {
+                let valA = a[col] !== undefined ? a[col] : 0;
+                let valB = b[col] !== undefined ? b[col] : 0;
+
+                if (typeof valA === 'string') {
+                    return valA.localeCompare(valB, 'fr') * dir;
+                }
+                return (valA - valB) * dir;
+            });
+
+            return data;
+        }
+
+        function renderPinnedPage() {
+            const container = document.getElementById('table-body');
+            const noResults = document.getElementById('no-results');
+            const title = document.getElementById('api-version-info');
+            if (!container || !noResults || !title) return;
+
+            const data = getVisiblePinnedData();
+            updateSortIcons();
+            title.innerHTML = `<i class="fa-solid fa-thumbtack text-cyan-500"></i> Mes Épinglés (${data.length})`;
+
+            if (data.length === 0) {
+                container.innerHTML = "";
+                noResults.classList.remove("hidden");
+                noResults.innerHTML = `<i class="fa-solid fa-box-open text-2xl mb-2 block"></i> Aucun item épinglé pour le moment.`;
+                return;
+            }
+            noResults.classList.add("hidden");
+
+            let tableHTML = "";
+            data.forEach(item => {
+                const deltaValue = item.p90 !== undefined && item.p90 !== null ? Number(item.p90) : 0;
+                const deltaMax = item.p90_max !== undefined && item.p90_max !== null ? Number(item.p90_max) : null;
+                const dsValue = item.ds !== undefined && item.ds !== null ? Number(item.ds) : 0;
+                const dsMax = item.ds_max !== undefined && item.ds_max !== null ? Number(item.ds_max) : null;
+                const vrValue = item.vr !== undefined && item.vr !== null ? Number(item.vr) : 0;
+                const vrMax = item.vr_max !== undefined && item.vr_max !== null ? Number(item.vr_max) : null;
+                const isPinned = isItemPinned(item.id);
+                const category = item.__category || appState.currentCategory;
+
+                tableHTML += `
+                    <tr class="table-row-hover border-b border-gray-800/30 cursor-pointer text-gray-300 font-medium" onclick="openItemDetails('${item.id}', '${category}')">
+                        <td class="p-4">
+                            <div class="text-white">${item.n_fr || item.id}</div>
+                            <div class="text-xs text-gray-500 italic font-mono">${item.n_en || ''}</div>
+                        </td>
+                        <td class="p-4 text-right font-mono text-cyan-300">
+                            ${renderRankValue(item.p, item.p_max, formatPrice)}
+                        </td>
+                        <td class="p-4 text-right font-mono text-gray-100">
+                            ${renderRankValue(item.v, item.v_max, formatVolume)}
+                        </td>
+                        <td class="p-4 text-right text-sm font-semibold ${getDeltaClass(deltaValue, deltaMax)}">
+                            ${renderRankValue(deltaValue, deltaMax, renderDelta, 'R0', 'Rmax')}
+                        </td>
+                        <td class="p-4 text-right">
+                            ${renderRankValue(vrValue, vrMax, renderVrBadge)}
+                        </td>
+                        <td class="p-4 text-left">
+                            ${renderRankValue(dsValue, dsMax, renderDsBar)}
+                        </td>
+                        <td class="p-4 text-center text-sm">
+                            ${renderRankValue(item.f, item.f_max, renderFiabilityIcons)}
+                        </td>
+                        <td class="p-4 text-center">
+                            <button type="button" onclick="event.stopPropagation(); togglePinnedItem('${item.id}')" class="inline-flex items-center justify-center h-10 w-10 rounded-xl border transition ${isPinned ? 'bg-amber-400/15 border-amber-400 text-amber-300' : 'bg-gray-950/50 border-gray-800 text-gray-400 hover:text-amber-300 hover:border-amber-300'}" title="${isPinned ? 'Désépingler' : 'Épingler'}">
+                                <i class="fa-solid ${isPinned ? 'fa-thumbtack' : 'fa-map-pin'}"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            container.innerHTML = tableHTML;
         }
 
         function formatExportPrice(value) {
@@ -664,7 +844,7 @@
         }
 
         function handleCopyVisibleTableData() {
-            const data = getVisibleTableData();
+            const data = appState.currentView === 'pinned' ? getVisiblePinnedData() : getVisibleTableData();
             if (!data.length) return;
 
             const lines = data.flatMap(item => getExportLinesForItem(item));
@@ -807,7 +987,7 @@
                 appState.sortColumn = columnName;
                 appState.sortDirection = columnName === "n_fr" ? "asc" : "desc";
             }
-            renderTable();
+            renderView();
         }
 
         // RE-DESSINER LES FLÈCHES DE TRI (▲/▼)
@@ -826,8 +1006,8 @@
         }
 
         // CHARGEMENT À LA VOLÉE DE LA FICHE D'ENCYCLOPÉDIE DE L'ITEM
-        async function openItemDetails(itemId) {
-            const cat = appState.currentCategory;
+        async function openItemDetails(itemId, category) {
+            const cat = category || appState.currentCategory;
             const modalContainer = document.getElementById("modal-container");
             const modalContent = document.getElementById("modal-content");
             

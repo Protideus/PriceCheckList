@@ -46,6 +46,10 @@
                     <span class="font-bold text-lg text-white tracking-wider uppercase">PCL</span>
                 </div>
                 <nav id="nav-tabs" class="hidden md:flex space-x-1"></nav>
+                <button id="pinned-page-btn" class="hidden md:inline-flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
+                    <i class="fa-solid fa-thumbtack"></i>
+                    Mes Épinglés
+                </button>
                 <div class="flex items-center gap-2">
                     <button id="alerts-btn" class="relative text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium px-3 py-2 rounded-lg hover:bg-gray-800/30">
                         <i class="fa-solid fa-bell"></i>
@@ -126,6 +130,9 @@
                             </th>
                             <th class="p-4 cursor-pointer hover:text-cyan-400 transition-colors text-center" onclick="handleSort('f')">
                                 FIABILITE <span id="sort-icon-f" class="ml-1 text-gray-600"></span>
+                            </th>
+                            <th class="p-4 text-center">
+                                Action
                             </th>
                         </tr>
                     </thead>
