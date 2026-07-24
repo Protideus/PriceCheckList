@@ -18,8 +18,13 @@
 
         const CATEGORIES = LIST_CONFIG;
         const RANK_FILTER_CATEGORIES = new Set(['mods', 'arcanes', 'wfm50']);
-        const PIN_STORAGE_KEY = 'pcl_pinned_items';
-        let pinnedItems = new Set();
+        const PIN_STORAGE_KEY = 'pcl_pinned_lists';
+        let pinnedListsState = {
+            lists: {
+                default: []
+            },
+            activeList: 'default'
+        };
 
         // ÉTAT GLOBAL DE L'APPLICATION
         let appState = {
@@ -29,13 +34,14 @@
             sortColumn: "n_fr",
             sortDirection: "asc",
             rankFilter: "all",
-            alertProfitThreshold: 30
+            alertProfitThreshold: 30,
+            pendingListDelete: false
         };
 
         // INITIALISATION DE L'APPLICATION
         window.addEventListener("DOMContentLoaded", async () => {
             buildProgressChecklist();
-            loadPinnedItems();
+            loadPinnedListsState();
             await initApplicationPipeline();
 
             const searchInput = document.getElementById("search-input");
@@ -544,44 +550,132 @@
             return data;
         }
 
-        function loadPinnedItems() {
+        function loadPinnedListsState() {
             try {
                 const raw = localStorage.getItem(PIN_STORAGE_KEY);
-                const parsed = raw ? JSON.parse(raw) : [];
-                pinnedItems = new Set(Array.isArray(parsed) ? parsed.filter(slug => typeof slug === 'string') : []);
+                const parsed = raw ? JSON.parse(raw) : null;
+                if (parsed && typeof parsed === 'object' && parsed.lists && typeof parsed.lists === 'object') {
+                    pinnedListsState = {
+                        lists: parsed.lists,
+                        activeList: typeof parsed.activeList === 'string' && parsed.activeList in parsed.lists ? parsed.activeList : 'default'
+                    };
+                } else {
+                    pinnedListsState = { lists: { default: [] }, activeList: 'default' };
+                }
             } catch (error) {
-                pinnedItems = new Set();
-                console.warn('Impossible de charger les items épinglés depuis localStorage.', error);
+                pinnedListsState = { lists: { default: [] }, activeList: 'default' };
+                console.warn('Impossible de charger les listes épinglées depuis localStorage.', error);
             }
         }
 
-        function savePinnedItems() {
+        function savePinnedListsState() {
             try {
-                localStorage.setItem(PIN_STORAGE_KEY, JSON.stringify(Array.from(pinnedItems)));
+                localStorage.setItem(PIN_STORAGE_KEY, JSON.stringify(pinnedListsState));
             } catch (error) {
-                console.warn('Impossible de sauvegarder les items épinglés.', error);
+                console.warn('Impossible de sauvegarder les listes épinglées.', error);
             }
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function normalizePinnedListName(rawName) {
+            if (!rawName || typeof rawName !== 'string') return null;
+            const normalized = rawName.trim().replace(/\s+/g, ' ');
+            return normalized.length > 0 ? normalized : null;
+        }
+
+        function getPinnedListIds() {
+            return Object.keys(pinnedListsState.lists);
+        }
+
+        function renamePinnedList(oldName, newName) {
+            const normalized = normalizePinnedListName(newName);
+            if (!normalized || normalized === oldName) return false;
+            if (pinnedListsState.lists[normalized]) return false;
+
+            pinnedListsState.lists[normalized] = pinnedListsState.lists[oldName] || [];
+            delete pinnedListsState.lists[oldName];
+            pinnedListsState.activeList = normalized;
+            savePinnedListsState();
+            return true;
+        }
+
+        function getActivePinnedSet() {
+            const activeList = pinnedListsState.activeList;
+            const list = pinnedListsState.lists[activeList];
+            return new Set(Array.isArray(list) ? list.filter(slug => typeof slug === 'string') : []);
         }
 
         function isItemPinned(itemId) {
-            return pinnedItems.has(itemId);
+            return getActivePinnedSet().has(itemId);
+        }
+
+        function createPinnedList(rawName, initialSlugs = []) {
+            const normalized = normalizePinnedListName(rawName);
+            if (!normalized) return null;
+
+            let listName = normalized;
+            let index = 1;
+            while (pinnedListsState.lists[listName]) {
+                listName = `${normalized}-${index}`;
+                index += 1;
+            }
+
+            pinnedListsState.lists[listName] = Array.from(new Set(Array.isArray(initialSlugs) ? initialSlugs.filter(slug => typeof slug === 'string') : []));
+            pinnedListsState.activeList = listName;
+            savePinnedListsState();
+            return listName;
+        }
+
+        function switchPinnedList(listId) {
+            if (!listId || !pinnedListsState.lists[listId]) return;
+            pinnedListsState.activeList = listId;
+            appState.pendingListDelete = false;
+            savePinnedListsState();
+            renderView();
         }
 
         function togglePinnedItem(itemId) {
             if (!itemId) return;
-            if (pinnedItems.has(itemId)) {
-                pinnedItems.delete(itemId);
-            } else {
-                pinnedItems.add(itemId);
+            const activeList = pinnedListsState.activeList;
+            if (!pinnedListsState.lists[activeList]) {
+                pinnedListsState.lists[activeList] = [];
             }
-            savePinnedItems();
+            const list = pinnedListsState.lists[activeList];
+            const index = list.indexOf(itemId);
+            if (index !== -1) {
+                list.splice(index, 1);
+            } else {
+                list.push(itemId);
+            }
+            savePinnedListsState();
             renderView();
         }
 
         function clearPinnedItems() {
-            if (pinnedItems.size === 0) return;
-            pinnedItems.clear();
-            savePinnedItems();
+            const activeList = pinnedListsState.activeList;
+            const list = pinnedListsState.lists[activeList] || [];
+            if (list.length === 0) return;
+            pinnedListsState.lists[activeList] = [];
+            savePinnedListsState();
+            renderView();
+        }
+
+        function deleteActivePinnedList() {
+            const listIds = getPinnedListIds();
+            if (listIds.length <= 1) return;
+            const activeList = pinnedListsState.activeList;
+            delete pinnedListsState.lists[activeList];
+            pinnedListsState.activeList = listIds.find(id => id !== activeList) || 'default';
+            appState.pendingListDelete = false;
+            savePinnedListsState();
             renderView();
         }
 
@@ -595,16 +689,21 @@
         }
 
         function getPinnedItemsData() {
-            return Array.from(pinnedItems).map(getPinnedItemData);
+            const activeList = pinnedListsState.activeList;
+            return Array.from(new Set(Array.isArray(pinnedListsState.lists[activeList]) ? pinnedListsState.lists[activeList] : [])).map(getPinnedItemData);
         }
 
         function renderView() {
             const pinnedPageBtn = document.getElementById('pinned-page-btn');
+            const pinnedToolbar = document.getElementById('pinned-list-toolbar');
             const isPinnedView = appState.currentView === 'pinned';
             if (pinnedPageBtn) {
                 pinnedPageBtn.classList.toggle('bg-cyan-950/30', isPinnedView);
                 pinnedPageBtn.classList.toggle('border-cyan-500/50', isPinnedView);
                 pinnedPageBtn.classList.toggle('text-cyan-400', isPinnedView);
+            }
+            if (pinnedToolbar) {
+                pinnedToolbar.classList.toggle('hidden', !isPinnedView);
             }
             if (isPinnedView) {
                 renderPinnedPage();
@@ -715,25 +814,426 @@
             return data;
         }
 
+        function renderPinnedToolbar() {
+            const toolbar = document.getElementById('pinned-list-toolbar');
+            const listIds = getPinnedListIds();
+            const activeList = pinnedListsState.activeList;
+            const activeItems = getPinnedItemsData().length;
+            const canDelete = listIds.length > 1;
+
+            toolbar.innerHTML = `
+                <div class="bg-gray-950/80 border border-gray-800/70 rounded-3xl p-4 shadow-sm shadow-cyan-950/10 backdrop-blur-sm">
+                    <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                        <div class="min-w-0">
+                            <div class="text-[11px] uppercase tracking-[0.3em] text-cyan-400/70">Mes listes d'épinglés</div>
+                            <div class="mt-3 flex flex-wrap items-center gap-2 min-w-0">
+                                <button id="rename-pinned-list-btn" type="button" title="Renommer la liste" class="group inline-flex items-center gap-2 min-w-0 text-left focus:outline-none">
+                                    <span class="truncate text-xl font-semibold text-white group-hover:text-cyan-300">${escapeHtml(activeList)}</span>
+                                    <i class="fa-solid fa-pen text-gray-500 transition-colors group-hover:text-cyan-300"></i>
+                                </button>
+                            </div>
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs text-gray-400">
+                                <span>${activeItems} item${activeItems !== 1 ? 's' : ''}</span>
+                                <span class="inline-flex items-center gap-2 rounded-full border border-gray-800/70 bg-gray-950/70 px-3 py-1">${listIds.length} liste${listIds.length !== 1 ? 's' : ''}</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_auto] lg:grid-cols-auto lg:auto-cols-max lg:items-center">
+                            <div class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/90 px-3 py-2 text-sm text-white">
+                                <label class="sr-only" for="pinned-list-select">Sélectionner une liste</label>
+                                <i class="fa-solid fa-layer-group text-cyan-400"></i>
+                                <select id="pinned-list-select" class="bg-transparent border-none text-sm text-gray-200 outline-none" title="Sélectionner une liste">
+                                    ${listIds.map(id => `<option style="background:rgba(15,23,30,0.98);color:rgba(229,246,251,0.95);" value="${escapeHtml(id)}" ${id === activeList ? 'selected' : ''}>${escapeHtml(id)}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div class="flex flex-wrap justify-end gap-2">
+                                <button id="create-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Créer une nouvelle liste">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <button id="export-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Exporter la liste (JSON)">
+                                    <i class="fa-solid fa-file-export"></i>
+                                </button>
+                                <button id="import-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-cyan-300 hover:border-cyan-500 hover:bg-gray-900/80 transition" title="Importer depuis un JSON">
+                                    <i class="fa-solid fa-file-import"></i>
+                                </button>
+                                <button id="clear-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border border-gray-800/70 bg-gray-950/70 px-4 py-2 text-xs font-semibold text-gray-300 hover:text-amber-300 hover:border-amber-500 hover:bg-gray-900/80 transition" title="Vider le contenu de la liste">
+                                    <i class="fa-solid fa-broom"></i>
+                                </button>
+                                <button id="delete-pinned-list-btn" type="button" class="inline-flex items-center gap-2 rounded-2xl border ${canDelete ? 'border-gray-800/70 bg-gray-950/70 text-gray-300 hover:text-rose-300 hover:border-rose-500 hover:bg-gray-900/80' : 'border-gray-800/40 bg-gray-950/40 text-gray-600 cursor-not-allowed'} px-4 py-2 text-xs font-semibold transition" ${canDelete ? '' : 'disabled'} title="Supprimer la liste (définitif)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const select = document.getElementById('pinned-list-select');
+            const createBtn = document.getElementById('create-pinned-list-btn');
+            const renameBtn = document.getElementById('rename-pinned-list-btn');
+            const exportBtn = document.getElementById('export-pinned-list-btn');
+            const importBtn = document.getElementById('import-pinned-list-btn');
+            const clearBtn = document.getElementById('clear-pinned-list-btn');
+            const deleteBtn = document.getElementById('delete-pinned-list-btn');
+
+            if (select) {
+                select.addEventListener('change', (event) => {
+                    switchPinnedList(event.target.value);
+                });
+            }
+            if (createBtn) {
+                createBtn.addEventListener('click', () => {
+                    openPinnedCreateModal();
+                });
+            }
+            if (renameBtn) {
+                renameBtn.addEventListener('click', () => {
+                    openPinnedRenameModal();
+                });
+            }
+            if (exportBtn) {
+                exportBtn.addEventListener('click', () => {
+                    openPinnedExportModal();
+                });
+            }
+            if (importBtn) {
+                importBtn.addEventListener('click', () => {
+                    openPinnedImportModal();
+                });
+            }
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    openPinnedClearListModal();
+                });
+            }
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', () => {
+                    if (!canDelete) return;
+                    openPinnedDeleteModal();
+                });
+            }
+        }
+
+        function openPinnedExportModal() {
+            const activeList = pinnedListsState.activeList;
+            const exportData = Array.from(new Set(Array.isArray(pinnedListsState.lists[activeList]) ? pinnedListsState.lists[activeList] : []));
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/70 border-b border-gray-800/60 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-file-export text-cyan-400"></i> Exporter</h2>
+                        <p class="text-sm text-gray-400 mt-1">JSON de la liste <strong class="text-white">${escapeHtml(activeList)}</strong></p>
+                    </div>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-2 rounded-full border border-gray-800/60 bg-gray-950/80"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="p-6 flex flex-col gap-4">
+                    <textarea id="pinned-export-json" class="w-full min-h-[220px] bg-gray-950/80 border border-gray-800/70 rounded-3xl p-4 text-sm text-gray-200 font-mono resize-none" readonly>${JSON.stringify(exportData, null, 2)}</textarea>
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <p class="text-xs text-gray-400">Utilisez ce JSON pour importer facilement votre liste ailleurs.</p>
+                        <button id="copy-export-json-btn" type="button" class="inline-flex items-center gap-2 rounded-3xl border border-cyan-500/60 bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-200 hover:bg-cyan-500/15 transition">
+                            <i class="fa-solid fa-copy"></i> Copier le JSON
+                        </button>
+                    </div>
+                </div>
+            `;
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+
+            const copyExportBtn = document.getElementById('copy-export-json-btn');
+            if (copyExportBtn) {
+                copyExportBtn.addEventListener('click', () => {
+                    const textarea = document.getElementById('pinned-export-json');
+                    if (!textarea) return;
+                    navigator.clipboard.writeText(textarea.value).then(() => {
+                        copyExportBtn.textContent = 'Copié !';
+                        setTimeout(() => {
+                            copyExportBtn.textContent = 'Copier';
+                        }, 2000);
+                    }).catch(() => {
+                        console.warn('Impossible de copier le JSON d\'export.');
+                    });
+                });
+            }
+        }
+
+        function openPinnedImportModal() {
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-file-import text-cyan-400"></i> Importer une liste</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div class="p-6 flex flex-col gap-4">
+                    <label class="text-sm text-gray-300">Nom de la nouvelle liste</label>
+                    <input id="pinned-import-name" type="text" class="w-full bg-gray-950/80 border border-gray-800/70 rounded-2xl p-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30" placeholder="vault-2026" />
+                    <label class="text-sm text-gray-300">JSON des slugs</label>
+                    <textarea id="pinned-import-json" class="w-full min-h-[180px] bg-gray-950/80 border border-gray-800/70 rounded-2xl p-4 text-sm text-gray-200 font-mono" placeholder='["slug1","slug2"]'></textarea>
+                    <div class="flex justify-end gap-2">
+                        <button id="confirm-import-json-btn" type="button" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
+                            <i class="fa-solid fa-check"></i> Importer
+                        </button>
+                    </div>
+                </div>
+            `;
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+
+            const confirmImportBtn = document.getElementById('confirm-import-json-btn');
+            if (confirmImportBtn) {
+                confirmImportBtn.addEventListener('click', () => {
+                    const nameInput = document.getElementById('pinned-import-name');
+                    const jsonInput = document.getElementById('pinned-import-json');
+                    if (!nameInput || !jsonInput) return;
+
+                    const rawName = nameInput.value;
+                    let values;
+                    try {
+                        values = JSON.parse(jsonInput.value);
+                    } catch (error) {
+                        alert('JSON invalide.');
+                        return;
+                    }
+
+                    if (!Array.isArray(values)) {
+                        alert('Le JSON doit être un tableau de slugs.');
+                        return;
+                    }
+
+                    const listName = createPinnedList(rawName, values);
+                    if (!listName) {
+                        alert('Nom invalide pour la liste.');
+                        return;
+                    }
+                    closeModal();
+                    renderView();
+                });
+            }
+        }
+
+        function openPinnedCreateModal() {
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-plus text-cyan-400"></i> Nouvelle liste</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div class="p-6 flex flex-col gap-4">
+                    <label class="text-sm text-gray-300">Nom de la nouvelle liste</label>
+                    <input id="pinned-create-name" type="text" class="w-full bg-gray-950/80 border border-gray-800/70 rounded-2xl p-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30" placeholder="Ma liste d'épinglés" />
+                    <p id="pinned-create-error" class="text-xs text-rose-400 min-h-[1.2rem]"></p>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModal()" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
+                            Annuler
+                        </button>
+                        <button id="confirm-create-pinned-btn" type="button" class="inline-flex items-center gap-2 text-xs text-cyan-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-cyan-500/70 bg-cyan-500/10 hover:bg-cyan-500/15">
+                            <i class="fa-solid fa-check"></i> Créer
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+
+            const confirmCreateBtn = document.getElementById('confirm-create-pinned-btn');
+            if (confirmCreateBtn) {
+                confirmCreateBtn.addEventListener('click', () => {
+                    const nameInput = document.getElementById('pinned-create-name');
+                    const errorMessage = document.getElementById('pinned-create-error');
+                    if (!nameInput || !errorMessage) return;
+
+                    const name = nameInput.value.trim();
+                    if (!name) {
+                        errorMessage.textContent = 'Veuillez saisir un nom valide.';
+                        return;
+                    }
+
+                    const listName = createPinnedList(name);
+                    if (!listName) {
+                        errorMessage.textContent = 'Ce nom est déjà utilisé ou invalide.';
+                        return;
+                    }
+
+                    closeModal();
+                    renderView();
+                });
+            }
+        }
+
+        function openPinnedRenameModal() {
+            const activeList = pinnedListsState.activeList;
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-pen text-cyan-400"></i> Renommer la liste</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div class="p-6 flex flex-col gap-4">
+                    <p class="text-sm text-gray-300">Liste sélectionnée : <strong class="text-white">${escapeHtml(activeList)}</strong></p>
+                    <label class="text-sm text-gray-300">Nouveau nom</label>
+                    <input id="pinned-rename-name" type="text" class="w-full bg-gray-950/80 border border-gray-800/70 rounded-2xl p-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30" value="${escapeHtml(activeList)}" />
+                    <p id="pinned-rename-error" class="text-xs text-rose-400 min-h-[1.2rem]"></p>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModal()" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
+                            Annuler
+                        </button>
+                        <button id="confirm-rename-pinned-btn" type="button" class="inline-flex items-center gap-2 text-xs text-cyan-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-cyan-500/70 bg-cyan-500/10 hover:bg-cyan-500/15">
+                            <i class="fa-solid fa-check"></i> Renommer
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+
+            const confirmRenameBtn = document.getElementById('confirm-rename-pinned-btn');
+            if (confirmRenameBtn) {
+                confirmRenameBtn.addEventListener('click', () => {
+                    const nameInput = document.getElementById('pinned-rename-name');
+                    const errorMessage = document.getElementById('pinned-rename-error');
+                    if (!nameInput || !errorMessage) return;
+
+                    const name = nameInput.value.trim();
+                    if (!name) {
+                        errorMessage.textContent = 'Veuillez saisir un nom valide.';
+                        return;
+                    }
+
+                    const renamed = renamePinnedList(activeList, name);
+                    if (!renamed) {
+                        errorMessage.textContent = 'Ce nom est déjà utilisé ou invalide.';
+                        return;
+                    }
+
+                    closeModal();
+                    renderView();
+                });
+            }
+        }
+
+        function openPinnedDeleteModal() {
+            const activeList = pinnedListsState.activeList;
+            const currentCount = getPinnedItemsData().length;
+            const listIds = getPinnedListIds();
+            const canDelete = listIds.length > 1;
+            if (!canDelete) return;
+
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-trash text-rose-400"></i> Supprimer la liste</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div class="p-6 flex flex-col gap-4">
+                    <p class="text-sm text-gray-300">Vous êtes sur le point de supprimer la liste <strong class="text-white">${escapeHtml(activeList)}</strong>.</p>
+                    <p class="text-sm text-gray-400">Cette action supprimera la liste et son contenu (${currentCount} élément${currentCount > 1 ? 's' : ''}).</p>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModal()" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
+                            Annuler
+                        </button>
+                        <button id="confirm-delete-pinned-btn" type="button" class="inline-flex items-center gap-2 text-xs text-rose-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-rose-500/70 bg-rose-500/10 hover:bg-rose-500/15">
+                            <i class="fa-solid fa-trash"></i> Supprimer
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+
+            const confirmDeleteBtn = document.getElementById('confirm-delete-pinned-btn');
+            if (confirmDeleteBtn) {
+                confirmDeleteBtn.addEventListener('click', () => {
+                    deleteActivePinnedList();
+                    closeModal();
+                });
+            }
+        }
+
+        function openPinnedClearListModal() {
+            const activeList = pinnedListsState.activeList;
+            const currentCount = getPinnedItemsData().length;
+            if (currentCount === 0) return;
+
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContainer || !modalContent) return;
+
+            modalContent.innerHTML = `
+                <div class="p-6 bg-gray-950/60 border-b border-gray-800/40 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-trash-can text-amber-400"></i> Vider la liste</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-colors p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div class="p-6 flex flex-col gap-4">
+                    <p class="text-sm text-gray-300">Vous allez vider la liste <strong class="text-white">${escapeHtml(activeList)}</strong>.</p>
+                    <p class="text-sm text-gray-400">${currentCount} élément${currentCount > 1 ? 's' : ''} seront retiré${currentCount > 1 ? 's' : ''} sans supprimer la liste.</p>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModal()" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">
+                            Annuler
+                        </button>
+                        <button id="confirm-clear-pinned-btn" type="button" class="inline-flex items-center gap-2 text-xs text-amber-400 hover:text-white transition-colors px-3 py-2 rounded-lg border border-amber-500/70 bg-amber-500/10 hover:bg-amber-500/15">
+                            <i class="fa-solid fa-trash-can"></i> Vider
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modalContainer.classList.remove('hidden');
+            setTimeout(() => modalContainer.classList.add('modal-show'), 10);
+            setTimeout(() => modalContent.classList.add('modal-scale'), 10);
+
+            const confirmClearBtn = document.getElementById('confirm-clear-pinned-btn');
+            if (confirmClearBtn) {
+                confirmClearBtn.addEventListener('click', () => {
+                    clearPinnedItems();
+                    closeModal();
+                });
+            }
+        }
+
         function renderPinnedPage() {
             const container = document.getElementById('table-body');
             const noResults = document.getElementById('no-results');
             const title = document.getElementById('api-version-info');
-            if (!container || !noResults || !title) return;
+            const toolbar = document.getElementById('pinned-list-toolbar');
+            if (!container || !noResults || !title || !toolbar) return;
+
+            renderPinnedToolbar();
 
             const data = getVisiblePinnedData();
             updateSortIcons();
-            title.innerHTML = `<div class="flex items-center justify-between gap-3"><span><i class="fa-solid fa-thumbtack text-cyan-500"></i> Mes Épinglés (${data.length})</span><button id="clear-pinned-btn" type="button" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">` +
-                `<i class="fa-solid fa-trash-can"></i> Vider` +
-                `</button></div>`;
-
-            const clearButton = document.getElementById('clear-pinned-btn');
-            if (clearButton) {
-                clearButton.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    clearPinnedItems();
-                });
-            }
+            title.innerHTML = `
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="space-y-1">
+                        <div class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+                            <i class="fa-solid fa-thumbtack"></i>
+                            <span>Mes Épinglés</span>
+                        </div>
+                        <div class="text-xs text-gray-400">Liste active : <span class="text-white">${escapeHtml(pinnedListsState.activeList)}</span> • ${data.length} item${data.length !== 1 ? 's' : ''}</div>
+                    </div>
+                </div>
+            `;
 
             if (data.length === 0) {
                 container.innerHTML = "";
