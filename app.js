@@ -578,6 +578,13 @@
             renderView();
         }
 
+        function clearPinnedItems() {
+            if (pinnedItems.size === 0) return;
+            pinnedItems.clear();
+            savePinnedItems();
+            renderView();
+        }
+
         function getPinnedItemData(slug) {
             const tables = Object.entries(PCLData.tables);
             for (const [category, table] of tables) {
@@ -716,7 +723,17 @@
 
             const data = getVisiblePinnedData();
             updateSortIcons();
-            title.innerHTML = `<i class="fa-solid fa-thumbtack text-cyan-500"></i> Mes Épinglés (${data.length})`;
+            title.innerHTML = `<div class="flex items-center justify-between gap-3"><span><i class="fa-solid fa-thumbtack text-cyan-500"></i> Mes Épinglés (${data.length})</span><button id="clear-pinned-btn" type="button" class="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors px-3 py-2 rounded-lg border border-gray-800/70 bg-gray-950/60 hover:bg-gray-900/80">` +
+                `<i class="fa-solid fa-trash-can"></i> Vider` +
+                `</button></div>`;
+
+            const clearButton = document.getElementById('clear-pinned-btn');
+            if (clearButton) {
+                clearButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    clearPinnedItems();
+                });
+            }
 
             if (data.length === 0) {
                 container.innerHTML = "";
