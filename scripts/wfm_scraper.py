@@ -139,10 +139,13 @@ def safe_requests(url, headers, max_retries=3, backoff_factor=1.5):
     except:
         return None
 
-def categorize_item(tags, url_name):
-    """Filtre l'objet selon ses VRAIS tags de l'API avec support Necramech."""
-    is_set = url_name.endswith("_set")
+def categorize_item(tags, is_complete_item):
+    """Filtre l'objet selon ses VRAIS tags de l'API avec support Necramech.
     
+    is_complete_item = True pour :
+    - les sets classiques (*_set)
+    - les items vendus complets (Prisma, Syndicat, Baro, Wraith, Vandal…)
+    """
     # PRIORITÉS ABSOLUES (doivent venir en premier)
     if "mod" in tags:
         return "mods"
@@ -153,21 +156,21 @@ def categorize_item(tags, url_name):
     if "relic" in tags:
         return "reliques"
     
-    # Warframes (seulement les sets)
+    # Warframes (seulement les items complets)
     if "warframe" in tags:
-        return "warframes" if is_set else "ignore"
+        return "warframes" if is_complete_item else "ignore"
     
-    # Armes (seulement les sets)
+    # Armes (seulement les items complets)
     if "weapon" in tags or "necramech_weapon" in tags:
-        return "armes" if is_set else "ignore"
+        return "armes" if is_complete_item else "ignore"
     
-    # Équipements (seulement les sets)
+    # Équipements (seulement les items complets)
     if any(t in tags for t in ["sentinel", "archwing", "kubrow", "kavat", "necramech"]):
-        return "equipements" if is_set else "ignore"
+        return "equipements" if is_complete_item else "ignore"
     
-    # Ressources
+    # Ressources (logique inversée)
     if any(t in tags for t in ["lens", "ayatan_star", "ayatan_sculpture", "fusion core"]):
-        return "ignore" if is_set else "ressources"
+        return "ignore" if is_complete_item else "ressources"
     
     return "ignore"
 
@@ -507,9 +510,28 @@ def main():
                     # L'item principal (le Set) possède 'setRoot': True
                     main_item = next((item for item in items_list if item.get("setRoot") is True), items_list[0])
                     
-                    # Extraction des tags depuis l'item principal
+                    # L'item que l'on a réellement demandé (peut être une partie ou le set)
+                    queried_item = next(
+                        (i for i in items_list if i.get("slug") == slug),
+                        items_list[0]
+                    )
+                    queried_tags = queried_item.get("tags", [])
+                    
+                    # Définition élégante d'un « item complet »
+                    # - set classique (*_set)
+                    # - OU item vendu complet (Prisma, Syndicat, Baro, Wraith, Vandal…)
+                    is_complete_item = (
+                        slug.endswith("_set")
+                        or (
+                            "set" not in queried_tags
+                            and "component" not in queried_tags
+                            and "blueprint" not in queried_tags
+                        )
+                    )
+                    
+                    # On catégorise avec les tags de l'item principal + le flag complet
                     tags = main_item.get("tags", [])
-                    cat = categorize_item(tags, slug)
+                    cat = categorize_item(tags, is_complete_item)
                     
                     if cat == "ignore":
                         blacklist.add(slug)
@@ -525,9 +547,9 @@ def main():
                     # 🟢 EXTRACTION SÉCURISÉE DES COMPOSANTS (V2 COMPATIBLE)
                     components_blueprint = []
                     
-                    # Sécurité : On extrait les composants UNIQUEMENT si l'objet principal est un Set
+                    # Sécurité : On extrait les composants uniquement si on est face à un vrai set multi-parties
                     main_tags = main_item.get("tags", [])
-                    if "set" in main_tags:
+                    if "set" in main_tags or len(items_list) > 1:
                         for sub_item in items_list:
                             # On ignore le Set lui-même
                             if sub_item == main_item:
