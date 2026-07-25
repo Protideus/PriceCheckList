@@ -510,36 +510,43 @@ def main():
                     # L'item principal (le Set) possède 'setRoot': True
                     main_item = next((item for item in items_list if item.get("setRoot") is True), items_list[0])
                     
-                    # L'item que l'on a réellement demandé (peut être une partie ou le set)
+                    # L'item que l'on a réellement demandé
                     queried_item = next(
                         (i for i in items_list if i.get("slug") == slug),
                         items_list[0]
                     )
                     queried_tags = queried_item.get("tags", [])
                     
-                    # Définition élégante d'un « item complet »
-                    # - set classique (*_set)
-                    # - OU item vendu complet (Prisma, Syndicat, Baro, Wraith, Vandal…)
-                    is_complete_item = (
-                        slug.endswith("_set")
-                        or (
-                            "set" not in queried_tags
-                            and "component" not in queried_tags
-                            and "blueprint" not in queried_tags
-                        )
+                    # Est-ce un vrai set craftable (avec de vraies parties component/blueprint) ?
+                    has_real_components = any(
+                        "component" in i.get("tags", []) or "blueprint" in i.get("tags", [])
+                        for i in items_list
+                        if i.get("slug") != slug
                     )
                     
-                    # On catégorise avec les tags de l'item principal + le flag complet
-                    tags = main_item.get("tags", [])
+                    # Décision propre
+                    if slug.endswith("_set") or "set" in queried_tags:
+                        # On ne garde le set QUE s'il a de vraies parties craftables
+                        is_complete_item = has_real_components
+                        source_item = main_item
+                    else:
+                        # Item individuel : on le garde s'il n'est pas marqué comme partie
+                        is_complete_item = (
+                            "component" not in queried_tags
+                            and "blueprint" not in queried_tags
+                        )
+                        source_item = queried_item
+                    
+                    tags = source_item.get("tags", [])
                     cat = categorize_item(tags, is_complete_item)
                     
                     if cat == "ignore":
                         blacklist.add(slug)
                         continue
                     
-                    # Extraction linguistique (Le bloc 'fr' embarque aussi le 'en' en V2)
-                    i18n_en = main_item.get("i18n", {}).get("en", {})
-                    i18n_fr = main_item.get("i18n", {}).get("fr", {})
+                    # Extraction linguistique depuis la bonne source
+                    i18n_en = source_item.get("i18n", {}).get("en", {})
+                    i18n_fr = source_item.get("i18n", {}).get("fr", {})
                     
                     n_en = i18n_en.get("name") or slug
                     n_fr = i18n_fr.get("name") or slug
