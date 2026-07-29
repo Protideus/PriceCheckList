@@ -1,1 +1,972 @@
-{"prisma_shade": {"desc_fr": "Un véritable bijou du Néant. Comment quelque chose d'aussi beau pouvait être conçu pour la furtivité?", "desc_en": "A rare jewel of the void. How could anything so beautiful be crafted for stealth?", "wiki_en": "https://wiki.warframe.com/w/Prisma_Shade", "icon": "items/images/en/prisma_shade.cc1c7bc7c621300a6af014b735ec3430.png", "components": [{"slug": "prisma_burst_laser", "n_fr": "Laser À Rafale Prisma", "n_en": "Prisma Burst Laser", "qty": 1, "p": 45.0, "p90": -35.7, "v": 6, "vr": 1.48, "ds": 35.7, "f": 3}], "fusion_ratio": null}, "helios_prime_set": {"desc_fr": "Ce protecteur affamé de savoir défend son maître avec le Déconstructeur Prime.", "desc_en": "This knowledge hungry protector defends its master with Deconstructor Prime.", "wiki_en": "https://wiki.warframe.com/w/Helios_Prime", "icon": "items/images/en/helios_prime_set.625b7c74ea5dd61b1840f8094df7648a.png", "components": [{"slug": "helios_prime_blueprint", "n_fr": "Helios Prime (Schéma)", "n_en": "Helios Prime Blueprint", "qty": 1, "p": 5.5, "p90": 5.8, "v": 15, "vr": 0.57, "ds": 50.0, "f": 3}, {"slug": "helios_prime_carapace", "n_fr": "Helios Prime - Carapace", "n_en": "Helios Prime Carapace", "qty": 1, "p": 4.9, "p90": -14.0, "v": 21, "vr": 0.78, "ds": 90.0, "f": 3}, {"slug": "helios_prime_cerebrum", "n_fr": "Helios Prime - Cerveau", "n_en": "Helios Prime Cerebrum", "qty": 1, "p": 41.5, "p90": 2.7, "v": 50, "vr": 0.83, "ds": 58.3, "f": 3}, {"slug": "helios_prime_systems", "n_fr": "Helios Prime - Systèmes", "n_en": "Helios Prime Systems", "qty": 1, "p": 9.5, "p90": -5.9, "v": 42, "vr": 0.86, "ds": 25.0, "f": 3}], "fusion_ratio": null}, "odonata_prime_set": {"desc_fr": "Cette version améliorée du premier prototype d'Archwing débride ses capacités à leur summum théorique.", "desc_en": "This enhanced version of the first Archwing prototype takes the design to its theoretical limits.", "wiki_en": "https://wiki.warframe.com/w/Odonata_Prime", "icon": "items/images/en/odonata_prime_set.9087f5267b49dee37c38d36f57387753.png", "components": [{"slug": "odonata_prime_blueprint", "n_fr": "Odonata Prime (Schéma)", "n_en": "Odonata Prime Blueprint", "qty": 1, "p": 7.5, "p90": 15.4, "v": 18, "vr": 0.71, "ds": 50.0, "f": 3}, {"slug": "odonata_prime_harness_blueprint", "n_fr": "Odonata Prime - Harnais (Schéma)", "n_en": "Odonata Prime Harness Blueprint", "qty": 1, "p": 8.8, "p90": 3.5, "v": 27, "vr": 0.95, "ds": 70.0, "f": 3}, {"slug": "odonata_prime_systems_blueprint", "n_fr": "Odonata Prime - Systèmes (Schéma)", "n_en": "Odonata Prime Systems Blueprint", "qty": 1, "p": 7.7, "p90": 11.6, "v": 15, "vr": 0.54, "ds": 42.5, "f": 3}, {"slug": "odonata_prime_wings_blueprint", "n_fr": "Odonata Prime - Ailes (Schéma)", "n_en": "Odonata Prime Wings Blueprint", "qty": 1, "p": 19.3, "p90": -5.4, "v": 13, "vr": 0.32, "ds": 43.0, "f": 3}], "fusion_ratio": null}, "sunika_kubrow_imprint": {"desc_fr": "Élevé par les Orokins pour le combat, cette bête martiale vit pour créer le chaos et abattre les adversaires les plus féroces.", "desc_en": "Bred by the Orokin for combat. This martial beast lives to create chaos and bring down the most fierce opponents.", "wiki_en": "https://warframe.fandom.com/wiki/Sunika_Kubrow", "icon": "items/images/en/sunika_kubrow_imprint.72f95cb9fc93f997efa0510120b0197c.png", "components": [], "fusion_ratio": null}, "adarza_kavat_imprint": {"desc_fr": "Un Kavat vicieux et mortel apprécié pour ses prouesses au combat, offrant des Chances de Critique accrues et punissant ceux qui osent l'attaquer.", "desc_en": "A vicious and deadly Kavat prized for its combat prowess, offering increased critical chance and punishing those that dare attack it.", "wiki_en": "https://warframe.fandom.com/wiki/Adarza_Kavat", "icon": "items/images/en/adarza_kavat_imprint.cd718330ac1d7e42ba6eaddf777f73f0.png", "components": [], "fusion_ratio": null}, "carrier_prime_set": {"desc_fr": "Cette Sentinelle travaillée est un excellent exemple de l'expertise et du style des derniers Orokins.", "desc_en": "This ornate sentinel is an excellent example of late Orokin craftsmanship and styling.", "wiki_en": "https://wiki.warframe.com/w/Carrier_Prime", "icon": "items/images/en/carrier_prime_set.1f39e6e9ecef0225b0755dd5c89f3cc8.png", "components": [{"slug": "carrier_prime_blueprint", "n_fr": "Carrier Prime (Schéma)", "n_en": "Carrier Prime Blueprint", "qty": 1, "p": 10.6, "p90": 8.2, "v": 25, "vr": 0.8, "ds": 37.1, "f": 3}, {"slug": "carrier_prime_carapace", "n_fr": "Carrier Prime - Carapace", "n_en": "Carrier Prime Carapace", "qty": 1, "p": 12.9, "p90": 0.0, "v": 29, "vr": 0.78, "ds": 38.7, "f": 3}, {"slug": "carrier_prime_cerebrum", "n_fr": "Carrier Prime - Cerveau", "n_en": "Carrier Prime Cerebrum", "qty": 1, "p": 46.2, "p90": 4.5, "v": 38, "vr": 0.96, "ds": 52.5, "f": 3}, {"slug": "carrier_prime_systems", "n_fr": "Carrier Prime - Systèmes", "n_en": "Carrier Prime Systems", "qty": 1, "p": 8.4, "p90": 10.5, "v": 22, "vr": 0.72, "ds": 46.7, "f": 3}], "fusion_ratio": null}, "dethcube_prime_set": {"desc_fr": "Avec 'Mode Assaut' et 'Vaporisation' comme préceptes par défaut, Dethcube Prime est le nec plus ultra du soutien offensif. Il est déjà muni du Fusil Machine de Mort Prime.", "desc_en": "With 'Assault Mode' and 'Vaporize' as default precepts, Dethcube Prime is the apex of lethal support. Comes loaded with Deth Machine Rifle Prime weapon.", "wiki_en": "https://wiki.warframe.com/w/Dethcube_Prime", "icon": "items/images/en/dethcube_prime_set.47a0e82681bf367a015928558a9f133b.png", "components": [{"slug": "dethcube_prime_blueprint", "n_fr": "Dethcube Prime (Schéma)", "n_en": "Dethcube Prime Blueprint", "qty": 1, "p": 20.5, "p90": -3.8, "v": 62, "vr": 0.86, "ds": 35.7, "f": 3}, {"slug": "dethcube_prime_carapace", "n_fr": "Dethcube Prime - Carapace", "n_en": "Dethcube Prime Carapace", "qty": 1, "p": 5.0, "p90": -5.7, "v": 46, "vr": 1.13, "ds": 100.0, "f": 3}, {"slug": "dethcube_prime_cerebrum", "n_fr": "Dethcube Prime - Cerveau", "n_en": "Dethcube Prime Cerebrum", "qty": 1, "p": 31.2, "p90": 50.7, "v": 72, "vr": 0.96, "ds": 83.0, "f": 3}, {"slug": "dethcube_prime_systems", "n_fr": "Dethcube Prime - Systèmes", "n_en": "Dethcube Prime Systems", "qty": 1, "p": 7.1, "p90": 6.0, "v": 57, "vr": 1.14, "ds": 70.0, "f": 3}], "fusion_ratio": null}, "amesha_set": {"desc_fr": "Transformez-vous en un gardien ailé.", "desc_en": "Transform into a winged guardian.", "wiki_en": "https://wiki.warframe.com/w/Amesha", "icon": "items/images/en/amesha_set.ff297caf790ef259b5715a2510974338.png", "components": [{"slug": "amesha_systems_blueprint", "n_fr": "Amesha - Systèmes", "n_en": "Amesha Systems", "qty": 1, "p": 22.8, "p90": 14.0, "v": 0, "vr": 0.0, "ds": 39.0, "f": 2}, {"slug": "amesha_wings_blueprint", "n_fr": "Amesha - Ailes", "n_en": "Amesha Wings", "qty": 1, "p": 58.0, "p90": 480.0, "v": 0, "vr": 0.0, "ds": 56.5, "f": 1}, {"slug": "amesha_harness_blueprint", "n_fr": "Amesha - Harnais", "n_en": "Amesha Harness", "qty": 1, "p": 15.0, "p90": -75.0, "v": 0, "vr": 0.0, "ds": 10.0, "f": 1}], "fusion_ratio": null}, "elytron_set": {"desc_fr": "Cette Archwing lourde a été conçue pour une seule raison, la destruction.", "desc_en": "This heavy duty Archwing was designed for one purpose, destruction.", "wiki_en": "https://wiki.warframe.com/w/Elytron", "icon": "items/images/en/elytron_set.971d1e23ad3033ff3af37147302efb8b.png", "components": [{"slug": "elytron_systems_blueprint", "n_fr": "Elytron - Systèmes", "n_en": "Elytron Systems", "qty": 1, "p": 90.0, "p90": 350.0, "v": 1, "vr": 11.25, "ds": 100.0, "f": 2}, {"slug": "elytron_wings_blueprint", "n_fr": "Elytron - Ailes", "n_en": "Elytron Wings", "qty": 1, "p": 24.0, "p90": -73.3, "v": 0, "vr": 0.0, "ds": 12.0, "f": 1}, {"slug": "elytron_harness_blueprint", "n_fr": "Elytron - Harnais", "n_en": "Elytron Harness", "qty": 1, "p": 24.0, "p90": 1100.0, "v": 0, "vr": 0.0, "ds": 100.0, "f": 1}], "fusion_ratio": null}, "itzal_set": {"desc_fr": "Conçue pour de rapides attaques surprises, l'Archwing Itzal excelle dans le combat spatial en frappant depuis les zones obscures.", "desc_en": "Designed for quick clandestine attacks, the Itzal Archwing excels at striking from the darkness of space.", "wiki_en": "https://wiki.warframe.com/w/Itzal", "icon": "items/images/en/itzal_set.0010e4eeee847edd082019f488da2fc2.png", "components": [{"slug": "itzal_harness_blueprint", "n_fr": "Itzal - Harnais (Schéma)", "n_en": "Itzal Harness Blueprint", "qty": 1, "p": 15.0, "p90": 50.0, "v": 0, "vr": 0.0, "ds": 33.3, "f": 2}, {"slug": "itzal_systems_blueprint", "n_fr": "Itzal - Systèmes (Schéma)", "n_en": "Itzal Systems Blueprint", "qty": 1, "p": 10.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 0.0, "f": 2}, {"slug": "itzal_wings_blueprint", "n_fr": "Itzal - Ailes (Schéma)", "n_en": "Itzal Wings Blueprint", "qty": 1, "p": 10.0, "p90": 0.0, "v": 0, "vr": 0.0, "ds": 0.0, "f": 2}], "fusion_ratio": null}, "wyrm_prime_set": {"desc_fr": "À la fois garde du corps et symbole de statut social élevé, la Sentinelle Wyrm Prime était autrefois la dernière ligne de défense des Tenno haut gradés de l'ère Orokin.", "desc_en": "Both bodyguard and status symbol, the Wyrm Prime Sentinel was the last line of defense for high ranking Tenno in the Orokin Era.", "wiki_en": "https://wiki.warframe.com/w/Wyrm_Prime", "icon": "items/images/en/wyrm_prime_set.4da3da5cc8eeef554dc3208bbb5a8f26.png", "components": [{"slug": "wyrm_prime_blueprint", "n_fr": "Wyrm Prime (Schéma)", "n_en": "Wyrm Prime Blueprint", "qty": 1, "p": 12.1, "p90": -12.3, "v": 24, "vr": 0.9, "ds": 42.0, "f": 3}, {"slug": "wyrm_prime_carapace", "n_fr": "Wyrm Prime - Carapace", "n_en": "Wyrm Prime Carapace", "qty": 1, "p": 14.0, "p90": 33.3, "v": 16, "vr": 0.54, "ds": 80.0, "f": 3}, {"slug": "wyrm_prime_cerebrum", "n_fr": "Wyrm Prime - Cerveau", "n_en": "Wyrm Prime Cerebrum", "qty": 1, "p": 18.6, "p90": 3.9, "v": 32, "vr": 1.14, "ds": 65.0, "f": 3}, {"slug": "wyrm_prime_systems", "n_fr": "Wyrm Prime - Systèmes", "n_en": "Wyrm Prime Systems", "qty": 1, "p": 35.0, "p90": 6.7, "v": 42, "vr": 1.22, "ds": 100.0, "f": 3}], "fusion_ratio": null}, "damaged_necramech_set": {"desc_fr": "Il est endommagé et il a besoin de réparation.", "desc_en": "It’s damaged and in need of repair.", "wiki_en": "https://warframe.fandom.com/wiki/Necramech", "icon": "items/images/en/damaged_necramech_set.e17864dfe78acafe6bec06c085f80edf.webp", "components": [{"slug": "damaged_necramech_casing", "n_fr": "Châssis De Necramech Endommagé", "n_en": "Damaged Necramech Casing", "qty": 1, "p": 1.5, "p90": 50.0, "v": 11, "vr": 3.96, "ds": 50.0, "f": 3}, {"slug": "damaged_necramech_engine", "n_fr": "Moteur De Necramech Endommagé", "n_en": "Damaged Necramech Engine", "qty": 1, "p": 5.0, "p90": 25.0, "v": 5, "vr": 0.82, "ds": 75.0, "f": 3}, {"slug": "damaged_necramech_pod", "n_fr": "Nacelle De Necramech Endommagée", "n_en": "Damaged Necramech Pod", "qty": 1, "p": 5.0, "p90": 13.6, "v": 4, "vr": 0.57, "ds": 100.0, "f": 3}, {"slug": "damaged_necramech_weapon_pod", "n_fr": "Nacelle D'Arme De Necramech Endommagée", "n_en": "Damaged Necramech Weapon Pod", "qty": 1, "p": 1.0, "p90": -33.3, "v": 7, "vr": 2.58, "ds": 0.0, "f": 2}], "fusion_ratio": null}, "bonewidow_set": {"desc_fr": "Ce redoutable Necramech, conçu en l'honneur de la matriarche Entrati, est un solide combattant de première ligne. Privilégiant l'armure et la santé plutôt que la résistance du bouclier, Bonewidow peut attraper et lancer des ennemis, déployer un bouclier lourd pour la défense personnelle et traverser les rangs adverses avec une lame de guerre massive.", "desc_en": "This fearsome Necramech, fashioned in honor of the Entrati matriarch, is a robust front-line fighter. Favoring armor and health over shield strength, Bonewidow can grab and hurl enemies, deploy a heavy shield for personal defense, and cleave through opposing ranks with a massive warblade.", "wiki_en": "https://wiki.warframe.com/w/Bonewidow", "icon": "items/images/en/bonewidow_set.7858543d86d523cc11593591599b92a2.png", "components": [{"slug": "bonewidow_capsule", "n_fr": "Bonewidow - Capsule", "n_en": "Bonewidow Capsule", "qty": 1, "p": 30.4, "p90": 1.3, "v": 0, "vr": 0.0, "ds": 51.0, "f": 2}, {"slug": "bonewidow_casing", "n_fr": "Bonewidow - Châssis", "n_en": "Bonewidow Casing", "qty": 1, "p": 40.0, "p90": 33.3, "v": 1, "vr": 5.62, "ds": 66.7, "f": 2}, {"slug": "bonewidow_engine", "n_fr": "Bonewidow - Moteur", "n_en": "Bonewidow Engine", "qty": 1, "p": 47.5, "p90": 90.0, "v": 2, "vr": 15.0, "ds": 64.3, "f": 2}, {"slug": "bonewidow_weapon_pod", "n_fr": "Bonewidow - Nacelle D'Armes", "n_en": "Bonewidow Weapon Pod", "qty": 1, "p": 26.0, "p90": -13.3, "v": 0, "vr": 0.0, "ds": 32.4, "f": 2}], "fusion_ratio": null}, "voidrig_set": {"desc_fr": "Rien d'extraordinaire, mais il fait bien son travail et plus encore. Avec son armure électrifiée, ce mécha rugueux et prêt au combat peut rendre le champ de bataille dangereux pour l'ennemi grâce à son arsenal d'explosifs.", "desc_en": "Nothing fancy but gets the job done and then some. With its electrified armor, this rough and ready mech can make the battlefield treacherous for the enemy with an arsenal of explosives.", "wiki_en": "https://wiki.warframe.com/w/Voidrig", "icon": "items/images/en/voidrig_set.7174a72013c8dc2d0464cb6454f9c161.png", "components": [{"slug": "voidrig_capsule", "n_fr": "Voidrig - Capsule", "n_en": "Voidrig Capsule", "qty": 1, "p": 25.8, "p90": 29.0, "v": 4, "vr": 2.54, "ds": 72.0, "f": 3}, {"slug": "voidrig_casing", "n_fr": "Voidrig - Châssis", "n_en": "Voidrig Casing", "qty": 1, "p": 19.7, "p90": 9.4, "v": 3, "vr": 2.55, "ds": 38.8, "f": 3}, {"slug": "voidrig_engine", "n_fr": "Voidrig - Moteur", "n_en": "Voidrig Engine", "qty": 1, "p": 23.2, "p90": 16.0, "v": 4, "vr": 2.69, "ds": 52.8, "f": 3}, {"slug": "voidrig_weapon_pod", "n_fr": "Voidrig - Nacelle D'Armes", "n_en": "Voidrig Weapon Pod", "qty": 1, "p": 30.1, "p90": 0.3, "v": 0, "vr": 0.0, "ds": 50.5, "f": 3}], "fusion_ratio": null}, "raksa_kubrow_imprint": {"desc_fr": "Un gardien puissant qui se concentre sur la protection de son maître en renforçant sa défense et en repoussant les attaquants.", "desc_en": "A strong guardian focused on protecting its master by bolstering their defense and by driving away attackers.", "wiki_en": "https://warframe.fandom.com/wiki/Raksa_Kubrow", "icon": "items/images/en/raksa_kubrow_imprint.e64d6ce9309296cba5a4ad71a1dde192.png", "components": [], "fusion_ratio": null}, "smeeta_kavat_imprint": {"desc_fr": "Ce malicieux félin est joueur, mais sournois.", "desc_en": "This sly feline is playful yet devious.", "wiki_en": "https://warframe.fandom.com/wiki/Smeeta_Kavat", "icon": "items/images/en/smeeta_kavat_imprint.0e793612eeed6e1d39d98a8f4835c3d2.png", "components": [], "fusion_ratio": null}, "sahasa_kubrow_imprint": {"desc_fr": "Un partenaire fiable qui localise les ressources pour leur maître Tenno tout en réduisant les rangs des ennemis.", "desc_en": "A reliable partner that locates supplies for their Tenno master and while thinning enemy ranks.", "wiki_en": "https://warframe.fandom.com/wiki/Sahasa_Kubrow", "icon": "items/images/en/sahasa_kubrow_imprint.77c4f5ff8ad09ff371df40bd83b828f9.png", "components": [], "fusion_ratio": null}, "huras_kubrow_imprint": {"desc_fr": "Un allié furtif, surprenant les ennemis avec des éliminations impressionnantes d'une force explosive.", "desc_en": "A stealthy ally, surprising enemies with impressive takedowns of explosive force.", "wiki_en": "https://warframe.fandom.com/wiki/Huras_Kubrow", "icon": "items/images/en/huras_kubrow_imprint.410e212ff69a4ac14a64bbab561e7f43.png", "components": [], "fusion_ratio": null}, "vasca_kavat_imprint": {"desc_fr": "Désormais libérés du virus Vasca, ces Kavats peuvent transfuser la vie pour prolonger non seulement leur propre Santé mais aussi celle de leur maître.", "desc_en": "Now free of the Vasca virus, these Kavats can transfuse life to extend not only their own health but that of their master.", "wiki_en": "https://warframe.fandom.com/wiki/Vasca_Kavat", "icon": "items/images/en/vasca_kavat_imprint.b8980e37ef61c2e997a8d93bdea8ceb7.png", "components": [], "fusion_ratio": null}, "chesa_kubrow_imprint": {"desc_fr": "Un complice astucieux, formé pour débarrasser l'ennemi de ses armes et de ses caches de butin.", "desc_en": "A clever accomplice, trained to relieve the enemy of both their weapons and their loot caches.", "wiki_en": "https://warframe.fandom.com/wiki/Chesa_Kubrow", "icon": "items/images/en/chesa_kubrow_imprint.8848a6f725133c4b2a1394414a443bc8.png", "components": [], "fusion_ratio": null}, "nautilus_set": {"desc_fr": "Avec 'Auto Omni' et 'Cordon' comme Préceptes par défaut, cette Sentinelle est le compagnon idéal pour les longs voyages à bord d'un Railjack.", "desc_en": "With 'Auto Omni' and 'Cordon' as default Precepts, this Sentinel is the ideal companion for long voyages aboard a Railjack.", "wiki_en": "https://wiki.warframe.com/w/Nautilus", "icon": "items/images/en/nautilus_set.4d2546740e4772a35db251115721c6b7.png", "components": [{"slug": "nautilus_cerebrum", "n_fr": "Nautilus - Cerveau", "n_en": "Nautilus Cerebrum", "qty": 1, "p": 22.3, "p90": 23.9, "v": 18, "vr": 0.53, "ds": 64.0, "f": 3}, {"slug": "nautilus_blueprint", "n_fr": "Nautilus (Schéma)", "n_en": "Nautilus Blueprint", "qty": 1, "p": 14.7, "p90": -0.7, "v": 20, "vr": 0.71, "ds": 33.7, "f": 3}, {"slug": "nautilus_carapace", "n_fr": "Nautilus - Carapace", "n_en": "Nautilus Carapace", "qty": 1, "p": 14.4, "p90": -10.0, "v": 18, "vr": 0.76, "ds": 37.8, "f": 3}, {"slug": "nautilus_systems", "n_fr": "Nautilus - Systèmes", "n_en": "Nautilus Systems", "qty": 1, "p": 10.4, "p90": -4.6, "v": 10, "vr": 0.41, "ds": 42.5, "f": 3}], "fusion_ratio": null}, "prisma_burst_laser": {"desc_fr": "Tire une petite rafale de lasers.", "desc_en": "Fires a small burst of lasers.", "wiki_en": "https://wiki.warframe.com/w/Prisma", "icon": "items/images/en/prisma_burst_laser.f4a86f6ebcd9df7e028c911d259ac431.png", "components": [{"slug": "prisma_shade", "n_fr": "Shade Prisma", "n_en": "Prisma Shade", "qty": 1, "p": 63.7, "p90": -20.2, "v": 3, "vr": 0.27, "ds": 33.7, "f": 3}], "fusion_ratio": null}, "crescent_vulpaphyla_imprint": {"desc_fr": "Rapides et rusés, les Vulpaphylas sont des alliés agiles à emmener dans votre prochaine aventure.", "desc_en": "Fast and foxy, Vulpaphyla are agile allies to bring along on your next adventure.", "wiki_en": "https://warframe.fandom.com/wiki/Crescent_Vulpaphyla", "icon": "items/images/en/crescent_vulpaphyla_imprint.2fe775933f0220d758828ecc7e04cc3f.png", "components": [], "fusion_ratio": null}, "sly_vulpaphyla_imprint": {"desc_fr": "Rapides et rusés, les Vulpaphylas sont des alliés agiles à emmener dans votre prochaine aventure.", "desc_en": "Fast and foxy, Vulpaphyla are agile allies to bring along on your next adventure.", "wiki_en": "https://warframe.fandom.com/wiki/Sly_Vulpaphyla", "icon": "items/images/en/sly_vulpaphyla_imprint.34f6989d4510346445a34ddd2d6bdb84.png", "components": [], "fusion_ratio": null}, "medjay_predasite_imprint": {"desc_fr": "Ces prédateurs quadrupèdes sont redoutables quand ils chargent et ils représentent de formidables compagnons sur le terrain.", "desc_en": "These hard-charging, four-legged predators make formidable companions when in the field.", "wiki_en": "https://warframe.fandom.com/wiki/Medjay_Predasite", "icon": "items/images/en/medjay_predasite_imprint.8897027ffce368a72168cac8fe1a0aa0.png", "components": [], "fusion_ratio": null}, "vizier_predasite_imprint": {"desc_fr": "Ces prédateurs quadrupèdes sont redoutables quand ils chargent et ils représentent de formidables compagnons sur le terrain.", "desc_en": "These hard-charging, four-legged predators make formidable companions when in the field.", "wiki_en": "https://warframe.fandom.com/wiki/Vizier_Predasite", "icon": "items/images/en/vizier_predasite_imprint.c1b460f3819b94a8bd5f18ff72361361.png", "components": [], "fusion_ratio": null}, "panzer_vulpaphyla_imprint": {"desc_fr": "Rapides et rusés, les Vulpaphylas sont des alliés agiles à emmener dans votre prochaine aventure.", "desc_en": "Fast and foxy, Vulpaphyla are agile allies to bring along on your next adventure.", "wiki_en": "https://warframe.fandom.com/wiki/Vulpaphyla", "icon": "items/images/en/panzer_vulpaphyla_imprint.4619c7c40efcd74ec4b8c29ff9f52b4a.png", "components": [], "fusion_ratio": null}, "pharaoh_predasite_imprint": {"desc_fr": "Ces prédateurs quadrupèdes sont redoutables quand ils chargent et ils représentent de formidables compagnons sur le terrain.", "desc_en": "These hard-charging, four-legged predators make formidable companions when in the field.", "wiki_en": "https://warframe.fandom.com/wiki/Pharaoh_Predasite", "icon": "items/images/en/pharaoh_predasite_imprint.bbae682e5bcf50e30380da7b9be7945e.png", "components": [], "fusion_ratio": null}, "shade_prime_set": {"desc_fr": "Le Shade Prime est spécialisé dans la furtivité et armé du Laser à Rafale Prime. Ensemble, vous pouvez dominer les ombres.", "desc_en": "Shade Prime specializes in stealth and comes locked and loaded with the Burst Laser Prime. Together, you can dominate the shadows.", "wiki_en": "https://wiki.warframe.com/w/Shade_Prime", "icon": "items/images/en/shade_prime_set.d4376af3d68e873e85f81f456c83b261.png", "components": [{"slug": "shade_prime_blueprint", "n_fr": "Shade Prime (Schéma)", "n_en": "Shade Prime Blueprint", "qty": 1, "p": 5.1, "p90": 4.1, "v": 44, "vr": 1.07, "ds": 55.0, "f": 3}, {"slug": "shade_prime_carapace", "n_fr": "Shade Prime - Carapace", "n_en": "Shade Prime Carapace", "qty": 1, "p": 29.4, "p90": 1.0, "v": 68, "vr": 0.68, "ds": 48.9, "f": 3}, {"slug": "shade_prime_cerebrum", "n_fr": "Shade Prime - Cerveau", "n_en": "Shade Prime Cerebrum", "qty": 1, "p": 6.0, "p90": 13.2, "v": 54, "vr": 1.08, "ds": 50.0, "f": 3}, {"slug": "shade_prime_systems", "n_fr": "Shade Prime - Systèmes", "n_en": "Shade Prime Systems", "qty": 1, "p": 4.9, "p90": 22.5, "v": 60, "vr": 1.18, "ds": 90.0, "f": 3}], "fusion_ratio": null}, "nautilus_prime_set": {"desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.", "desc_en": "This brave deckhand defends his crew with Verglas Prime.", "wiki_en": "https://wiki.warframe.com/w/Nautilus_Prime", "icon": "items/images/en/nautilus_prime.64f2680abc41ecdb62943bc1b55be8c4.webp", "components": [{"slug": "nautilus_prime_blueprint", "n_fr": "Nautilus Prime (Schéma)", "n_en": "Nautilus Prime Blueprint", "qty": 1, "p": 10.3, "p90": 17.0, "v": 112, "vr": 0.4, "ds": 65.0, "f": 3}, {"slug": "nautilus_prime_carapace", "n_fr": "Nautilus Prime - Carapace", "n_en": "Nautilus Prime Carapace", "qty": 1, "p": 5.5, "p90": 25.0, "v": 98, "vr": 0.61, "ds": 16.7, "f": 3}, {"slug": "nautilus_prime_cerebrum", "n_fr": "Nautilus Prime - Cerveau", "n_en": "Nautilus Prime Cerebrum", "qty": 1, "p": 19.5, "p90": 34.5, "v": 115, "vr": 0.34, "ds": 95.0, "f": 3}, {"slug": "nautilus_prime_systems", "n_fr": "Nautilus Prime - Systèmes", "n_en": "Nautilus Prime Systems", "qty": 1, "p": 3.2, "p90": 10.3, "v": 75, "vr": 0.41, "ds": 60.0, "f": 3}], "fusion_ratio": null}, "helminth_charger_imprint": {"desc_fr": "Un mélange expérimental de Kubrow et d'Infestation. Utilise des larves et d'autres Pouvoirs Infestés pour infliger des Dégâts et contrôler le champ de bataille.", "desc_en": "An experimental blending of Kubrow and Infestation. Uses maggots and other Infested abilities to inflict damage and control the battlefield.", "wiki_en": "", "icon": "items/images/en/helminth_charger_imprint.4bcf08ca92ad0ce66c3331319a84c5d6.webp", "components": [], "fusion_ratio": null}}
+{
+  "prisma_shade": {
+    "desc_fr": "Un véritable bijou du Néant. Comment quelque chose d'aussi beau pouvait être conçu pour la furtivité?",
+    "desc_en": "A rare jewel of the void. How could anything so beautiful be crafted for stealth?",
+    "wiki_en": "https://wiki.warframe.com/w/Prisma_Shade",
+    "icon": "items/images/en/prisma_shade.cc1c7bc7c621300a6af014b735ec3430.png",
+    "components": [
+      {
+        "slug": "prisma_burst_laser",
+        "n_fr": "Laser À Rafale Prisma",
+        "n_en": "Prisma Burst Laser",
+        "qty": 1,
+        "p": 45.0,
+        "p90": -35.7,
+        "v": 6,
+        "vr": 1.48,
+        "ds": 35.7,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "helios_prime_set": {
+    "desc_fr": "Ce protecteur affamé de savoir défend son maître avec le Déconstructeur Prime.",
+    "desc_en": "This knowledge hungry protector defends its master with Deconstructor Prime.",
+    "wiki_en": "https://wiki.warframe.com/w/Helios_Prime",
+    "icon": "items/images/en/helios_prime_set.625b7c74ea5dd61b1840f8094df7648a.png",
+    "components": [
+      {
+        "slug": "helios_prime_blueprint",
+        "n_fr": "Helios Prime (Schéma)",
+        "n_en": "Helios Prime Blueprint",
+        "qty": 1,
+        "p": 5.5,
+        "p90": 5.8,
+        "v": 15,
+        "vr": 0.57,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "helios_prime_carapace",
+        "n_fr": "Helios Prime - Carapace",
+        "n_en": "Helios Prime Carapace",
+        "qty": 1,
+        "p": 4.9,
+        "p90": -14.0,
+        "v": 21,
+        "vr": 0.78,
+        "ds": 90.0,
+        "f": 3
+      },
+      {
+        "slug": "helios_prime_cerebrum",
+        "n_fr": "Helios Prime - Cerveau",
+        "n_en": "Helios Prime Cerebrum",
+        "qty": 1,
+        "p": 41.5,
+        "p90": 2.7,
+        "v": 50,
+        "vr": 0.83,
+        "ds": 58.3,
+        "f": 3
+      },
+      {
+        "slug": "helios_prime_systems",
+        "n_fr": "Helios Prime - Systèmes",
+        "n_en": "Helios Prime Systems",
+        "qty": 1,
+        "p": 9.5,
+        "p90": -5.9,
+        "v": 42,
+        "vr": 0.86,
+        "ds": 25.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "odonata_prime_set": {
+    "desc_fr": "Cette version améliorée du premier prototype d'Archwing débride ses capacités à leur summum théorique.",
+    "desc_en": "This enhanced version of the first Archwing prototype takes the design to its theoretical limits.",
+    "wiki_en": "https://wiki.warframe.com/w/Odonata_Prime",
+    "icon": "items/images/en/odonata_prime_set.9087f5267b49dee37c38d36f57387753.png",
+    "components": [
+      {
+        "slug": "odonata_prime_blueprint",
+        "n_fr": "Odonata Prime (Schéma)",
+        "n_en": "Odonata Prime Blueprint",
+        "qty": 1,
+        "p": 7.5,
+        "p90": 15.4,
+        "v": 18,
+        "vr": 0.71,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "odonata_prime_harness_blueprint",
+        "n_fr": "Odonata Prime - Harnais (Schéma)",
+        "n_en": "Odonata Prime Harness Blueprint",
+        "qty": 1,
+        "p": 8.8,
+        "p90": 3.5,
+        "v": 27,
+        "vr": 0.95,
+        "ds": 70.0,
+        "f": 3
+      },
+      {
+        "slug": "odonata_prime_systems_blueprint",
+        "n_fr": "Odonata Prime - Systèmes (Schéma)",
+        "n_en": "Odonata Prime Systems Blueprint",
+        "qty": 1,
+        "p": 7.7,
+        "p90": 11.6,
+        "v": 15,
+        "vr": 0.54,
+        "ds": 42.5,
+        "f": 3
+      },
+      {
+        "slug": "odonata_prime_wings_blueprint",
+        "n_fr": "Odonata Prime - Ailes (Schéma)",
+        "n_en": "Odonata Prime Wings Blueprint",
+        "qty": 1,
+        "p": 19.3,
+        "p90": -5.4,
+        "v": 13,
+        "vr": 0.32,
+        "ds": 43.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "sunika_kubrow_imprint": {
+    "desc_fr": "Élevé par les Orokins pour le combat, cette bête martiale vit pour créer le chaos et abattre les adversaires les plus féroces.",
+    "desc_en": "Bred by the Orokin for combat. This martial beast lives to create chaos and bring down the most fierce opponents.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Sunika_Kubrow",
+    "icon": "items/images/en/sunika_kubrow_imprint.72f95cb9fc93f997efa0510120b0197c.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "adarza_kavat_imprint": {
+    "desc_fr": "Un Kavat vicieux et mortel apprécié pour ses prouesses au combat, offrant des Chances de Critique accrues et punissant ceux qui osent l'attaquer.",
+    "desc_en": "A vicious and deadly Kavat prized for its combat prowess, offering increased critical chance and punishing those that dare attack it.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Adarza_Kavat",
+    "icon": "items/images/en/adarza_kavat_imprint.cd718330ac1d7e42ba6eaddf777f73f0.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "carrier_prime_set": {
+    "desc_fr": "Cette Sentinelle travaillée est un excellent exemple de l'expertise et du style des derniers Orokins.",
+    "desc_en": "This ornate sentinel is an excellent example of late Orokin craftsmanship and styling.",
+    "wiki_en": "https://wiki.warframe.com/w/Carrier_Prime",
+    "icon": "items/images/en/carrier_prime_set.1f39e6e9ecef0225b0755dd5c89f3cc8.png",
+    "components": [
+      {
+        "slug": "carrier_prime_blueprint",
+        "n_fr": "Carrier Prime (Schéma)",
+        "n_en": "Carrier Prime Blueprint",
+        "qty": 1,
+        "p": 10.6,
+        "p90": 8.2,
+        "v": 25,
+        "vr": 0.8,
+        "ds": 37.1,
+        "f": 3
+      },
+      {
+        "slug": "carrier_prime_carapace",
+        "n_fr": "Carrier Prime - Carapace",
+        "n_en": "Carrier Prime Carapace",
+        "qty": 1,
+        "p": 12.9,
+        "p90": 0.0,
+        "v": 29,
+        "vr": 0.78,
+        "ds": 38.7,
+        "f": 3
+      },
+      {
+        "slug": "carrier_prime_cerebrum",
+        "n_fr": "Carrier Prime - Cerveau",
+        "n_en": "Carrier Prime Cerebrum",
+        "qty": 1,
+        "p": 46.2,
+        "p90": 4.5,
+        "v": 38,
+        "vr": 0.96,
+        "ds": 52.5,
+        "f": 3
+      },
+      {
+        "slug": "carrier_prime_systems",
+        "n_fr": "Carrier Prime - Systèmes",
+        "n_en": "Carrier Prime Systems",
+        "qty": 1,
+        "p": 8.4,
+        "p90": 10.5,
+        "v": 22,
+        "vr": 0.72,
+        "ds": 46.7,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "dethcube_prime_set": {
+    "desc_fr": "Avec 'Mode Assaut' et 'Vaporisation' comme préceptes par défaut, Dethcube Prime est le nec plus ultra du soutien offensif. Il est déjà muni du Fusil Machine de Mort Prime.",
+    "desc_en": "With 'Assault Mode' and 'Vaporize' as default precepts, Dethcube Prime is the apex of lethal support. Comes loaded with Deth Machine Rifle Prime weapon.",
+    "wiki_en": "https://wiki.warframe.com/w/Dethcube_Prime",
+    "icon": "items/images/en/dethcube_prime_set.47a0e82681bf367a015928558a9f133b.png",
+    "components": [
+      {
+        "slug": "dethcube_prime_blueprint",
+        "n_fr": "Dethcube Prime (Schéma)",
+        "n_en": "Dethcube Prime Blueprint",
+        "qty": 1,
+        "p": 20.5,
+        "p90": -3.8,
+        "v": 62,
+        "vr": 0.86,
+        "ds": 35.7,
+        "f": 3
+      },
+      {
+        "slug": "dethcube_prime_carapace",
+        "n_fr": "Dethcube Prime - Carapace",
+        "n_en": "Dethcube Prime Carapace",
+        "qty": 1,
+        "p": 5.0,
+        "p90": -5.7,
+        "v": 46,
+        "vr": 1.13,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "dethcube_prime_cerebrum",
+        "n_fr": "Dethcube Prime - Cerveau",
+        "n_en": "Dethcube Prime Cerebrum",
+        "qty": 1,
+        "p": 31.2,
+        "p90": 50.7,
+        "v": 72,
+        "vr": 0.96,
+        "ds": 83.0,
+        "f": 3
+      },
+      {
+        "slug": "dethcube_prime_systems",
+        "n_fr": "Dethcube Prime - Systèmes",
+        "n_en": "Dethcube Prime Systems",
+        "qty": 1,
+        "p": 7.1,
+        "p90": 6.0,
+        "v": 57,
+        "vr": 1.14,
+        "ds": 70.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "amesha_set": {
+    "desc_fr": "Transformez-vous en un gardien ailé.",
+    "desc_en": "Transform into a winged guardian.",
+    "wiki_en": "https://wiki.warframe.com/w/Amesha",
+    "icon": "items/images/en/amesha_set.ff297caf790ef259b5715a2510974338.png",
+    "components": [
+      {
+        "slug": "amesha_systems_blueprint",
+        "n_fr": "Amesha - Systèmes",
+        "n_en": "Amesha Systems",
+        "qty": 1,
+        "p": 22.8,
+        "p90": 14.0,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 39.0,
+        "f": 2
+      },
+      {
+        "slug": "amesha_wings_blueprint",
+        "n_fr": "Amesha - Ailes",
+        "n_en": "Amesha Wings",
+        "qty": 1,
+        "p": 58.0,
+        "p90": 480.0,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 56.5,
+        "f": 1
+      },
+      {
+        "slug": "amesha_harness_blueprint",
+        "n_fr": "Amesha - Harnais",
+        "n_en": "Amesha Harness",
+        "qty": 1,
+        "p": 15.0,
+        "p90": -75.0,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 10.0,
+        "f": 1
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "Attention ! Amesha s'achète en crédits dans le dojo. Les joueurs qui vendent ça en pl sont des arnaqueurs."
+      }
+    ]
+  },
+  "elytron_set": {
+    "desc_fr": "Cette Archwing lourde a été conçue pour une seule raison, la destruction.",
+    "desc_en": "This heavy duty Archwing was designed for one purpose, destruction.",
+    "wiki_en": "https://wiki.warframe.com/w/Elytron",
+    "icon": "items/images/en/elytron_set.971d1e23ad3033ff3af37147302efb8b.png",
+    "components": [
+      {
+        "slug": "elytron_systems_blueprint",
+        "n_fr": "Elytron - Systèmes",
+        "n_en": "Elytron Systems",
+        "qty": 1,
+        "p": 90.0,
+        "p90": 350.0,
+        "v": 1,
+        "vr": 11.25,
+        "ds": 100.0,
+        "f": 2
+      },
+      {
+        "slug": "elytron_wings_blueprint",
+        "n_fr": "Elytron - Ailes",
+        "n_en": "Elytron Wings",
+        "qty": 1,
+        "p": 24.0,
+        "p90": -73.3,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 12.0,
+        "f": 1
+      },
+      {
+        "slug": "elytron_harness_blueprint",
+        "n_fr": "Elytron - Harnais",
+        "n_en": "Elytron Harness",
+        "qty": 1,
+        "p": 24.0,
+        "p90": 1100.0,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 100.0,
+        "f": 1
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": [
+      {
+        "author": "Protideus",
+        "text": "Attention ! L'Elytron s'achète en crédits dans le dojo. Les joueurs qui vendent ça en pl sont des arnaqueurs."
+      }
+    ]
+  },
+  "itzal_set": {
+    "desc_fr": "Conçue pour de rapides attaques surprises, l'Archwing Itzal excelle dans le combat spatial en frappant depuis les zones obscures.",
+    "desc_en": "Designed for quick clandestine attacks, the Itzal Archwing excels at striking from the darkness of space.",
+    "wiki_en": "https://wiki.warframe.com/w/Itzal",
+    "icon": "items/images/en/itzal_set.0010e4eeee847edd082019f488da2fc2.png",
+    "components": [
+      {
+        "slug": "itzal_harness_blueprint",
+        "n_fr": "Itzal - Harnais (Schéma)",
+        "n_en": "Itzal Harness Blueprint",
+        "qty": 1,
+        "p": 15.0,
+        "p90": 50.0,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 33.3,
+        "f": 2
+      },
+      {
+        "slug": "itzal_systems_blueprint",
+        "n_fr": "Itzal - Systèmes (Schéma)",
+        "n_en": "Itzal Systems Blueprint",
+        "qty": 1,
+        "p": 10.0,
+        "p90": 0.0,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 0.0,
+        "f": 2
+      },
+      {
+        "slug": "itzal_wings_blueprint",
+        "n_fr": "Itzal - Ailes (Schéma)",
+        "n_en": "Itzal Wings Blueprint",
+        "qty": 1,
+        "p": 10.0,
+        "p90": 0.0,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 0.0,
+        "f": 2
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": [
+      {
+        "author": "Ka_Lagoon",
+        "text": "Attention ! Itzal s'achète en crédits dans le dojo. Les joueurs qui vendent ça en pl sont des arnaqueurs."
+      }
+    ]
+  },
+  "wyrm_prime_set": {
+    "desc_fr": "À la fois garde du corps et symbole de statut social élevé, la Sentinelle Wyrm Prime était autrefois la dernière ligne de défense des Tenno haut gradés de l'ère Orokin.",
+    "desc_en": "Both bodyguard and status symbol, the Wyrm Prime Sentinel was the last line of defense for high ranking Tenno in the Orokin Era.",
+    "wiki_en": "https://wiki.warframe.com/w/Wyrm_Prime",
+    "icon": "items/images/en/wyrm_prime_set.4da3da5cc8eeef554dc3208bbb5a8f26.png",
+    "components": [
+      {
+        "slug": "wyrm_prime_blueprint",
+        "n_fr": "Wyrm Prime (Schéma)",
+        "n_en": "Wyrm Prime Blueprint",
+        "qty": 1,
+        "p": 12.1,
+        "p90": -12.3,
+        "v": 24,
+        "vr": 0.9,
+        "ds": 42.0,
+        "f": 3
+      },
+      {
+        "slug": "wyrm_prime_carapace",
+        "n_fr": "Wyrm Prime - Carapace",
+        "n_en": "Wyrm Prime Carapace",
+        "qty": 1,
+        "p": 14.0,
+        "p90": 33.3,
+        "v": 16,
+        "vr": 0.54,
+        "ds": 80.0,
+        "f": 3
+      },
+      {
+        "slug": "wyrm_prime_cerebrum",
+        "n_fr": "Wyrm Prime - Cerveau",
+        "n_en": "Wyrm Prime Cerebrum",
+        "qty": 1,
+        "p": 18.6,
+        "p90": 3.9,
+        "v": 32,
+        "vr": 1.14,
+        "ds": 65.0,
+        "f": 3
+      },
+      {
+        "slug": "wyrm_prime_systems",
+        "n_fr": "Wyrm Prime - Systèmes",
+        "n_en": "Wyrm Prime Systems",
+        "qty": 1,
+        "p": 35.0,
+        "p90": 6.7,
+        "v": 42,
+        "vr": 1.22,
+        "ds": 100.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "damaged_necramech_set": {
+    "desc_fr": "Il est endommagé et il a besoin de réparation.",
+    "desc_en": "It’s damaged and in need of repair.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Necramech",
+    "icon": "items/images/en/damaged_necramech_set.e17864dfe78acafe6bec06c085f80edf.webp",
+    "components": [
+      {
+        "slug": "damaged_necramech_casing",
+        "n_fr": "Châssis De Necramech Endommagé",
+        "n_en": "Damaged Necramech Casing",
+        "qty": 1,
+        "p": 1.5,
+        "p90": 50.0,
+        "v": 11,
+        "vr": 3.96,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "damaged_necramech_engine",
+        "n_fr": "Moteur De Necramech Endommagé",
+        "n_en": "Damaged Necramech Engine",
+        "qty": 1,
+        "p": 5.0,
+        "p90": 25.0,
+        "v": 5,
+        "vr": 0.82,
+        "ds": 75.0,
+        "f": 3
+      },
+      {
+        "slug": "damaged_necramech_pod",
+        "n_fr": "Nacelle De Necramech Endommagée",
+        "n_en": "Damaged Necramech Pod",
+        "qty": 1,
+        "p": 5.0,
+        "p90": 13.6,
+        "v": 4,
+        "vr": 0.57,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "damaged_necramech_weapon_pod",
+        "n_fr": "Nacelle D'Arme De Necramech Endommagée",
+        "n_en": "Damaged Necramech Weapon Pod",
+        "qty": 1,
+        "p": 1.0,
+        "p90": -33.3,
+        "v": 7,
+        "vr": 2.58,
+        "ds": 0.0,
+        "f": 2
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "bonewidow_set": {
+    "desc_fr": "Ce redoutable Necramech, conçu en l'honneur de la matriarche Entrati, est un solide combattant de première ligne. Privilégiant l'armure et la santé plutôt que la résistance du bouclier, Bonewidow peut attraper et lancer des ennemis, déployer un bouclier lourd pour la défense personnelle et traverser les rangs adverses avec une lame de guerre massive.",
+    "desc_en": "This fearsome Necramech, fashioned in honor of the Entrati matriarch, is a robust front-line fighter. Favoring armor and health over shield strength, Bonewidow can grab and hurl enemies, deploy a heavy shield for personal defense, and cleave through opposing ranks with a massive warblade.",
+    "wiki_en": "https://wiki.warframe.com/w/Bonewidow",
+    "icon": "items/images/en/bonewidow_set.7858543d86d523cc11593591599b92a2.png",
+    "components": [
+      {
+        "slug": "bonewidow_capsule",
+        "n_fr": "Bonewidow - Capsule",
+        "n_en": "Bonewidow Capsule",
+        "qty": 1,
+        "p": 30.4,
+        "p90": 1.3,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 51.0,
+        "f": 2
+      },
+      {
+        "slug": "bonewidow_casing",
+        "n_fr": "Bonewidow - Châssis",
+        "n_en": "Bonewidow Casing",
+        "qty": 1,
+        "p": 40.0,
+        "p90": 33.3,
+        "v": 1,
+        "vr": 5.62,
+        "ds": 66.7,
+        "f": 2
+      },
+      {
+        "slug": "bonewidow_engine",
+        "n_fr": "Bonewidow - Moteur",
+        "n_en": "Bonewidow Engine",
+        "qty": 1,
+        "p": 47.5,
+        "p90": 90.0,
+        "v": 2,
+        "vr": 15.0,
+        "ds": 64.3,
+        "f": 2
+      },
+      {
+        "slug": "bonewidow_weapon_pod",
+        "n_fr": "Bonewidow - Nacelle D'Armes",
+        "n_en": "Bonewidow Weapon Pod",
+        "qty": 1,
+        "p": 26.0,
+        "p90": -13.3,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 32.4,
+        "f": 2
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "voidrig_set": {
+    "desc_fr": "Rien d'extraordinaire, mais il fait bien son travail et plus encore. Avec son armure électrifiée, ce mécha rugueux et prêt au combat peut rendre le champ de bataille dangereux pour l'ennemi grâce à son arsenal d'explosifs.",
+    "desc_en": "Nothing fancy but gets the job done and then some. With its electrified armor, this rough and ready mech can make the battlefield treacherous for the enemy with an arsenal of explosives.",
+    "wiki_en": "https://wiki.warframe.com/w/Voidrig",
+    "icon": "items/images/en/voidrig_set.7174a72013c8dc2d0464cb6454f9c161.png",
+    "components": [
+      {
+        "slug": "voidrig_capsule",
+        "n_fr": "Voidrig - Capsule",
+        "n_en": "Voidrig Capsule",
+        "qty": 1,
+        "p": 25.8,
+        "p90": 29.0,
+        "v": 4,
+        "vr": 2.54,
+        "ds": 72.0,
+        "f": 3
+      },
+      {
+        "slug": "voidrig_casing",
+        "n_fr": "Voidrig - Châssis",
+        "n_en": "Voidrig Casing",
+        "qty": 1,
+        "p": 19.7,
+        "p90": 9.4,
+        "v": 3,
+        "vr": 2.55,
+        "ds": 38.8,
+        "f": 3
+      },
+      {
+        "slug": "voidrig_engine",
+        "n_fr": "Voidrig - Moteur",
+        "n_en": "Voidrig Engine",
+        "qty": 1,
+        "p": 23.2,
+        "p90": 16.0,
+        "v": 4,
+        "vr": 2.69,
+        "ds": 52.8,
+        "f": 3
+      },
+      {
+        "slug": "voidrig_weapon_pod",
+        "n_fr": "Voidrig - Nacelle D'Armes",
+        "n_en": "Voidrig Weapon Pod",
+        "qty": 1,
+        "p": 30.1,
+        "p90": 0.3,
+        "v": 0,
+        "vr": 0.0,
+        "ds": 50.5,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "raksa_kubrow_imprint": {
+    "desc_fr": "Un gardien puissant qui se concentre sur la protection de son maître en renforçant sa défense et en repoussant les attaquants.",
+    "desc_en": "A strong guardian focused on protecting its master by bolstering their defense and by driving away attackers.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Raksa_Kubrow",
+    "icon": "items/images/en/raksa_kubrow_imprint.e64d6ce9309296cba5a4ad71a1dde192.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "smeeta_kavat_imprint": {
+    "desc_fr": "Ce malicieux félin est joueur, mais sournois.",
+    "desc_en": "This sly feline is playful yet devious.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Smeeta_Kavat",
+    "icon": "items/images/en/smeeta_kavat_imprint.0e793612eeed6e1d39d98a8f4835c3d2.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "sahasa_kubrow_imprint": {
+    "desc_fr": "Un partenaire fiable qui localise les ressources pour leur maître Tenno tout en réduisant les rangs des ennemis.",
+    "desc_en": "A reliable partner that locates supplies for their Tenno master and while thinning enemy ranks.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Sahasa_Kubrow",
+    "icon": "items/images/en/sahasa_kubrow_imprint.77c4f5ff8ad09ff371df40bd83b828f9.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "huras_kubrow_imprint": {
+    "desc_fr": "Un allié furtif, surprenant les ennemis avec des éliminations impressionnantes d'une force explosive.",
+    "desc_en": "A stealthy ally, surprising enemies with impressive takedowns of explosive force.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Huras_Kubrow",
+    "icon": "items/images/en/huras_kubrow_imprint.410e212ff69a4ac14a64bbab561e7f43.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "vasca_kavat_imprint": {
+    "desc_fr": "Désormais libérés du virus Vasca, ces Kavats peuvent transfuser la vie pour prolonger non seulement leur propre Santé mais aussi celle de leur maître.",
+    "desc_en": "Now free of the Vasca virus, these Kavats can transfuse life to extend not only their own health but that of their master.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Vasca_Kavat",
+    "icon": "items/images/en/vasca_kavat_imprint.b8980e37ef61c2e997a8d93bdea8ceb7.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "chesa_kubrow_imprint": {
+    "desc_fr": "Un complice astucieux, formé pour débarrasser l'ennemi de ses armes et de ses caches de butin.",
+    "desc_en": "A clever accomplice, trained to relieve the enemy of both their weapons and their loot caches.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Chesa_Kubrow",
+    "icon": "items/images/en/chesa_kubrow_imprint.8848a6f725133c4b2a1394414a443bc8.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "nautilus_set": {
+    "desc_fr": "Avec 'Auto Omni' et 'Cordon' comme Préceptes par défaut, cette Sentinelle est le compagnon idéal pour les longs voyages à bord d'un Railjack.",
+    "desc_en": "With 'Auto Omni' and 'Cordon' as default Precepts, this Sentinel is the ideal companion for long voyages aboard a Railjack.",
+    "wiki_en": "https://wiki.warframe.com/w/Nautilus",
+    "icon": "items/images/en/nautilus_set.4d2546740e4772a35db251115721c6b7.png",
+    "components": [
+      {
+        "slug": "nautilus_cerebrum",
+        "n_fr": "Nautilus - Cerveau",
+        "n_en": "Nautilus Cerebrum",
+        "qty": 1,
+        "p": 22.3,
+        "p90": 23.9,
+        "v": 18,
+        "vr": 0.53,
+        "ds": 64.0,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_blueprint",
+        "n_fr": "Nautilus (Schéma)",
+        "n_en": "Nautilus Blueprint",
+        "qty": 1,
+        "p": 14.7,
+        "p90": -0.7,
+        "v": 20,
+        "vr": 0.71,
+        "ds": 33.7,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_carapace",
+        "n_fr": "Nautilus - Carapace",
+        "n_en": "Nautilus Carapace",
+        "qty": 1,
+        "p": 14.4,
+        "p90": -10.0,
+        "v": 18,
+        "vr": 0.76,
+        "ds": 37.8,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_systems",
+        "n_fr": "Nautilus - Systèmes",
+        "n_en": "Nautilus Systems",
+        "qty": 1,
+        "p": 10.4,
+        "p90": -4.6,
+        "v": 10,
+        "vr": 0.41,
+        "ds": 42.5,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "prisma_burst_laser": {
+    "desc_fr": "Tire une petite rafale de lasers.",
+    "desc_en": "Fires a small burst of lasers.",
+    "wiki_en": "https://wiki.warframe.com/w/Prisma",
+    "icon": "items/images/en/prisma_burst_laser.f4a86f6ebcd9df7e028c911d259ac431.png",
+    "components": [
+      {
+        "slug": "prisma_shade",
+        "n_fr": "Shade Prisma",
+        "n_en": "Prisma Shade",
+        "qty": 1,
+        "p": 63.7,
+        "p90": -20.2,
+        "v": 3,
+        "vr": 0.27,
+        "ds": 33.7,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "crescent_vulpaphyla_imprint": {
+    "desc_fr": "Rapides et rusés, les Vulpaphylas sont des alliés agiles à emmener dans votre prochaine aventure.",
+    "desc_en": "Fast and foxy, Vulpaphyla are agile allies to bring along on your next adventure.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Crescent_Vulpaphyla",
+    "icon": "items/images/en/crescent_vulpaphyla_imprint.2fe775933f0220d758828ecc7e04cc3f.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "sly_vulpaphyla_imprint": {
+    "desc_fr": "Rapides et rusés, les Vulpaphylas sont des alliés agiles à emmener dans votre prochaine aventure.",
+    "desc_en": "Fast and foxy, Vulpaphyla are agile allies to bring along on your next adventure.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Sly_Vulpaphyla",
+    "icon": "items/images/en/sly_vulpaphyla_imprint.34f6989d4510346445a34ddd2d6bdb84.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "medjay_predasite_imprint": {
+    "desc_fr": "Ces prédateurs quadrupèdes sont redoutables quand ils chargent et ils représentent de formidables compagnons sur le terrain.",
+    "desc_en": "These hard-charging, four-legged predators make formidable companions when in the field.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Medjay_Predasite",
+    "icon": "items/images/en/medjay_predasite_imprint.8897027ffce368a72168cac8fe1a0aa0.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "vizier_predasite_imprint": {
+    "desc_fr": "Ces prédateurs quadrupèdes sont redoutables quand ils chargent et ils représentent de formidables compagnons sur le terrain.",
+    "desc_en": "These hard-charging, four-legged predators make formidable companions when in the field.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Vizier_Predasite",
+    "icon": "items/images/en/vizier_predasite_imprint.c1b460f3819b94a8bd5f18ff72361361.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "panzer_vulpaphyla_imprint": {
+    "desc_fr": "Rapides et rusés, les Vulpaphylas sont des alliés agiles à emmener dans votre prochaine aventure.",
+    "desc_en": "Fast and foxy, Vulpaphyla are agile allies to bring along on your next adventure.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Vulpaphyla",
+    "icon": "items/images/en/panzer_vulpaphyla_imprint.4619c7c40efcd74ec4b8c29ff9f52b4a.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "pharaoh_predasite_imprint": {
+    "desc_fr": "Ces prédateurs quadrupèdes sont redoutables quand ils chargent et ils représentent de formidables compagnons sur le terrain.",
+    "desc_en": "These hard-charging, four-legged predators make formidable companions when in the field.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Pharaoh_Predasite",
+    "icon": "items/images/en/pharaoh_predasite_imprint.bbae682e5bcf50e30380da7b9be7945e.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "shade_prime_set": {
+    "desc_fr": "Le Shade Prime est spécialisé dans la furtivité et armé du Laser à Rafale Prime. Ensemble, vous pouvez dominer les ombres.",
+    "desc_en": "Shade Prime specializes in stealth and comes locked and loaded with the Burst Laser Prime. Together, you can dominate the shadows.",
+    "wiki_en": "https://wiki.warframe.com/w/Shade_Prime",
+    "icon": "items/images/en/shade_prime_set.d4376af3d68e873e85f81f456c83b261.png",
+    "components": [
+      {
+        "slug": "shade_prime_blueprint",
+        "n_fr": "Shade Prime (Schéma)",
+        "n_en": "Shade Prime Blueprint",
+        "qty": 1,
+        "p": 5.1,
+        "p90": 4.1,
+        "v": 44,
+        "vr": 1.07,
+        "ds": 55.0,
+        "f": 3
+      },
+      {
+        "slug": "shade_prime_carapace",
+        "n_fr": "Shade Prime - Carapace",
+        "n_en": "Shade Prime Carapace",
+        "qty": 1,
+        "p": 29.4,
+        "p90": 1.0,
+        "v": 68,
+        "vr": 0.68,
+        "ds": 48.9,
+        "f": 3
+      },
+      {
+        "slug": "shade_prime_cerebrum",
+        "n_fr": "Shade Prime - Cerveau",
+        "n_en": "Shade Prime Cerebrum",
+        "qty": 1,
+        "p": 6.0,
+        "p90": 13.2,
+        "v": 54,
+        "vr": 1.08,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "shade_prime_systems",
+        "n_fr": "Shade Prime - Systèmes",
+        "n_en": "Shade Prime Systems",
+        "qty": 1,
+        "p": 4.9,
+        "p90": 22.5,
+        "v": 60,
+        "vr": 1.18,
+        "ds": 90.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "nautilus_prime_set": {
+    "desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.",
+    "desc_en": "This brave deckhand defends his crew with Verglas Prime.",
+    "wiki_en": "https://wiki.warframe.com/w/Nautilus_Prime",
+    "icon": "items/images/en/nautilus_prime.64f2680abc41ecdb62943bc1b55be8c4.webp",
+    "components": [
+      {
+        "slug": "nautilus_prime_blueprint",
+        "n_fr": "Nautilus Prime (Schéma)",
+        "n_en": "Nautilus Prime Blueprint",
+        "qty": 1,
+        "p": 10.3,
+        "p90": 17.0,
+        "v": 112,
+        "vr": 0.4,
+        "ds": 65.0,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_carapace",
+        "n_fr": "Nautilus Prime - Carapace",
+        "n_en": "Nautilus Prime Carapace",
+        "qty": 1,
+        "p": 5.5,
+        "p90": 25.0,
+        "v": 98,
+        "vr": 0.61,
+        "ds": 16.7,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_cerebrum",
+        "n_fr": "Nautilus Prime - Cerveau",
+        "n_en": "Nautilus Prime Cerebrum",
+        "qty": 1,
+        "p": 19.5,
+        "p90": 34.5,
+        "v": 115,
+        "vr": 0.34,
+        "ds": 95.0,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_systems",
+        "n_fr": "Nautilus Prime - Systèmes",
+        "n_en": "Nautilus Prime Systems",
+        "qty": 1,
+        "p": 3.2,
+        "p90": 10.3,
+        "v": 75,
+        "vr": 0.41,
+        "ds": 60.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "helminth_charger_imprint": {
+    "desc_fr": "Un mélange expérimental de Kubrow et d'Infestation. Utilise des larves et d'autres Pouvoirs Infestés pour infliger des Dégâts et contrôler le champ de bataille.",
+    "desc_en": "An experimental blending of Kubrow and Infestation. Uses maggots and other Infested abilities to inflict damage and control the battlefield.",
+    "wiki_en": "",
+    "icon": "items/images/en/helminth_charger_imprint.4bcf08ca92ad0ce66c3331319a84c5d6.webp",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  }
+}
