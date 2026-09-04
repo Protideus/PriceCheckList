@@ -6,7 +6,19 @@
     "icon": "items/images/en/arcane_hot_shot.b488affbc34321e8b1dba284f889d634.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 17.8,
+    "p90": -27.6,
+    "v": 851,
+    "vr": 0.73,
+    "ds": 16.0,
+    "f": 3,
+    "p_max": 406.0,
+    "p90_max": -13.4,
+    "v_max": 208,
+    "vr_max": 0.73,
+    "ds_max": 4.6,
+    "f_max": 3
   },
   "melee_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -15,7 +27,13 @@
     "icon": "items/images/en/melee_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 7.0,
+    "p90": -13.6,
+    "v": 683,
+    "vr": 0.68,
+    "ds": 40.0,
+    "f": 3
   },
   "lith_k5_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -24,7 +42,13 @@
     "icon": "items/images/en/lith_k5_relic.4c2cd55afd4007566866d226c86e0fdd.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 4.9,
+    "p90": -51.0,
+    "v": 679,
+    "vr": 37.68,
+    "ds": 4.6,
+    "f": 3
   },
   "molt_augmented": {
     "desc_fr": "Sur Élimination:\n+0.24% Puissance de Pouvoir. Cumulable jusqu'à 250x.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -33,7 +57,19 @@
     "icon": "items/images/en/molt_augmented.9def654a0d24b7f085940dfc8ef843b5.png",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.8,
+    "p90": -26.3,
+    "v": 537,
+    "vr": 0.6,
+    "ds": 0.0,
+    "f": 3,
+    "p_max": 41.3,
+    "p90_max": -30.5,
+    "v_max": 448,
+    "vr_max": 1.04,
+    "ds_max": 13.0,
+    "f_max": 3
   },
   "rifle_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -42,7 +78,13 @@
     "icon": "items/images/en/rifle_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 10.4,
+    "p90": -6.3,
+    "v": 492,
+    "vr": 0.63,
+    "ds": 80.0,
+    "f": 3
   },
   "pistol_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -51,7 +93,13 @@
     "icon": "items/images/en/pistol_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 6.6,
+    "p90": 1.5,
+    "v": 512,
+    "vr": 0.84,
+    "ds": 65.0,
+    "f": 3
   },
   "xaku_prime_set": {
     "desc_fr": "L'enfant de la guerre et du Néant renaît en or. Ce qui a été brisé un jour peut se relever plus fort que ce qui n'a jamais été endommagé.",
@@ -66,8 +114,8 @@
         "qty": 1,
         "p": 13.3,
         "p90": 26.7,
-        "v": 261,
-        "vr": 0.85,
+        "v": 269,
+        "vr": 0.87,
         "ds": 82.5,
         "f": 3
       },
@@ -78,7 +126,7 @@
         "qty": 1,
         "p": 3.0,
         "p90": -14.3,
-        "v": 105,
+        "v": 106,
         "vr": 0.67,
         "ds": 0.0,
         "f": 3
@@ -90,8 +138,8 @@
         "qty": 1,
         "p": 3.3,
         "p90": 37.5,
-        "v": 122,
-        "vr": 1.31,
+        "v": 125,
+        "vr": 1.34,
         "ds": 65.0,
         "f": 3
       },
@@ -102,14 +150,20 @@
         "qty": 1,
         "p": 2.7,
         "p90": -64.5,
-        "v": 148,
-        "vr": 0.82,
+        "v": 141,
+        "vr": 0.78,
         "ds": 10.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 24.6,
+    "p90": 0.0,
+    "v": 490,
+    "vr": 0.94,
+    "ds": 86.7,
+    "f": 3
   },
   "secondary_enervate": {
     "desc_fr": "Sur coup: augmentation des Chances de Critique de 10%. Se réinitialise après 6 Critiques Majeurs.",
@@ -118,7 +172,19 @@
     "icon": "items/images/en/secondary_enervate.ad8d69119b058ad12c196bcf33352bd2.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 1.9,
+    "p90": -17.4,
+    "v": 499,
+    "vr": 1.0,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 24.5,
+    "p90_max": -9.3,
+    "v_max": 284,
+    "vr_max": 0.81,
+    "ds_max": 8.3,
+    "f_max": 3
   },
   "voruna_prime_set": {
     "desc_fr": "Splendeur et férocité atteignent leur paroxysme sauvage avec Voruna Prime. Bien qu'exaltée par l'or Orokin, elle est plus redoutable que jamais.",
@@ -133,8 +199,8 @@
         "qty": 1,
         "p": 22.4,
         "p90": -17.3,
-        "v": 250,
-        "vr": 0.63,
+        "v": 252,
+        "vr": 0.64,
         "ds": 30.0,
         "f": 3
       },
@@ -145,8 +211,8 @@
         "qty": 1,
         "p": 7.3,
         "p90": 21.7,
-        "v": 163,
-        "vr": 0.63,
+        "v": 161,
+        "vr": 0.62,
         "ds": 66.0,
         "f": 3
       },
@@ -157,7 +223,7 @@
         "qty": 1,
         "p": 2.6,
         "p90": -56.7,
-        "v": 175,
+        "v": 176,
         "vr": 0.86,
         "ds": 20.0,
         "f": 2
@@ -169,14 +235,20 @@
         "qty": 1,
         "p": 7.4,
         "p90": -51.6,
-        "v": 219,
-        "vr": 0.65,
+        "v": 226,
+        "vr": 0.67,
         "ds": 5.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 39.8,
+    "p90": -33.7,
+    "v": 418,
+    "vr": 0.6,
+    "ds": 0.0,
+    "f": 3
   },
   "lith_m7_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -185,7 +257,13 @@
     "icon": "items/images/en/lith_m7_relic.4c2cd55afd4007566866d226c86e0fdd.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 4.7,
+    "p90": -47.8,
+    "v": 445,
+    "vr": 27.97,
+    "ds": 6.4,
+    "f": 3
   },
   "styanax_prime_set": {
     "desc_fr": "Bouclier des innocents, lance de justice, Styanax Prime résiste à la tyrannie.",
@@ -200,8 +278,8 @@
         "qty": 1,
         "p": 9.4,
         "p90": -68.7,
-        "v": 207,
-        "vr": 0.43,
+        "v": 201,
+        "vr": 0.42,
         "ds": 1.9,
         "f": 3
       },
@@ -212,7 +290,7 @@
         "qty": 1,
         "p": 4.2,
         "p90": -76.7,
-        "v": 205,
+        "v": 204,
         "vr": 0.5,
         "ds": 1.3,
         "f": 3
@@ -224,8 +302,8 @@
         "qty": 1,
         "p": 11.8,
         "p90": -65.3,
-        "v": 301,
-        "vr": 0.56,
+        "v": 292,
+        "vr": 0.54,
         "ds": 7.5,
         "f": 3
       },
@@ -234,16 +312,22 @@
         "n_fr": "Styanax Prime - Systèmes (Schéma)",
         "n_en": "Styanax Prime Systems Blueprint",
         "qty": 1,
-        "p": 4.9,
-        "p90": -87.8,
-        "v": 192,
-        "vr": 0.42,
+        "p": 5.0,
+        "p90": -87.5,
+        "v": 193,
+        "vr": 0.43,
         "ds": 0.0,
         "f": 2
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 38.3,
+    "p90": -74.3,
+    "v": 446,
+    "vr": 0.46,
+    "ds": 0.3,
+    "f": 3
   },
   "gauss_prime_set": {
     "desc_fr": "Le vif-argent prend forme. Gauss Prime ne tolère aucune allusion à la défaite.",
@@ -258,8 +342,8 @@
         "qty": 1,
         "p": 4.5,
         "p90": -10.0,
-        "v": 78,
-        "vr": 0.72,
+        "v": 79,
+        "vr": 0.73,
         "ds": 50.0,
         "f": 3
       },
@@ -270,8 +354,8 @@
         "qty": 1,
         "p": 4.9,
         "p90": -18.3,
-        "v": 95,
-        "vr": 0.77,
+        "v": 98,
+        "vr": 0.8,
         "ds": 90.0,
         "f": 3
       },
@@ -282,8 +366,8 @@
         "qty": 1,
         "p": 9.5,
         "p90": 10.5,
-        "v": 153,
-        "vr": 0.86,
+        "v": 155,
+        "vr": 0.87,
         "ds": 75.0,
         "f": 3
       },
@@ -294,14 +378,20 @@
         "qty": 1,
         "p": 29.5,
         "p90": 22.4,
-        "v": 66,
-        "vr": 0.33,
+        "v": 65,
+        "vr": 0.32,
         "ds": 95.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 57.3,
+    "p90": 15.1,
+    "v": 416,
+    "vr": 0.97,
+    "ds": 84.5,
+    "f": 3
   },
   "axi_h5_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -310,7 +400,13 @@
     "icon": "items/images/en/axi_h5_relic.a74c06f0cae21bdb8933685c867385f8.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 7.0,
+    "p90": -30.0,
+    "v": 449,
+    "vr": 48.69,
+    "ds": 26.1,
+    "f": 3
   },
   "neo_b6_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -319,7 +415,13 @@
     "icon": "items/images/en/neo_b6_relic.404dc9ef087cc16ca255f5b5fd17fff0.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 5.0,
+    "p90": -16.7,
+    "v": 420,
+    "vr": 38.57,
+    "ds": 10.6,
+    "f": 3
   },
   "nautilus_prime_set": {
     "desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.",
@@ -332,11 +434,11 @@
         "n_fr": "Nautilus Prime (Schéma)",
         "n_en": "Nautilus Prime Blueprint",
         "qty": 1,
-        "p": 13.0,
-        "p90": 28.7,
-        "v": 137,
+        "p": 12.8,
+        "p90": 26.7,
+        "v": 138,
         "vr": 0.68,
-        "ds": 80.0,
+        "ds": 76.0,
         "f": 3
       },
       {
@@ -344,11 +446,11 @@
         "n_fr": "Nautilus Prime - Carapace",
         "n_en": "Nautilus Prime Carapace",
         "qty": 1,
-        "p": 6.2,
-        "p90": 3.3,
-        "v": 98,
-        "vr": 0.73,
-        "ds": 40.0,
+        "p": 6.1,
+        "p90": 1.7,
+        "v": 94,
+        "vr": 0.7,
+        "ds": 36.7,
         "f": 3
       },
       {
@@ -368,16 +470,22 @@
         "n_fr": "Nautilus Prime - Systèmes",
         "n_en": "Nautilus Prime Systems",
         "qty": 1,
-        "p": 3.5,
-        "p90": 25.0,
-        "v": 78,
-        "vr": 0.64,
-        "ds": 75.0,
+        "p": 3.4,
+        "p90": 21.4,
+        "v": 77,
+        "vr": 0.63,
+        "ds": 70.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 55.8,
+    "p90": 60.8,
+    "v": 355,
+    "vr": 0.78,
+    "ds": 86.7,
+    "f": 3
   },
   "transient_fortitude": {
     "desc_fr": "+55% Puissance de Pouvoir\n-27.5% Durée de Pouvoir",
@@ -386,7 +494,19 @@
     "icon": "items/images/en/transient_fortitude.9faec0880e8bf9b85e7282b3df213b69.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 11.3,
+    "p90": -13.7,
+    "v": 360,
+    "vr": 0.87,
+    "ds": 26.0,
+    "f": 3,
+    "p_max": 67.8,
+    "p90_max": -4.1,
+    "v_max": 84,
+    "vr_max": 0.66,
+    "ds_max": 12.4,
+    "f_max": 3
   },
   "arcane_concentration": {
     "desc_fr": "Sur Lancement de Pouvoir:\nPendant 3s, +60% Durée de Pouvoir\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -395,7 +515,19 @@
     "icon": "items/images/en/arcane_concentration.8241161cbae0706e313693aef592b971.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.2,
+    "p90": 0.0,
+    "v": 355,
+    "vr": 1.48,
+    "ds": 20.0,
+    "f": 3,
+    "p_max": 29.3,
+    "p90_max": 38.9,
+    "v_max": 331,
+    "vr_max": 1.06,
+    "ds_max": 52.5,
+    "f_max": 3
   },
   "caliban_prime_set": {
     "desc_fr": "Forgé pour célébrer la paix bien trop brève entre les Orokins et les Sentients, Caliban Prime est un véritable chef-d'œuvre collaboratif. L'héritier des royaumes jumeaux s'élève dans une tenue dorée royale.",
@@ -410,8 +542,8 @@
         "qty": 1,
         "p": 2.3,
         "p90": -28.1,
-        "v": 179,
-        "vr": 0.96,
+        "v": 169,
+        "vr": 0.91,
         "ds": 30.0,
         "f": 2
       },
@@ -420,11 +552,11 @@
         "n_fr": "Caliban Prime - Châssis (Schéma)",
         "n_en": "Caliban Prime Chassis Blueprint",
         "qty": 1,
-        "p": 1.6,
-        "p90": -42.9,
-        "v": 45,
-        "vr": 0.64,
-        "ds": 60.0,
+        "p": 1.5,
+        "p90": -46.4,
+        "v": 39,
+        "vr": 0.55,
+        "ds": 50.0,
         "f": 2
       },
       {
@@ -432,11 +564,11 @@
         "n_fr": "Caliban Prime - Neuroptiques (Schéma)",
         "n_en": "Caliban Prime Neuroptics Blueprint",
         "qty": 1,
-        "p": 11.1,
-        "p90": -0.9,
-        "v": 184,
-        "vr": 0.66,
-        "ds": 27.5,
+        "p": 11.0,
+        "p90": -1.8,
+        "v": 187,
+        "vr": 0.67,
+        "ds": 25.0,
         "f": 3
       },
       {
@@ -446,14 +578,20 @@
         "qty": 1,
         "p": 16.0,
         "p90": -27.6,
-        "v": 265,
-        "vr": 0.81,
+        "v": 252,
+        "vr": 0.77,
         "ds": 30.8,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 29.5,
+    "p90": -29.3,
+    "v": 349,
+    "vr": 0.77,
+    "ds": 0.0,
+    "f": 3
   },
   "yareli_prime_set": {
     "desc_fr": "Waverider surgit, renaissant de l'écume de l'océan. Dans sa splendeur originelle de l'ère Orokin, elle incarne la vigueur éternelle de la jeunesse.",
@@ -468,8 +606,8 @@
         "qty": 1,
         "p": 2.4,
         "p90": -35.1,
-        "v": 61,
-        "vr": 0.53,
+        "v": 59,
+        "vr": 0.52,
         "ds": 20.0,
         "f": 3
       },
@@ -480,8 +618,8 @@
         "qty": 1,
         "p": 1.6,
         "p90": -38.5,
-        "v": 38,
-        "vr": 0.61,
+        "v": 37,
+        "vr": 0.6,
         "ds": 60.0,
         "f": 2
       },
@@ -492,8 +630,8 @@
         "qty": 1,
         "p": 9.3,
         "p90": -33.1,
-        "v": 191,
-        "vr": 0.64,
+        "v": 197,
+        "vr": 0.66,
         "ds": 5.0,
         "f": 3
       },
@@ -504,14 +642,20 @@
         "qty": 1,
         "p": 12.3,
         "p90": -33.9,
-        "v": 244,
+        "v": 243,
         "vr": 0.78,
         "ds": 23.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 26.6,
+    "p90": -31.1,
+    "v": 348,
+    "vr": 0.86,
+    "ds": 10.7,
+    "f": 3
   },
   "overextended": {
     "desc_fr": "+90% Portée de Pouvoir\n-60% Puissance de Pouvoir",
@@ -520,7 +664,19 @@
     "icon": "items/images/en/overextended.4939196d35936b87b0ba4c85cdc97bef.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 11.5,
+    "p90": -10.9,
+    "v": 342,
+    "vr": 0.9,
+    "ds": 30.0,
+    "f": 3,
+    "p_max": 17.7,
+    "p90_max": -5.3,
+    "v_max": 87,
+    "vr_max": 0.86,
+    "ds_max": 27.0,
+    "f_max": 3
   },
   "arcane_sculptor": {
     "desc_fr": "Lors de la création d'un objet avec des Pouvoirs: les lancements ont 175% d'Efficacité de Pouvoir pendant 12s. +1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -529,7 +685,19 @@
     "icon": "items/images/en/arcane_sculptor.c585312d90bbedba54bd156a47489c7c.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 7.4,
+    "p90": -70.4,
+    "v": 362,
+    "vr": 0.67,
+    "ds": 2.2,
+    "f": 3,
+    "p_max": 131.0,
+    "p90_max": -34.5,
+    "v_max": 344,
+    "vr_max": 0.71,
+    "ds_max": 1.4,
+    "f_max": 3
   },
   "wisp_prime_set": {
     "desc_fr": "La splendeur dorée de Wisp Prime hante le champ de bataille. Les alliés célèbrent sa beauté interdimensionnelle.",
@@ -542,11 +710,11 @@
         "n_fr": "Wisp Prime (Schéma)",
         "n_en": "Wisp Prime Blueprint",
         "qty": 1,
-        "p": 35.1,
-        "p90": -3.3,
-        "v": 171,
-        "vr": 0.89,
-        "ds": 63.8,
+        "p": 35.0,
+        "p90": -3.6,
+        "v": 170,
+        "vr": 0.88,
+        "ds": 62.5,
         "f": 3
       },
       {
@@ -556,8 +724,8 @@
         "qty": 1,
         "p": 18.9,
         "p90": 13.2,
-        "v": 122,
-        "vr": 0.71,
+        "v": 127,
+        "vr": 0.74,
         "ds": 97.5,
         "f": 3
       },
@@ -568,8 +736,8 @@
         "qty": 1,
         "p": 5.2,
         "p90": -11.9,
-        "v": 118,
-        "vr": 0.91,
+        "v": 115,
+        "vr": 0.88,
         "ds": 20.0,
         "f": 3
       },
@@ -580,14 +748,20 @@
         "qty": 1,
         "p": 5.7,
         "p90": 3.6,
-        "v": 107,
-        "vr": 0.87,
+        "v": 109,
+        "vr": 0.89,
         "ds": 35.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 69.5,
+    "p90": -6.5,
+    "v": 336,
+    "vr": 0.82,
+    "ds": 10.0,
+    "f": 3
   },
   "melee_influence": {
     "desc_fr": "Melee Arcane that, on Melee Electricity Status, creates a 20% chance for elemental Melee Status Effects to apply to enemies within 20 meters for 18 seconds. This cannot refresh while active.",
@@ -596,7 +770,19 @@
     "icon": "items/images/en/melee_influence.b22232a58406e5feeb8bbe94c07c18d2.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 3.9,
+    "p90": -26.4,
+    "v": 359,
+    "vr": 0.69,
+    "ds": 0.0,
+    "f": 3,
+    "p_max": 63.5,
+    "p90_max": -9.0,
+    "v_max": 286,
+    "vr_max": 0.96,
+    "ds_max": 8.0,
+    "f_max": 3
   },
   "narrow_minded": {
     "desc_fr": "+99% Durée de Pouvoir\n-66% Portée de Pouvoir",
@@ -605,7 +791,19 @@
     "icon": "items/images/en/narrow_minded.7f5295adebe0b2e9fa1b71353924f6cb.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 9.1,
+    "p90": -11.7,
+    "v": 322,
+    "vr": 0.82,
+    "ds": 10.0,
+    "f": 3,
+    "p_max": 67.5,
+    "p90_max": -5.6,
+    "v_max": 71,
+    "vr_max": 0.67,
+    "ds_max": 21.7,
+    "f_max": 3
   },
   "revenant_prime_set": {
     "desc_fr": "L'égaré se lève. Réifiez l'essence Eidolon en utilisant la puissance de Revenant Prime.",
@@ -618,11 +816,11 @@
         "n_fr": "Revenant Prime (Schéma)",
         "n_en": "Revenant Prime Blueprint",
         "qty": 1,
-        "p": 20.5,
-        "p90": -29.6,
-        "v": 183,
-        "vr": 0.93,
-        "ds": 13.6,
+        "p": 20.6,
+        "p90": -29.2,
+        "v": 172,
+        "vr": 0.88,
+        "ds": 14.5,
         "f": 3
       },
       {
@@ -630,11 +828,11 @@
         "n_fr": "Revenant Prime - Châssis (Schéma)",
         "n_en": "Revenant Prime Chassis Blueprint",
         "qty": 1,
-        "p": 8.2,
-        "p90": 28.1,
-        "v": 166,
-        "vr": 1.34,
-        "ds": 80.0,
+        "p": 8.1,
+        "p90": 26.6,
+        "v": 168,
+        "vr": 1.36,
+        "ds": 77.5,
         "f": 3
       },
       {
@@ -644,8 +842,8 @@
         "qty": 1,
         "p": 7.0,
         "p90": -13.6,
-        "v": 274,
-        "vr": 1.83,
+        "v": 271,
+        "vr": 1.81,
         "ds": 33.3,
         "f": 3
       },
@@ -656,14 +854,20 @@
         "qty": 1,
         "p": 8.4,
         "p90": -20.0,
-        "v": 279,
-        "vr": 1.56,
+        "v": 289,
+        "vr": 1.62,
         "ds": 23.3,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 53.6,
+    "p90": -21.3,
+    "v": 327,
+    "vr": 0.98,
+    "ds": 18.0,
+    "f": 3
   },
   "critical_delay": {
     "desc_fr": "+200% de Chance de Critique\n-20% de Cadence de Tir (x2 pour les Arcs)",
@@ -672,7 +876,19 @@
     "icon": "items/images/en/critical_delay.5e621ae9ee9a6d2d4576565a26af45cb.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 10.7,
+    "p90": -29.6,
+    "v": 318,
+    "vr": 0.9,
+    "ds": 14.0,
+    "f": 3,
+    "p_max": 17.7,
+    "p90_max": -11.5,
+    "v_max": 60,
+    "vr_max": 0.69,
+    "ds_max": 24.5,
+    "f_max": 3
   },
   "volt_prime_set": {
     "desc_fr": "Un glorieux combattant du passé, Volt Prime offre les mêmes Pouvoirs que Volt, mais avec une configuration de polarités unique et plus riche.",
@@ -685,11 +901,11 @@
         "n_fr": "Volt Prime (Schéma)",
         "n_en": "Volt Prime Blueprint",
         "qty": 1,
-        "p": 14.3,
-        "p90": 62.5,
-        "v": 74,
-        "vr": 0.8,
-        "ds": 88.3,
+        "p": 14.4,
+        "p90": 63.6,
+        "v": 82,
+        "vr": 0.89,
+        "ds": 90.0,
         "f": 3
       },
       {
@@ -697,11 +913,11 @@
         "n_fr": "Volt Prime - Châssis (Schéma)",
         "n_en": "Volt Prime Chassis Blueprint",
         "qty": 1,
-        "p": 10.8,
-        "p90": -7.7,
-        "v": 105,
-        "vr": 0.94,
-        "ds": 45.0,
+        "p": 10.7,
+        "p90": -8.5,
+        "v": 103,
+        "vr": 0.93,
+        "ds": 42.5,
         "f": 3
       },
       {
@@ -709,11 +925,11 @@
         "n_fr": "Volt Prime - Neuroptiques (Schéma)",
         "n_en": "Volt Prime Neuroptics Blueprint",
         "qty": 1,
-        "p": 29.5,
-        "p90": -1.7,
+        "p": 29.4,
+        "p90": -2.0,
         "v": 88,
         "vr": 0.77,
-        "ds": 91.7,
+        "ds": 90.0,
         "f": 3
       },
       {
@@ -723,14 +939,20 @@
         "qty": 1,
         "p": 9.6,
         "p90": 20.0,
-        "v": 100,
-        "vr": 0.96,
+        "v": 108,
+        "vr": 1.03,
         "ds": 80.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 68.2,
+    "p90": 5.2,
+    "v": 315,
+    "vr": 1.05,
+    "ds": 84.0,
+    "f": 3
   },
   "blind_rage": {
     "desc_fr": "+99% Puissance de Pouvoir\n-55% Efficacité de Pouvoir",
@@ -739,7 +961,19 @@
     "icon": "items/images/en/blind_rage.a3969916d438992c1b132d3c56ded7a5.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 15.7,
+    "p90": -3.1,
+    "v": 293,
+    "vr": 0.6,
+    "ds": 34.0,
+    "f": 3,
+    "p_max": 68.0,
+    "p90_max": -3.4,
+    "v_max": 123,
+    "vr_max": 0.79,
+    "ds_max": 20.0,
+    "f_max": 3
   },
   "arcane_crepuscular": {
     "desc_fr": "En étant invisible, gagnez +30% de Puissance de Pouvoir et +3x aux Dégâts Critiques finaux.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -748,7 +982,19 @@
     "icon": "items/images/en/arcane_crepuscular.8e34ad3ac57362158d9ec6d642364427.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.2,
+    "p90": -8.3,
+    "v": 277,
+    "vr": 0.71,
+    "ds": 20.0,
+    "f": 3,
+    "p_max": 24.2,
+    "p90_max": -19.3,
+    "v_max": 194,
+    "vr_max": 0.85,
+    "ds_max": 1.8,
+    "f_max": 3
   },
   "axi_b9_relic": {
     "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
@@ -757,7 +1003,13 @@
     "icon": "items/images/en/axi_b9_relic.a5484024a9f5498b339499cd10cb825f.webp",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 3.9,
+    "p90": -61.0,
+    "v": 230,
+    "vr": 0.95,
+    "ds": 4.7,
+    "f": 3
   },
   "primary_merciless": {
     "desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge",
@@ -766,7 +1018,19 @@
     "icon": "items/images/en/primary_merciless.baca700cca91762be6465c5f52584fa7.png",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 1.5,
+    "p90": -34.8,
+    "v": 291,
+    "vr": 0.58,
+    "ds": 33.3,
+    "f": 3,
+    "p_max": 13.9,
+    "p90_max": -10.9,
+    "v_max": 161,
+    "vr_max": 0.76,
+    "ds_max": 12.9,
+    "f_max": 3
   },
   "cascadia_flare": {
     "desc_fr": "Sur Effet de Statut de Feu:\n+12% de Dégâts pendant 10s. Cumulable jusqu'à 480%.",
@@ -775,7 +1039,19 @@
     "icon": "items/images/en/cascadia_flare.256fbbf670c8acdcc8468ed035cc6efe.png",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.0,
+    "p90": -16.7,
+    "v": 274,
+    "vr": 1.13,
+    "ds": 0.0,
+    "f": 3,
+    "p_max": 29.2,
+    "p90_max": -7.6,
+    "v_max": 113,
+    "vr_max": 0.52,
+    "ds_max": 16.9,
+    "f_max": 3
   },
   "arcane_velocity": {
     "desc_fr": "Sur Coup Critique:\n90% de chances de: +120% Cadence de Tir aux Pistolets pendant 9s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -784,7 +1060,19 @@
     "icon": "items/images/en/arcane_velocity.ea37edd24f8212ce4bb283205658829b.png",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 8.3,
+    "p90": 43.1,
+    "v": 287,
+    "vr": 0.8,
+    "ds": 82.5,
+    "f": 3,
+    "p_max": 149.9,
+    "p90_max": 49.2,
+    "v_max": 169,
+    "vr_max": 0.59,
+    "ds_max": 71.3,
+    "f_max": 3
   },
   "growing_power": {
     "desc_fr": "Sur Effet de Statut avec une arme : l'escouade augmente la Puissance de Pouvoir personnelle de 25% pendant 6s.",
@@ -793,7 +1081,19 @@
     "icon": "items/images/en/growing_power.9afc4cbee02acdde54e5f875b8048202.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 26.5,
+    "p90": -4.0,
+    "v": 268,
+    "vr": 0.83,
+    "ds": 12.5,
+    "f": 3,
+    "p_max": 29.6,
+    "p90_max": -12.9,
+    "v_max": 59,
+    "vr_max": 0.84,
+    "ds_max": 5.5,
+    "f_max": 3
   },
   "gyre_prime_set": {
     "desc_fr": "Des circuits dorés activent et dynamisent des mouvements frénétiques résonnant à travers les âges. Dansez pour l'éternité avec Gyre Prime.",
@@ -808,8 +1108,8 @@
         "qty": 1,
         "p": 3.0,
         "p90": -44.4,
-        "v": 97,
-        "vr": 0.77,
+        "v": 94,
+        "vr": 0.75,
         "ds": 33.3,
         "f": 3
       },
@@ -818,11 +1118,11 @@
         "n_fr": "Gyre Prime - Châssis (Schéma)",
         "n_en": "Gyre Prime Chassis Blueprint",
         "qty": 1,
-        "p": 9.5,
-        "p90": 1.1,
-        "v": 155,
+        "p": 9.6,
+        "p90": 2.1,
+        "v": 154,
         "vr": 0.67,
-        "ds": 75.0,
+        "ds": 80.0,
         "f": 3
       },
       {
@@ -832,8 +1132,8 @@
         "qty": 1,
         "p": 8.7,
         "p90": -21.6,
-        "v": 184,
-        "vr": 0.69,
+        "v": 178,
+        "vr": 0.67,
         "ds": 35.0,
         "f": 3
       },
@@ -844,14 +1144,20 @@
         "qty": 1,
         "p": 3.5,
         "p90": -2.8,
-        "v": 87,
-        "vr": 0.87,
+        "v": 81,
+        "vr": 0.81,
         "ds": 50.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 28.9,
+    "p90": -17.0,
+    "v": 282,
+    "vr": 0.69,
+    "ds": 17.3,
+    "f": 3
   },
   "arcane_energize": {
     "desc_fr": "Sur Ramassage d'Énergie:\n60% de chances de restaurer 150 points d'Énergie à vous-même et aux alliés à moins de 15m\n15s de temps de recharge\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -860,7 +1166,19 @@
     "icon": "items/images/en/arcane_energize.e5f85590ceb29db89c6753dfdf823485.png",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 8.5,
+    "p90": 34.9,
+    "v": 272,
+    "vr": 0.5,
+    "ds": 83.3,
+    "f": 3,
+    "p_max": 136.9,
+    "p90_max": 37.9,
+    "v_max": 202,
+    "vr_max": 0.73,
+    "ds_max": 92.3,
+    "f_max": 3
   },
   "melee_duplicate": {
     "desc_fr": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.",
@@ -869,7 +1187,19 @@
     "icon": "items/images/en/melee_duplicate.0ac0137e555cde39902706e96853dff9.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 7.8,
+    "p90": -9.3,
+    "v": 278,
+    "vr": 0.96,
+    "ds": 26.7,
+    "f": 3,
+    "p_max": 175.4,
+    "p90_max": -14.0,
+    "v_max": 54,
+    "vr_max": 0.71,
+    "ds_max": 23.1,
+    "f_max": 3
   },
   "arcane_camisado": {
     "desc_fr": "Les attaques des serviteurs invoqués augmentent la Puissance des Pouvoirs de 6% jusqu'à 60% sur le prochain lancement de Pouvoir. Summons gain 20% Movement Speed.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -878,7 +1208,19 @@
     "icon": "items/images/en/arcane_camisado.49bb15acacdfe7a2782b56151d0a8a3f.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.1,
+    "p90": -12.5,
+    "v": 239,
+    "vr": 0.89,
+    "ds": 50.0,
+    "f": 3,
+    "p_max": 24.8,
+    "p90_max": 0.4,
+    "v_max": 165,
+    "vr_max": 0.98,
+    "ds_max": 48.0,
+    "f_max": 3
   },
   "catalyzing_shields": {
     "desc_fr": "x0.20 de capacité max des Boucliers\n1.33s de durée d'immunité de Ralentissement par Boucliers complet",
@@ -887,7 +1229,19 @@
     "icon": "items/images/en/catalyzing_shields.33257059fb0aad33f4ac29b9fd9bb7cd.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 14.2,
+    "p90": -5.3,
+    "v": 260,
+    "vr": 0.75,
+    "ds": 17.1,
+    "f": 3,
+    "p_max": 17.3,
+    "p90_max": -2.3,
+    "v_max": 56,
+    "vr_max": 0.64,
+    "ds_max": 25.6,
+    "f_max": 3
   },
   "titania_prime_set": {
     "desc_fr": "Envoûtante et terrifiante, voici Titania dans sa forme ultime.",
@@ -900,11 +1254,11 @@
         "n_fr": "Titania Prime (Schéma)",
         "n_en": "Titania Prime Blueprint",
         "qty": 1,
-        "p": 10.5,
-        "p90": -8.7,
-        "v": 184,
-        "vr": 0.8,
-        "ds": 40.0,
+        "p": 10.4,
+        "p90": -9.6,
+        "v": 187,
+        "vr": 0.81,
+        "ds": 36.0,
         "f": 3
       },
       {
@@ -914,8 +1268,8 @@
         "qty": 1,
         "p": 7.4,
         "p90": -29.5,
-        "v": 130,
-        "vr": 0.59,
+        "v": 134,
+        "vr": 0.61,
         "ds": 23.3,
         "f": 3
       },
@@ -926,8 +1280,8 @@
         "qty": 1,
         "p": 8.7,
         "p90": -16.3,
-        "v": 132,
-        "vr": 0.58,
+        "v": 126,
+        "vr": 0.55,
         "ds": 15.6,
         "f": 3
       },
@@ -938,14 +1292,20 @@
         "qty": 1,
         "p": 29.6,
         "p90": -31.5,
-        "v": 139,
-        "vr": 0.55,
+        "v": 147,
+        "vr": 0.58,
         "ds": 26.7,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 67.1,
+    "p90": -22.6,
+    "v": 269,
+    "vr": 0.74,
+    "ds": 24.5,
+    "f": 3
   },
   "mirage_prime_set": {
     "desc_fr": "Jouez-vous de vos adversaires avec cette grande maîtresse de l'illusion et du chaos. Elle dispose de polarités de mod modifiées qui ouvrent de nouvelles perspectives en matière de personnalisation.",
@@ -960,8 +1320,8 @@
         "qty": 1,
         "p": 28.0,
         "p90": -26.7,
-        "v": 167,
-        "vr": 1.44,
+        "v": 182,
+        "vr": 1.56,
         "ds": 7.7,
         "f": 3
       },
@@ -970,11 +1330,11 @@
         "n_fr": "Mirage Prime - Châssis (Schéma)",
         "n_en": "Mirage Prime Chassis Blueprint",
         "qty": 1,
-        "p": 8.8,
-        "p90": -14.6,
-        "v": 152,
-        "vr": 1.65,
-        "ds": 20.0,
+        "p": 8.9,
+        "p90": -13.6,
+        "v": 178,
+        "vr": 1.93,
+        "ds": 22.5,
         "f": 3
       },
       {
@@ -982,11 +1342,11 @@
         "n_fr": "Mirage Prime - Neuroptiques (Schéma)",
         "n_en": "Mirage Prime Neuroptics Blueprint",
         "qty": 1,
-        "p": 5.5,
-        "p90": -20.3,
-        "v": 144,
-        "vr": 1.91,
-        "ds": 25.0,
+        "p": 5.9,
+        "p90": -14.5,
+        "v": 185,
+        "vr": 2.45,
+        "ds": 45.0,
         "f": 3
       },
       {
@@ -994,16 +1354,22 @@
         "n_fr": "Mirage Prime - Systèmes (Schéma)",
         "n_en": "Mirage Prime Systems Blueprint",
         "qty": 1,
-        "p": 14.4,
-        "p90": -20.4,
-        "v": 143,
-        "vr": 1.27,
-        "ds": 20.0,
+        "p": 14.3,
+        "p90": -21.0,
+        "v": 185,
+        "vr": 1.65,
+        "ds": 18.6,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 71.8,
+    "p90": -17.3,
+    "v": 289,
+    "vr": 1.48,
+    "ds": 9.0,
+    "f": 3
   },
   "arcane_bellicose": {
     "desc_fr": "Gagnez 6% de Puissance de Pouvoir pour chaque 250 de Santé max jusqu'à 72%.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1012,7 +1378,19 @@
     "icon": "items/images/en/arcane_bellicose.cba86d2bfb1b20b4a512b6913e79ba0c.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.0,
+    "p90": -9.1,
+    "v": 275,
+    "vr": 0.82,
+    "ds": 0.0,
+    "f": 3,
+    "p_max": 24.5,
+    "p90_max": 2.1,
+    "v_max": 152,
+    "vr_max": 0.69,
+    "ds_max": 8.3,
+    "f_max": 3
   },
   "hildryn_prime_set": {
     "desc_fr": "Hildryn Prime prouve que le succès récompense la discipline.",
@@ -1027,8 +1405,8 @@
         "qty": 1,
         "p": 38.8,
         "p90": 3.7,
-        "v": 137,
-        "vr": 0.73,
+        "v": 139,
+        "vr": 0.74,
         "ds": 90.0,
         "f": 3
       },
@@ -1037,11 +1415,11 @@
         "n_fr": "Hildryn Prime - Châssis (Schéma)",
         "n_en": "Hildryn Prime Chassis Blueprint",
         "qty": 1,
-        "p": 12.7,
-        "p90": 24.5,
-        "v": 171,
-        "vr": 1.03,
-        "ds": 61.7,
+        "p": 12.8,
+        "p90": 25.5,
+        "v": 173,
+        "vr": 1.04,
+        "ds": 63.3,
         "f": 3
       },
       {
@@ -1051,8 +1429,8 @@
         "qty": 1,
         "p": 7.2,
         "p90": -11.1,
-        "v": 125,
-        "vr": 0.9,
+        "v": 124,
+        "vr": 0.89,
         "ds": 40.0,
         "f": 3
       },
@@ -1061,16 +1439,22 @@
         "n_fr": "Hildryn Prime - Systèmes (Schéma)",
         "n_en": "Hildryn Prime Systems Blueprint",
         "qty": 1,
-        "p": 3.7,
-        "p90": 2.8,
-        "v": 67,
-        "vr": 0.73,
+        "p": 3.8,
+        "p90": 5.6,
+        "v": 70,
+        "vr": 0.76,
         "ds": 0.0,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 69.2,
+    "p90": 0.9,
+    "v": 275,
+    "vr": 0.75,
+    "ds": 92.0,
+    "f": 3
   },
   "requiem_eterna_relic": {
     "desc_fr": "Contient des Mods Requiem et d'autres mystères.",
@@ -1079,7 +1463,13 @@
     "icon": "items/unknown.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 1.9,
+    "p90": -45.7,
+    "v": 254,
+    "vr": 1.43,
+    "ds": 18.0,
+    "f": 2
   },
   "arcane_impetus": {
     "desc_fr": "Les Effets de Statut uniques des Pouvoirs confèrent +6% de Puissance de Pouvoir et +3% d'Efficacité de Pouvoir pendant 20s.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1088,7 +1478,19 @@
     "icon": "items/images/en/arcane_impetus.eaa1ea005d4f154f48f97f0989e7f848.webp",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 2.0,
+    "p90": -28.6,
+    "v": 238,
+    "vr": 0.85,
+    "ds": 0.0,
+    "f": 3,
+    "p_max": 24.1,
+    "p90_max": -22.8,
+    "v_max": 178,
+    "vr_max": 0.9,
+    "ds_max": 0.0,
+    "f_max": 3
   },
   "shotgun_riven_mod_(veiled)": {
     "desc_fr": "",
@@ -1097,7 +1499,13 @@
     "icon": "items/images/en/shotgun_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 7.2,
+    "p90": 1.4,
+    "v": 221,
+    "vr": 0.86,
+    "ds": 56.9,
+    "f": 3
   },
   "arcane_fury": {
     "desc_fr": "Sur Coup Critique:\n60% de chances de: +180% de Dégâts en Mêlée aux armes de Mêlée pendant 18s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
@@ -1106,7 +1514,19 @@
     "icon": "items/images/en/arcane_fury.221e1166ea44c6d2473f59b7cfa4396a.png",
     "components": [],
     "fusion_ratio": 21,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 7.8,
+    "p90": 50.0,
+    "v": 230,
+    "vr": 0.7,
+    "ds": 94.5,
+    "f": 3,
+    "p_max": 136.2,
+    "p90_max": 97.4,
+    "v_max": 181,
+    "vr_max": 0.85,
+    "ds_max": 94.6,
+    "f_max": 3
   },
   "protea_prime_set": {
     "desc_fr": "L'enfant née de deux pères. Protea Prime a autrefois réalisé la vision de Parvos Granum d'un gardien manipulant le temps. Maintenant, elle défend l'idéal Tenno de protéger les plus faibles.",
@@ -1119,11 +1539,11 @@
         "n_fr": "Protea Prime (Schéma)",
         "n_en": "Protea Prime Blueprint",
         "qty": 1,
-        "p": 2.9,
-        "p90": 7.4,
-        "v": 34,
-        "vr": 0.93,
-        "ds": 45.0,
+        "p": 2.8,
+        "p90": 3.7,
+        "v": 37,
+        "vr": 1.01,
+        "ds": 40.0,
         "f": 3
       },
       {
@@ -1133,8 +1553,8 @@
         "qty": 1,
         "p": 3.5,
         "p90": 0.0,
-        "v": 48,
-        "vr": 0.76,
+        "v": 47,
+        "vr": 0.74,
         "ds": 50.0,
         "f": 3
       },
@@ -1143,11 +1563,11 @@
         "n_fr": "Protea Prime - Châssis (Schéma)",
         "n_en": "Protea Prime Chassis Blueprint",
         "qty": 1,
-        "p": 17.3,
-        "p90": 39.5,
-        "v": 105,
-        "vr": 0.71,
-        "ds": 73.0,
+        "p": 17.5,
+        "p90": 41.1,
+        "v": 103,
+        "vr": 0.7,
+        "ds": 75.0,
         "f": 3
       },
       {
@@ -1155,16 +1575,22 @@
         "n_fr": "Protea Prime - Systèmes (Schéma)",
         "n_en": "Protea Prime Systems Blueprint",
         "qty": 1,
-        "p": 16.5,
-        "p90": 17.9,
-        "v": 129,
-        "vr": 0.96,
-        "ds": 75.0,
+        "p": 16.3,
+        "p90": 16.4,
+        "v": 131,
+        "vr": 0.98,
+        "ds": 71.7,
         "f": 3
       }
     ],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 42.2,
+    "p90": 23.0,
+    "v": 240,
+    "vr": 0.93,
+    "ds": 81.3,
+    "f": 3
   },
   "acid_shells": {
     "desc_fr": "Les ennemis explosent à la mort, infligeant 450 points de Dégâts Corrosifs (+45% de la Santé Max de l'Ennemi) dans un rayon de 15m.",
@@ -1173,7 +1599,19 @@
     "icon": "items/images/en/acid_shells.b43df89f2ae8597841c0087d02df2314.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 9.2,
+    "p90": -71.9,
+    "v": 193,
+    "vr": 0.86,
+    "ds": 0.6,
+    "f": 3,
+    "p_max": 14.9,
+    "p90_max": -59.0,
+    "v_max": 14,
+    "vr_max": 0.25,
+    "ds_max": 14.0,
+    "f_max": 3
   },
   "precision_intensify": {
     "desc_fr": "+90% de Puissance de Pouvoir à votre 4e Pouvoir",
@@ -1182,6 +1620,18 @@
     "icon": "items/images/en/precision_intensify.dbfea114c8f578a222c31637a0d87516.png",
     "components": [],
     "fusion_ratio": null,
-    "expert_tips": []
+    "expert_tips": [],
+    "p": 4.3,
+    "p90": -8.5,
+    "v": 221,
+    "vr": 0.71,
+    "ds": 30.0,
+    "f": 3,
+    "p_max": 9.7,
+    "p90_max": -14.9,
+    "v_max": 41,
+    "vr_max": 0.65,
+    "ds_max": 23.3,
+    "f_max": 3
   }
 }
