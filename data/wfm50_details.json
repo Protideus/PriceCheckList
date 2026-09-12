@@ -1,1 +1,1383 @@
-{"lith_m7_relic": {"desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.", "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.", "wiki_en": "", "icon": "items/images/en/lith_m7_relic.4c2cd55afd4007566866d226c86e0fdd.png", "components": [], "fusion_ratio": null}, "neo_b6_relic": {"desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.", "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.", "wiki_en": "", "icon": "items/images/en/neo_b6_relic.404dc9ef087cc16ca255f5b5fd17fff0.png", "components": [], "fusion_ratio": null}, "arcane_hot_shot": {"desc_fr": "Gagnez 6% de Chances de Critique avec votre arme pendant 10s lorsque vous utilisez des Pouvoirs pour infliger des Effets de Statut de Feu aux ennemis. Nombre maximal de cumuls: 50.\n+1 Réanimation Arcane", "desc_en": "Gain 6% weapon Critical Chance for 10s, when using abilities to inflict Heat Status effect on enemies. Maximum 50x stacks.\n+1 Arcane Revive", "wiki_en": "", "icon": "items/images/en/arcane_hot_shot.b488affbc34321e8b1dba284f889d634.webp", "components": [], "fusion_ratio": 21}, "primary_compression": {"desc_fr": "En mode visée: rayon d'explosion x0.2, +100% de Dégâts et +5.5% d'Efficacité des Munitions par mètre de rayon perdu.", "desc_en": "On aim: x0.2 explosion radius, +100% damage and +5.5% ammo efficiency for every 1m radius lost.", "wiki_en": "", "icon": "items/images/en/primary_compression.4c7b696553acb6a8cb573aa0d9990b2b.webp", "components": [], "fusion_ratio": 21}, "rifle_riven_mod_(veiled)": {"desc_fr": "", "desc_en": "", "wiki_en": "https://warframe.fandom.com/wiki/Rifle_Riven_Mod", "icon": "items/images/en/rifle_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png", "components": [], "fusion_ratio": null}, "pistol_riven_mod_(veiled)": {"desc_fr": "", "desc_en": "", "wiki_en": "https://warframe.fandom.com/wiki/Pistol_Riven_Mod", "icon": "items/images/en/pistol_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png", "components": [], "fusion_ratio": null}, "melee_riven_mod_(veiled)": {"desc_fr": "", "desc_en": "", "wiki_en": "https://warframe.fandom.com/wiki/Melee_Riven_Mod", "icon": "items/images/en/melee_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png", "components": [], "fusion_ratio": null}, "volt_prime_set": {"desc_fr": "Un glorieux combattant du passé, Volt Prime offre les mêmes Pouvoirs que Volt, mais avec une configuration de polarités unique et plus riche.", "desc_en": "A glorious warrior from the past, Volt Prime features the same abilities as Volt but with unique mod polarities for greater customization.", "wiki_en": "https://wiki.warframe.com/w/Volt_Prime", "icon": "items/images/en/volt_prime_set.9481daa3eb02aaec1108cdbeeaeea159.png", "components": [{"slug": "volt_prime_blueprint", "n_fr": "Volt Prime (Schéma)", "n_en": "Volt Prime Blueprint", "qty": 1, "p": 14.6, "p90": 53.7, "v": 75, "vr": 0.82, "ds": 65.7, "f": 3}, {"slug": "volt_prime_chassis_blueprint", "n_fr": "Volt Prime - Châssis (Schéma)", "n_en": "Volt Prime Chassis Blueprint", "qty": 1, "p": 10.4, "p90": -9.6, "v": 62, "vr": 0.56, "ds": 35.0, "f": 3}, {"slug": "volt_prime_neuroptics_blueprint", "n_fr": "Volt Prime - Neuroptiques (Schéma)", "n_en": "Volt Prime Neuroptics Blueprint", "qty": 1, "p": 31.2, "p90": 8.0, "v": 78, "vr": 0.67, "ds": 65.5, "f": 3}, {"slug": "volt_prime_systems_blueprint", "n_fr": "Volt Prime - Systèmes (Schéma)", "n_en": "Volt Prime Systems Blueprint", "qty": 1, "p": 10.1, "p90": 26.2, "v": 65, "vr": 0.62, "ds": 100.0, "f": 3}], "fusion_ratio": null}, "primary_merciless": {"desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge", "desc_en": "On Kill:\n+30% Damage for 4s. Stacks up to 12x.\n+30% Reload Speed\n+30% Reload Speed", "wiki_en": "https://wiki.warframe.com/w/Primary_Merciless", "icon": "items/images/en/primary_merciless.baca700cca91762be6465c5f52584fa7.png", "components": [], "fusion_ratio": 21}, "lith_k5_relic": {"desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.", "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.", "wiki_en": "", "icon": "items/images/en/lith_k5_relic.4c2cd55afd4007566866d226c86e0fdd.png", "components": [], "fusion_ratio": null}, "boar_prime_set": {"desc_fr": "Véritable chef-d'œuvre de l'artisanat Tenno, le Boar Prime se caractérise par une cadence de tir plus élevée, un chargeur étendu et des dégâts beaucoup plus importants.", "desc_en": "One of the finest examples of Tenno craftsmanship, the Boar Prime offers a higher Fire Rate, Magazine Capacity and a much higher per-shot damage.", "wiki_en": "https://wiki.warframe.com/w/Boar_Prime", "icon": "items/images/en/boar_prime_set.5e8a5ba1520169c7a99c738624328d26.png", "components": [{"slug": "boar_prime_barrel", "n_fr": "Boar Prime - Canon", "n_en": "Boar Prime Barrel", "qty": 1, "p": 19.2, "p90": 35.2, "v": 87, "vr": 1.92, "ds": 90.0, "f": 3}, {"slug": "boar_prime_blueprint", "n_fr": "Boar Prime (Schéma)", "n_en": "Boar Prime Blueprint", "qty": 1, "p": 10.0, "p90": 16.3, "v": 65, "vr": 1.8, "ds": 40.0, "f": 3}, {"slug": "boar_prime_receiver", "n_fr": "Boar Prime - Culasse", "n_en": "Boar Prime Receiver", "qty": 1, "p": 22.0, "p90": 74.6, "v": 93, "vr": 1.92, "ds": 80.0, "f": 3}, {"slug": "boar_prime_stock", "n_fr": "Boar Prime - Crosse", "n_en": "Boar Prime Stock", "qty": 1, "p": 55.6, "p90": 38.3, "v": 126, "vr": 2.27, "ds": 86.2, "f": 3}], "fusion_ratio": null}, "molt_augmented": {"desc_fr": "Sur Élimination:\n+0.24% Puissance de Pouvoir. Cumulable jusqu'à 250x.\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On Kill:\n+0.24% Ability Strength. Stacks up to 250x.\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Molt_Augmented", "icon": "items/images/en/molt_augmented.9def654a0d24b7f085940dfc8ef843b5.png", "components": [], "fusion_ratio": 21}, "arcane_energize": {"desc_fr": "Sur Ramassage d'Énergie:\n60% de chances de restaurer 150 points d'Énergie à vous-même et aux alliés à moins de 15m\n15s de temps de recharge\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On Energy Pickup:\n60% chance to replenish 150 Energy to self and allies within 15m\n15s cooldown\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Energize", "icon": "items/images/en/arcane_energize.e5f85590ceb29db89c6753dfdf823485.png", "components": [], "fusion_ratio": 21}, "styanax_prime_set": {"desc_fr": "Bouclier des innocents, lance de justice, Styanax Prime résiste à la tyrannie.", "desc_en": "Shield of the innocent. Spear of justice. Styanax Prime holds the line in defiance of tyranny.", "wiki_en": "", "icon": "items/images/en/styanax_prime_set.27f0de9e366d4a69ace940a8f927783d.webp", "components": [{"slug": "styanax_prime_blueprint", "n_fr": "Styanax Prime (Schéma)", "n_en": "Styanax Prime Blueprint", "qty": 1, "p": 9.8, "p90": -67.3, "v": 140, "vr": 0.28, "ds": 3.8, "f": 3}, {"slug": "styanax_prime_chassis_blueprint", "n_fr": "Styanax Prime - Châssis (Schéma)", "n_en": "Styanax Prime Chassis Blueprint", "qty": 1, "p": 4.4, "p90": -75.6, "v": 120, "vr": 0.28, "ds": 2.5, "f": 3}, {"slug": "styanax_prime_neuroptics_blueprint", "n_fr": "Styanax Prime - Neuroptiques (Schéma)", "n_en": "Styanax Prime Neuroptics Blueprint", "qty": 1, "p": 12.9, "p90": -62.1, "v": 222, "vr": 0.39, "ds": 12.1, "f": 3}, {"slug": "styanax_prime_systems_blueprint", "n_fr": "Styanax Prime - Systèmes (Schéma)", "n_en": "Styanax Prime Systems Blueprint", "qty": 1, "p": 5.4, "p90": -86.5, "v": 153, "vr": 0.32, "ds": 1.1, "f": 1}], "fusion_ratio": null}, "nova_prime_set": {"desc_fr": "Nova Prime sème la dévastation sur ses ennemis à l'aide de l'antimatière volatile. Elle possède des polarités modifiées pour plus de personnalisation.", "desc_en": "Nova Prime wreaks devastation on her enemies using volatile antimatter. Featuring altered mod polarities for greater customization.", "wiki_en": "https://wiki.warframe.com/w/Nova_Prime", "icon": "items/images/en/nova_prime_set.639a9222e1cb351cd6dd09ef28155ef0.png", "components": [{"slug": "nova_prime_blueprint", "n_fr": "Nova Prime (Schéma)", "n_en": "Nova Prime Blueprint", "qty": 1, "p": 14.3, "p90": 20.2, "v": 86, "vr": 1.01, "ds": 86.0, "f": 3}, {"slug": "nova_prime_chassis_blueprint", "n_fr": "Nova Prime - Châssis (Schéma)", "n_en": "Nova Prime Chassis Blueprint", "qty": 1, "p": 30.4, "p90": 8.2, "v": 49, "vr": 0.46, "ds": 44.6, "f": 3}, {"slug": "nova_prime_neuroptics_blueprint", "n_fr": "Nova Prime - Neuroptiques (Schéma)", "n_en": "Nova Prime Neuroptics Blueprint", "qty": 1, "p": 14.5, "p90": 18.9, "v": 57, "vr": 0.66, "ds": 90.0, "f": 3}, {"slug": "nova_prime_systems_blueprint", "n_fr": "Nova Prime - Systèmes (Schéma)", "n_en": "Nova Prime Systems Blueprint", "qty": 1, "p": 14.2, "p90": 24.6, "v": 68, "vr": 0.81, "ds": 84.0, "f": 3}], "fusion_ratio": null}, "meso_e5_relic": {"desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.", "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.", "wiki_en": "", "icon": "items/images/en/meso_e5_relic.32eb1e727be665c175084b03829b8015.png", "components": [], "fusion_ratio": null}, "mirage_prime_set": {"desc_fr": "Jouez-vous de vos adversaires avec cette grande maîtresse de l'illusion et du chaos. Elle dispose de polarités de mod modifiées qui ouvrent de nouvelles perspectives en matière de personnalisation.", "desc_en": "Dazzle the opposition with this golden master of illusion and mayhem. Featuring altered mod polarities allow for greater customization.", "wiki_en": "https://wiki.warframe.com/w/Mirage_Prime", "icon": "items/images/en/mirage_prime_set.e7f8f484dd6ae6c35f0767fff35a5109.png", "components": [{"slug": "mirage_prime_blueprint", "n_fr": "Mirage Prime (Schéma)", "n_en": "Mirage Prime Blueprint", "qty": 1, "p": 26.8, "p90": -29.8, "v": 353, "vr": 2.54, "ds": 18.1, "f": 3}, {"slug": "mirage_prime_chassis_blueprint", "n_fr": "Mirage Prime - Châssis (Schéma)", "n_en": "Mirage Prime Chassis Blueprint", "qty": 1, "p": 8.1, "p90": -24.3, "v": 219, "vr": 1.96, "ds": 2.5, "f": 3}, {"slug": "mirage_prime_neuroptics_blueprint", "n_fr": "Mirage Prime - Neuroptiques (Schéma)", "n_en": "Mirage Prime Neuroptics Blueprint", "qty": 1, "p": 5.7, "p90": -13.6, "v": 196, "vr": 2.03, "ds": 35.0, "f": 3}, {"slug": "mirage_prime_systems_blueprint", "n_fr": "Mirage Prime - Systèmes (Schéma)", "n_en": "Mirage Prime Systems Blueprint", "qty": 1, "p": 15.0, "p90": -20.2, "v": 221, "vr": 1.67, "ds": 28.6, "f": 3}], "fusion_ratio": null}, "gilded_truth": {"desc_fr": "+80% Cadence de Tir\n+1 'Vérité'", "desc_en": "+80% Fire Rate\n+1 'Truth'", "wiki_en": "https://wiki.warframe.com/w/Gilded_Truth", "icon": "items/images/en/gilded_truth.4f864f82b65bf77a28c01419c6cbfce1.png", "components": [], "fusion_ratio": null}, "blind_rage": {"desc_fr": "+99% Puissance de Pouvoir\n-55% Efficacité de Pouvoir", "desc_en": "+99% Ability Strength\n-55% Ability Efficiency", "wiki_en": "https://wiki.warframe.com/w/Blind_Rage", "icon": "items/images/en/blind_rage.a3969916d438992c1b132d3c56ded7a5.png", "components": [], "fusion_ratio": null}, "nautilus_prime_set": {"desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.", "desc_en": "This brave deckhand defends his crew with Verglas Prime.", "wiki_en": "https://wiki.warframe.com/w/Nautilus_Prime", "icon": "items/images/en/nautilus_prime.64f2680abc41ecdb62943bc1b55be8c4.webp", "components": [{"slug": "nautilus_prime_blueprint", "n_fr": "Nautilus Prime (Schéma)", "n_en": "Nautilus Prime Blueprint", "qty": 1, "p": 13.6, "p90": 18.3, "v": 95, "vr": 0.53, "ds": 92.0, "f": 3}, {"slug": "nautilus_prime_carapace", "n_fr": "Nautilus Prime - Carapace", "n_en": "Nautilus Prime Carapace", "qty": 1, "p": 6.0, "p90": -7.7, "v": 65, "vr": 0.54, "ds": 33.3, "f": 3}, {"slug": "nautilus_prime_cerebrum", "n_fr": "Nautilus Prime - Cerveau", "n_en": "Nautilus Prime Cerebrum", "qty": 1, "p": 27.1, "p90": 64.2, "v": 139, "vr": 0.6, "ds": 81.9, "f": 3}, {"slug": "nautilus_prime_systems", "n_fr": "Nautilus Prime - Systèmes", "n_en": "Nautilus Prime Systems", "qty": 1, "p": 3.7, "p90": 12.1, "v": 64, "vr": 0.59, "ds": 85.0, "f": 3}], "fusion_ratio": null}, "gauss_prime_set": {"desc_fr": "Le vif-argent prend forme. Gauss Prime ne tolère aucune allusion à la défaite.", "desc_en": "Quicksilver takes form. Gauss Prime brooks no talk of defeat.", "wiki_en": "https://wiki.warframe.com/w/Gauss_Prime", "icon": "items/images/en/gauss_prime_set.df5aa569d863730a4de767fd449c107e.png", "components": [{"slug": "gauss_prime_blueprint", "n_fr": "Gauss Prime (Schéma)", "n_en": "Gauss Prime Blueprint", "qty": 1, "p": 4.5, "p90": -16.7, "v": 88, "vr": 0.81, "ds": 50.0, "f": 3}, {"slug": "gauss_prime_chassis_blueprint", "n_fr": "Gauss Prime - Châssis (Schéma)", "n_en": "Gauss Prime Chassis Blueprint", "qty": 1, "p": 5.6, "p90": -6.7, "v": 93, "vr": 0.77, "ds": 100.0, "f": 3}, {"slug": "gauss_prime_neuroptics_blueprint", "n_fr": "Gauss Prime - Neuroptiques (Schéma)", "n_en": "Gauss Prime Neuroptics Blueprint", "qty": 1, "p": 9.5, "p90": 11.8, "v": 103, "vr": 0.59, "ds": 75.0, "f": 3}, {"slug": "gauss_prime_systems_blueprint", "n_fr": "Gauss Prime - Systèmes (Schéma)", "n_en": "Gauss Prime Systems Blueprint", "qty": 1, "p": 30.0, "p90": 17.2, "v": 122, "vr": 0.62, "ds": 100.0, "f": 3}], "fusion_ratio": null}, "shotgun_elementalist": {"desc_fr": "+90% de Dégâts d'Effet de Statut\n+60% de Taille Du Chargeur", "desc_en": "+90% Status Damage\n+60% Magazine Capacity", "wiki_en": "https://wiki.warframe.com/w/Shotgun_Elementalist", "icon": "items/images/en/shotgun_elementalist.abc35c4698444eb948e6ede2ed437df7.webp", "components": [], "fusion_ratio": null}, "xaku_prime_set": {"desc_fr": "L'enfant de la guerre et du Néant renaît en or. Ce qui a été brisé un jour peut se relever plus fort que ce qui n'a jamais été endommagé.", "desc_en": "The child of war and void is reborn in gold. That which was once shattered may rise stronger than that which was never broken.", "wiki_en": "https://wiki.warframe.com/w/Xaku_Prime", "icon": "items/images/en/xaku_prime.caeeda2f9eec158d19fd76d7631fa5de.webp", "components": [{"slug": "xaku_prime_blueprint", "n_fr": "Xaku Prime (Schéma)", "n_en": "Xaku Prime Blueprint", "qty": 1, "p": 13.2, "p90": 29.4, "v": 183, "vr": 0.59, "ds": 80.0, "f": 3}, {"slug": "xaku_prime_chassis_blueprint", "n_fr": "Xaku Prime - Châssis (Schéma)", "n_en": "Xaku Prime Chassis Blueprint", "qty": 1, "p": 3.4, "p90": -17.1, "v": 82, "vr": 0.54, "ds": 40.0, "f": 3}, {"slug": "xaku_prime_neuroptics_blueprint", "n_fr": "Xaku Prime - Neuroptiques (Schéma)", "n_en": "Xaku Prime Neuroptics Blueprint", "qty": 1, "p": 2.9, "p90": -3.3, "v": 58, "vr": 0.61, "ds": 45.0, "f": 3}, {"slug": "xaku_prime_systems_blueprint", "n_fr": "Xaku Prime - Systèmes (Schéma)", "n_en": "Xaku Prime Systems Blueprint", "qty": 1, "p": 3.0, "p90": -61.5, "v": 131, "vr": 0.75, "ds": 16.7, "f": 3}], "fusion_ratio": null}, "yareli_prime_set": {"desc_fr": "Waverider surgit, renaissant de l'écume de l'océan. Dans sa splendeur originelle de l'ère Orokin, elle incarne la vigueur éternelle de la jeunesse.", "desc_en": "The Waverider arises, reborn from the ocean foam. In her original Orokin-era splendor she embodies the undying vigor of youth.", "wiki_en": "", "icon": "items/images/en/yareli_prime_set.80badf98bdde8e0c47cac61aa6149ea0.webp", "components": [{"slug": "yareli_prime_blueprint", "n_fr": "Yareli Prime (Schéma)", "n_en": "Yareli Prime Blueprint", "qty": 1, "p": 2.9, "p90": -9.4, "v": 71, "vr": 0.62, "ds": 45.0, "f": 3}, {"slug": "yareli_prime_chassis_blueprint", "n_fr": "Yareli Prime - Châssis (Schéma)", "n_en": "Yareli Prime Chassis Blueprint", "qty": 1, "p": 2.2, "p90": -15.4, "v": 29, "vr": 0.46, "ds": 100.0, "f": 2}, {"slug": "yareli_prime_neuroptics_blueprint", "n_fr": "Yareli Prime - Neuroptiques (Schéma)", "n_en": "Yareli Prime Neuroptics Blueprint", "qty": 1, "p": 9.4, "p90": -31.4, "v": 189, "vr": 0.63, "ds": 6.7, "f": 3}, {"slug": "yareli_prime_systems_blueprint", "n_fr": "Yareli Prime - Systèmes (Schéma)", "n_en": "Yareli Prime Systems Blueprint", "qty": 1, "p": 13.1, "p90": -31.1, "v": 198, "vr": 0.64, "ds": 31.0, "f": 3}], "fusion_ratio": null}, "acceltra_prime_set": {"desc_fr": "Engagez vos ennemis avec une vitesse mortelle. Cette arme se recharge plus vite lorsque son utilisateur sprinte, et plus vite encore avec Gauss.", "desc_en": "Engage your enemies with deadly speed. This weapon reloads even faster when its wielder sprints, faster still with Gauss.", "wiki_en": "https://wiki.warframe.com/w/Acceltra_Prime", "icon": "items/images/en/acceltra_prime_set.b826cc938ba700ff8d8f07d2b38051f7.png", "components": [{"slug": "acceltra_prime_barrel", "n_fr": "Acceltra Prime - Canon", "n_en": "Acceltra Prime Barrel", "qty": 1, "p": 17.8, "p90": 38.0, "v": 132, "vr": 1.3, "ds": 77.3, "f": 3}, {"slug": "acceltra_prime_blueprint", "n_fr": "Acceltra Prime (Schéma)", "n_en": "Acceltra Prime Blueprint", "qty": 1, "p": 3.0, "p90": -6.3, "v": 35, "vr": 1.26, "ds": 50.0, "f": 3}, {"slug": "acceltra_prime_receiver", "n_fr": "Acceltra Prime - Culasse", "n_en": "Acceltra Prime Receiver", "qty": 1, "p": 5.7, "p90": 21.3, "v": 75, "vr": 1.29, "ds": 100.0, "f": 2}, {"slug": "acceltra_prime_stock", "n_fr": "Acceltra Prime - Crosse", "n_en": "Acceltra Prime Stock", "qty": 1, "p": 21.0, "p90": 50.0, "v": 64, "vr": 0.6, "ds": 69.2, "f": 3}], "fusion_ratio": null}, "melee_duplicate": {"desc_fr": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.", "desc_en": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.", "wiki_en": "https://wiki.warframe.com/w/Melee_Duplicate", "icon": "items/images/en/melee_duplicate.0ac0137e555cde39902706e96853dff9.webp", "components": [], "fusion_ratio": 21}, "titania_prime_set": {"desc_fr": "Envoûtante et terrifiante, voici Titania dans sa forme ultime.", "desc_en": "Tempting and terrifying, this is Titania in her ultimate form.", "wiki_en": "https://wiki.warframe.com/w/Titania_Prime", "icon": "items/images/en/titania_prime_set.d783da2b4926bc3760d50bba21eff7db.png", "components": [{"slug": "titania_prime_blueprint", "n_fr": "Titania Prime (Schéma)", "n_en": "Titania Prime Blueprint", "qty": 1, "p": 10.8, "p90": -6.1, "v": 101, "vr": 0.44, "ds": 52.0, "f": 3}, {"slug": "titania_prime_chassis_blueprint", "n_fr": "Titania Prime - Châssis (Schéma)", "n_en": "Titania Prime Chassis Blueprint", "qty": 1, "p": 8.5, "p90": -24.1, "v": 99, "vr": 0.46, "ds": 41.7, "f": 3}, {"slug": "titania_prime_neuroptics_blueprint", "n_fr": "Titania Prime - Neuroptiques (Schéma)", "n_en": "Titania Prime Neuroptics Blueprint", "qty": 1, "p": 9.1, "p90": 8.3, "v": 117, "vr": 0.52, "ds": 24.4, "f": 3}, {"slug": "titania_prime_systems_blueprint", "n_fr": "Titania Prime - Systèmes (Schéma)", "n_en": "Titania Prime Systems Blueprint", "qty": 1, "p": 29.9, "p90": -31.7, "v": 64, "vr": 0.25, "ds": 28.1, "f": 3}], "fusion_ratio": null}, "overextended": {"desc_fr": "+90% Portée de Pouvoir\n-60% Puissance de Pouvoir", "desc_en": "+90% Ability Range\n-60% Ability Strength", "wiki_en": "https://wiki.warframe.com/w/Overextended", "icon": "items/images/en/overextended.4939196d35936b87b0ba4c85cdc97bef.png", "components": [], "fusion_ratio": null}, "narrow_minded": {"desc_fr": "+99% Durée de Pouvoir\n-66% Portée de Pouvoir", "desc_en": "+99% Ability Duration\n-66% Ability Range", "wiki_en": "https://wiki.warframe.com/w/Narrow_Minded", "icon": "items/images/en/narrow_minded.7f5295adebe0b2e9fa1b71353924f6cb.png", "components": [], "fusion_ratio": null}, "savior_decoy": {"desc_fr": "Augmentation de Leurre: Si Loki subit des dégâts fatals, le Leurre absorbe les dégâts et échange de position. Augmente également la Vitesse de Lancement de Leurre de 50%.", "desc_en": "Decoy Augment: If Loki takes fatal damage, Decoy absorbs the damage and swaps locations. Also increases Casting Speed of Decoy by 50%", "wiki_en": "https://wiki.warframe.com/w/Savior_Decoy", "icon": "items/images/en/savior_decoy.3b7d00bb0966017aa4b8bcb50803069c.png", "components": [], "fusion_ratio": null}, "augur_secrets": {"desc_fr": "+24% Puissance de Pouvoir", "desc_en": "+24% Ability Strength", "wiki_en": "https://wiki.warframe.com/w/Augur_Secrets", "icon": "items/images/en/augur_secrets.1edc65bbf884914b50e3d265e8893457.png", "components": [], "fusion_ratio": null}, "primary_deadhead": {"desc_fr": "Sur un Tir à la Tête Fatal:\n+120% de Dégâts pendant 24s. Cumulable jusqu'à 3x.\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme", "desc_en": "On Headshot Kill:\n+120% Damage for 24s. Stacks up to 3x.\n+30% to Headshot Multiplier\n-50% Weapon Recoil\n+30% to Headshot Multiplier\n-50% Weapon Recoil", "wiki_en": "https://warframe.fandom.com/wiki/Primary_Deadhead", "icon": "items/images/en/primary_deadhead.75738d3c111067da8e673bf8000a6710.png", "components": [], "fusion_ratio": 21}, "secondary_enervate": {"desc_fr": "Sur coup: augmentation des Chances de Critique de 10%. Se réinitialise après 6 Critiques Majeurs.", "desc_en": "On Hit: Increase Critical Chance by 10%. Resets after 6 Big Critical Hits.", "wiki_en": "https://wiki.warframe.com/w/Secondary_Enervate", "icon": "items/images/en/secondary_enervate.ad8d69119b058ad12c196bcf33352bd2.webp", "components": [], "fusion_ratio": 21}, "lavos_prime_set": {"desc_fr": "Certaines Warframes étaient Prime dès le départ. D'autres ont évolué. Lavos, le maître de la transmutation, ne s'est incliné devant personne alors qu'il forgeait son propre chemin vers la bravoure.", "desc_en": "Some Warframes were Prime from the start. Others ascended. Lavos, the master of transmutation, bowed to no one as he forged his own path to valor.", "wiki_en": "https://wiki.warframe.com/w/Lavos_Prime", "icon": "items/images/en/lavos_prime_set.b50879ee28eb0c9effda56dadca76c86.webp", "components": [{"slug": "lavos_prime_blueprint", "n_fr": "Lavos Prime (Schéma)", "n_en": "Lavos Prime Blueprint", "qty": 1, "p": 3.3, "p90": 3.1, "v": 53, "vr": 0.57, "ds": 30.0, "f": 3}, {"slug": "lavos_prime_chassis_blueprint", "n_fr": "Lavos Prime - Châssis (Schéma)", "n_en": "Lavos Prime Chassis Blueprint", "qty": 1, "p": 2.1, "p90": -27.6, "v": 33, "vr": 0.68, "ds": 55.0, "f": 3}, {"slug": "lavos_prime_neuroptics_blueprint", "n_fr": "Lavos Prime - Neuroptiques (Schéma)", "n_en": "Lavos Prime Neuroptics Blueprint", "qty": 1, "p": 5.6, "p90": 19.1, "v": 83, "vr": 0.67, "ds": 53.3, "f": 3}, {"slug": "lavos_prime_systems_blueprint", "n_fr": "Lavos Prime - Systèmes (Schéma)", "n_en": "Lavos Prime Systems Blueprint", "qty": 1, "p": 10.1, "p90": -4.7, "v": 113, "vr": 0.56, "ds": 36.7, "f": 3}], "fusion_ratio": null}, "transient_fortitude": {"desc_fr": "+55% Puissance de Pouvoir\n-27.5% Durée de Pouvoir", "desc_en": "+55% Ability Strength\n-27.5% Ability Duration", "wiki_en": "https://wiki.warframe.com/w/Transient_Fortitude", "icon": "items/images/en/transient_fortitude.9faec0880e8bf9b85e7282b3df213b69.png", "components": [], "fusion_ratio": null}, "burston_prime_set": {"desc_fr": "Ses derniers exemplaires ayant été perdus il y a longtemps, les tentatives pour reconstruire le Burston Prime n'ont jamais complètement reproduit sa puissance et sa maniabilité originelles.", "desc_en": "Once thought lost to the ages, attempts to reengineer the Burston Prime never fully replicated this weapon's power and agility.", "wiki_en": "https://warframe.fandom.com/wiki/Burston_Prime", "icon": "items/images/en/burston_prime_set.9fc6c6a6dca24113027828df669cd89e.png", "components": [{"slug": "burston_prime_barrel", "n_fr": "Burston Prime - Canon", "n_en": "Burston Prime Barrel", "qty": 1, "p": 4.0, "p90": -11.1, "v": 116, "vr": 1.14, "ds": 50.0, "f": 3}, {"slug": "burston_prime_blueprint", "n_fr": "Burston Prime (Schéma)", "n_en": "Burston Prime Blueprint", "qty": 1, "p": 3.5, "p90": -2.8, "v": 51, "vr": 1.85, "ds": 62.5, "f": 3}, {"slug": "burston_prime_receiver", "n_fr": "Burston Prime - Culasse", "n_en": "Burston Prime Receiver", "qty": 1, "p": 3.1, "p90": -11.4, "v": 58, "vr": 1.26, "ds": 36.7, "f": 3}, {"slug": "burston_prime_stock", "n_fr": "Burston Prime - Crosse", "n_en": "Burston Prime Stock", "qty": 1, "p": 2.8, "p90": 3.7, "v": 48, "vr": 1.22, "ds": 60.0, "f": 3}], "fusion_ratio": null}, "brief_respite": {"desc_fr": "Sur utilisation de Pouvoir: L'escouade convertit 150% de l'Énergie dépensée en Boucliers tant qu'il n'y a pas d'Exoboucliers", "desc_en": "On Ability Cast: Squad converts 150% of Energy spent to Shields while Overshields are inactive", "wiki_en": "https://wiki.warframe.com/w/Brief_Respite", "icon": "items/images/en/brief_respite.716172347813d137cc5d9d0cbe249d6c.png", "components": [], "fusion_ratio": null}, "banshee_prime_set": {"desc_fr": "Banshee Prime assaille ses ennemis en manipulant les forces soniques à des fins meutrières. Elle possède des polarités de mods altérées pour une meilleure personnalisation.", "desc_en": "Banshee Prime assails her foes by manipulating sonic forces to deadly effect. Featuring altered mod polarities for greater customization.", "wiki_en": "https://wiki.warframe.com/w/Banshee_Prime", "icon": "items/images/en/banshee_prime_set.a0956816beb733841bce57e69a568cd6.png", "components": [{"slug": "banshee_prime_blueprint", "n_fr": "Banshee Prime (Schéma)", "n_en": "Banshee Prime Blueprint", "qty": 1, "p": 7.3, "p90": 5.8, "v": 182, "vr": 2.44, "ds": 45.0, "f": 3}, {"slug": "banshee_prime_chassis_blueprint", "n_fr": "Banshee Prime - Châssis (Schéma)", "n_en": "Banshee Prime Chassis Blueprint", "qty": 1, "p": 27.5, "p90": -10.4, "v": 281, "vr": 2.36, "ds": 16.7, "f": 3}, {"slug": "banshee_prime_neuroptics_blueprint", "n_fr": "Banshee Prime - Neuroptiques (Schéma)", "n_en": "Banshee Prime Neuroptics Blueprint", "qty": 1, "p": 4.7, "p90": -6.0, "v": 133, "vr": 2.04, "ds": 70.0, "f": 3}, {"slug": "banshee_prime_systems_blueprint", "n_fr": "Banshee Prime - Systèmes (Schéma)", "n_en": "Banshee Prime Systems Blueprint", "qty": 1, "p": 15.9, "p90": -50.3, "v": 263, "vr": 2.27, "ds": 3.6, "f": 3}], "fusion_ratio": null}, "voruna_prime_set": {"desc_fr": "Splendeur et férocité atteignent leur paroxysme sauvage avec Voruna Prime. Bien qu'exaltée par l'or Orokin, elle est plus redoutable que jamais.", "desc_en": "Splendor and ferocity reach their savage apex in Voruna Prime. Though exalted by Orokin gold, she is more feral than ever.", "wiki_en": "", "icon": "items/images/en/voruna_prime_set.6a82ab2971991cfa9ff8b92df7ed8547.webp", "components": [{"slug": "voruna_prime_blueprint", "n_fr": "Voruna Prime (Schéma)", "n_en": "Voruna Prime Blueprint", "qty": 1, "p": 22.7, "p90": -9.2, "v": 175, "vr": 0.47, "ds": 33.7, "f": 3}, {"slug": "voruna_prime_chassis_blueprint", "n_fr": "Voruna Prime - Châssis (Schéma)", "n_en": "Voruna Prime Chassis Blueprint", "qty": 1, "p": 8.2, "p90": 60.8, "v": 177, "vr": 0.72, "ds": 84.0, "f": 3}, {"slug": "voruna_prime_neuroptics_blueprint", "n_fr": "Voruna Prime - Neuroptiques (Schéma)", "n_en": "Voruna Prime Neuroptics Blueprint", "qty": 1, "p": 2.5, "p90": -60.3, "v": 67, "vr": 0.36, "ds": 16.7, "f": 3}, {"slug": "voruna_prime_systems_blueprint", "n_fr": "Voruna Prime - Systèmes (Schéma)", "n_en": "Voruna Prime Systems Blueprint", "qty": 1, "p": 7.4, "p90": -48.3, "v": 216, "vr": 0.66, "ds": 5.0, "f": 3}], "fusion_ratio": null}, "pistol_elementalist": {"desc_fr": "+90% de Dégâts d'Effet de Statut\n+60% de Vitesse de Recharge", "desc_en": "+90% Status Damage\n+60% Reload Speed", "wiki_en": "https://wiki.warframe.com/w/Pistol_Elementalist", "icon": "items/images/en/pistol_elementalist.72e783c8460937ac2dc33aa1dfc203d6.webp", "components": [], "fusion_ratio": null}, "arcane_avenger": {"desc_fr": "Sur Dégâts reçus:\n21% de chances de: +45% de Chances de Critique pendant 12s\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On Damaged:\n21% chance for +45% Critical Chance for 12s\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Avenger", "icon": "items/images/en/arcane_avenger.181b3606583aa0b904a1ebf0b6864e82.png", "components": [], "fusion_ratio": 21}, "gyre_prime_set": {"desc_fr": "Des circuits dorés activent et dynamisent des mouvements frénétiques résonnant à travers les âges. Dansez pour l'éternité avec Gyre Prime.", "desc_en": "Gilded circuits spark and energize frenetic movements that echo through the ages. Dance into eternity with Gyre Prime.", "wiki_en": "", "icon": "items/images/en/gyre_prime_set.fd52e994eb0d81e21e28b7b7a98ad960.webp", "components": [{"slug": "gyre_prime_blueprint", "n_fr": "Gyre Prime (Schéma)", "n_en": "Gyre Prime Blueprint", "qty": 1, "p": 3.2, "p90": -31.9, "v": 66, "vr": 0.54, "ds": 40.0, "f": 3}, {"slug": "gyre_prime_chassis_blueprint", "n_fr": "Gyre Prime - Châssis (Schéma)", "n_en": "Gyre Prime Chassis Blueprint", "qty": 1, "p": 10.4, "p90": 16.9, "v": 134, "vr": 0.59, "ds": 60.0, "f": 3}, {"slug": "gyre_prime_neuroptics_blueprint", "n_fr": "Gyre Prime - Neuroptiques (Schéma)", "n_en": "Gyre Prime Neuroptics Blueprint", "qty": 1, "p": 9.0, "p90": -10.0, "v": 157, "vr": 0.61, "ds": 50.0, "f": 3}, {"slug": "gyre_prime_systems_blueprint", "n_fr": "Gyre Prime - Systèmes (Schéma)", "n_en": "Gyre Prime Systems Blueprint", "qty": 1, "p": 3.4, "p90": -15.0, "v": 59, "vr": 0.6, "ds": 40.0, "f": 3}], "fusion_ratio": null}, "hildryn_prime_set": {"desc_fr": "Hildryn Prime prouve que le succès récompense la discipline.", "desc_en": "Hildryn Prime proves that power is discipline’s reward.", "wiki_en": "https://wiki.warframe.com/w/Hildryn_Prime", "icon": "items/images/en/hildryn_prime_set.7e3f1cd4b94baa590dde37cd0ad0ba9e.png", "components": [{"slug": "hildryn_prime_blueprint", "n_fr": "Hildryn Prime (Schéma)", "n_en": "Hildryn Prime Blueprint", "qty": 1, "p": 38.8, "p90": 2.6, "v": 127, "vr": 0.69, "ds": 90.0, "f": 3}, {"slug": "hildryn_prime_chassis_blueprint", "n_fr": "Hildryn Prime - Châssis (Schéma)", "n_en": "Hildryn Prime Chassis Blueprint", "qty": 1, "p": 13.6, "p90": 22.5, "v": 115, "vr": 0.7, "ds": 76.7, "f": 3}, {"slug": "hildryn_prime_neuroptics_blueprint", "n_fr": "Hildryn Prime - Neuroptiques (Schéma)", "n_en": "Hildryn Prime Neuroptics Blueprint", "qty": 1, "p": 7.2, "p90": -5.3, "v": 79, "vr": 0.58, "ds": 40.0, "f": 3}, {"slug": "hildryn_prime_systems_blueprint", "n_fr": "Hildryn Prime - Systèmes (Schéma)", "n_en": "Hildryn Prime Systems Blueprint", "qty": 1, "p": 4.1, "p90": 10.8, "v": 77, "vr": 0.86, "ds": 10.0, "f": 3}], "fusion_ratio": null}, "growing_power": {"desc_fr": "Sur Effet de Statut avec une arme : l'escouade augmente la Puissance de Pouvoir personnelle de 25% pendant 6s.", "desc_en": "On Status Effect with Weapon: Squad increases personal Ability Strength by 25% for 6s.", "wiki_en": "https://wiki.warframe.com/w/Growing_Power", "icon": "items/images/en/growing_power.9afc4cbee02acdde54e5f875b8048202.png", "components": [], "fusion_ratio": null}, "arcane_crepuscular": {"desc_fr": "En étant invisible, gagnez +30% de Puissance de Pouvoir et +3x aux Dégâts Critiques finaux.\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "While invisible, gain +30% Ability Strength and +3x Final Critical Damage.\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Crepuscular", "icon": "items/images/en/arcane_crepuscular.8e34ad3ac57362158d9ec6d642364427.webp", "components": [], "fusion_ratio": 21}, "arcane_camisado": {"desc_fr": "Les attaques des serviteurs invoqués augmentent la Puissance des Pouvoirs de 6% jusqu'à 60% sur le prochain lancement de Pouvoir. Summons gain 20% Movement Speed.\n+1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "Attacks from summoned minions increase Ability Strength by 6% up to 60% on the next Ability Cast. Summons gain 20% Movement Speed.\n+1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "https://wiki.warframe.com/w/Arcane_Camisado", "icon": "items/images/en/arcane_camisado.49bb15acacdfe7a2782b56151d0a8a3f.webp", "components": [], "fusion_ratio": 21}, "wisp_prime_set": {"desc_fr": "La splendeur dorée de Wisp Prime hante le champ de bataille. Les alliés célèbrent sa beauté interdimensionnelle.", "desc_en": "Wisp Prime’s gilded splendor haunts the battlefield. Allies welcome her interdimensional beauty.", "wiki_en": "https://wiki.warframe.com/w/Wisp_Prime", "icon": "items/images/en/wisp_prime_set.609bc4e8676a77247cc126ca150cb132.png", "components": [{"slug": "wisp_prime_blueprint", "n_fr": "Wisp Prime (Schéma)", "n_en": "Wisp Prime Blueprint", "qty": 1, "p": 37.5, "p90": 8.4, "v": 160, "vr": 0.84, "ds": 83.3, "f": 3}, {"slug": "wisp_prime_chassis_blueprint", "n_fr": "Wisp Prime - Châssis (Schéma)", "n_en": "Wisp Prime Chassis Blueprint", "qty": 1, "p": 19.0, "p90": 10.5, "v": 143, "vr": 0.84, "ds": 100.0, "f": 3}, {"slug": "wisp_prime_neuroptics_blueprint", "n_fr": "Wisp Prime - Neuroptiques (Schéma)", "n_en": "Wisp Prime Neuroptics Blueprint", "qty": 1, "p": 6.6, "p90": -1.5, "v": 120, "vr": 0.95, "ds": 100.0, "f": 3}, {"slug": "wisp_prime_systems_blueprint", "n_fr": "Wisp Prime - Systèmes (Schéma)", "n_en": "Wisp Prime Systems Blueprint", "qty": 1, "p": 5.9, "p90": -6.3, "v": 92, "vr": 0.75, "ds": 45.0, "f": 3}], "fusion_ratio": null}, "arcane_sculptor": {"desc_fr": "Lors de la création d'un objet avec des Pouvoirs: les lancements ont 175% d'Efficacité de Pouvoir pendant 12s. +1 Réanimation Arcane\n+1 Réanimation Arcane", "desc_en": "On creating an object with abilities: casts have 175% Ability Efficiency for 12s. +1 Arcane Revive\n+1 Arcane Revive", "wiki_en": "", "icon": "items/images/en/arcane_sculptor.c585312d90bbedba54bd156a47489c7c.webp", "components": [], "fusion_ratio": 21}, "protea_prime_set": {"desc_fr": "L'enfant née de deux pères. Protea Prime a autrefois réalisé la vision de Parvos Granum d'un gardien manipulant le temps. Maintenant, elle défend l'idéal Tenno de protéger les plus faibles.", "desc_en": "Behold the child of two fathers. Protea Prime once fulfilled Parvos Granum's vision of a time-wielding guardian. Now she upholds the Tenno ideal of defending the defenseless.", "wiki_en": "https://wiki.warframe.com/w/Protea_Prime", "icon": "items/images/en/protea_prime_set.c4d0269d10f68228b05510982f06e58b.png", "components": [{"slug": "protea_prime_blueprint", "n_fr": "Protea Prime (Schéma)", "n_en": "Protea Prime Blueprint", "qty": 1, "p": 3.0, "p90": -16.7, "v": 31, "vr": 0.86, "ds": 50.0, "f": 3}, {"slug": "protea_prime_neuroptics_blueprint", "n_fr": "Protea Prime - Neuroptiques (Schéma)", "n_en": "Protea Prime Neuroptics Blueprint", "qty": 1, "p": 3.4, "p90": 0.0, "v": 41, "vr": 0.66, "ds": 40.0, "f": 3}, {"slug": "protea_prime_chassis_blueprint", "n_fr": "Protea Prime - Châssis (Schéma)", "n_en": "Protea Prime Chassis Blueprint", "qty": 1, "p": 17.5, "p90": 30.6, "v": 99, "vr": 0.68, "ds": 75.0, "f": 3}, {"slug": "protea_prime_systems_blueprint", "n_fr": "Protea Prime - Systèmes (Schéma)", "n_en": "Protea Prime Systems Blueprint", "qty": 1, "p": 15.7, "p90": 15.4, "v": 100, "vr": 0.76, "ds": 61.7, "f": 3}], "fusion_ratio": null}, "vile_acceleration": {"desc_fr": "+90% de Cadence de Tir (x2 pour les Arcs)\n-15% de Dégâts", "desc_en": "+90% Fire Rate (x2 for Bows)\n-15% Damage", "wiki_en": "https://wiki.warframe.com/w/Vile_Acceleration", "icon": "items/images/en/vile_acceleration.099e12a749ebb259d6cf079c8608297f.png", "components": [], "fusion_ratio": null}}
+{
+  "lith_m7_relic": {
+    "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
+    "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.",
+    "wiki_en": "",
+    "icon": "items/images/en/lith_m7_relic.4c2cd55afd4007566866d226c86e0fdd.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "neo_b6_relic": {
+    "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
+    "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.",
+    "wiki_en": "",
+    "icon": "items/images/en/neo_b6_relic.404dc9ef087cc16ca255f5b5fd17fff0.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_hot_shot": {
+    "desc_fr": "Gagnez 6% de Chances de Critique avec votre arme pendant 10s lorsque vous utilisez des Pouvoirs pour infliger des Effets de Statut de Feu aux ennemis. Nombre maximal de cumuls: 50.\n+1 Réanimation Arcane",
+    "desc_en": "Gain 6% weapon Critical Chance for 10s, when using abilities to inflict Heat Status effect on enemies. Maximum 50x stacks.\n+1 Arcane Revive",
+    "wiki_en": "",
+    "icon": "items/images/en/arcane_hot_shot.b488affbc34321e8b1dba284f889d634.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "primary_compression": {
+    "desc_fr": "En mode visée: rayon d'explosion x0.2, +100% de Dégâts et +5.5% d'Efficacité des Munitions par mètre de rayon perdu.",
+    "desc_en": "On aim: x0.2 explosion radius, +100% damage and +5.5% ammo efficiency for every 1m radius lost.",
+    "wiki_en": "",
+    "icon": "items/images/en/primary_compression.4c7b696553acb6a8cb573aa0d9990b2b.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "rifle_riven_mod_(veiled)": {
+    "desc_fr": "",
+    "desc_en": "",
+    "wiki_en": "https://warframe.fandom.com/wiki/Rifle_Riven_Mod",
+    "icon": "items/images/en/rifle_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "pistol_riven_mod_(veiled)": {
+    "desc_fr": "",
+    "desc_en": "",
+    "wiki_en": "https://warframe.fandom.com/wiki/Pistol_Riven_Mod",
+    "icon": "items/images/en/pistol_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "melee_riven_mod_(veiled)": {
+    "desc_fr": "",
+    "desc_en": "",
+    "wiki_en": "https://warframe.fandom.com/wiki/Melee_Riven_Mod",
+    "icon": "items/images/en/melee_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "volt_prime_set": {
+    "desc_fr": "Un glorieux combattant du passé, Volt Prime offre les mêmes Pouvoirs que Volt, mais avec une configuration de polarités unique et plus riche.",
+    "desc_en": "A glorious warrior from the past, Volt Prime features the same abilities as Volt but with unique mod polarities for greater customization.",
+    "wiki_en": "https://wiki.warframe.com/w/Volt_Prime",
+    "icon": "items/images/en/volt_prime_set.9481daa3eb02aaec1108cdbeeaeea159.png",
+    "components": [
+      {
+        "slug": "volt_prime_blueprint",
+        "n_fr": "Volt Prime (Schéma)",
+        "n_en": "Volt Prime Blueprint",
+        "qty": 1,
+        "p": 14.6,
+        "p90": 53.7,
+        "v": 75,
+        "vr": 0.82,
+        "ds": 65.7,
+        "f": 3
+      },
+      {
+        "slug": "volt_prime_chassis_blueprint",
+        "n_fr": "Volt Prime - Châssis (Schéma)",
+        "n_en": "Volt Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 10.4,
+        "p90": -9.6,
+        "v": 62,
+        "vr": 0.56,
+        "ds": 35.0,
+        "f": 3
+      },
+      {
+        "slug": "volt_prime_neuroptics_blueprint",
+        "n_fr": "Volt Prime - Neuroptiques (Schéma)",
+        "n_en": "Volt Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 31.2,
+        "p90": 8.0,
+        "v": 78,
+        "vr": 0.67,
+        "ds": 65.5,
+        "f": 3
+      },
+      {
+        "slug": "volt_prime_systems_blueprint",
+        "n_fr": "Volt Prime - Systèmes (Schéma)",
+        "n_en": "Volt Prime Systems Blueprint",
+        "qty": 1,
+        "p": 10.1,
+        "p90": 26.2,
+        "v": 65,
+        "vr": 0.62,
+        "ds": 100.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "primary_merciless": {
+    "desc_fr": "Sur Élimination:\n+30% de Dégâts pendant 4s. Cumulable jusqu'à 12x.\n+30% de Vitesse de Recharge\n+30% de Vitesse de Recharge",
+    "desc_en": "On Kill:\n+30% Damage for 4s. Stacks up to 12x.\n+30% Reload Speed\n+30% Reload Speed",
+    "wiki_en": "https://wiki.warframe.com/w/Primary_Merciless",
+    "icon": "items/images/en/primary_merciless.baca700cca91762be6465c5f52584fa7.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "lith_k5_relic": {
+    "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
+    "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.",
+    "wiki_en": "",
+    "icon": "items/images/en/lith_k5_relic.4c2cd55afd4007566866d226c86e0fdd.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "boar_prime_set": {
+    "desc_fr": "Véritable chef-d'œuvre de l'artisanat Tenno, le Boar Prime se caractérise par une cadence de tir plus élevée, un chargeur étendu et des dégâts beaucoup plus importants.",
+    "desc_en": "One of the finest examples of Tenno craftsmanship, the Boar Prime offers a higher Fire Rate, Magazine Capacity and a much higher per-shot damage.",
+    "wiki_en": "https://wiki.warframe.com/w/Boar_Prime",
+    "icon": "items/images/en/boar_prime_set.5e8a5ba1520169c7a99c738624328d26.png",
+    "components": [
+      {
+        "slug": "boar_prime_barrel",
+        "n_fr": "Boar Prime - Canon",
+        "n_en": "Boar Prime Barrel",
+        "qty": 1,
+        "p": 19.2,
+        "p90": 35.2,
+        "v": 87,
+        "vr": 1.92,
+        "ds": 90.0,
+        "f": 3
+      },
+      {
+        "slug": "boar_prime_blueprint",
+        "n_fr": "Boar Prime (Schéma)",
+        "n_en": "Boar Prime Blueprint",
+        "qty": 1,
+        "p": 10.0,
+        "p90": 16.3,
+        "v": 65,
+        "vr": 1.8,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "boar_prime_receiver",
+        "n_fr": "Boar Prime - Culasse",
+        "n_en": "Boar Prime Receiver",
+        "qty": 1,
+        "p": 22.0,
+        "p90": 74.6,
+        "v": 93,
+        "vr": 1.92,
+        "ds": 80.0,
+        "f": 3
+      },
+      {
+        "slug": "boar_prime_stock",
+        "n_fr": "Boar Prime - Crosse",
+        "n_en": "Boar Prime Stock",
+        "qty": 1,
+        "p": 55.6,
+        "p90": 38.3,
+        "v": 126,
+        "vr": 2.27,
+        "ds": 86.2,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "molt_augmented": {
+    "desc_fr": "Sur Élimination:\n+0.24% Puissance de Pouvoir. Cumulable jusqu'à 250x.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On Kill:\n+0.24% Ability Strength. Stacks up to 250x.\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Molt_Augmented",
+    "icon": "items/images/en/molt_augmented.9def654a0d24b7f085940dfc8ef843b5.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "arcane_energize": {
+    "desc_fr": "Sur Ramassage d'Énergie:\n60% de chances de restaurer 150 points d'Énergie à vous-même et aux alliés à moins de 15m\n15s de temps de recharge\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On Energy Pickup:\n60% chance to replenish 150 Energy to self and allies within 15m\n15s cooldown\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Energize",
+    "icon": "items/images/en/arcane_energize.e5f85590ceb29db89c6753dfdf823485.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "styanax_prime_set": {
+    "desc_fr": "Bouclier des innocents, lance de justice, Styanax Prime résiste à la tyrannie.",
+    "desc_en": "Shield of the innocent. Spear of justice. Styanax Prime holds the line in defiance of tyranny.",
+    "wiki_en": "",
+    "icon": "items/images/en/styanax_prime_set.27f0de9e366d4a69ace940a8f927783d.webp",
+    "components": [
+      {
+        "slug": "styanax_prime_blueprint",
+        "n_fr": "Styanax Prime (Schéma)",
+        "n_en": "Styanax Prime Blueprint",
+        "qty": 1,
+        "p": 9.8,
+        "p90": -67.3,
+        "v": 140,
+        "vr": 0.28,
+        "ds": 3.8,
+        "f": 3
+      },
+      {
+        "slug": "styanax_prime_chassis_blueprint",
+        "n_fr": "Styanax Prime - Châssis (Schéma)",
+        "n_en": "Styanax Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 4.4,
+        "p90": -75.6,
+        "v": 120,
+        "vr": 0.28,
+        "ds": 2.5,
+        "f": 3
+      },
+      {
+        "slug": "styanax_prime_neuroptics_blueprint",
+        "n_fr": "Styanax Prime - Neuroptiques (Schéma)",
+        "n_en": "Styanax Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 12.9,
+        "p90": -62.1,
+        "v": 222,
+        "vr": 0.39,
+        "ds": 12.1,
+        "f": 3
+      },
+      {
+        "slug": "styanax_prime_systems_blueprint",
+        "n_fr": "Styanax Prime - Systèmes (Schéma)",
+        "n_en": "Styanax Prime Systems Blueprint",
+        "qty": 1,
+        "p": 5.4,
+        "p90": -86.5,
+        "v": 153,
+        "vr": 0.32,
+        "ds": 1.1,
+        "f": 1
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "nova_prime_set": {
+    "desc_fr": "Nova Prime sème la dévastation sur ses ennemis à l'aide de l'antimatière volatile. Elle possède des polarités modifiées pour plus de personnalisation.",
+    "desc_en": "Nova Prime wreaks devastation on her enemies using volatile antimatter. Featuring altered mod polarities for greater customization.",
+    "wiki_en": "https://wiki.warframe.com/w/Nova_Prime",
+    "icon": "items/images/en/nova_prime_set.639a9222e1cb351cd6dd09ef28155ef0.png",
+    "components": [
+      {
+        "slug": "nova_prime_blueprint",
+        "n_fr": "Nova Prime (Schéma)",
+        "n_en": "Nova Prime Blueprint",
+        "qty": 1,
+        "p": 14.3,
+        "p90": 20.2,
+        "v": 86,
+        "vr": 1.01,
+        "ds": 86.0,
+        "f": 3
+      },
+      {
+        "slug": "nova_prime_chassis_blueprint",
+        "n_fr": "Nova Prime - Châssis (Schéma)",
+        "n_en": "Nova Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 30.4,
+        "p90": 8.2,
+        "v": 49,
+        "vr": 0.46,
+        "ds": 44.6,
+        "f": 3
+      },
+      {
+        "slug": "nova_prime_neuroptics_blueprint",
+        "n_fr": "Nova Prime - Neuroptiques (Schéma)",
+        "n_en": "Nova Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 14.5,
+        "p90": 18.9,
+        "v": 57,
+        "vr": 0.66,
+        "ds": 90.0,
+        "f": 3
+      },
+      {
+        "slug": "nova_prime_systems_blueprint",
+        "n_fr": "Nova Prime - Systèmes (Schéma)",
+        "n_en": "Nova Prime Systems Blueprint",
+        "qty": 1,
+        "p": 14.2,
+        "p90": 24.6,
+        "v": 68,
+        "vr": 0.81,
+        "ds": 84.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "meso_e5_relic": {
+    "desc_fr": "Un artefact contenant des secrets Orokins. Il ne peut être ouvert qu'avec la puissance du Néant.",
+    "desc_en": "An artifact containing Orokin secrets. It can only be opened through the power of the Void.",
+    "wiki_en": "",
+    "icon": "items/images/en/meso_e5_relic.32eb1e727be665c175084b03829b8015.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "mirage_prime_set": {
+    "desc_fr": "Jouez-vous de vos adversaires avec cette grande maîtresse de l'illusion et du chaos. Elle dispose de polarités de mod modifiées qui ouvrent de nouvelles perspectives en matière de personnalisation.",
+    "desc_en": "Dazzle the opposition with this golden master of illusion and mayhem. Featuring altered mod polarities allow for greater customization.",
+    "wiki_en": "https://wiki.warframe.com/w/Mirage_Prime",
+    "icon": "items/images/en/mirage_prime_set.e7f8f484dd6ae6c35f0767fff35a5109.png",
+    "components": [
+      {
+        "slug": "mirage_prime_blueprint",
+        "n_fr": "Mirage Prime (Schéma)",
+        "n_en": "Mirage Prime Blueprint",
+        "qty": 1,
+        "p": 26.8,
+        "p90": -29.8,
+        "v": 353,
+        "vr": 2.54,
+        "ds": 18.1,
+        "f": 3
+      },
+      {
+        "slug": "mirage_prime_chassis_blueprint",
+        "n_fr": "Mirage Prime - Châssis (Schéma)",
+        "n_en": "Mirage Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 8.1,
+        "p90": -24.3,
+        "v": 219,
+        "vr": 1.96,
+        "ds": 2.5,
+        "f": 3
+      },
+      {
+        "slug": "mirage_prime_neuroptics_blueprint",
+        "n_fr": "Mirage Prime - Neuroptiques (Schéma)",
+        "n_en": "Mirage Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 5.7,
+        "p90": -13.6,
+        "v": 196,
+        "vr": 2.03,
+        "ds": 35.0,
+        "f": 3
+      },
+      {
+        "slug": "mirage_prime_systems_blueprint",
+        "n_fr": "Mirage Prime - Systèmes (Schéma)",
+        "n_en": "Mirage Prime Systems Blueprint",
+        "qty": 1,
+        "p": 15.0,
+        "p90": -20.2,
+        "v": 221,
+        "vr": 1.67,
+        "ds": 28.6,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "gilded_truth": {
+    "desc_fr": "+80% Cadence de Tir\n+1 'Vérité'",
+    "desc_en": "+80% Fire Rate\n+1 'Truth'",
+    "wiki_en": "https://wiki.warframe.com/w/Gilded_Truth",
+    "icon": "items/images/en/gilded_truth.4f864f82b65bf77a28c01419c6cbfce1.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "blind_rage": {
+    "desc_fr": "+99% Puissance de Pouvoir\n-55% Efficacité de Pouvoir",
+    "desc_en": "+99% Ability Strength\n-55% Ability Efficiency",
+    "wiki_en": "https://wiki.warframe.com/w/Blind_Rage",
+    "icon": "items/images/en/blind_rage.a3969916d438992c1b132d3c56ded7a5.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "nautilus_prime_set": {
+    "desc_fr": "Ce courageux matelot défend son équipage avec Verglas Prime.",
+    "desc_en": "This brave deckhand defends his crew with Verglas Prime.",
+    "wiki_en": "https://wiki.warframe.com/w/Nautilus_Prime",
+    "icon": "items/images/en/nautilus_prime.64f2680abc41ecdb62943bc1b55be8c4.webp",
+    "components": [
+      {
+        "slug": "nautilus_prime_blueprint",
+        "n_fr": "Nautilus Prime (Schéma)",
+        "n_en": "Nautilus Prime Blueprint",
+        "qty": 1,
+        "p": 13.6,
+        "p90": 18.3,
+        "v": 95,
+        "vr": 0.53,
+        "ds": 92.0,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_carapace",
+        "n_fr": "Nautilus Prime - Carapace",
+        "n_en": "Nautilus Prime Carapace",
+        "qty": 1,
+        "p": 6.0,
+        "p90": -7.7,
+        "v": 65,
+        "vr": 0.54,
+        "ds": 33.3,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_cerebrum",
+        "n_fr": "Nautilus Prime - Cerveau",
+        "n_en": "Nautilus Prime Cerebrum",
+        "qty": 1,
+        "p": 27.1,
+        "p90": 64.2,
+        "v": 139,
+        "vr": 0.6,
+        "ds": 81.9,
+        "f": 3
+      },
+      {
+        "slug": "nautilus_prime_systems",
+        "n_fr": "Nautilus Prime - Systèmes",
+        "n_en": "Nautilus Prime Systems",
+        "qty": 1,
+        "p": 3.7,
+        "p90": 12.1,
+        "v": 64,
+        "vr": 0.59,
+        "ds": 85.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "gauss_prime_set": {
+    "desc_fr": "Le vif-argent prend forme. Gauss Prime ne tolère aucune allusion à la défaite.",
+    "desc_en": "Quicksilver takes form. Gauss Prime brooks no talk of defeat.",
+    "wiki_en": "https://wiki.warframe.com/w/Gauss_Prime",
+    "icon": "items/images/en/gauss_prime_set.df5aa569d863730a4de767fd449c107e.png",
+    "components": [
+      {
+        "slug": "gauss_prime_blueprint",
+        "n_fr": "Gauss Prime (Schéma)",
+        "n_en": "Gauss Prime Blueprint",
+        "qty": 1,
+        "p": 4.5,
+        "p90": -16.7,
+        "v": 88,
+        "vr": 0.81,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "gauss_prime_chassis_blueprint",
+        "n_fr": "Gauss Prime - Châssis (Schéma)",
+        "n_en": "Gauss Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 5.6,
+        "p90": -6.7,
+        "v": 93,
+        "vr": 0.77,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "gauss_prime_neuroptics_blueprint",
+        "n_fr": "Gauss Prime - Neuroptiques (Schéma)",
+        "n_en": "Gauss Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 9.5,
+        "p90": 11.8,
+        "v": 103,
+        "vr": 0.59,
+        "ds": 75.0,
+        "f": 3
+      },
+      {
+        "slug": "gauss_prime_systems_blueprint",
+        "n_fr": "Gauss Prime - Systèmes (Schéma)",
+        "n_en": "Gauss Prime Systems Blueprint",
+        "qty": 1,
+        "p": 30.0,
+        "p90": 17.2,
+        "v": 122,
+        "vr": 0.62,
+        "ds": 100.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "shotgun_elementalist": {
+    "desc_fr": "+90% de Dégâts d'Effet de Statut\n+60% de Taille Du Chargeur",
+    "desc_en": "+90% Status Damage\n+60% Magazine Capacity",
+    "wiki_en": "https://wiki.warframe.com/w/Shotgun_Elementalist",
+    "icon": "items/images/en/shotgun_elementalist.abc35c4698444eb948e6ede2ed437df7.webp",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "xaku_prime_set": {
+    "desc_fr": "L'enfant de la guerre et du Néant renaît en or. Ce qui a été brisé un jour peut se relever plus fort que ce qui n'a jamais été endommagé.",
+    "desc_en": "The child of war and void is reborn in gold. That which was once shattered may rise stronger than that which was never broken.",
+    "wiki_en": "https://wiki.warframe.com/w/Xaku_Prime",
+    "icon": "items/images/en/xaku_prime.caeeda2f9eec158d19fd76d7631fa5de.webp",
+    "components": [
+      {
+        "slug": "xaku_prime_blueprint",
+        "n_fr": "Xaku Prime (Schéma)",
+        "n_en": "Xaku Prime Blueprint",
+        "qty": 1,
+        "p": 13.2,
+        "p90": 29.4,
+        "v": 183,
+        "vr": 0.59,
+        "ds": 80.0,
+        "f": 3
+      },
+      {
+        "slug": "xaku_prime_chassis_blueprint",
+        "n_fr": "Xaku Prime - Châssis (Schéma)",
+        "n_en": "Xaku Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 3.4,
+        "p90": -17.1,
+        "v": 82,
+        "vr": 0.54,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "xaku_prime_neuroptics_blueprint",
+        "n_fr": "Xaku Prime - Neuroptiques (Schéma)",
+        "n_en": "Xaku Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 2.9,
+        "p90": -3.3,
+        "v": 58,
+        "vr": 0.61,
+        "ds": 45.0,
+        "f": 3
+      },
+      {
+        "slug": "xaku_prime_systems_blueprint",
+        "n_fr": "Xaku Prime - Systèmes (Schéma)",
+        "n_en": "Xaku Prime Systems Blueprint",
+        "qty": 1,
+        "p": 3.0,
+        "p90": -61.5,
+        "v": 131,
+        "vr": 0.75,
+        "ds": 16.7,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "yareli_prime_set": {
+    "desc_fr": "Waverider surgit, renaissant de l'écume de l'océan. Dans sa splendeur originelle de l'ère Orokin, elle incarne la vigueur éternelle de la jeunesse.",
+    "desc_en": "The Waverider arises, reborn from the ocean foam. In her original Orokin-era splendor she embodies the undying vigor of youth.",
+    "wiki_en": "",
+    "icon": "items/images/en/yareli_prime_set.80badf98bdde8e0c47cac61aa6149ea0.webp",
+    "components": [
+      {
+        "slug": "yareli_prime_blueprint",
+        "n_fr": "Yareli Prime (Schéma)",
+        "n_en": "Yareli Prime Blueprint",
+        "qty": 1,
+        "p": 2.9,
+        "p90": -9.4,
+        "v": 71,
+        "vr": 0.62,
+        "ds": 45.0,
+        "f": 3
+      },
+      {
+        "slug": "yareli_prime_chassis_blueprint",
+        "n_fr": "Yareli Prime - Châssis (Schéma)",
+        "n_en": "Yareli Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 2.2,
+        "p90": -15.4,
+        "v": 29,
+        "vr": 0.46,
+        "ds": 100.0,
+        "f": 2
+      },
+      {
+        "slug": "yareli_prime_neuroptics_blueprint",
+        "n_fr": "Yareli Prime - Neuroptiques (Schéma)",
+        "n_en": "Yareli Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 9.4,
+        "p90": -31.4,
+        "v": 189,
+        "vr": 0.63,
+        "ds": 6.7,
+        "f": 3
+      },
+      {
+        "slug": "yareli_prime_systems_blueprint",
+        "n_fr": "Yareli Prime - Systèmes (Schéma)",
+        "n_en": "Yareli Prime Systems Blueprint",
+        "qty": 1,
+        "p": 13.1,
+        "p90": -31.1,
+        "v": 198,
+        "vr": 0.64,
+        "ds": 31.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "acceltra_prime_set": {
+    "desc_fr": "Engagez vos ennemis avec une vitesse mortelle. Cette arme se recharge plus vite lorsque son utilisateur sprinte, et plus vite encore avec Gauss.",
+    "desc_en": "Engage your enemies with deadly speed. This weapon reloads even faster when its wielder sprints, faster still with Gauss.",
+    "wiki_en": "https://wiki.warframe.com/w/Acceltra_Prime",
+    "icon": "items/images/en/acceltra_prime_set.b826cc938ba700ff8d8f07d2b38051f7.png",
+    "components": [
+      {
+        "slug": "acceltra_prime_barrel",
+        "n_fr": "Acceltra Prime - Canon",
+        "n_en": "Acceltra Prime Barrel",
+        "qty": 1,
+        "p": 17.8,
+        "p90": 38.0,
+        "v": 132,
+        "vr": 1.3,
+        "ds": 77.3,
+        "f": 3
+      },
+      {
+        "slug": "acceltra_prime_blueprint",
+        "n_fr": "Acceltra Prime (Schéma)",
+        "n_en": "Acceltra Prime Blueprint",
+        "qty": 1,
+        "p": 3.0,
+        "p90": -6.3,
+        "v": 35,
+        "vr": 1.26,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "acceltra_prime_receiver",
+        "n_fr": "Acceltra Prime - Culasse",
+        "n_en": "Acceltra Prime Receiver",
+        "qty": 1,
+        "p": 5.7,
+        "p90": 21.3,
+        "v": 75,
+        "vr": 1.29,
+        "ds": 100.0,
+        "f": 2
+      },
+      {
+        "slug": "acceltra_prime_stock",
+        "n_fr": "Acceltra Prime - Crosse",
+        "n_en": "Acceltra Prime Stock",
+        "qty": 1,
+        "p": 21.0,
+        "p90": 50.0,
+        "v": 64,
+        "vr": 0.6,
+        "ds": 69.2,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "melee_duplicate": {
+    "desc_fr": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.",
+    "desc_en": "Melee Arcane that, on Base Critical Hits, gives you a 100% chance for your attack to strike a second time.",
+    "wiki_en": "https://wiki.warframe.com/w/Melee_Duplicate",
+    "icon": "items/images/en/melee_duplicate.0ac0137e555cde39902706e96853dff9.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "titania_prime_set": {
+    "desc_fr": "Envoûtante et terrifiante, voici Titania dans sa forme ultime.",
+    "desc_en": "Tempting and terrifying, this is Titania in her ultimate form.",
+    "wiki_en": "https://wiki.warframe.com/w/Titania_Prime",
+    "icon": "items/images/en/titania_prime_set.d783da2b4926bc3760d50bba21eff7db.png",
+    "components": [
+      {
+        "slug": "titania_prime_blueprint",
+        "n_fr": "Titania Prime (Schéma)",
+        "n_en": "Titania Prime Blueprint",
+        "qty": 1,
+        "p": 10.8,
+        "p90": -6.1,
+        "v": 101,
+        "vr": 0.44,
+        "ds": 52.0,
+        "f": 3
+      },
+      {
+        "slug": "titania_prime_chassis_blueprint",
+        "n_fr": "Titania Prime - Châssis (Schéma)",
+        "n_en": "Titania Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 8.5,
+        "p90": -24.1,
+        "v": 99,
+        "vr": 0.46,
+        "ds": 41.7,
+        "f": 3
+      },
+      {
+        "slug": "titania_prime_neuroptics_blueprint",
+        "n_fr": "Titania Prime - Neuroptiques (Schéma)",
+        "n_en": "Titania Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 9.1,
+        "p90": 8.3,
+        "v": 117,
+        "vr": 0.52,
+        "ds": 24.4,
+        "f": 3
+      },
+      {
+        "slug": "titania_prime_systems_blueprint",
+        "n_fr": "Titania Prime - Systèmes (Schéma)",
+        "n_en": "Titania Prime Systems Blueprint",
+        "qty": 1,
+        "p": 29.9,
+        "p90": -31.7,
+        "v": 64,
+        "vr": 0.25,
+        "ds": 28.1,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "overextended": {
+    "desc_fr": "+90% Portée de Pouvoir\n-60% Puissance de Pouvoir",
+    "desc_en": "+90% Ability Range\n-60% Ability Strength",
+    "wiki_en": "https://wiki.warframe.com/w/Overextended",
+    "icon": "items/images/en/overextended.4939196d35936b87b0ba4c85cdc97bef.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "narrow_minded": {
+    "desc_fr": "+99% Durée de Pouvoir\n-66% Portée de Pouvoir",
+    "desc_en": "+99% Ability Duration\n-66% Ability Range",
+    "wiki_en": "https://wiki.warframe.com/w/Narrow_Minded",
+    "icon": "items/images/en/narrow_minded.7f5295adebe0b2e9fa1b71353924f6cb.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "savior_decoy": {
+    "desc_fr": "Augmentation de Leurre: Si Loki subit des dégâts fatals, le Leurre absorbe les dégâts et échange de position. Augmente également la Vitesse de Lancement de Leurre de 50%.",
+    "desc_en": "Decoy Augment: If Loki takes fatal damage, Decoy absorbs the damage and swaps locations. Also increases Casting Speed of Decoy by 50%",
+    "wiki_en": "https://wiki.warframe.com/w/Savior_Decoy",
+    "icon": "items/images/en/savior_decoy.3b7d00bb0966017aa4b8bcb50803069c.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "augur_secrets": {
+    "desc_fr": "+24% Puissance de Pouvoir",
+    "desc_en": "+24% Ability Strength",
+    "wiki_en": "https://wiki.warframe.com/w/Augur_Secrets",
+    "icon": "items/images/en/augur_secrets.1edc65bbf884914b50e3d265e8893457.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "primary_deadhead": {
+    "desc_fr": "Sur un Tir à la Tête Fatal:\n+120% de Dégâts pendant 24s. Cumulable jusqu'à 3x.\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme\n+30% au Multi. de Tir à la tête\n-50% de Recul de l'Arme",
+    "desc_en": "On Headshot Kill:\n+120% Damage for 24s. Stacks up to 3x.\n+30% to Headshot Multiplier\n-50% Weapon Recoil\n+30% to Headshot Multiplier\n-50% Weapon Recoil",
+    "wiki_en": "https://warframe.fandom.com/wiki/Primary_Deadhead",
+    "icon": "items/images/en/primary_deadhead.75738d3c111067da8e673bf8000a6710.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "secondary_enervate": {
+    "desc_fr": "Sur coup: augmentation des Chances de Critique de 10%. Se réinitialise après 6 Critiques Majeurs.",
+    "desc_en": "On Hit: Increase Critical Chance by 10%. Resets after 6 Big Critical Hits.",
+    "wiki_en": "https://wiki.warframe.com/w/Secondary_Enervate",
+    "icon": "items/images/en/secondary_enervate.ad8d69119b058ad12c196bcf33352bd2.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "lavos_prime_set": {
+    "desc_fr": "Certaines Warframes étaient Prime dès le départ. D'autres ont évolué. Lavos, le maître de la transmutation, ne s'est incliné devant personne alors qu'il forgeait son propre chemin vers la bravoure.",
+    "desc_en": "Some Warframes were Prime from the start. Others ascended. Lavos, the master of transmutation, bowed to no one as he forged his own path to valor.",
+    "wiki_en": "https://wiki.warframe.com/w/Lavos_Prime",
+    "icon": "items/images/en/lavos_prime_set.b50879ee28eb0c9effda56dadca76c86.webp",
+    "components": [
+      {
+        "slug": "lavos_prime_blueprint",
+        "n_fr": "Lavos Prime (Schéma)",
+        "n_en": "Lavos Prime Blueprint",
+        "qty": 1,
+        "p": 3.3,
+        "p90": 3.1,
+        "v": 53,
+        "vr": 0.57,
+        "ds": 30.0,
+        "f": 3
+      },
+      {
+        "slug": "lavos_prime_chassis_blueprint",
+        "n_fr": "Lavos Prime - Châssis (Schéma)",
+        "n_en": "Lavos Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 2.1,
+        "p90": -27.6,
+        "v": 33,
+        "vr": 0.68,
+        "ds": 55.0,
+        "f": 3
+      },
+      {
+        "slug": "lavos_prime_neuroptics_blueprint",
+        "n_fr": "Lavos Prime - Neuroptiques (Schéma)",
+        "n_en": "Lavos Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 5.6,
+        "p90": 19.1,
+        "v": 83,
+        "vr": 0.67,
+        "ds": 53.3,
+        "f": 3
+      },
+      {
+        "slug": "lavos_prime_systems_blueprint",
+        "n_fr": "Lavos Prime - Systèmes (Schéma)",
+        "n_en": "Lavos Prime Systems Blueprint",
+        "qty": 1,
+        "p": 10.1,
+        "p90": -4.7,
+        "v": 113,
+        "vr": 0.56,
+        "ds": 36.7,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "transient_fortitude": {
+    "desc_fr": "+55% Puissance de Pouvoir\n-27.5% Durée de Pouvoir",
+    "desc_en": "+55% Ability Strength\n-27.5% Ability Duration",
+    "wiki_en": "https://wiki.warframe.com/w/Transient_Fortitude",
+    "icon": "items/images/en/transient_fortitude.9faec0880e8bf9b85e7282b3df213b69.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "burston_prime_set": {
+    "desc_fr": "Ses derniers exemplaires ayant été perdus il y a longtemps, les tentatives pour reconstruire le Burston Prime n'ont jamais complètement reproduit sa puissance et sa maniabilité originelles.",
+    "desc_en": "Once thought lost to the ages, attempts to reengineer the Burston Prime never fully replicated this weapon's power and agility.",
+    "wiki_en": "https://warframe.fandom.com/wiki/Burston_Prime",
+    "icon": "items/images/en/burston_prime_set.9fc6c6a6dca24113027828df669cd89e.png",
+    "components": [
+      {
+        "slug": "burston_prime_barrel",
+        "n_fr": "Burston Prime - Canon",
+        "n_en": "Burston Prime Barrel",
+        "qty": 1,
+        "p": 4.0,
+        "p90": -11.1,
+        "v": 116,
+        "vr": 1.14,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "burston_prime_blueprint",
+        "n_fr": "Burston Prime (Schéma)",
+        "n_en": "Burston Prime Blueprint",
+        "qty": 1,
+        "p": 3.5,
+        "p90": -2.8,
+        "v": 51,
+        "vr": 1.85,
+        "ds": 62.5,
+        "f": 3
+      },
+      {
+        "slug": "burston_prime_receiver",
+        "n_fr": "Burston Prime - Culasse",
+        "n_en": "Burston Prime Receiver",
+        "qty": 1,
+        "p": 3.1,
+        "p90": -11.4,
+        "v": 58,
+        "vr": 1.26,
+        "ds": 36.7,
+        "f": 3
+      },
+      {
+        "slug": "burston_prime_stock",
+        "n_fr": "Burston Prime - Crosse",
+        "n_en": "Burston Prime Stock",
+        "qty": 1,
+        "p": 2.8,
+        "p90": 3.7,
+        "v": 48,
+        "vr": 1.22,
+        "ds": 60.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "brief_respite": {
+    "desc_fr": "Sur utilisation de Pouvoir: L'escouade convertit 150% de l'Énergie dépensée en Boucliers tant qu'il n'y a pas d'Exoboucliers",
+    "desc_en": "On Ability Cast: Squad converts 150% of Energy spent to Shields while Overshields are inactive",
+    "wiki_en": "https://wiki.warframe.com/w/Brief_Respite",
+    "icon": "items/images/en/brief_respite.716172347813d137cc5d9d0cbe249d6c.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "banshee_prime_set": {
+    "desc_fr": "Banshee Prime assaille ses ennemis en manipulant les forces soniques à des fins meutrières. Elle possède des polarités de mods altérées pour une meilleure personnalisation.",
+    "desc_en": "Banshee Prime assails her foes by manipulating sonic forces to deadly effect. Featuring altered mod polarities for greater customization.",
+    "wiki_en": "https://wiki.warframe.com/w/Banshee_Prime",
+    "icon": "items/images/en/banshee_prime_set.a0956816beb733841bce57e69a568cd6.png",
+    "components": [
+      {
+        "slug": "banshee_prime_blueprint",
+        "n_fr": "Banshee Prime (Schéma)",
+        "n_en": "Banshee Prime Blueprint",
+        "qty": 1,
+        "p": 7.3,
+        "p90": 5.8,
+        "v": 182,
+        "vr": 2.44,
+        "ds": 45.0,
+        "f": 3
+      },
+      {
+        "slug": "banshee_prime_chassis_blueprint",
+        "n_fr": "Banshee Prime - Châssis (Schéma)",
+        "n_en": "Banshee Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 27.5,
+        "p90": -10.4,
+        "v": 281,
+        "vr": 2.36,
+        "ds": 16.7,
+        "f": 3
+      },
+      {
+        "slug": "banshee_prime_neuroptics_blueprint",
+        "n_fr": "Banshee Prime - Neuroptiques (Schéma)",
+        "n_en": "Banshee Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 4.7,
+        "p90": -6.0,
+        "v": 133,
+        "vr": 2.04,
+        "ds": 70.0,
+        "f": 3
+      },
+      {
+        "slug": "banshee_prime_systems_blueprint",
+        "n_fr": "Banshee Prime - Systèmes (Schéma)",
+        "n_en": "Banshee Prime Systems Blueprint",
+        "qty": 1,
+        "p": 15.9,
+        "p90": -50.3,
+        "v": 263,
+        "vr": 2.27,
+        "ds": 3.6,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "voruna_prime_set": {
+    "desc_fr": "Splendeur et férocité atteignent leur paroxysme sauvage avec Voruna Prime. Bien qu'exaltée par l'or Orokin, elle est plus redoutable que jamais.",
+    "desc_en": "Splendor and ferocity reach their savage apex in Voruna Prime. Though exalted by Orokin gold, she is more feral than ever.",
+    "wiki_en": "",
+    "icon": "items/images/en/voruna_prime_set.6a82ab2971991cfa9ff8b92df7ed8547.webp",
+    "components": [
+      {
+        "slug": "voruna_prime_blueprint",
+        "n_fr": "Voruna Prime (Schéma)",
+        "n_en": "Voruna Prime Blueprint",
+        "qty": 1,
+        "p": 22.7,
+        "p90": -9.2,
+        "v": 175,
+        "vr": 0.47,
+        "ds": 33.7,
+        "f": 3
+      },
+      {
+        "slug": "voruna_prime_chassis_blueprint",
+        "n_fr": "Voruna Prime - Châssis (Schéma)",
+        "n_en": "Voruna Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 8.2,
+        "p90": 60.8,
+        "v": 177,
+        "vr": 0.72,
+        "ds": 84.0,
+        "f": 3
+      },
+      {
+        "slug": "voruna_prime_neuroptics_blueprint",
+        "n_fr": "Voruna Prime - Neuroptiques (Schéma)",
+        "n_en": "Voruna Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 2.5,
+        "p90": -60.3,
+        "v": 67,
+        "vr": 0.36,
+        "ds": 16.7,
+        "f": 3
+      },
+      {
+        "slug": "voruna_prime_systems_blueprint",
+        "n_fr": "Voruna Prime - Systèmes (Schéma)",
+        "n_en": "Voruna Prime Systems Blueprint",
+        "qty": 1,
+        "p": 7.4,
+        "p90": -48.3,
+        "v": 216,
+        "vr": 0.66,
+        "ds": 5.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "pistol_elementalist": {
+    "desc_fr": "+90% de Dégâts d'Effet de Statut\n+60% de Vitesse de Recharge",
+    "desc_en": "+90% Status Damage\n+60% Reload Speed",
+    "wiki_en": "https://wiki.warframe.com/w/Pistol_Elementalist",
+    "icon": "items/images/en/pistol_elementalist.72e783c8460937ac2dc33aa1dfc203d6.webp",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_avenger": {
+    "desc_fr": "Sur Dégâts reçus:\n21% de chances de: +45% de Chances de Critique pendant 12s\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On Damaged:\n21% chance for +45% Critical Chance for 12s\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Avenger",
+    "icon": "items/images/en/arcane_avenger.181b3606583aa0b904a1ebf0b6864e82.png",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "gyre_prime_set": {
+    "desc_fr": "Des circuits dorés activent et dynamisent des mouvements frénétiques résonnant à travers les âges. Dansez pour l'éternité avec Gyre Prime.",
+    "desc_en": "Gilded circuits spark and energize frenetic movements that echo through the ages. Dance into eternity with Gyre Prime.",
+    "wiki_en": "",
+    "icon": "items/images/en/gyre_prime_set.fd52e994eb0d81e21e28b7b7a98ad960.webp",
+    "components": [
+      {
+        "slug": "gyre_prime_blueprint",
+        "n_fr": "Gyre Prime (Schéma)",
+        "n_en": "Gyre Prime Blueprint",
+        "qty": 1,
+        "p": 3.2,
+        "p90": -31.9,
+        "v": 66,
+        "vr": 0.54,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "gyre_prime_chassis_blueprint",
+        "n_fr": "Gyre Prime - Châssis (Schéma)",
+        "n_en": "Gyre Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 10.4,
+        "p90": 16.9,
+        "v": 134,
+        "vr": 0.59,
+        "ds": 60.0,
+        "f": 3
+      },
+      {
+        "slug": "gyre_prime_neuroptics_blueprint",
+        "n_fr": "Gyre Prime - Neuroptiques (Schéma)",
+        "n_en": "Gyre Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 9.0,
+        "p90": -10.0,
+        "v": 157,
+        "vr": 0.61,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "gyre_prime_systems_blueprint",
+        "n_fr": "Gyre Prime - Systèmes (Schéma)",
+        "n_en": "Gyre Prime Systems Blueprint",
+        "qty": 1,
+        "p": 3.4,
+        "p90": -15.0,
+        "v": 59,
+        "vr": 0.6,
+        "ds": 40.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "hildryn_prime_set": {
+    "desc_fr": "Hildryn Prime prouve que le succès récompense la discipline.",
+    "desc_en": "Hildryn Prime proves that power is discipline’s reward.",
+    "wiki_en": "https://wiki.warframe.com/w/Hildryn_Prime",
+    "icon": "items/images/en/hildryn_prime_set.7e3f1cd4b94baa590dde37cd0ad0ba9e.png",
+    "components": [
+      {
+        "slug": "hildryn_prime_blueprint",
+        "n_fr": "Hildryn Prime (Schéma)",
+        "n_en": "Hildryn Prime Blueprint",
+        "qty": 1,
+        "p": 38.8,
+        "p90": 2.6,
+        "v": 127,
+        "vr": 0.69,
+        "ds": 90.0,
+        "f": 3
+      },
+      {
+        "slug": "hildryn_prime_chassis_blueprint",
+        "n_fr": "Hildryn Prime - Châssis (Schéma)",
+        "n_en": "Hildryn Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 13.6,
+        "p90": 22.5,
+        "v": 115,
+        "vr": 0.7,
+        "ds": 76.7,
+        "f": 3
+      },
+      {
+        "slug": "hildryn_prime_neuroptics_blueprint",
+        "n_fr": "Hildryn Prime - Neuroptiques (Schéma)",
+        "n_en": "Hildryn Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 7.2,
+        "p90": -5.3,
+        "v": 79,
+        "vr": 0.58,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "hildryn_prime_systems_blueprint",
+        "n_fr": "Hildryn Prime - Systèmes (Schéma)",
+        "n_en": "Hildryn Prime Systems Blueprint",
+        "qty": 1,
+        "p": 4.1,
+        "p90": 10.8,
+        "v": 77,
+        "vr": 0.86,
+        "ds": 10.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "growing_power": {
+    "desc_fr": "Sur Effet de Statut avec une arme : l'escouade augmente la Puissance de Pouvoir personnelle de 25% pendant 6s.",
+    "desc_en": "On Status Effect with Weapon: Squad increases personal Ability Strength by 25% for 6s.",
+    "wiki_en": "https://wiki.warframe.com/w/Growing_Power",
+    "icon": "items/images/en/growing_power.9afc4cbee02acdde54e5f875b8048202.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_crepuscular": {
+    "desc_fr": "En étant invisible, gagnez +30% de Puissance de Pouvoir et +3x aux Dégâts Critiques finaux.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "While invisible, gain +30% Ability Strength and +3x Final Critical Damage.\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Crepuscular",
+    "icon": "items/images/en/arcane_crepuscular.8e34ad3ac57362158d9ec6d642364427.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "arcane_camisado": {
+    "desc_fr": "Les attaques des serviteurs invoqués augmentent la Puissance des Pouvoirs de 6% jusqu'à 60% sur le prochain lancement de Pouvoir. Summons gain 20% Movement Speed.\n+1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "Attacks from summoned minions increase Ability Strength by 6% up to 60% on the next Ability Cast. Summons gain 20% Movement Speed.\n+1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "https://wiki.warframe.com/w/Arcane_Camisado",
+    "icon": "items/images/en/arcane_camisado.49bb15acacdfe7a2782b56151d0a8a3f.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "wisp_prime_set": {
+    "desc_fr": "La splendeur dorée de Wisp Prime hante le champ de bataille. Les alliés célèbrent sa beauté interdimensionnelle.",
+    "desc_en": "Wisp Prime’s gilded splendor haunts the battlefield. Allies welcome her interdimensional beauty.",
+    "wiki_en": "https://wiki.warframe.com/w/Wisp_Prime",
+    "icon": "items/images/en/wisp_prime_set.609bc4e8676a77247cc126ca150cb132.png",
+    "components": [
+      {
+        "slug": "wisp_prime_blueprint",
+        "n_fr": "Wisp Prime (Schéma)",
+        "n_en": "Wisp Prime Blueprint",
+        "qty": 1,
+        "p": 37.5,
+        "p90": 8.4,
+        "v": 160,
+        "vr": 0.84,
+        "ds": 83.3,
+        "f": 3
+      },
+      {
+        "slug": "wisp_prime_chassis_blueprint",
+        "n_fr": "Wisp Prime - Châssis (Schéma)",
+        "n_en": "Wisp Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 19.0,
+        "p90": 10.5,
+        "v": 143,
+        "vr": 0.84,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "wisp_prime_neuroptics_blueprint",
+        "n_fr": "Wisp Prime - Neuroptiques (Schéma)",
+        "n_en": "Wisp Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 6.6,
+        "p90": -1.5,
+        "v": 120,
+        "vr": 0.95,
+        "ds": 100.0,
+        "f": 3
+      },
+      {
+        "slug": "wisp_prime_systems_blueprint",
+        "n_fr": "Wisp Prime - Systèmes (Schéma)",
+        "n_en": "Wisp Prime Systems Blueprint",
+        "qty": 1,
+        "p": 5.9,
+        "p90": -6.3,
+        "v": 92,
+        "vr": 0.75,
+        "ds": 45.0,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "arcane_sculptor": {
+    "desc_fr": "Lors de la création d'un objet avec des Pouvoirs: les lancements ont 175% d'Efficacité de Pouvoir pendant 12s. +1 Réanimation Arcane\n+1 Réanimation Arcane",
+    "desc_en": "On creating an object with abilities: casts have 175% Ability Efficiency for 12s. +1 Arcane Revive\n+1 Arcane Revive",
+    "wiki_en": "",
+    "icon": "items/images/en/arcane_sculptor.c585312d90bbedba54bd156a47489c7c.webp",
+    "components": [],
+    "fusion_ratio": 21,
+    "expert_tips": []
+  },
+  "protea_prime_set": {
+    "desc_fr": "L'enfant née de deux pères. Protea Prime a autrefois réalisé la vision de Parvos Granum d'un gardien manipulant le temps. Maintenant, elle défend l'idéal Tenno de protéger les plus faibles.",
+    "desc_en": "Behold the child of two fathers. Protea Prime once fulfilled Parvos Granum's vision of a time-wielding guardian. Now she upholds the Tenno ideal of defending the defenseless.",
+    "wiki_en": "https://wiki.warframe.com/w/Protea_Prime",
+    "icon": "items/images/en/protea_prime_set.c4d0269d10f68228b05510982f06e58b.png",
+    "components": [
+      {
+        "slug": "protea_prime_blueprint",
+        "n_fr": "Protea Prime (Schéma)",
+        "n_en": "Protea Prime Blueprint",
+        "qty": 1,
+        "p": 3.0,
+        "p90": -16.7,
+        "v": 31,
+        "vr": 0.86,
+        "ds": 50.0,
+        "f": 3
+      },
+      {
+        "slug": "protea_prime_neuroptics_blueprint",
+        "n_fr": "Protea Prime - Neuroptiques (Schéma)",
+        "n_en": "Protea Prime Neuroptics Blueprint",
+        "qty": 1,
+        "p": 3.4,
+        "p90": 0.0,
+        "v": 41,
+        "vr": 0.66,
+        "ds": 40.0,
+        "f": 3
+      },
+      {
+        "slug": "protea_prime_chassis_blueprint",
+        "n_fr": "Protea Prime - Châssis (Schéma)",
+        "n_en": "Protea Prime Chassis Blueprint",
+        "qty": 1,
+        "p": 17.5,
+        "p90": 30.6,
+        "v": 99,
+        "vr": 0.68,
+        "ds": 75.0,
+        "f": 3
+      },
+      {
+        "slug": "protea_prime_systems_blueprint",
+        "n_fr": "Protea Prime - Systèmes (Schéma)",
+        "n_en": "Protea Prime Systems Blueprint",
+        "qty": 1,
+        "p": 15.7,
+        "p90": 15.4,
+        "v": 100,
+        "vr": 0.76,
+        "ds": 61.7,
+        "f": 3
+      }
+    ],
+    "fusion_ratio": null,
+    "expert_tips": []
+  },
+  "vile_acceleration": {
+    "desc_fr": "+90% de Cadence de Tir (x2 pour les Arcs)\n-15% de Dégâts",
+    "desc_en": "+90% Fire Rate (x2 for Bows)\n-15% Damage",
+    "wiki_en": "https://wiki.warframe.com/w/Vile_Acceleration",
+    "icon": "items/images/en/vile_acceleration.099e12a749ebb259d6cf079c8608297f.png",
+    "components": [],
+    "fusion_ratio": null,
+    "expert_tips": []
+  }
+}
